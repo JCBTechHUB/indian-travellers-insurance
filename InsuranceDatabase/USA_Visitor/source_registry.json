@@ -1,0 +1,150 @@
+{
+  "category": "USA_Visitor",
+  "last_full_crawl": "2026-06-17",
+  "sources": [
+    {
+      "priority": 1,
+      "source_name": "VisitorsCoverage",
+      "source_url": "https://www.visitorscoverage.com/visitor-health-insurance/plans/",
+      "last_crawl_date": "2026-06-17",
+      "crawl_method": "web_fetch",
+      "plans_found": [
+        "CoverAmerica_Gold",
+        "ChoiceAmerica",
+        "INF_Elite_X",
+        "Atlas_America_Premium"
+      ],
+      "plans_removed": [],
+      "new_plans_detected": [],
+      "notes": "Client-rendered page — full plan list requires JavaScript. Partial crawl via marketing pages."
+    },
+    {
+      "priority": 1,
+      "source_name": "Insubuy",
+      "source_url": "https://www.insubuy.com/visitors-insurance/",
+      "last_crawl_date": "2026-06-17",
+      "crawl_method": "web_fetch + WebSearch",
+      "plans_found": [
+        "Patriot_America_Platinum",
+        "Patriot_America_Plus",
+        "Atlas_America_Premium",
+        "Safe_Travels_USA_Comprehensive",
+        "Visit_USA_HealthCare_Superior"
+      ],
+      "plans_removed": [],
+      "new_plans_detected": ["Patriot_America_Platinum"],
+      "notes": "High-end 2026 article crawled directly. Good plan detail at brochure level."
+    },
+    {
+      "priority": 1,
+      "source_name": "Visitor Guard",
+      "source_url": "https://www.visitorguard.com/plans/",
+      "last_crawl_date": "2026-06-17",
+      "crawl_method": "web_fetch",
+      "plans_found": [
+        "Safe_Travels_USA_Comprehensive",
+        "Patriot_America",
+        "Patriot_America_Plus",
+        "Visitors_Protect_Insurance",
+        "Patriot_Exchange",
+        "Diplomat_America",
+        "Atlas_Travel",
+        "VisitorSecure",
+        "Visitors_Care",
+        "Atlas_Premium",
+        "International_Major_Medical",
+        "Safe_Travels_Elite",
+        "Safe_Travels_USA_Cost_Saver",
+        "Atlas_Group",
+        "Global_Medical_Insurance"
+      ],
+      "plans_removed": [],
+      "new_plans_detected": [
+        "Visitors_Protect_Insurance",
+        "Diplomat_America",
+        "Visitors_Care",
+        "International_Major_Medical",
+        "Safe_Travels_USA_Cost_Saver",
+        "Atlas_Group",
+        "Global_Medical_Insurance"
+      ],
+      "notes": "Most comprehensive plan list found. Footer sidebar lists all available plans."
+    },
+    {
+      "priority": 1,
+      "source_name": "International Citizens Insurance",
+      "source_url": "https://www.internationalinsurance.com/visitors/",
+      "last_crawl_date": "2026-06-17",
+      "crawl_method": "WebSearch (fetch timed out)",
+      "plans_found": [
+        "Atlas_America",
+        "Safe_Travels_USA"
+      ],
+      "plans_removed": [],
+      "new_plans_detected": [],
+      "notes": "INCOMPLETE — fetch timed out. Only partial data via WebSearch. Needs re-crawl."
+    },
+    {
+      "priority": 2,
+      "source_name": "IMG Direct",
+      "source_url": "https://www.imglobal.com",
+      "last_crawl_date": null,
+      "crawl_method": "pending",
+      "plans_found": [],
+      "notes": "Not yet crawled. Schedule for Phase 11 P2 crawl."
+    },
+    {
+      "priority": 2,
+      "source_name": "WorldTrips Direct",
+      "source_url": "https://www.worldtrips.com",
+      "last_crawl_date": null,
+      "crawl_method": "pending",
+      "plans_found": [],
+      "notes": "Not yet crawled."
+    },
+    {
+      "priority": 2,
+      "source_name": "Seven Corners Direct",
+      "source_url": "https://www.sevencorners.com",
+      "last_crawl_date": null,
+      "crawl_method": "pending",
+      "plans_found": [],
+      "notes": "Not yet crawled."
+    },
+    {
+      "priority": 2,
+      "source_name": "Trawick Direct",
+      "source_url": "https://www.trawickinternational.com",
+      "last_crawl_date": null,
+      "crawl_method": "pending",
+      "plans_found": [],
+      "notes": "Not yet crawled."
+    },
+    {
+      "priority": 2,
+      "source_name": "GeoBlue",
+      "source_url": "https://www.geo-blue.com",
+      "last_crawl_date": null,
+      "crawl_method": "pending",
+      "plans_found": [],
+      "notes": "Not yet crawled."
+    },
+    {
+      "priority": 2,
+      "source_name": "INF Plans Direct",
+      "source_url": "https://www.infplans.com",
+      "last_crawl_date": null,
+      "crawl_method": "pending",
+      "plans_found": [],
+      "notes": "Not yet crawled."
+    }
+  ],
+  "total_plans_discovered": 20,
+  "plans_needing_carrier_identification": [
+    "Visitors_Protect_Insurance",
+    "International_Major_Medical",
+    "Global_Medical_Insurance",
+    "Diplomat_America"
+  ],
+  "crawl_status": "PARTIAL — Priority 1 incomplete (ICI timed out). Priority 2 and 3 not started."
+}
