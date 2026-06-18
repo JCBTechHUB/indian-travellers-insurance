@@ -1,0 +1,871 @@
+{
+  "meta": {
+    "version": "2026-06-18",
+    "phase": "Phase 18 — Post-Discharge Intelligence",
+    "purpose": "Track coverage for frequently overlooked post-discharge items across all 9 B-1/B-2 plans. Many travelers assume hospital coverage implies follow-up coverage — it often does not.",
+    "disclaimer": "Evidence-based only. Items without Certificate-level evidence are flagged NEEDS MANUAL REVIEW. Never use for claims advice.",
+    "categories_analyzed": [
+      "physical_therapy",
+      "occupational_therapy",
+      "speech_therapy",
+      "home_nursing_care",
+      "home_health_aide",
+      "rehabilitation_facility",
+      "durable_medical_equipment",
+      "prescription_refills_outpatient",
+      "follow_up_specialist_visits",
+      "follow_up_imaging"
+    ],
+    "coverage_key": {
+      "COVERED_URC": "Covered at actual/usual-reasonable-customary cost up to plan maximum, subject to deductible and coinsurance",
+      "COVERED_CAPPED": "Covered but subject to a dollar or visit cap — payout may fall far below actual cost",
+      "EXCLUDED": "Explicitly excluded from coverage — no payout regardless of medical necessity",
+      "NEEDS_MANUAL_REVIEW": "No Certificate-level evidence found — cannot determine coverage without full policy document review",
+      "NOT_APPLICABLE": "Not a benefit category for this plan type"
+    }
+  },
+
+  "plans": [
+
+    {
+      "plan_id": "Patriot_America_Plus",
+      "carrier": "SiriusPoint / IMG",
+      "authority_level": 1,
+      "source_document": "Certificate of Insurance (L1)",
+      "confidence_overall": 90,
+
+      "physical_therapy": {
+        "status": "COVERED_URC",
+        "detail": "Physical Therapy covered at 100% in-network / 90% out-of-network / 100% international. Requires medical order or treatment plan. No visit cap confirmed in Certificate.",
+        "visit_cap": null,
+        "dollar_cap": null,
+        "per_visit_cap": null,
+        "requires_precert": false,
+        "requires_physician_order": true,
+        "confidence": 100,
+        "authority_level": 1,
+        "flag": "No visit cap = significant advantage over competitors. Most other plans cap at 10 visits or $500 total."
+      },
+
+      "occupational_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly mentioned in Certificate evidence. May be covered under eligible medical expenses (Ancillary Services language) but no explicit OT benefit found.",
+        "confidence": 45,
+        "authority_level": 1,
+        "flag": "NEEDS MANUAL REVIEW — check Certificate for OT language or ancillary services inclusion"
+      },
+
+      "speech_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly mentioned in Certificate evidence. May fall under eligible medical expenses but no explicit Speech Therapy benefit confirmed.",
+        "confidence": 45,
+        "authority_level": 1
+      },
+
+      "home_nursing_care": {
+        "status": "COVERED_URC",
+        "detail": "Home Nursing Care covered at 100% in-network / 90% out-of-network. Must be provided by a Home Health Care Agency. Requires direct transfer from an acute care facility.",
+        "visit_cap": null,
+        "dollar_cap": null,
+        "requires_precert": true,
+        "precert_note": "Pre-certification REQUIRED. Failure to pre-certify = 50% reduction of eligible expenses.",
+        "requires_acute_transfer": true,
+        "confidence": 100,
+        "authority_level": 1,
+        "flag": "Direct transfer from acute care required — cannot start home nursing independently. Pre-certify immediately."
+      },
+
+      "home_health_aide": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Home Health Care Agency is mentioned as provider for Home Nursing Care but Home Health Aide as a separate benefit is not explicitly confirmed.",
+        "confidence": 50,
+        "authority_level": 1
+      },
+
+      "rehabilitation_facility": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Extended Care Facility is listed as a pre-certification-required service, suggesting it may be covered, but no explicit benefit amount or coverage confirmation found in evidence.",
+        "confidence": 55,
+        "authority_level": 1,
+        "flag": "Extended Care Facility pre-certification required — implies coverage exists. NEEDS MANUAL REVIEW for benefit details."
+      },
+
+      "durable_medical_equipment": {
+        "status": "COVERED_URC",
+        "detail": "Durable Medical Equipment (DME) explicitly covered at 100% in-network / 90% out-of-network / 100% international. Includes walkers, wheelchairs, crutches, and other medically necessary equipment.",
+        "dollar_cap": null,
+        "requires_physician_order": true,
+        "confidence": 100,
+        "authority_level": 1,
+        "flag": "Strong DME coverage — no dollar cap confirmed. Significant advantage over most competitor plans."
+      },
+
+      "prescription_refills_outpatient": {
+        "status": "COVERED_URC",
+        "detail": "Prescriptions covered. In-network: covered under eligible medical expenses (no separate Rx billing line). Out-of-network: 90%. Maximum 90-day supply per prescription. If plan max is $500K or $1M: Rx sub-limit $250,000 per Period of Coverage.",
+        "dollar_cap_if_high_plan": "$250,000 (if plan max is $500K or $1M)",
+        "dispensing_maximum": "90-day supply",
+        "confidence": 100,
+        "authority_level": 1,
+        "flag": "In-network Rx billing is bundled — traveler does not need to file separate Rx claims when using in-network pharmacy."
+      },
+
+      "follow_up_specialist_visits": {
+        "status": "COVERED_URC",
+        "detail": "Outpatient specialist visits covered as eligible medical expenses. In-network: 100%. Out-of-network: 90%. No visit cap for specialist follow-ups identified.",
+        "confidence": 90,
+        "authority_level": 1
+      },
+
+      "follow_up_imaging": {
+        "status": "COVERED_URC",
+        "detail": "Follow-up MRI, CT, X-ray covered as eligible medical expenses. In-network: 100%. Out-of-network: 90%. No imaging sub-limit confirmed.",
+        "confidence": 90,
+        "authority_level": 1
+      },
+
+      "post_discharge_summary": {
+        "strengths": ["PT covered with no visit cap — best in class", "DME covered with no dollar cap", "Home Nursing covered (with pre-cert and acute-transfer requirement)", "Rx bundled in-network (no separate filing)"],
+        "weaknesses": ["OT and Speech Therapy not confirmed — needs Certificate review", "Home Nursing requires direct acute care transfer — cannot use independently", "Pre-certification required for Home Nursing and Extended Care or face 50% penalty"],
+        "overall_post_discharge_score": 78
+      }
+    },
+
+    {
+      "plan_id": "Patriot_America_Platinum",
+      "carrier": "SiriusPoint / IMG",
+      "authority_level": 1,
+      "source_document": "Certificate of Insurance (L1)",
+      "confidence_overall": 92,
+
+      "physical_therapy": {
+        "status": "COVERED_URC",
+        "detail": "Physical Therapy covered at 100% everywhere. Requires medical order or treatment plan. No visit cap confirmed.",
+        "visit_cap": null,
+        "per_visit_cap": null,
+        "requires_physician_order": true,
+        "confidence": 100,
+        "authority_level": 1,
+        "flag": "100% coinsurance everywhere — no in-network vs OON distinction. Best PT coverage."
+      },
+
+      "occupational_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly confirmed in Certificate evidence.",
+        "confidence": 45,
+        "authority_level": 1
+      },
+
+      "speech_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly confirmed in Certificate evidence.",
+        "confidence": 45,
+        "authority_level": 1
+      },
+
+      "home_nursing_care": {
+        "status": "COVERED_URC",
+        "detail": "Home Nursing Care covered at 100%. Provided by Home Health Care Agency. Direct transfer from acute care facility required.",
+        "requires_precert": true,
+        "requires_acute_transfer": true,
+        "confidence": 100,
+        "authority_level": 1
+      },
+
+      "home_health_aide": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly confirmed as a separate benefit.",
+        "confidence": 50,
+        "authority_level": 1
+      },
+
+      "rehabilitation_facility": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Extended Care Facility pre-certification required (implies covered). Explicit benefit details not in evidence.",
+        "confidence": 55,
+        "authority_level": 1
+      },
+
+      "durable_medical_equipment": {
+        "status": "COVERED_URC",
+        "detail": "DME covered at 100% everywhere. No dollar cap confirmed.",
+        "confidence": 100,
+        "authority_level": 1,
+        "flag": "Best DME coverage — 100% with no dollar cap."
+      },
+
+      "prescription_refills_outpatient": {
+        "status": "COVERED_URC",
+        "detail": "Prescriptions covered at 100%. 90-day supply max. If plan max ≥$1M: Rx sub-limit = $250,000. If plan max is $20K or $100K: covered up to plan max.",
+        "dollar_cap_if_high_plan": "$250,000 (plan max ≥$1M)",
+        "dispensing_maximum": "90-day supply",
+        "confidence": 100,
+        "authority_level": 1
+      },
+
+      "follow_up_specialist_visits": {
+        "status": "COVERED_URC",
+        "detail": "100% coinsurance everywhere. No visit cap confirmed.",
+        "confidence": 90,
+        "authority_level": 1
+      },
+
+      "follow_up_imaging": {
+        "status": "COVERED_URC",
+        "detail": "100% coinsurance everywhere. No imaging sub-limit confirmed.",
+        "confidence": 90,
+        "authority_level": 1
+      },
+
+      "post_discharge_summary": {
+        "strengths": ["100% everywhere — no OON penalty on any post-discharge service", "PT uncapped", "DME uncapped", "Home Nursing covered"],
+        "weaknesses": ["OT and Speech not confirmed", "Home Nursing requires acute transfer + pre-cert"],
+        "overall_post_discharge_score": 82
+      }
+    },
+
+    {
+      "plan_id": "CoverAmerica_Gold",
+      "carrier": "SiriusPoint (via VisitorsCoverage)",
+      "authority_level": 1,
+      "source_document": "Certificate of Insurance (L1)",
+      "confidence_overall": 82,
+
+      "physical_therapy": {
+        "status": "COVERED_URC",
+        "detail": "Physical Therapy covered at 100% in-network / 80% out-of-network. Requires medical order or treatment plan. No visit cap confirmed in Certificate.",
+        "visit_cap": null,
+        "requires_physician_order": true,
+        "confidence": 100,
+        "authority_level": 1
+      },
+
+      "occupational_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly confirmed.",
+        "confidence": 45,
+        "authority_level": 1
+      },
+
+      "speech_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 45,
+        "authority_level": 1
+      },
+
+      "home_nursing_care": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly confirmed in Certificate evidence for CoverAmerica Gold.",
+        "confidence": 40,
+        "authority_level": 1,
+        "flag": "NEEDS MANUAL REVIEW — full Certificate needed."
+      },
+
+      "home_health_aide": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "rehabilitation_facility": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "durable_medical_equipment": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly confirmed in Certificate evidence.",
+        "confidence": 40,
+        "authority_level": 1
+      },
+
+      "prescription_refills_outpatient": {
+        "status": "COVERED_URC",
+        "detail": "Rx covered. In-network: not applicable (bundled). Out-of-network: 80%. 90-day maximum supply.",
+        "oon_coinsurance": "80%",
+        "dispensing_maximum": "90-day supply",
+        "confidence": 100,
+        "authority_level": 1,
+        "flag": "80% OON coinsurance means 20% patient OOP on outpatient Rx — weaker than IMG plans."
+      },
+
+      "follow_up_specialist_visits": {
+        "status": "COVERED_URC",
+        "detail": "100% in-network / 80% OON. No visit cap.",
+        "confidence": 88,
+        "authority_level": 1
+      },
+
+      "follow_up_imaging": {
+        "status": "COVERED_URC",
+        "detail": "100% in-network / 80% OON.",
+        "confidence": 88,
+        "authority_level": 1
+      },
+
+      "post_discharge_summary": {
+        "strengths": ["PT covered with no confirmed visit cap", "Rx covered"],
+        "weaknesses": ["Home Nursing, DME, Rehab not confirmed — needs Certificate review", "80% OON coinsurance on all post-discharge services"],
+        "overall_post_discharge_score": 55
+      }
+    },
+
+    {
+      "plan_id": "Safe_Travels_USA_Comprehensive",
+      "carrier": "Trawick International / Nationwide",
+      "authority_level": 1,
+      "source_document": "Certificate of Insurance (L1)",
+      "confidence_overall": 85,
+
+      "physical_therapy": {
+        "status": "COVERED_CAPPED",
+        "detail": "Physiotherapy / Physical Medicine: $50 per visit, 1 visit per day, 10 visits maximum per Period of Insurance. Must be prescribed by a Physician. Total maximum: $500.",
+        "visit_cap": 10,
+        "per_visit_cap": "$50",
+        "dollar_cap": "$500 total",
+        "requires_physician_order": true,
+        "confidence": 100,
+        "authority_level": 1,
+        "flag": "SIGNIFICANTLY CAPPED — average PT visit billed at $100-$200. Plan pays $50/visit leaving patient responsible for $50-$150 per visit. $500 total cap exhausted after 10 visits."
+      },
+
+      "occupational_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly mentioned — check whether included in Physiotherapy/Physical Medicine language.",
+        "confidence": 40,
+        "authority_level": 1
+      },
+
+      "speech_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 40,
+        "authority_level": 1
+      },
+
+      "home_nursing_care": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not found in extracted Certificate evidence.",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "home_health_aide": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "rehabilitation_facility": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "durable_medical_equipment": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly confirmed in Certificate evidence.",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "prescription_refills_outpatient": {
+        "status": "COVERED_URC",
+        "detail": "Prescriptions covered. If plan max ≤$250K: up to full plan max. If plan max $500K or $1M: Rx sub-limit $250,000. 90-day maximum supply. 100% coinsurance everywhere.",
+        "dollar_cap_if_high_plan": "$250,000 (plan max $500K/$1M)",
+        "dispensing_maximum": "90-day supply",
+        "confidence": 100,
+        "authority_level": 1,
+        "flag": "100% coinsurance on Rx is a strength — no OON penalty."
+      },
+
+      "follow_up_specialist_visits": {
+        "status": "COVERED_URC",
+        "detail": "100% coinsurance everywhere. No visit cap confirmed.",
+        "confidence": 85,
+        "authority_level": 1
+      },
+
+      "follow_up_imaging": {
+        "status": "COVERED_URC",
+        "detail": "100% coinsurance everywhere.",
+        "confidence": 85,
+        "authority_level": 1
+      },
+
+      "post_discharge_summary": {
+        "strengths": ["100% coinsurance on Rx and follow-up visits", "Chiropractic included in PT benefit"],
+        "weaknesses": ["PT capped at $500 / 10 visits — below real-world costs", "Home Nursing, DME, Rehab not confirmed"],
+        "overall_post_discharge_score": 52
+      }
+    },
+
+    {
+      "plan_id": "VisitorSecure",
+      "carrier": "TMHCC / WorldTrips",
+      "authority_level": 1,
+      "source_document": "Certificate of Insurance (L1)",
+      "confidence_overall": 88,
+      "plan_type_warning": "SCHEDULED BENEFIT PLAN — all payouts are fixed dollar amounts, not percentage of actual cost. Post-discharge benefits are particularly limited.",
+
+      "physical_therapy": {
+        "status": "COVERED_CAPPED",
+        "detail": "Physical Therapy: $40 per visit, 1 visit per day, maximum 12 visits per period. Fixed benefit — plan pays $40 regardless of actual visit cost ($100-$200 typical). Total maximum: $480.",
+        "visit_cap": 12,
+        "per_visit_cap": "$40 fixed",
+        "dollar_cap": "$480 maximum",
+        "confidence": 100,
+        "authority_level": 1,
+        "flag": "SCHEDULED BENEFIT — $40/visit vs $100-$200 actual cost. Plan pays less than half actual cost. Patient owes $60-$160 per visit after plan payment."
+      },
+
+      "occupational_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not in evidence. Likely excluded or not a listed scheduled benefit.",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "speech_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "home_nursing_care": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not confirmed in evidence. Scheduled benefit plan may have a fixed daily amount if covered.",
+        "confidence": 30,
+        "authority_level": 1
+      },
+
+      "home_health_aide": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 30,
+        "authority_level": 1
+      },
+
+      "rehabilitation_facility": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 30,
+        "authority_level": 1
+      },
+
+      "durable_medical_equipment": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not in evidence. If covered, would be a fixed scheduled amount.",
+        "confidence": 30,
+        "authority_level": 1
+      },
+
+      "prescription_refills_outpatient": {
+        "status": "COVERED_CAPPED",
+        "detail": "Outpatient Prescription Drugs: Plan A $150 / Plan B $200 / Plan C $250 / Plan D $300 per period of insurance. Fixed dollar maximum — not percentage-based. Any Rx costs above this limit are entirely patient responsibility.",
+        "dollar_cap": "$150-$300 per period (plan-tier dependent)",
+        "confidence": 100,
+        "authority_level": 1,
+        "flag": "CRITICAL WEAKNESS — $150-$300 total outpatient Rx for entire trip. A single specialty medication can exceed this in 1-2 fills. Severely inadequate for post-hospitalization Rx."
+      },
+
+      "follow_up_specialist_visits": {
+        "status": "COVERED_CAPPED",
+        "detail": "Specialist visits likely covered at fixed scheduled benefit (see physician office visit schedule). Actual cost may far exceed fixed benefit.",
+        "confidence": 70,
+        "authority_level": 1,
+        "flag": "All services are fixed scheduled amounts — follow-up specialist bills $200-$500; plan likely pays $50-$100 fixed."
+      },
+
+      "follow_up_imaging": {
+        "status": "COVERED_CAPPED",
+        "detail": "Follow-up MRI/CT: fixed scheduled benefit amount applies. Actual MRI cost $500-$3,000; plan scheduled amount likely far below.",
+        "confidence": 65,
+        "authority_level": 1,
+        "flag": "MRI actual cost $500-$3,000; VisitorSecure scheduled benefit severely underpays imaging."
+      },
+
+      "post_discharge_summary": {
+        "strengths": ["Has PT and Rx benefits (unlike SC Basic which excludes PT)"],
+        "weaknesses": [
+          "SCHEDULED BENEFIT — every post-discharge item pays fixed low dollar amounts",
+          "Rx cap $150-$300 total is dangerously low for post-hospitalization medication",
+          "PT pays only $40/visit ($480 max) vs $100-$200 actual",
+          "Follow-up imaging severely underpaid at scheduled rates"
+        ],
+        "overall_post_discharge_score": 22
+      }
+    },
+
+    {
+      "plan_id": "Atlas_America",
+      "carrier": "Tokio Marine HCC (TMHCC) / WorldTrips",
+      "authority_level": 4,
+      "source_document": "Coverage Summary / Brochure (L4/L5) — full Certificate not obtained",
+      "confidence_overall": 40,
+      "data_quality_warning": "NEEDS MANUAL REVIEW across all categories — full Certificate of Insurance not yet obtained. All data below from brochure-level sources only.",
+
+      "physical_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 40,
+        "authority_level": 5,
+        "flag": "Full Certificate needed"
+      },
+      "occupational_therapy": {"status": "NEEDS_MANUAL_REVIEW", "confidence": 35, "authority_level": 5},
+      "speech_therapy": {"status": "NEEDS_MANUAL_REVIEW", "confidence": 35, "authority_level": 5},
+      "home_nursing_care": {"status": "NEEDS_MANUAL_REVIEW", "confidence": 35, "authority_level": 5},
+      "home_health_aide": {"status": "NEEDS_MANUAL_REVIEW", "confidence": 30, "authority_level": 5},
+      "rehabilitation_facility": {"status": "NEEDS_MANUAL_REVIEW", "confidence": 30, "authority_level": 5},
+      "durable_medical_equipment": {"status": "NEEDS_MANUAL_REVIEW", "confidence": 35, "authority_level": 5},
+      "prescription_refills_outpatient": {"status": "NEEDS_MANUAL_REVIEW", "confidence": 40, "authority_level": 5},
+      "follow_up_specialist_visits": {"status": "NEEDS_MANUAL_REVIEW", "confidence": 40, "authority_level": 5},
+      "follow_up_imaging": {"status": "NEEDS_MANUAL_REVIEW", "confidence": 40, "authority_level": 5},
+
+      "post_discharge_summary": {
+        "strengths": ["UHC PPO network (strong access to in-network providers for post-discharge care)"],
+        "weaknesses": ["All post-discharge items unconfirmed — full Certificate required"],
+        "overall_post_discharge_score": "UNSCORED — insufficient evidence"
+      }
+    },
+
+    {
+      "plan_id": "INF_Elite_X",
+      "carrier": "Crum & Forster SPC (admin: Robin Assist)",
+      "authority_level": 2,
+      "source_document": "Policy Wording (L2)",
+      "confidence_overall": 82,
+
+      "physical_therapy": {
+        "status": "COVERED_CAPPED",
+        "detail": "Physiotherapy: $50 per visit, up to a maximum of $500 total (10 visits at $50). Must be prescribed by physician.",
+        "visit_cap": 10,
+        "per_visit_cap": "$50",
+        "dollar_cap": "$500 total",
+        "requires_physician_order": true,
+        "confidence": 90,
+        "authority_level": 2,
+        "flag": "Same low cap as Safe Travels ($500 total). Far below real PT costs."
+      },
+
+      "occupational_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not confirmed in Policy Wording evidence.",
+        "confidence": 40,
+        "authority_level": 2
+      },
+
+      "speech_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 40,
+        "authority_level": 2
+      },
+
+      "home_nursing_care": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly confirmed in Policy Wording.",
+        "confidence": 40,
+        "authority_level": 2
+      },
+
+      "home_health_aide": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 35,
+        "authority_level": 2
+      },
+
+      "rehabilitation_facility": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 35,
+        "authority_level": 2
+      },
+
+      "durable_medical_equipment": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Hospital ancillary services ($20K sub-limit) includes ER and OR use but DME as a separate outpatient benefit is not confirmed.",
+        "confidence": 40,
+        "authority_level": 2
+      },
+
+      "prescription_refills_outpatient": {
+        "status": "COVERED_CAPPED",
+        "detail": "Prescription Drugs: $500 maximum (confirmed under pre-existing sub-limits). For new-condition Rx, a separate general Rx benefit may exist at a higher limit — not confirmed in extracted evidence.",
+        "dollar_cap_preexisting": "$500 (within pre-existing sub-limits)",
+        "dollar_cap_new_condition": "NEEDS MANUAL REVIEW — not confirmed",
+        "confidence": 65,
+        "authority_level": 2,
+        "flag": "AMBIGUOUS — $500 Rx confirmed for pre-existing conditions. New-condition Rx limit requires Policy Wording review. If general Rx limit is also $500, this is severely inadequate for post-hospitalization Rx."
+      },
+
+      "follow_up_specialist_visits": {
+        "status": "COVERED_URC",
+        "detail": "Outpatient visits covered at 80-90% in-network / 60-70% OON as eligible medical expenses. No separate visit cap for follow-up confirmed.",
+        "in_network_coinsurance": "80-90%",
+        "oon_coinsurance": "60-70%",
+        "confidence": 75,
+        "authority_level": 2,
+        "flag": "OON exposure 30-40% — significantly worse than competitor plans for out-of-network follow-up care."
+      },
+
+      "follow_up_imaging": {
+        "status": "COVERED_URC",
+        "detail": "Hospital ancillary $20K sub-limit covers imaging performed in hospital. Outpatient follow-up imaging (standalone radiology center) — covered at 80-90% in-network but no separate imaging sub-limit confirmed.",
+        "hospital_ancillary_cap": "$20,000 (shared with ER, OR use)",
+        "confidence": 70,
+        "authority_level": 2
+      },
+
+      "post_discharge_summary": {
+        "strengths": ["Pre-existing condition Rx covered (within sub-limits)", "Outpatient specialist visits covered at 80-90% in-network"],
+        "weaknesses": [
+          "PT capped at $500 total",
+          "Rx ambiguous — $500 confirmed only for pre-ex; new-condition Rx limit not confirmed",
+          "OON penalty: 30-40% patient exposure on all post-discharge services",
+          "OT, Speech, Home Nursing, DME, Rehab all unconfirmed — needs Policy Wording review",
+          "CANCER EXCLUDED — post-discharge follow-up after cancer diagnosis entirely denied"
+        ],
+        "overall_post_discharge_score": 42
+      }
+    },
+
+    {
+      "plan_id": "SC_Travel_Medical_Basic",
+      "carrier": "Crum & Forster SPC via ITI SP / Seven Corners",
+      "authority_level": 1,
+      "source_document": "Certificate of Insurance (L1)",
+      "confidence_overall": 95,
+
+      "physical_therapy": {
+        "status": "EXCLUDED",
+        "detail": "Physiotherapy and Chiropractic Care are EXPLICITLY EXCLUDED. Exact language: 'You are not covered for Physiotherapy or Chiropractic Care.'",
+        "confidence": 98,
+        "authority_level": 1,
+        "flag": "CRITICAL — complete exclusion. Any PT required after injury or surgery = 100% patient cost. Choose Choice over Basic if PT is a concern."
+      },
+
+      "occupational_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not addressed in Certificate. Given PT/physio exclusion, OT may also be excluded.",
+        "confidence": 40,
+        "authority_level": 1,
+        "flag": "High likelihood of exclusion given PT is excluded — verify."
+      },
+
+      "speech_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 40,
+        "authority_level": 1
+      },
+
+      "home_nursing_care": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly confirmed in Certificate evidence.",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "home_health_aide": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 30,
+        "authority_level": 1
+      },
+
+      "rehabilitation_facility": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 30,
+        "authority_level": 1
+      },
+
+      "durable_medical_equipment": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly confirmed in Certificate.",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "prescription_refills_outpatient": {
+        "status": "COVERED_URC",
+        "detail": "Prescription Drugs: URC up to Medical Maximum. No separate Rx sub-limit — treated same as eligible medical expenses. Strong Rx coverage.",
+        "dollar_cap": null,
+        "confidence": 98,
+        "authority_level": 1,
+        "flag": "STRENGTH — no Rx sub-limit. Prescriptions covered at URC up to full plan maximum."
+      },
+
+      "follow_up_specialist_visits": {
+        "status": "COVERED_URC",
+        "detail": "Physician Office Visits: $30 copay, then URC up to Medical Maximum. 100% in-network. 80% OON up to $2,000 OOP max then 100%.",
+        "copay": "$30 per visit",
+        "oon_max_oop": "$2,000",
+        "confidence": 95,
+        "authority_level": 1
+      },
+
+      "follow_up_imaging": {
+        "status": "COVERED_URC",
+        "detail": "Covered as eligible medical expenses. Same coinsurance as other outpatient services. No imaging sub-limit.",
+        "confidence": 88,
+        "authority_level": 1
+      },
+
+      "post_discharge_summary": {
+        "strengths": ["Rx covered at URC with no sub-limit — best in class", "Follow-up specialist $30 copay is low", "Strong follow-up imaging coverage"],
+        "weaknesses": [
+          "ZERO PT coverage — explicit exclusion",
+          "OT likely also excluded",
+          "Home Nursing, DME, Rehab unconfirmed",
+          "Cannot renew beyond 364 days — forces plan switch for long-stay visitors"
+        ],
+        "overall_post_discharge_score": 48
+      }
+    },
+
+    {
+      "plan_id": "SC_Travel_Medical_Choice",
+      "carrier": "Crum & Forster SPC via ITI SP / Seven Corners",
+      "authority_level": 1,
+      "source_document": "Certificate of Insurance (L1)",
+      "confidence_overall": 95,
+
+      "physical_therapy": {
+        "status": "COVERED_CAPPED",
+        "detail": "Physiotherapy and Chiropractic Care: $50 per visit, 10 visits maximum ($500 total). Must be prescribed by physician and administered by physical therapist.",
+        "visit_cap": 10,
+        "per_visit_cap": "$50",
+        "dollar_cap": "$500 total",
+        "requires_physician_order": true,
+        "confidence": 98,
+        "authority_level": 1,
+        "flag": "KEY UPGRADE over Basic (which excludes PT entirely). Cap of $500 is still low vs real costs."
+      },
+
+      "occupational_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "detail": "Not explicitly confirmed. PT/Physio language does not mention OT.",
+        "confidence": 40,
+        "authority_level": 1
+      },
+
+      "speech_therapy": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 40,
+        "authority_level": 1
+      },
+
+      "home_nursing_care": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "home_health_aide": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 30,
+        "authority_level": 1
+      },
+
+      "rehabilitation_facility": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 30,
+        "authority_level": 1
+      },
+
+      "durable_medical_equipment": {
+        "status": "NEEDS_MANUAL_REVIEW",
+        "confidence": 35,
+        "authority_level": 1
+      },
+
+      "prescription_refills_outpatient": {
+        "status": "COVERED_URC",
+        "detail": "Prescription Drugs: URC up to Medical Maximum. No separate Rx sub-limit. Identical to Basic.",
+        "dollar_cap": null,
+        "confidence": 98,
+        "authority_level": 1,
+        "flag": "STRENGTH — same no-cap Rx benefit as Basic. Best Rx coverage among capped plans."
+      },
+
+      "follow_up_specialist_visits": {
+        "status": "COVERED_URC",
+        "detail": "Physician Office Visits: $20 copay (lower than Basic's $30), then URC up to Medical Maximum. 100% in-network. 90% OON first $10K (OOP max $1,000).",
+        "copay": "$20 per visit",
+        "oon_max_oop": "$1,000",
+        "confidence": 95,
+        "authority_level": 1,
+        "flag": "Better than Basic: $20 copay vs $30, and OOP max $1,000 vs $2,000."
+      },
+
+      "follow_up_imaging": {
+        "status": "COVERED_URC",
+        "detail": "Covered as eligible medical expenses. Same coinsurance as outpatient. No imaging sub-limit.",
+        "confidence": 88,
+        "authority_level": 1
+      },
+
+      "post_discharge_summary": {
+        "strengths": ["PT covered ($500 max) — unlike Basic", "Rx covered at URC with no sub-limit", "$20 follow-up specialist copay", "Better OON protection than Basic"],
+        "weaknesses": ["PT still capped at $500", "Home Nursing, DME, OT, Speech, Rehab unconfirmed", "Cannot renew beyond 364 days"],
+        "overall_post_discharge_score": 58
+      }
+    }
+
+  ],
+
+  "cross_plan_comparison": {
+    "physical_therapy": {
+      "best": "Patriot_America_Plus / Patriot_America_Platinum — covered at URC, no visit cap",
+      "moderate": "CoverAmerica_Gold (no visit cap, 80% OON) / SC_Travel_Medical_Choice ($500 cap) / Safe_Travels_USA_Comprehensive ($500 cap) / INF_Elite_X ($500 cap) / VisitorSecure ($480 max at $40/visit)",
+      "worst": "SC_Travel_Medical_Basic — explicitly EXCLUDED"
+    },
+    "home_nursing_care": {
+      "confirmed_covered": ["Patriot_America_Plus", "Patriot_America_Platinum"],
+      "needs_manual_review": ["CoverAmerica_Gold", "Safe_Travels_USA_Comprehensive", "VisitorSecure", "Atlas_America", "INF_Elite_X", "SC_Travel_Medical_Basic", "SC_Travel_Medical_Choice"]
+    },
+    "durable_medical_equipment": {
+      "confirmed_covered": ["Patriot_America_Plus — 100%/90%", "Patriot_America_Platinum — 100%"],
+      "needs_manual_review": ["All other plans — not confirmed in evidence"]
+    },
+    "prescription_refills": {
+      "best": "SC_Travel_Medical_Basic / SC_Travel_Medical_Choice — URC up to plan max, no sub-limit",
+      "strong": "Patriot_America_Plus / Patriot_America_Platinum — URC, $250K sub-limit on high plans",
+      "moderate": "CoverAmerica_Gold (80% OON) / Safe_Travels_USA_Comprehensive ($250K cap on high plans)",
+      "poor": "INF_Elite_X ($500 confirmed for pre-ex; new-condition Rx ambiguous)",
+      "worst": "VisitorSecure — $150-$300 fixed cap total for entire trip"
+    },
+    "rehabilitation_facility": {
+      "confirmed_covered": [],
+      "needs_manual_review": ["ALL 9 PLANS — no Certificate-level evidence for rehabilitation facility benefit in any plan"],
+      "note": "Rehabilitation facility coverage is a critical gap across all plans. None of the 9 Certificates explicitly confirmed this benefit."
+    },
+    "occupational_and_speech_therapy": {
+      "confirmed_covered": [],
+      "needs_manual_review": ["ALL 9 PLANS"],
+      "note": "OT and Speech Therapy are consistently absent from traveler insurance Certificates. Likely excluded or not a standard benefit."
+    }
+  },
+
+  "open_items": [
+    {
+      "id": "PD-001",
+      "description": "OT and Speech Therapy coverage not confirmed for any plan. Request full Certificate exclusion lists for all 9 plans.",
+      "priority": "medium"
+    },
+    {
+      "id": "PD-002",
+      "description": "Rehabilitation facility coverage not confirmed for any plan. IMG plans mention Extended Care Facility pre-certification — implies covered. Obtain explicit benefit schedule.",
+      "priority": "high"
+    },
+    {
+      "id": "PD-003",
+      "description": "Home Nursing confirmed only for IMG plans. CoverAmerica Gold, Safe Travels, Seven Corners, INF all need Certificate verification.",
+      "priority": "high"
+    },
+    {
+      "id": "PD-004",
+      "description": "DME confirmed only for IMG plans. Remaining 7 plans need verification.",
+      "priority": "medium"
+    },
+    {
+      "id": "PD-005",
+      "description": "INF Elite X outpatient Rx for new conditions (non-pre-ex) not confirmed. $500 cap confirmed only for pre-existing Rx sub-limit.",
+      "priority": "high"
+    }
+  ]
+}
