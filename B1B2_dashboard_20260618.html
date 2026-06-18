@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B-1/B-2 Visitor Insurance Rankings — Indian Travellers</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --border: #2e3250;
+    --border-hover: #4a4f7a;
+    --text-primary: #e8eaf6;
+    --text-secondary: #9098c8;
+    --text-muted: #5a6080;
+    --accent: #6c63ff;
+    --accent-dim: #2d2a5e;
+    --green: #4caf50;
+    --green-dim: #1a3320;
+    --amber: #ff9800;
+    --amber-dim: #3d2800;
+    --red: #f44336;
+    --red-dim: #3d1010;
+    --blue: #2196f3;
+    --blue-dim: #0d2a45;
+    --purple: #9c27b0;
+    --purple-dim: #2d0e3d;
+    --teal: #009688;
+    --teal-dim: #0a2d29;
+    --orange: #ff5722;
+    --orange-dim: #3d1500;
+    --gold: #ffc107;
+    --silver: #b0bec5;
+    --bronze: #8d6e63;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text-primary); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; }
+
+  /* ── HEADER ── */
+  .header { background: linear-gradient(135deg, #1a1d27 0%, #0d1020 100%); border-bottom: 1px solid var(--border); padding: 20px 24px 16px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; }
+  .header h1 span { color: var(--accent); }
+  .header .subtitle { color: var(--text-secondary); font-size: 12px; margin-top: 4px; }
+  .header-meta { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
+  .meta-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 11px; color: var(--text-secondary); }
+  .meta-chip strong { color: var(--text-primary); }
+
+  /* ── CONTROLS ── */
+  .controls { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .control-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px; }
+  .toggle-btn { padding: 5px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text-secondary); cursor: pointer; font-size: 12px; transition: all 0.15s; }
+  .toggle-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .toggle-btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+  .toggle-btn.amber-active { background: var(--amber-dim); border-color: var(--amber); color: var(--amber); }
+  .divider { width: 1px; height: 28px; background: var(--border); margin: 0 4px; }
+  .sort-select { padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text-secondary); font-size: 12px; cursor: pointer; }
+
+  /* ── LEGEND ── */
+  .legend { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 24px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  /* ── GRID ── */
+  .grid { padding: 20px 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+
+  /* ── CARD ── */
+  .card { background: var(--surface); border: 2px solid var(--border); border-radius: 12px; overflow: hidden; transition: all 0.2s; position: relative; }
+  .card:hover { border-color: var(--border-hover); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+  .card.highlight-preex { border-color: var(--amber) !important; box-shadow: 0 0 0 1px var(--amber-dim); }
+  .card.hidden { display: none; }
+  .card.provisional { opacity: 0.7; }
+
+  /* border color by type */
+  .card.best { border-color: var(--green); }
+  .card.img { border-color: var(--blue); }
+  .card.sc { border-color: var(--teal); }
+  .card.trawick { border-color: #607d8b; }
+  .card.inf { border-color: var(--orange); }
+  .card.worldtrips { border-color: var(--purple); }
+
+  /* ── RANK BADGE ── */
+  .rank-badge { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+  .rank-1 { background: var(--gold); color: #000; }
+  .rank-2 { background: var(--silver); color: #000; }
+  .rank-3 { background: var(--bronze); color: #fff; }
+  .rank-other { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
+
+  /* ── CARD HEADER ── */
+  .card-header { padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+  .plan-name { font-size: 15px; font-weight: 700; color: var(--text-primary); padding-right: 36px; }
+  .carrier-name { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .badges { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .badge { padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+  .badge-best { background: var(--green-dim); color: var(--green); border: 1px solid var(--green); }
+  .badge-preex { background: var(--amber-dim); color: var(--amber); border: 1px solid var(--amber); }
+  .badge-budget { background: var(--surface2); color: var(--text-secondary); border: 1px solid var(--border); }
+  .badge-provisional { background: var(--red-dim); color: var(--red); border: 1px solid var(--red); }
+  .badge-senior { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue); }
+  .badge-flexible { background: var(--teal-dim); color: var(--teal); border: 1px solid var(--teal); }
+
+  /* ── SCORE BAR ── */
+  .score-section { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  .score-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .score-label { font-size: 11px; color: var(--text-secondary); }
+  .score-value { font-size: 18px; font-weight: 800; }
+  .score-value.green { color: var(--green); }
+  .score-value.amber { color: var(--amber); }
+  .score-value.red { color: var(--red); }
+  .score-bar-bg { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+  .score-bar-fill { height: 100%; border-radius: 3px; transition: width 0.4s; }
+  .fill-green { background: linear-gradient(90deg, #2e7d32, #4caf50); }
+  .fill-amber { background: linear-gradient(90deg, #e65100, #ff9800); }
+  .fill-red { background: linear-gradient(90deg, #b71c1c, #f44336); }
+
+  /* ── MINI SCORES ── */
+  .mini-scores { padding: 10px 16px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .mini-score { text-align: center; }
+  .mini-score-label { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 2px; }
+  .mini-score-val { font-size: 13px; font-weight: 700; }
+
+  /* ── KEY FACTS ── */
+  .key-facts { padding: 10px 16px; border-bottom: 1px solid var(--border); }
+  .fact-row { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 5px; font-size: 12px; }
+  .fact-icon { font-size: 11px; flex-shrink: 0; margin-top: 1px; }
+  .fact-label { color: var(--text-muted); flex-shrink: 0; min-width: 90px; }
+  .fact-val { color: var(--text-primary); }
+  .fact-val.good { color: var(--green); }
+  .fact-val.warn { color: var(--amber); }
+  .fact-val.bad { color: var(--red); }
+
+  /* ── DIMENSION BAR TABLE ── */
+  .dim-section { padding: 10px 16px; border-bottom: 1px solid var(--border); }
+  .dim-title { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+  .dim-title::after { content: '▼'; font-size: 8px; transition: transform 0.2s; }
+  .dim-title.collapsed::after { transform: rotate(-90deg); }
+  .dim-rows { display: flex; flex-direction: column; gap: 4px; }
+  .dim-row { display: flex; align-items: center; gap: 6px; }
+  .dim-name { font-size: 10px; color: var(--text-secondary); width: 120px; flex-shrink: 0; }
+  .dim-bar-bg { flex: 1; height: 5px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+  .dim-bar-fill { height: 100%; border-radius: 2px; }
+  .dim-score-text { font-size: 10px; color: var(--text-muted); width: 28px; text-align: right; flex-shrink: 0; }
+
+  /* ── TAGS ── */
+  .tags { padding: 8px 16px; display: flex; gap: 5px; flex-wrap: wrap; }
+  .tag { padding: 2px 7px; border-radius: 3px; font-size: 10px; background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
+  .tag.good { background: var(--green-dim); color: var(--green); border-color: #2e7d32; }
+  .tag.warn { background: var(--amber-dim); color: var(--amber); border-color: #e65100; }
+  .tag.bad { background: var(--red-dim); color: var(--red); border-color: #b71c1c; }
+
+  /* ── CARD FOOTER ── */
+  .card-footer { padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .visit-btn { padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: all 0.15s; }
+  .btn-blue { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue); }
+  .btn-blue:hover { background: var(--blue); color: #fff; }
+  .btn-orange { background: var(--orange-dim); color: var(--orange); border: 1px solid var(--orange); }
+  .btn-orange:hover { background: var(--orange); color: #fff; }
+  .btn-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid var(--teal); }
+  .btn-teal:hover { background: var(--teal); color: #fff; }
+  .btn-purple { background: var(--purple-dim); color: var(--purple); border: 1px solid var(--purple); }
+  .btn-purple:hover { background: var(--purple); color: #fff; }
+  .btn-slate { background: var(--surface2); color: var(--text-secondary); border: 1px solid var(--border); }
+  .btn-slate:hover { background: var(--border); color: var(--text-primary); }
+  .evidence-tag { font-size: 10px; color: var(--text-muted); }
+  .ev-l1 { color: var(--green); }
+  .ev-l2 { color: var(--amber); }
+  .ev-l5 { color: var(--red); }
+
+  /* ── SCENARIO PANEL ── */
+  .scenario-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin: 0 24px 20px; overflow: hidden; }
+  .scenario-header { padding: 12px 16px; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .scenario-header h3 { font-size: 13px; color: var(--text-primary); font-weight: 600; }
+  .scenario-btn { padding: 4px 12px; border-radius: 5px; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); cursor: pointer; font-size: 11px; transition: all 0.15s; }
+  .scenario-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .scenario-btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+  .scenario-table { width: 100%; border-collapse: collapse; }
+  .scenario-table th { padding: 8px 12px; text-align: left; font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 1px solid var(--border); background: var(--surface2); }
+  .scenario-table td { padding: 8px 12px; font-size: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .scenario-table tr:last-child td { border-bottom: none; }
+  .scenario-table tr:hover td { background: var(--surface2); }
+  .verdict-covered { color: var(--green); font-weight: 600; }
+  .verdict-partial { color: var(--amber); font-weight: 600; }
+  .verdict-denied { color: var(--red); font-weight: 600; }
+  .verdict-review { color: var(--text-muted); font-style: italic; }
+  .payout-val { font-weight: 700; color: var(--text-primary); }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-section { margin: 0 24px 24px; }
+  .compare-section h3 { font-size: 13px; color: var(--text-secondary); font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .compare-table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 11px; min-width: 800px; }
+  .compare-table th { padding: 8px 10px; text-align: left; background: var(--surface2); color: var(--text-muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .compare-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); color: var(--text-primary); }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: var(--surface2); }
+  .ct-good { color: var(--green); }
+  .ct-warn { color: var(--amber); }
+  .ct-bad { color: var(--red); }
+  .ct-muted { color: var(--text-muted); font-style: italic; }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer { margin: 0 24px 24px; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; border-left: 3px solid var(--amber); }
+  .disclaimer p { font-size: 11px; color: var(--text-muted); line-height: 1.6; }
+  .disclaimer strong { color: var(--amber); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; padding: 12px; }
+    .controls { padding: 10px 12px; }
+    .legend { padding: 8px 12px; }
+    .header { padding: 14px 12px 12px; }
+    .scenario-panel, .compare-section, .disclaimer { margin-left: 12px; margin-right: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🇮🇳 <span>Indian Travellers'</span> Insurance — B-1/B-2 Visitor Rankings</h1>
+  <div class="subtitle">Evidence-backed rankings for Indian nationals visiting the USA on B-1/B-2 visas. Scored across 12 dimensions.</div>
+  <div class="header-meta">
+    <div class="meta-chip"><strong>9</strong> plans ranked</div>
+    <div class="meta-chip"><strong>12</strong> dimensions evaluated</div>
+    <div class="meta-chip">Evidence as of <strong>June 2026</strong></div>
+    <div class="meta-chip">Category: <strong>USA Visitor (B-1/B-2)</strong></div>
+    <div class="meta-chip">Primary source: <strong>Certificate of Insurance (L1)</strong></div>
+  </div>
+</div>
+
+<div class="controls">
+  <span class="control-label">Filter:</span>
+  <button class="toggle-btn active" onclick="filterCards('all', this)">All Plans</button>
+  <button class="toggle-btn" onclick="filterCards('preex', this)">Pre-Existing Conditions</button>
+  <button class="toggle-btn" onclick="filterCards('cardiac', this)">Cardiac / Hypertension</button>
+  <button class="toggle-btn" onclick="filterCards('senior', this)">Age 70+</button>
+  <button class="toggle-btn" onclick="filterCards('budget', this)">Budget</button>
+  <div class="divider"></div>
+  <span class="control-label">Show:</span>
+  <button class="toggle-btn amber-active" id="preex-toggle" onclick="togglePreex(this)">★ Pre-ex Highlight</button>
+  <div class="divider"></div>
+  <span class="control-label">Sort:</span>
+  <select class="sort-select" onchange="sortCards(this.value)">
+    <option value="rank">Overall Rank</option>
+    <option value="preex">Acute Onset Score</option>
+    <option value="hospital">Hospitalization Score</option>
+    <option value="claims">Claims Ease</option>
+    <option value="network">Network Quality</option>
+  </select>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Best overall / IMG plans</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> IMG administered</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> Seven Corners plans</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#607d8b"></div> Trawick / Nationwide</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> INF / Robin Assist</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div> WorldTrips plans</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> PROVISIONAL (incomplete evidence)</div>
+  <div class="legend-item" style="margin-left:8px"><span style="color:var(--green);font-weight:700">L1</span> = Certificate of Insurance &nbsp; <span style="color:var(--amber);font-weight:700">L2</span> = Policy Wording &nbsp; <span style="color:var(--red);font-weight:700">L5</span> = Brochure only</div>
+</div>
+
+<div class="grid" id="card-grid">
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CARD 1: Patriot America Platinum -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="card best" data-rank="1" data-preex="100" data-hospital="100" data-claims="95" data-network="97" data-tags="preex,cardiac,senior">
+  <div class="rank-badge rank-1">1</div>
+  <div class="card-header">
+    <div class="plan-name">Patriot America Platinum</div>
+    <div class="carrier-name">SiriusPoint Specialty Insurance Corp &nbsp;·&nbsp; Administered by IMG</div>
+    <div class="badges">
+      <span class="badge badge-best">Best Overall</span>
+      <span class="badge badge-senior">Best Age 65+</span>
+      <span class="badge badge-preex">★ Cardiac Safe</span>
+    </div>
+  </div>
+  <div class="score-section">
+    <div class="score-row">
+      <span class="score-label">Overall Score</span>
+      <span class="score-value green">95.3</span>
+    </div>
+    <div class="score-bar-bg"><div class="score-bar-fill fill-green" style="width:95.3%"></div></div>
+  </div>
+  <div class="mini-scores">
+    <div class="mini-score"><div class="mini-score-label">Pre-Existing</div><div class="mini-score-val" style="color:var(--green)">100</div></div>
+    <div class="mini-score"><div class="mini-score-label">Network</div><div class="mini-score-val" style="color:var(--green)">97</div></div>
+    <div class="mini-score"><div class="mini-score-label">Claims</div><div class="mini-score-val" style="color:var(--green)">95</div></div>
+  </div>
+  <div class="key-facts">
+    <div class="fact-row"><span class="fact-icon">💰</span><span class="fact-label">Coinsurance</span><span class="fact-val good">100% in-network AND off-network</span></div>
+    <div class="fact-row"><span class="fact-icon">🏥</span><span class="fact-label">Plan Max</span><span class="fact-val good">$1,000,000 (non-US citizen)</span></div>
+    <div class="fact-row"><span class="fact-icon">❤️</span><span class="fact-label">Cardiac Sub-limit</span><span class="fact-val good">NONE — acute onset up to plan max</span></div>
+    <div class="fact-row"><span class="fact-icon">🔍</span><span class="fact-label">Lookback</span><span class="fact-val">3 years · 30-day stability</span></div>
+    <div class="fact-row"><span class="fact-icon">🌐</span><span class="fact-label">Network</span><span class="fact-val good">UHC PPO (1.3M+ providers)</span></div>
+    <div class="fact-row"><span class="fact-icon">📋</span><span class="fact-label">Claims Deadline</span><span class="fact-val good">180 days from service</span></div>
+    <div class="fact-row"><span class="fact-icon">⚠️</span><span class="fact-label">Pre-cert Penalty</span><span class="fact-val warn">50% reduction if missed</span></div>
+  </div>
+  <div class="dim-section">
+    <div class="dim-title" onclick="toggleDims(this)">Dimension Scores</div>
+    <div class="dim-rows">
+      <div class="dim-row"><span class="dim-name">Hospitalization</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:100%"></div></div><span class="dim-score-text">100</span></div>
+      <div class="dim-row"><span class="dim-name">ER Coverage</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:100%"></div></div><span class="dim-score-text">100</span></div>
+      <div class="dim-row"><span class="dim-name">Acute Onset Pre-ex</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:100%"></div></div><span class="dim-score-text">100</span></div>
+      <div class="dim-row"><span class="dim-name">Post-Discharge</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:90%"></div></div><span class="dim-score-text">90</span></div>
+      <div class="dim-row"><span class="dim-name">Network Quality</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:97%"></div></div><span class="dim-score-text">97</span></div>
+      <div class="dim-row"><span class="dim-name">Claims Experience</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:95%"></div></div><span class="dim-score-text">95</span></div>
+      <div class="dim-row"><span class="dim-name">Price / Value</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:55%"></div></div><span class="dim-score-text">55</span></div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag good">No Cardiac Sub-limit</span>
+    <span class="tag good">100% OON Coinsurance</span>
+    <span class="tag good">MyIMG Portal</span>
+    <span class="tag good">180-day Deadline</span>
+    <span class="tag good">Home Nursing Covered</span>
+    <span class="tag warn">Premium Price</span>
+    <span class="tag warn">Pre-cert Required</span>
+  </div>
+  <div class="card-footer">
+    <a class="visit-btn btn-blue" href="https://www.imglobal.com/travel-medical-insurance/patriot-america-plus" target="_blank">Visit Website →</a>
+    <span class="evidence-tag ev-l1">Evidence: L1 Certificate ✓</span>
+  </div>
+</div>
+
+<!-- CARD 2: Patriot America Plus -->
+<div class="card img" data-rank="2" data-preex="96" data-hospital="95" data-claims="90" data-network="90" data-tags="preex,cardiac,senior">
+  <div class="rank-badge rank-2">2</div>
+  <div class="card-header">
+    <div class="plan-name">Patriot America Plus</div>
+    <div class="carrier-name">SiriusPoint Specialty Insurance Corp &nbsp;·&nbsp; Administered by IMG</div>
+    <div class="badges">
+      <span class="badge badge-best">Best Value Comprehensive</span>
+      <span class="badge badge-preex">★ Cardiac Safe</span>
+    </div>
+  </div>
+  <div class="score-section">
+    <div class="score-row"><span class="score-label">Overall Score</span><span class="score-value green">91.7</span></div>
+    <div class="score-bar-bg"><div class="score-bar-fill fill-green" style="width:91.7%"></div></div>
+  </div>
+  <div class="mini-scores">
+    <div class="mini-score"><div class="mini-score-label">Pre-Existing</div><div class="mini-score-val" style="color:var(--green)">96</div></div>
+    <div class="mini-score"><div class="mini-score-label">Network</div><div class="mini-score-val" style="color:var(--green)">90</div></div>
+    <div class="mini-score"><div class="mini-score-label">Claims</div><div class="mini-score-val" style="color:var(--green)">90</div></div>
+  </div>
+  <div class="key-facts">
+    <div class="fact-row"><span class="fact-icon">💰</span><span class="fact-label">Coinsurance</span><span class="fact-val good">90% in-network (first $5K then 100%) · 80% OON</span></div>
+    <div class="fact-row"><span class="fact-icon">🏥</span><span class="fact-label">Plan Max</span><span class="fact-val good">$50K–$1,000,000</span></div>
+    <div class="fact-row"><span class="fact-icon">❤️</span><span class="fact-label">Cardiac Sub-limit</span><span class="fact-val good">NONE — acute onset up to plan max</span></div>
+    <div class="fact-row"><span class="fact-icon">🔍</span><span class="fact-label">Lookback</span><span class="fact-val">3 years · 30-day stability</span></div>
+    <div class="fact-row"><span class="fact-icon">🌐</span><span class="fact-label">Network</span><span class="fact-val good">UHC PPO</span></div>
+    <div class="fact-row"><span class="fact-icon">📋</span><span class="fact-label">Claims Deadline</span><span class="fact-val good">180 days from service</span></div>
+    <div class="fact-row"><span class="fact-icon">⚠️</span><span class="fact-label">Pre-cert Penalty</span><span class="fact-val warn">50% reduction if missed</span></div>
+  </div>
+  <div class="dim-section">
+    <div class="dim-title collapsed" onclick="toggleDims(this)">Dimension Scores</div>
+    <div class="dim-rows" style="display:none">
+      <div class="dim-row"><span class="dim-name">Hospitalization</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:95%"></div></div><span class="dim-score-text">95</span></div>
+      <div class="dim-row"><span class="dim-name">ER Coverage</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:95%"></div></div><span class="dim-score-text">95</span></div>
+      <div class="dim-row"><span class="dim-name">Acute Onset Pre-ex</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:96%"></div></div><span class="dim-score-text">96</span></div>
+      <div class="dim-row"><span class="dim-name">Post-Discharge</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:90%"></div></div><span class="dim-score-text">90</span></div>
+      <div class="dim-row"><span class="dim-name">Network Quality</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:90%"></div></div><span class="dim-score-text">90</span></div>
+      <div class="dim-row"><span class="dim-name">Claims Experience</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:90%"></div></div><span class="dim-score-text">90</span></div>
+      <div class="dim-row"><span class="dim-name">Price / Value</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:65%"></div></div><span class="dim-score-text">65</span></div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag good">No Cardiac Sub-limit</span>
+    <span class="tag good">MyIMG Portal</span>
+    <span class="tag good">180-day Deadline</span>
+    <span class="tag good">PT — No Visit Cap</span>
+    <span class="tag warn">10% OON Exposure</span>
+    <span class="tag warn">Pre-cert Required</span>
+  </div>
+  <div class="card-footer">
+    <a class="visit-btn btn-blue" href="https://www.imglobal.com/travel-medical-insurance/patriot-america-plus" target="_blank">Visit Website →</a>
+    <span class="evidence-tag ev-l1">Evidence: L1 Certificate ✓</span>
+  </div>
+</div>
+
+<!-- CARD 3: CoverAmerica Gold -->
+<div class="card img" data-rank="3" data-preex="65" data-hospital="90" data-claims="80" data-network="88" data-tags="budget">
+  <div class="rank-badge rank-3">3</div>
+  <div class="card-header">
+    <div class="plan-name">CoverAmerica Gold</div>
+    <div class="carrier-name">SiriusPoint Specialty Insurance Corp &nbsp;·&nbsp; Administered by IMG</div>
+    <div class="badges">
+      <span class="badge badge-best">Best for Healthy Travelers</span>
+      <span class="badge badge-flexible">COVID Covered</span>
+    </div>
+  </div>
+  <div class="score-section">
+    <div class="score-row"><span class="score-label">Overall Score</span><span class="score-value green">83.0</span></div>
+    <div class="score-bar-bg"><div class="score-bar-fill fill-green" style="width:83%"></div></div>
+  </div>
+  <div class="mini-scores">
+    <div class="mini-score"><div class="mini-score-label">Pre-Existing</div><div class="mini-score-val" style="color:var(--amber)">65</div></div>
+    <div class="mini-score"><div class="mini-score-label">Network</div><div class="mini-score-val" style="color:var(--green)">88</div></div>
+    <div class="mini-score"><div class="mini-score-label">Claims</div><div class="mini-score-val" style="color:var(--green)">80</div></div>
+  </div>
+  <div class="key-facts">
+    <div class="fact-row"><span class="fact-icon">💰</span><span class="fact-label">Coinsurance</span><span class="fact-val good">100% in-network · 80%→100% OON</span></div>
+    <div class="fact-row"><span class="fact-icon">🏥</span><span class="fact-label">Plan Max</span><span class="fact-val good">Up to $1,000,000</span></div>
+    <div class="fact-row"><span class="fact-icon">❤️</span><span class="fact-label">Cardiac Sub-limit</span><span class="fact-val warn">$36,000 (age ≤69) · ZERO (age 70+)</span></div>
+    <div class="fact-row"><span class="fact-icon">🌐</span><span class="fact-label">Network</span><span class="fact-val good">UHC PPO</span></div>
+    <div class="fact-row"><span class="fact-icon">✈️</span><span class="fact-label">Unique Benefit</span><span class="fact-val good">Border Entry Protection</span></div>
+    <div class="fact-row"><span class="fact-icon">🦠</span><span class="fact-label">COVID Coverage</span><span class="fact-val warn">Covered · BUT excluded on sub-30-day trips</span></div>
+    <div class="fact-row"><span class="fact-icon">🔁</span><span class="fact-label">Returning Customers</span><span class="fact-val good">~5% discount</span></div>
+  </div>
+  <div class="dim-section">
+    <div class="dim-title collapsed" onclick="toggleDims(this)">Dimension Scores</div>
+    <div class="dim-rows" style="display:none">
+      <div class="dim-row"><span class="dim-name">Hospitalization</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:90%"></div></div><span class="dim-score-text">90</span></div>
+      <div class="dim-row"><span class="dim-name">ER Coverage</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:90%"></div></div><span class="dim-score-text">90</span></div>
+      <div class="dim-row"><span class="dim-name">Acute Onset Pre-ex</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:65%"></div></div><span class="dim-score-text">65</span></div>
+      <div class="dim-row"><span class="dim-name">Post-Discharge</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:82%"></div></div><span class="dim-score-text">82</span></div>
+      <div class="dim-row"><span class="dim-name">Network Quality</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:88%"></div></div><span class="dim-score-text">88</span></div>
+      <div class="dim-row"><span class="dim-name">Claims Experience</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:80%"></div></div><span class="dim-score-text">80</span></div>
+      <div class="dim-row"><span class="dim-name">Eligibility Flex</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:88%"></div></div><span class="dim-score-text">88</span></div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag good">100% In-Network</span>
+    <span class="tag good">COVID Covered</span>
+    <span class="tag good">Border Entry Protection</span>
+    <span class="tag warn">$36K Cardiac Cap (age ≤69)</span>
+    <span class="tag bad">Zero Cardiac Coverage (age 70+)</span>
+    <span class="tag bad">COVID Trap &lt;30-day Trips</span>
+  </div>
+  <div class="card-footer">
+    <a class="visit-btn btn-blue" href="https://www.coveramericagold.com" target="_blank">Visit Website →</a>
+    <span class="evidence-tag ev-l1">Evidence: L1 Certificate ✓</span>
+  </div>
+</div>
+
+<!-- CARD 4: SC Travel Medical Choice -->
+<div class="card sc" data-rank="4" data-preex="72" data-hospital="78" data-claims="85" data-network="85" data-tags="preex,budget">
+  <div class="rank-badge rank-other">4</div>
+  <div class="card-header">
+    <div class="plan-name">Travel Medical USA — Choice</div>
+    <div class="carrier-name">Crum &amp; Forster SPC &nbsp;·&nbsp; Administered by Seven Corners</div>
+    <div class="badges">
+      <span class="badge badge-best">Best Dual Network</span>
+      <span class="badge badge-flexible">PT Covered</span>
+    </div>
+  </div>
+  <div class="score-section">
+    <div class="score-row"><span class="score-label">Overall Score</span><span class="score-value green">77.6</span></div>
+    <div class="score-bar-bg"><div class="score-bar-fill fill-green" style="width:77.6%"></div></div>
+  </div>
+  <div class="mini-scores">
+    <div class="mini-score"><div class="mini-score-label">Pre-Existing</div><div class="mini-score-val" style="color:var(--amber)">72</div></div>
+    <div class="mini-score"><div class="mini-score-label">Network</div><div class="mini-score-val" style="color:var(--green)">85</div></div>
+    <div class="mini-score"><div class="mini-score-label">Claims</div><div class="mini-score-val" style="color:var(--green)">85</div></div>
+  </div>
+  <div class="key-facts">
+    <div class="fact-row"><span class="fact-icon">❤️</span><span class="fact-label">Cardiac Acute Onset</span><span class="fact-val good">$50,000 (age ≤69) · $5,000 (age 70-79)</span></div>
+    <div class="fact-row"><span class="fact-icon">🏃</span><span class="fact-label">Non-cardiac Pre-ex</span><span class="fact-val good">$75,000 (age ≤69) · $7,500 (age 70-79)</span></div>
+    <div class="fact-row"><span class="fact-icon">⚕️</span><span class="fact-label">Pre-ex Criterion</span><span class="fact-val warn">Criterion (f): no chronic conditions with expected flare-ups</span></div>
+    <div class="fact-row"><span class="fact-icon">🔍</span><span class="fact-label">Lookback</span><span class="fact-val warn">36 months (strictest in group)</span></div>
+    <div class="fact-row"><span class="fact-icon">🌐</span><span class="fact-label">Network</span><span class="fact-val good">UHC PPO + PHCS/Multiplan (dual)</span></div>
+    <div class="fact-row"><span class="fact-icon">🦵</span><span class="fact-label">PT Coverage</span><span class="fact-val good">$50/visit · 10 visits · $500 max</span></div>
+    <div class="fact-row"><span class="fact-icon">⏳</span><span class="fact-label">Waiting Period</span><span class="fact-val warn">7 days for illness</span></div>
+  </div>
+  <div class="dim-section">
+    <div class="dim-title collapsed" onclick="toggleDims(this)">Dimension Scores</div>
+    <div class="dim-rows" style="display:none">
+      <div class="dim-row"><span class="dim-name">Hospitalization</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:78%"></div></div><span class="dim-score-text">78</span></div>
+      <div class="dim-row"><span class="dim-name">Acute Onset Pre-ex</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:72%"></div></div><span class="dim-score-text">72</span></div>
+      <div class="dim-row"><span class="dim-name">Post-Discharge</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:65%"></div></div><span class="dim-score-text">65</span></div>
+      <div class="dim-row"><span class="dim-name">Network Quality</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:85%"></div></div><span class="dim-score-text">85</span></div>
+      <div class="dim-row"><span class="dim-name">Claims Experience</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:85%"></div></div><span class="dim-score-text">85</span></div>
+      <div class="dim-row"><span class="dim-name">Price / Value</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:75%"></div></div><span class="dim-score-text">75</span></div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag good">Dual UHC+PHCS Network</span>
+    <span class="tag good">PT Included</span>
+    <span class="tag good">COVID Covered</span>
+    <span class="tag warn">Criterion (f) Chronic Exclusion</span>
+    <span class="tag warn">36-month Lookback</span>
+    <span class="tag bad">No 80+ Acute Onset Coverage</span>
+  </div>
+  <div class="card-footer">
+    <a class="visit-btn btn-teal" href="https://www.sevencorners.com/plans/visitors-insurance" target="_blank">Visit Website →</a>
+    <span class="evidence-tag ev-l1">Evidence: L1 Certificate ✓</span>
+  </div>
+</div>
+
+<!-- CARD 5: Safe Travels USA Comprehensive -->
+<div class="card trawick" data-rank="5" data-preex="60" data-hospital="82" data-claims="65" data-network="65" data-tags="budget,flexible">
+  <div class="rank-badge rank-other">5</div>
+  <div class="card-header">
+    <div class="plan-name">Safe Travels USA Comprehensive</div>
+    <div class="carrier-name">Nationwide Mutual Insurance &nbsp;·&nbsp; Administered by Trawick International</div>
+    <div class="badges">
+      <span class="badge badge-flexible">Best Eligibility</span>
+      <span class="badge badge-budget">Buy in USA</span>
+    </div>
+  </div>
+  <div class="score-section">
+    <div class="score-row"><span class="score-label">Overall Score</span><span class="score-value amber">72.9</span></div>
+    <div class="score-bar-bg"><div class="score-bar-fill fill-amber" style="width:72.9%"></div></div>
+  </div>
+  <div class="mini-scores">
+    <div class="mini-score"><div class="mini-score-label">Pre-Existing</div><div class="mini-score-val" style="color:var(--amber)">60</div></div>
+    <div class="mini-score"><div class="mini-score-label">Network</div><div class="mini-score-val" style="color:var(--amber)">65</div></div>
+    <div class="mini-score"><div class="mini-score-label">Claims</div><div class="mini-score-val" style="color:var(--amber)">65</div></div>
+  </div>
+  <div class="key-facts">
+    <div class="fact-row"><span class="fact-icon">❤️</span><span class="fact-label">Cardiac Acute Onset</span><span class="fact-val warn">$25,000 (age ≤69) · $15,000 (age 70-79)</span></div>
+    <div class="fact-row"><span class="fact-icon">🩺</span><span class="fact-label">Hypertension</span><span class="fact-val bad">Counted as cardiac → $25K limit applies</span></div>
+    <div class="fact-row"><span class="fact-icon">🏥</span><span class="fact-label">Plan Max</span><span class="fact-val good">Up to $1,000,000</span></div>
+    <div class="fact-row"><span class="fact-icon">🌐</span><span class="fact-label">Network</span><span class="fact-val warn">FirstHealth / Aetna (smaller than UHC)</span></div>
+    <div class="fact-row"><span class="fact-icon">💊</span><span class="fact-label">Pharmacy</span><span class="fact-val bad">No in-network pharmacy — all Rx OOP + claim</span></div>
+    <div class="fact-row"><span class="fact-icon">🛒</span><span class="fact-label">Buy From USA</span><span class="fact-val good">Yes — flexible purchase anytime</span></div>
+    <div class="fact-row"><span class="fact-icon">🪪</span><span class="fact-label">Claims Require</span><span class="fact-val warn">I-94 document (save from cbp.dhs.gov)</span></div>
+  </div>
+  <div class="dim-section">
+    <div class="dim-title collapsed" onclick="toggleDims(this)">Dimension Scores</div>
+    <div class="dim-rows" style="display:none">
+      <div class="dim-row"><span class="dim-name">Hospitalization</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:82%"></div></div><span class="dim-score-text">82</span></div>
+      <div class="dim-row"><span class="dim-name">Acute Onset Pre-ex</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:60%"></div></div><span class="dim-score-text">60</span></div>
+      <div class="dim-row"><span class="dim-name">Prescriptions</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:60%"></div></div><span class="dim-score-text">60</span></div>
+      <div class="dim-row"><span class="dim-name">Network Quality</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:65%"></div></div><span class="dim-score-text">65</span></div>
+      <div class="dim-row"><span class="dim-name">Eligibility Flex</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:90%"></div></div><span class="dim-score-text">90</span></div>
+      <div class="dim-row"><span class="dim-name">Claims Experience</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:65%"></div></div><span class="dim-score-text">65</span></div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag good">Can Buy From USA</span>
+    <span class="tag good">$1M Plan Max</span>
+    <span class="tag warn">$25K Cardiac Cap (lowest)</span>
+    <span class="tag bad">Hypertension = Cardiac</span>
+    <span class="tag bad">No Pharmacy In-Network</span>
+    <span class="tag warn">I-94 Required for Claims</span>
+  </div>
+  <div class="card-footer">
+    <a class="visit-btn btn-slate" href="https://trawickinternational.com/products/safe-travels-usa-comprehensive/" target="_blank">Visit Website →</a>
+    <span class="evidence-tag ev-l1">Evidence: L1 Certificate ✓</span>
+  </div>
+</div>
+
+<!-- CARD 6: SC Basic -->
+<div class="card sc" data-rank="6" data-preex="58" data-hospital="75" data-claims="82" data-network="85" data-tags="budget">
+  <div class="rank-badge rank-other">6</div>
+  <div class="card-header">
+    <div class="plan-name">Travel Medical USA — Basic</div>
+    <div class="carrier-name">Crum &amp; Forster SPC &nbsp;·&nbsp; Administered by Seven Corners</div>
+    <div class="badges">
+      <span class="badge badge-budget">Budget — Healthy Under 70</span>
+    </div>
+  </div>
+  <div class="score-section">
+    <div class="score-row"><span class="score-label">Overall Score</span><span class="score-value amber">71.6</span></div>
+    <div class="score-bar-bg"><div class="score-bar-fill fill-amber" style="width:71.6%"></div></div>
+  </div>
+  <div class="mini-scores">
+    <div class="mini-score"><div class="mini-score-label">Pre-Existing</div><div class="mini-score-val" style="color:var(--amber)">58</div></div>
+    <div class="mini-score"><div class="mini-score-label">Network</div><div class="mini-score-val" style="color:var(--green)">85</div></div>
+    <div class="mini-score"><div class="mini-score-label">Post-Discharge</div><div class="mini-score-val" style="color:var(--red)">35</div></div>
+  </div>
+  <div class="key-facts">
+    <div class="fact-row"><span class="fact-icon">❤️</span><span class="fact-label">Cardiac Acute Onset</span><span class="fact-val warn">$25,000 (age ≤69) · $2,500 (age 70-79) · None (80+)</span></div>
+    <div class="fact-row"><span class="fact-icon">⚕️</span><span class="fact-label">Pre-ex Criterion</span><span class="fact-val bad">Criterion (f): chronic conditions w/ expected episodes = EXCLUDED</span></div>
+    <div class="fact-row"><span class="fact-icon">🦵</span><span class="fact-label">Physical Therapy</span><span class="fact-val bad">EXPLICITLY EXCLUDED (Certificate L1)</span></div>
+    <div class="fact-row"><span class="fact-icon">🌐</span><span class="fact-label">Network</span><span class="fact-val good">UHC PPO + PHCS/Multiplan (dual)</span></div>
+    <div class="fact-row"><span class="fact-icon">⏳</span><span class="fact-label">Waiting Period</span><span class="fact-val warn">7 days for illness</span></div>
+    <div class="fact-row"><span class="fact-icon">📋</span><span class="fact-label">Claims Deadline</span><span class="fact-val warn">90 days from service</span></div>
+  </div>
+  <div class="dim-section">
+    <div class="dim-title collapsed" onclick="toggleDims(this)">Dimension Scores</div>
+    <div class="dim-rows" style="display:none">
+      <div class="dim-row"><span class="dim-name">Hospitalization</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:75%"></div></div><span class="dim-score-text">75</span></div>
+      <div class="dim-row"><span class="dim-name">Acute Onset Pre-ex</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:58%"></div></div><span class="dim-score-text">58</span></div>
+      <div class="dim-row"><span class="dim-name">Post-Discharge</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-red" style="width:35%"></div></div><span class="dim-score-text">35</span></div>
+      <div class="dim-row"><span class="dim-name">Network Quality</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:85%"></div></div><span class="dim-score-text">85</span></div>
+      <div class="dim-row"><span class="dim-name">Price / Value</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:80%"></div></div><span class="dim-score-text">80</span></div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag good">Dual UHC+PHCS Network</span>
+    <span class="tag good">COVID Covered</span>
+    <span class="tag warn">$25K Cardiac Cap All Ages</span>
+    <span class="tag bad">PT Explicitly Excluded</span>
+    <span class="tag bad">Criterion (f) Chronic Exclusion</span>
+    <span class="tag bad">No 80+ Acute Onset</span>
+  </div>
+  <div class="card-footer">
+    <a class="visit-btn btn-teal" href="https://www.sevencorners.com/plans/visitors-insurance" target="_blank">Visit Website →</a>
+    <span class="evidence-tag ev-l1">Evidence: L1 Certificate ✓</span>
+  </div>
+</div>
+
+<!-- CARD 7: INF Elite X -->
+<div class="card inf" data-rank="7" data-preex="88" data-hospital="72" data-claims="58" data-network="68" data-tags="preex">
+  <div class="rank-badge rank-other">7</div>
+  <div class="card-header">
+    <div class="plan-name">INF Elite X</div>
+    <div class="carrier-name">Crum &amp; Forster SPC &nbsp;·&nbsp; Administered by Robin Assist (INF)</div>
+    <div class="badges">
+      <span class="badge badge-preex">★ Best Direct Pre-ex Coverage</span>
+    </div>
+  </div>
+  <div class="score-section">
+    <div class="score-row"><span class="score-label">Overall Score</span><span class="score-value amber">71.0</span></div>
+    <div class="score-bar-bg"><div class="score-bar-fill fill-amber" style="width:71%"></div></div>
+  </div>
+  <div class="mini-scores">
+    <div class="mini-score"><div class="mini-score-label">Pre-Existing</div><div class="mini-score-val" style="color:var(--green)">88</div></div>
+    <div class="mini-score"><div class="mini-score-label">Network</div><div class="mini-score-val" style="color:var(--amber)">68</div></div>
+    <div class="mini-score"><div class="mini-score-label">Claims</div><div class="mini-score-val" style="color:var(--amber)">58</div></div>
+  </div>
+  <div class="key-facts">
+    <div class="fact-row"><span class="fact-icon">⭐</span><span class="fact-label">Unique Feature</span><span class="fact-val good">Pre-existing conditions DIRECTLY covered (not acute onset model)</span></div>
+    <div class="fact-row"><span class="fact-icon">💊</span><span class="fact-label">Stable Medication</span><span class="fact-val good">Stable 24 months = NOT pre-existing (exception)</span></div>
+    <div class="fact-row"><span class="fact-icon">🚫</span><span class="fact-label">Cancer</span><span class="fact-val bad">ABSOLUTELY EXCLUDED — do not purchase if any cancer history</span></div>
+    <div class="fact-row"><span class="fact-icon">💰</span><span class="fact-label">Pre-ex Max</span><span class="fact-val warn">$25K–$50K (age 0-69) · $20K (age 70-99)</span></div>
+    <div class="fact-row"><span class="fact-icon">🏥</span><span class="fact-label">Hospital Sub-limit</span><span class="fact-val warn">$15,000 per service type (hospital, surgery, ER)</span></div>
+    <div class="fact-row"><span class="fact-icon">📅</span><span class="fact-label">Min Plan Duration</span><span class="fact-val warn">90 days minimum</span></div>
+    <div class="fact-row"><span class="fact-icon">🌐</span><span class="fact-label">Network</span><span class="fact-val warn">UHC Options PPO · 30-40% OON penalty</span></div>
+  </div>
+  <div class="dim-section">
+    <div class="dim-title collapsed" onclick="toggleDims(this)">Dimension Scores</div>
+    <div class="dim-rows" style="display:none">
+      <div class="dim-row"><span class="dim-name">Hospitalization</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:72%"></div></div><span class="dim-score-text">72</span></div>
+      <div class="dim-row"><span class="dim-name">Acute Onset Pre-ex</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-green" style="width:88%"></div></div><span class="dim-score-text">88</span></div>
+      <div class="dim-row"><span class="dim-name">Prescriptions</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:55%"></div></div><span class="dim-score-text">55</span></div>
+      <div class="dim-row"><span class="dim-name">Network Quality</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:68%"></div></div><span class="dim-score-text">68</span></div>
+      <div class="dim-row"><span class="dim-name">Claims Experience</span><div class="dim-bar-bg"><div class="dim-bar-fill fill-amber" style="width:58%"></div></div><span class="dim-score-text">58</span></div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag good">Direct Pre-ex Coverage</span>
+    <span class="tag good">Stable Med Exception</span>
+    <span class="tag good">Fastest Claims (10-15 days)</span>
+    <span class="tag bad">Cancer Absolutely Excluded</span>
+    <span class="tag warn">90-day Minimum Plan</span>
+    <span class="tag warn">$15K Hospital Sub-limit</span>
+    <span class="tag warn">30-40% OON Penalty</span>
+  </div>
+  <div class="card-footer">
+    <a class="visit-btn btn-orange" href="https://infplans.com/elite-network-x/" target="_blank">Visit Website →</a>
+    <span class="evidence-tag ev-l2">Evidence: L2 Policy Wording</span>
+  </div>
+</div>
+
+<!-- CARD 8: Atlas America -->
+<div class="card worldtrips provisional" data-rank="8" data-preex="45" data-hospital="70" data-claims="70" data-network="78" data-tags="">
+  <div class="rank-badge rank-other">8</div>
+  <div class="card-header">
+    <div class="plan-name">Atlas America</div>
+    <div class="carrier-name">TMHCC (CI) Insurance SPC Ltd &nbsp;·&nbsp; Administered by WorldTrips</div>
+    <div class="badges">
+      <span class="badge badge-provisional">⚠ Provisional — Evidence Incomplete</span>
+    </div>
+  </div>
+  <div class="score-section">
+    <div class="score-row"><span class="score-label">Overall Score (Provisional)</span><span class="score-value amber">61.7</span></div>
+    <div class="score-bar-bg"><div class="score-bar-fill fill-amber" style="width:61.7%"></div></div>
+  </div>
+  <div class="mini-scores">
+    <div class="mini-score"><div class="mini-score-label">Pre-Existing</div><div class="mini-score-val" style="color:var(--red)">45*</div></div>
+    <div class="mini-score"><div class="mini-score-label">Network</div><div class="mini-score-val" style="color:var(--amber)">78</div></div>
+    <div class="mini-score"><div class="mini-score-label">Claims</div><div class="mini-score-val" style="color:var(--amber)">70*</div></div>
+  </div>
+  <div class="key-facts">
+    <div class="fact-row"><span class="fact-icon">⚠️</span><span class="fact-label">Evidence Status</span><span class="fact-val bad">Certificate not obtained — all scores estimated from brochure (L5)</span></div>
+    <div class="fact-row"><span class="fact-icon">🔄</span><span class="fact-label">Carrier Change</span><span class="fact-val warn">Moved from Lloyd's → TMHCC on May 29, 2025</span></div>
+    <div class="fact-row"><span class="fact-icon">🏠</span><span class="fact-label">Home Country Coverage</span><span class="fact-val bad">REMOVED as of May 29, 2025</span></div>
+    <div class="fact-row"><span class="fact-icon">🌐</span><span class="fact-label">Network</span><span class="fact-val good">UHC PPO (estimated L5)</span></div>
+    <div class="fact-row"><span class="fact-icon">📊</span><span class="fact-label">Rating</span><span class="fact-val good">TMHCC: AM Best A++ (Superior)</span></div>
+  </div>
+  <div class="tags">
+    <span class="tag warn">Provisional Score</span>
+    <span class="tag bad">No Certificate Obtained</span>
+    <span class="tag bad">Home Country Coverage Removed</span>
+    <span class="tag good">AM Best A++ Carrier</span>
+    <span class="tag warn">NY/WA Purchase Restriction</span>
+  </div>
+  <div class="card-footer">
+    <a class="visit-btn btn-purple" href="https://www.worldtrips.com/us-visitor-health-insurance" target="_blank">Visit Website →</a>
+    <span class="evidence-tag ev-l5">Evidence: L5 Brochure only ⚠</span>
+  </div>
+</div>
+
+<!-- CARD 9: VisitorSecure -->
+<div class="card worldtrips" data-rank="9" data-preex="20" data-hospital="35" data-claims="25" data-network="25" data-tags="budget">
+  <div class="rank-badge rank-other">9</div>
+  <div class="card-header">
+    <div class="plan-name">VisitorSecure</div>
+    <div class="carrier-name">TMHCC (CI) Insurance SPC Ltd &nbsp;·&nbsp; Administered by WorldTrips</div>
+    <div class="badges">
+      <span class="badge badge-budget">Budget Only — Not for Seniors</span>
+    </div>
+  </div>
+  <div class="score-section">
+    <div class="score-row"><span class="score-label">Overall Score</span><span class="score-value red">33.3</span></div>
+    <div class="score-bar-bg"><div class="score-bar-fill fill-red" style="width:33.3%"></div></div>
+  </div>
+  <div class="mini-scores">
+    <div class="mini-score"><div class="mini-score-label">Pre-Existing</div><div class="mini-score-val" style="color:var(--red)">20</div></div>
+    <div class="mini-score"><div class="mini-score-label">Network</div><div class="mini-score-val" style="color:var(--red)">25</div></div>
+    <div class="mini-score"><div class="mini-score-label">Claims</div><div class="mini-score-val" style="color:var(--red)">25</div></div>
+  </div>
+  <div class="key-facts">
+    <div class="fact-row"><span class="fact-icon">⚠️</span><span class="fact-label">Plan Type</span><span class="fact-val bad">SCHEDULED BENEFIT — fixed dollar amounts, not % of actual cost</span></div>
+    <div class="fact-row"><span class="fact-icon">❤️</span><span class="fact-label">Acute Onset</span><span class="fact-val bad">Criterion (a): denied if relates to ANY chronic condition</span></div>
+    <div class="fact-row"><span class="fact-icon">🌐</span><span class="fact-label">Direct Billing</span><span class="fact-val bad">NONE — pay upfront, claim reimbursement later</span></div>
+    <div class="fact-row"><span class="fact-icon">💊</span><span class="fact-label">Rx Trip Max</span><span class="fact-val bad">$150–$300 for entire trip</span></div>
+    <div class="fact-row"><span class="fact-icon">📋</span><span class="fact-label">Claims Deadline</span><span class="fact-val warn">60 days from Certificate END date (not service date)</span></div>
+    <div class="fact-row"><span class="fact-icon">⏱️</span><span class="fact-label">Claims Processing</span><span class="fact-val warn">5–8 weeks to payment</span></div>
+    <div class="fact-row"><span class="fact-icon">🏠</span><span class="fact-label">Home Country Coverage</span><span class="fact-val bad">REMOVED as of May 29, 2025</span></div>
+  </div>
+  <div class="tags">
+    <span class="tag good">Lowest Premium</span>
+    <span class="tag good">Flexible Duration (14+ days)</span>
+    <span class="tag bad">No PPO Network</span>
+    <span class="tag bad">Pay Upfront — No Direct Billing</span>
+    <span class="tag bad">$150-300 Total Rx</span>
+    <span class="tag bad">Criterion (a) Bars Most Seniors</span>
+    <span class="tag bad">Scheduled Benefits — Massive Gaps</span>
+  </div>
+  <div class="card-footer">
+    <a class="visit-btn btn-purple" href="https://www.worldtrips.com/us-visitor-health-insurance" target="_blank">Visit Website →</a>
+    <span class="evidence-tag ev-l1">Evidence: L1 Certificate ✓ (TMHCC re-verify pending)</span>
+  </div>
+</div>
+
+</div><!-- end grid -->
+
+<!-- ── SCENARIO TABLE ── -->
+<div class="scenario-panel">
+  <div class="scenario-header">
+    <h3>🔬 Claim Scenario Comparison</h3>
+    <button class="scenario-btn active" onclick="showScenario('appendicitis', this)">Appendicitis ER</button>
+    <button class="scenario-btn" onclick="showScenario('hip', this)">Hip Fracture</button>
+    <button class="scenario-btn" onclick="showScenario('cardiac', this)">Cardiac (Pre-ex)</button>
+    <button class="scenario-btn" onclick="showScenario('evacuation', this)">Evacuation</button>
+    <button class="scenario-btn" onclick="showScenario('cancer', this)">New Cancer</button>
+    <button class="scenario-btn" onclick="showScenario('dka', this)">Diabetic DKA</button>
+  </div>
+  <div style="overflow-x:auto">
+  <table class="scenario-table" id="scenario-table">
+    <thead>
+      <tr>
+        <th>Plan</th>
+        <th>Verdict</th>
+        <th>Coverage Score</th>
+        <th>Denial Risk</th>
+        <th>Est. Plan Payout</th>
+        <th>Key Risk</th>
+      </tr>
+    </thead>
+    <tbody id="scenario-body"></tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ── COMPARISON TABLE ── -->
+<div class="compare-section">
+  <h3>Quick Comparison — Key Decision Factors</h3>
+  <div class="compare-table-wrap">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Plan</th>
+        <th>Cardiac Sub-limit</th>
+        <th>Pre-ex Model</th>
+        <th>Network</th>
+        <th>Claims Deadline</th>
+        <th>PT Coverage</th>
+        <th>Buy from USA</th>
+        <th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Patriot America Platinum</strong></td><td class="ct-good">None</td><td class="ct-good">Acute onset — no cardiac cap</td><td class="ct-good">UHC PPO</td><td class="ct-good">180 days</td><td class="ct-good">No visit cap</td><td>Yes</td><td class="ct-good">L1 ✓</td></tr>
+      <tr><td><strong>Patriot America Plus</strong></td><td class="ct-good">None</td><td class="ct-good">Acute onset — no cardiac cap</td><td class="ct-good">UHC PPO</td><td class="ct-good">180 days</td><td class="ct-good">No visit cap</td><td>Yes</td><td class="ct-good">L1 ✓</td></tr>
+      <tr><td><strong>CoverAmerica Gold</strong></td><td class="ct-warn">$36K (≤69) · None (70+)</td><td class="ct-warn">Acute onset</td><td class="ct-good">UHC PPO</td><td class="ct-warn">90 days*</td><td class="ct-warn">Unconfirmed</td><td>Yes</td><td class="ct-good">L1 ✓</td></tr>
+      <tr><td><strong>SC Choice</strong></td><td class="ct-warn">$50K (≤69) · $5K (70-79)</td><td class="ct-warn">Acute onset — criterion (f)</td><td class="ct-good">UHC+PHCS dual</td><td class="ct-warn">90 days</td><td class="ct-good">$50/visit 10 max</td><td>Yes</td><td class="ct-good">L1 ✓</td></tr>
+      <tr><td><strong>Safe Travels Comprehensive</strong></td><td class="ct-bad">$25K (≤69) · $15K (70-79)</td><td class="ct-warn">Acute onset</td><td class="ct-warn">FirstHealth</td><td class="ct-bad">Unconfirmed*</td><td class="ct-warn">$50/visit 10 max</td><td class="ct-good">Yes</td><td class="ct-good">L1 ✓</td></tr>
+      <tr><td><strong>SC Basic</strong></td><td class="ct-warn">$25K (≤69) · $2.5K (70-79)</td><td class="ct-bad">Acute onset — criterion (f)</td><td class="ct-good">UHC+PHCS dual</td><td class="ct-warn">90 days</td><td class="ct-bad">Excluded</td><td>Yes</td><td class="ct-good">L1 ✓</td></tr>
+      <tr><td><strong>INF Elite X</strong></td><td class="ct-good">Direct pre-ex coverage</td><td class="ct-good">Direct coverage (unique)</td><td class="ct-warn">UHC Options PPO</td><td class="ct-bad">Unconfirmed*</td><td class="ct-warn">$50/visit $500 max</td><td>Yes</td><td class="ct-warn">L2 (no Certificate)</td></tr>
+      <tr><td><strong>Atlas America</strong></td><td class="ct-muted">Unconfirmed*</td><td class="ct-muted">Unconfirmed*</td><td class="ct-warn">UHC PPO (est.)</td><td class="ct-muted">Unconfirmed*</td><td class="ct-muted">Unconfirmed*</td><td class="ct-muted">Restrictions: NY/WA</td><td class="ct-bad">L5 brochure only ⚠</td></tr>
+      <tr><td><strong>VisitorSecure</strong></td><td class="ct-bad">Criterion (a) — chronic = denied</td><td class="ct-bad">Scheduled benefit — criterion (a)</td><td class="ct-bad">No PPO</td><td class="ct-bad">60 days from cert end</td><td class="ct-warn">$40/visit 12 max</td><td class="ct-muted">Restrictions: NY/WA/MD</td><td class="ct-warn">L1 (TMHCC re-verify)</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="disclaimer">
+  <p><strong>⚠ Important Disclaimer:</strong> These rankings are for informational purposes only based on evidence gathered as of June 2026. Insurance plans change frequently — always verify coverage details from the current Certificate of Insurance before purchasing. This is not insurance advice. Rankings are valid only for Indian nationals on B-1/B-2 visas visiting the USA. Never compare these rankings against F-1, H-1B, or other visa category plans. Items marked * require manual review — treat with caution. Atlas America score is provisional pending Certificate of Insurance. Consult a licensed insurance advisor for personalized recommendations. Plan scores may change at 90-day review (next: September 18, 2026).</p>
+</div>
+
+<script>
+  const scenarios = {
+    appendicitis: {
+      title: 'S-01: Appendicitis Emergency (Total bill: ~$45,000)',
+      data: [
+        { plan: 'Patriot America Platinum', verdict: 'LIKELY COVERED', score: 96, denial: 5, payout: '$43,500–$45,000', risk: 'Pre-cert if surgery is delayed/scheduled' },
+        { plan: 'Patriot America Plus', verdict: 'LIKELY COVERED', score: 95, denial: 6, payout: '$40,000–$43,000', risk: '10% OON coinsurance if outside UHC' },
+        { plan: 'CoverAmerica Gold', verdict: 'LIKELY COVERED', score: 93, denial: 8, payout: '$40,000–$45,000', risk: 'Pre-cert after emergency stabilization' },
+        { plan: 'SC Choice', verdict: 'LIKELY COVERED', score: 88, denial: 10, payout: '$38,000–$42,000', risk: 'New condition — acute onset not applicable; covered as new illness after 7-day wait' },
+        { plan: 'Safe Travels Comprehensive', verdict: 'LIKELY COVERED', score: 88, denial: 10, payout: '$38,000–$43,000', risk: 'FirstHealth network — verify surgeon and hospital are in-network' },
+        { plan: 'SC Basic', verdict: 'LIKELY COVERED', score: 86, denial: 12, payout: '$36,000–$40,000', risk: 'Same as Choice but lower limits overall' },
+        { plan: 'INF Elite X', verdict: 'LIKELY COVERED', score: 82, denial: 15, payout: '$30,000–$38,000', risk: 'Hospital $15K + Surgery $15K + ER $7.5K sub-limits apply' },
+        { plan: 'Atlas America', verdict: 'NEEDS MANUAL REVIEW', score: 65, denial: 35, payout: 'Unknown', risk: 'No Certificate — cannot confirm coverage terms' },
+        { plan: 'VisitorSecure', verdict: 'PARTIALLY COVERED', score: 30, denial: 70, payout: '$3,000–$8,000', risk: 'Scheduled benefit amounts cover fraction of $45K bill — $37K+ OOP likely' }
+      ]
+    },
+    hip: {
+      title: 'S-02: Hip Fracture + Surgery ($80,000 total)',
+      data: [
+        { plan: 'Patriot America Platinum', verdict: 'LIKELY COVERED', score: 95, denial: 5, payout: '$76,000–$80,000', risk: 'Pre-cert required for surgery' },
+        { plan: 'Patriot America Plus', verdict: 'LIKELY COVERED', score: 93, denial: 7, payout: '$68,000–$76,000', risk: '10% OON exposure + PT no visit cap helps recovery' },
+        { plan: 'CoverAmerica Gold', verdict: 'LIKELY COVERED', score: 90, denial: 10, payout: '$72,000–$80,000', risk: '100% in-network. PT unconfirmed for post-hip recovery' },
+        { plan: 'SC Choice', verdict: 'LIKELY COVERED', score: 82, denial: 15, payout: '$65,000–$75,000', risk: 'PT capped $500 — real hip recovery needs $3,000–$5,000 PT' },
+        { plan: 'INF Elite X', verdict: 'PARTIALLY COVERED', score: 68, denial: 30, payout: '$35,000–$50,000', risk: 'Hospital $15K + Surgery $15K sub-limits = max $30K on those two lines alone; $50K+ OOP possible' },
+        { plan: 'Safe Travels Comprehensive', verdict: 'LIKELY COVERED', score: 80, denial: 18, payout: '$65,000–$72,000', risk: 'Good for hip surgery; PT $500 cap is low for recovery' },
+        { plan: 'SC Basic', verdict: 'PARTIALLY COVERED', score: 65, denial: 30, payout: '$55,000–$68,000', risk: 'PT EXCLUDED — all post-surgery PT is OOP' },
+        { plan: 'Atlas America', verdict: 'NEEDS MANUAL REVIEW', score: 60, denial: 40, payout: 'Unknown', risk: 'No Certificate' },
+        { plan: 'VisitorSecure', verdict: 'PARTIALLY COVERED', score: 25, denial: 75, payout: '$5,000–$12,000', risk: 'Scheduled benefit — hip surgery averages $30K-$50K; scheduled amount covers ~10%' }
+      ]
+    },
+    cardiac: {
+      title: 'S-03: Cardiac Emergency (Pre-existing) — $50,000 Hospitalization',
+      data: [
+        { plan: 'Patriot America Platinum', verdict: 'LIKELY COVERED', score: 95, denial: 8, payout: '$47,000–$50,000', risk: 'No cardiac sub-limit. 3-year lookback / 30-day stability must be met' },
+        { plan: 'Patriot America Plus', verdict: 'LIKELY COVERED', score: 93, denial: 10, payout: '$42,000–$48,000', risk: 'No cardiac sub-limit. 10% OON coinsurance risk' },
+        { plan: 'INF Elite X', verdict: 'LIKELY COVERED', score: 78, denial: 25, payout: '$25,000–$35,000', risk: 'Direct pre-ex cardiac coverage. BUT: Hospital $15K sub-limit applies. If stable medication exception applies, may be higher' },
+        { plan: 'SC Choice', verdict: 'PARTIALLY COVERED', score: 62, denial: 42, payout: '$30,000–$50,000', risk: 'Criterion (f): chronic cardiac with expected episodes = DENIED under acute onset. Only first-ever cardiac event qualifies' },
+        { plan: 'CoverAmerica Gold', verdict: 'PARTIALLY COVERED', score: 58, denial: 45, payout: '$30,000–$36,000', risk: '$36K cardiac sub-limit. Age 70+: zero cardiac coverage. Large balance OOP if over 70' },
+        { plan: 'Safe Travels Comprehensive', verdict: 'PARTIALLY COVERED', score: 50, denial: 52, payout: '$20,000–$25,000', risk: '$25K cap. Hypertension patients face $25K sub-limit even for hypertensive crisis' },
+        { plan: 'SC Basic', verdict: 'PARTIALLY COVERED', score: 45, denial: 58, payout: '$15,000–$25,000', risk: '$25K cap + criterion (f) = likely denied for repeat cardiac events' },
+        { plan: 'Atlas America', verdict: 'NEEDS MANUAL REVIEW', score: 40, denial: 60, payout: 'Unknown', risk: 'No Certificate — cardiac sub-limits unknown' },
+        { plan: 'VisitorSecure', verdict: 'LIKELY DENIED', score: 15, denial: 88, payout: '$2,000–$5,000', risk: 'Criterion (a): cardiac pre-existing directly relates to chronic condition — denied. Scheduled benefit amounts also very low' }
+      ]
+    },
+    evacuation: {
+      title: 'S-04: Medical Evacuation to India — $85,000',
+      data: [
+        { plan: 'Patriot America Platinum', verdict: 'LIKELY COVERED', score: 96, denial: 5, payout: '$80,000–$85,000', risk: 'Must be medically necessary. Pre-cert/authorization required' },
+        { plan: 'Patriot America Plus', verdict: 'LIKELY COVERED', score: 95, denial: 5, payout: '$80,000–$85,000', risk: 'Same as PAPL' },
+        { plan: 'CoverAmerica Gold', verdict: 'LIKELY COVERED', score: 90, denial: 8, payout: '$75,000–$85,000', risk: 'Evacuation up to $1M. Medical necessity determination required' },
+        { plan: 'SC Choice', verdict: 'LIKELY COVERED', score: 88, denial: 10, payout: '$75,000–$85,000', risk: 'Evacuation covered. Pre-cert needed' },
+        { plan: 'SC Basic', verdict: 'LIKELY COVERED', score: 86, denial: 12, payout: '$72,000–$82,000', risk: 'Same structure as Choice for evacuation' },
+        { plan: 'Safe Travels Comprehensive', verdict: 'LIKELY COVERED', score: 85, denial: 12, payout: '$72,000–$82,000', risk: 'Evacuation covered. FirstHealth network for US-side care' },
+        { plan: 'INF Elite X', verdict: 'NEEDS MANUAL REVIEW', score: 55, denial: 45, payout: 'Unknown', risk: 'Evacuation sub-limit not confirmed from L2 Policy Wording. Escalation from pre-ex event may be excluded' },
+        { plan: 'Atlas America', verdict: 'NEEDS MANUAL REVIEW', score: 55, denial: 45, payout: 'Unknown', risk: 'No Certificate — evacuation terms unverified' },
+        { plan: 'VisitorSecure', verdict: 'PARTIALLY COVERED', score: 50, denial: 50, payout: '$40,000–$60,000', risk: 'Evacuation scheduled benefit. Actual cost vs scheduled amount gap significant' }
+      ]
+    },
+    cancer: {
+      title: 'S-07: New Cancer Diagnosis (First-time) — $120,000 Year 1',
+      data: [
+        { plan: 'Patriot America Platinum', verdict: 'LIKELY COVERED', score: 92, denial: 10, payout: '$108,000–$120,000', risk: 'New diagnosis = not pre-existing. 100% coinsurance. Cancer treatment in USA very expensive — verify plan max sufficient' },
+        { plan: 'Patriot America Plus', verdict: 'LIKELY COVERED', score: 90, denial: 12, payout: '$100,000–$115,000', risk: 'New diagnosis covered as any new illness. 90% coinsurance + pre-cert for chemo/radiation' },
+        { plan: 'CoverAmerica Gold', verdict: 'LIKELY COVERED', score: 88, denial: 14, payout: '$100,000–$120,000', risk: 'Cancer as new illness covered at 100% in-network. No cancer-specific exclusion' },
+        { plan: 'SC Choice', verdict: 'LIKELY COVERED', score: 85, denial: 15, payout: '$90,000–$110,000', risk: 'New illness covered. 7-day waiting period only affects if diagnosed in first week of coverage' },
+        { plan: 'SC Basic', verdict: 'LIKELY COVERED', score: 83, denial: 17, payout: '$88,000–$108,000', risk: 'Same as Choice for new illness coverage' },
+        { plan: 'Safe Travels Comprehensive', verdict: 'LIKELY COVERED', score: 80, denial: 18, payout: '$90,000–$110,000', risk: 'New illness. FirstHealth network adequate for major cancer centers' },
+        { plan: 'Atlas America', verdict: 'NEEDS MANUAL REVIEW', score: 60, denial: 40, payout: 'Unknown', risk: 'No Certificate' },
+        { plan: 'INF Elite X', verdict: 'LIKELY DENIED', score: 5, denial: 98, payout: '$0', risk: 'CANCER ABSOLUTELY EXCLUDED — no coverage whatsoever, new or pre-existing' },
+        { plan: 'VisitorSecure', verdict: 'PARTIALLY COVERED', score: 30, denial: 70, payout: '$8,000–$20,000', risk: 'Scheduled benefit amounts cover fraction of cancer treatment costs. New diagnosis covered under scheduled amounts only' }
+      ]
+    },
+    dka: {
+      title: 'S-08: Diabetic DKA Hospitalization (Pre-existing) — $35,000',
+      data: [
+        { plan: 'Patriot America Platinum', verdict: 'LIKELY COVERED', score: 88, denial: 15, payout: '$32,000–$35,000', risk: 'Acute onset DKA. Must meet 30-day stability. DKA can be argued as acute onset if sudden/unexpected' },
+        { plan: 'Patriot America Plus', verdict: 'LIKELY COVERED', score: 86, denial: 17, payout: '$29,000–$33,000', risk: 'Same acute onset structure. OON coinsurance risk' },
+        { plan: 'INF Elite X', verdict: 'LIKELY COVERED', score: 82, denial: 20, payout: '$25,000–$32,000', risk: 'Diabetic DKA likely covered under direct pre-ex. If diabetes medication stable 24 months = not pre-existing under stable medication exception. Service sub-limits apply.' },
+        { plan: 'CoverAmerica Gold', verdict: 'PARTIALLY COVERED', score: 65, denial: 38, payout: '$20,000–$30,000', risk: 'DKA is from diabetes (pre-existing). Acute onset if sudden. No cardiac-specific sub-limit for DKA. Non-cardiac pre-ex up to plan max if acute onset qualifies.' },
+        { plan: 'SC Choice', verdict: 'PARTIALLY COVERED', score: 55, denial: 48, payout: '$15,000–$28,000', risk: 'Criterion (f): DKA from chronic diabetes with expected episodes likely excluded. Only if no prior DKA history might acute onset qualify.' },
+        { plan: 'SC Basic', verdict: 'PARTIALLY COVERED', score: 48, denial: 55, payout: '$10,000–$22,000', risk: 'Same criterion (f) risk as Choice. Lower overall limits.' },
+        { plan: 'Safe Travels Comprehensive', verdict: 'PARTIALLY COVERED', score: 58, denial: 42, payout: '$18,000–$28,000', risk: 'Acute onset model. DKA from diabetes qualifies if sudden/unexpected. Non-cardiac pre-ex covered up to broader acute onset limits.' },
+        { plan: 'Atlas America', verdict: 'NEEDS MANUAL REVIEW', score: 45, denial: 55, payout: 'Unknown', risk: 'No Certificate' },
+        { plan: 'VisitorSecure', verdict: 'LIKELY DENIED', score: 18, denial: 85, payout: '$1,000–$3,000', risk: 'Criterion (a): DKA from diabetes = relates to chronic condition = denied. Scheduled amounts also very low.' }
+      ]
+    }
+  };
+
+  function showScenario(key, btn) {
+    document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const s = scenarios[key];
+    const tbody = document.getElementById('scenario-body');
+    tbody.innerHTML = s.data.map(r => {
+      const vc = r.verdict === 'LIKELY COVERED' ? 'verdict-covered' :
+                 r.verdict === 'LIKELY DENIED' ? 'verdict-denied' :
+                 r.verdict === 'PARTIALLY COVERED' ? 'verdict-partial' : 'verdict-review';
+      const sc = r.score >= 80 ? 'ct-good' : r.score >= 55 ? 'ct-warn' : 'ct-bad';
+      const dc = r.denial <= 20 ? 'ct-good' : r.denial <= 50 ? 'ct-warn' : 'ct-bad';
+      return `<tr><td><strong>${r.plan}</strong></td><td class="${vc}">${r.verdict}</td><td class="${sc}">${r.score}/100</td><td class="${dc}">${r.denial}%</td><td class="payout-val">${r.payout}</td><td style="color:var(--text-muted);font-size:11px">${r.risk}</td></tr>`;
+    }).join('');
+  }
+
+  showScenario('appendicitis', document.querySelector('.scenario-btn'));
+
+  function filterCards(type, btn) {
+    document.querySelectorAll('.toggle-btn:not(#preex-toggle)').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (type === 'all') { card.classList.remove('hidden'); return; }
+      const tags = card.dataset.tags || '';
+      if (type === 'preex') card.classList.toggle('hidden', !tags.includes('preex'));
+      else if (type === 'cardiac') card.classList.toggle('hidden', !tags.includes('cardiac'));
+      else if (type === 'senior') card.classList.toggle('hidden', !tags.includes('senior'));
+      else if (type === 'budget') card.classList.toggle('hidden', !tags.includes('budget'));
+      else if (type === 'flexible') card.classList.toggle('hidden', !tags.includes('flexible'));
+    });
+  }
+
+  let preexHighlight = true;
+  function togglePreex(btn) {
+    preexHighlight = !preexHighlight;
+    btn.classList.toggle('amber-active', preexHighlight);
+    document.querySelectorAll('.card').forEach(card => {
+      const preexScore = parseInt(card.dataset.preex || 0);
+      card.classList.toggle('highlight-preex', preexHighlight && preexScore >= 85);
+    });
+  }
+  // Initial highlight
+  document.querySelectorAll('.card').forEach(card => {
+    const preexScore = parseInt(card.dataset.preex || 0);
+    if (preexScore >= 85) card.classList.add('highlight-preex');
+  });
+
+  function sortCards(by) {
+    const grid = document.getElementById('card-grid');
+    const cards = Array.from(grid.querySelectorAll('.card'));
+    cards.sort((a, b) => {
+      if (by === 'rank') return parseInt(a.dataset.rank) - parseInt(b.dataset.rank);
+      if (by === 'preex') return parseInt(b.dataset.preex) - parseInt(a.dataset.preex);
+      if (by === 'hospital') return parseInt(b.dataset.hospital) - parseInt(a.dataset.hospital);
+      if (by === 'claims') return parseInt(b.dataset.claims) - parseInt(a.dataset.claims);
+      if (by === 'network') return parseInt(b.dataset.network) - parseInt(a.dataset.network);
+    });
+    cards.forEach(c => grid.appendChild(c));
+  }
+
+  function toggleDims(titleEl) {
+    titleEl.classList.toggle('collapsed');
+    const rows = titleEl.nextElementSibling;
+    rows.style.display = titleEl.classList.contains('collapsed') ? 'none' : 'flex';
+  }
+</script>
+</body>
+</html>

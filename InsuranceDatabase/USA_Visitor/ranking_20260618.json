@@ -1,0 +1,330 @@
+{
+  "meta": {
+    "version": "2026-06-18",
+    "phase": "Phase 24 — Evidence-Backed Ranking",
+    "category": "USA Visitor Insurance — B-1/B-2 Visa Compatible",
+    "disclaimer": "Rankings are based on evidence collected during Phases 13-22. Rankings are within B-1/B-2 category only — never compared against F-1, H-1B, or other visa categories. Scores reflect available evidence quality; Atlas America and VisitorSecure carry explicit uncertainty penalties per Phase 23 QC gates. This is NOT a recommendation to purchase any specific plan. Consult a licensed insurance advisor. Coverage details change — always verify from current Certificate of Insurance.",
+    "ranking_methodology": "12 dimensions weighted by importance for the typical Indian B-1/B-2 traveler profile (Indian national, age 50-75, visiting adult children, 1-6 month trip, likely has pre-existing conditions including diabetes/hypertension). Scores are 0-100 per dimension. Weighted composite score determines overall rank.",
+    "traveler_profile": {
+      "nationality": "Indian national",
+      "age_range": "50-75 (parents/in-laws visiting)",
+      "typical_trip_duration": "1-6 months",
+      "pre_existing_conditions": "High probability — diabetes, hypertension, cardiac history common in Indian population aged 50+",
+      "budget_sensitivity": "Moderate — willing to pay for real coverage but cost-conscious"
+    }
+  },
+
+  "dimension_weights": {
+    "description": "Weights sum to 100. High weight on acute onset pre-existing (18%) reflects that the majority of Indian senior travelers have pre-existing conditions. High weight on hospitalization (15%) reflects that major hospitalization is the primary catastrophic risk. Eligibility flexibility and price weighted lower as travelers prioritize coverage quality.",
+    "weights": {
+      "hospitalization": 15,
+      "er_coverage": 12,
+      "icu_coverage": 8,
+      "surgery": 8,
+      "acute_onset_preexisting": 18,
+      "diagnostics_mri_ct_labs": 5,
+      "prescriptions_rx": 5,
+      "post_discharge_care": 7,
+      "network_quality": 8,
+      "claims_experience": 5,
+      "eligibility_flexibility": 5,
+      "price_value": 4
+    }
+  },
+
+  "dimension_scores": {
+    "note": "Scores are 0-100. Evidence authority level is noted for each score. Scores marked with * carry QC uncertainty penalty per Phase 23.",
+
+    "Patriot_America_Platinum": {
+      "hospitalization": {"score": 100, "authority": 1, "rationale": "100% coinsurance in-network AND out-of-network after deductible. $1M plan max. UHC PPO direct billing. No sub-limits for hospitalization."},
+      "er_coverage": {"score": 100, "authority": 1, "rationale": "100% coinsurance. ER visit covered same as hospitalization. No ER-specific caps."},
+      "icu_coverage": {"score": 100, "authority": 1, "rationale": "ICU covered under hospitalization at 100% coinsurance. No separate ICU cap."},
+      "surgery": {"score": 100, "authority": 1, "rationale": "100% coinsurance. All eligible surgery covered up to plan max. Pre-cert required."},
+      "acute_onset_preexisting": {"score": 100, "authority": 1, "rationale": "No cardiac or stroke sub-limits. Acute onset up to $1,000,000 plan max (non-US citizen age <70). 3-year lookback, 30-day stability. Best in class."},
+      "diagnostics_mri_ct_labs": {"score": 98, "authority": 1, "rationale": "Covered at 100% coinsurance. No specific diagnostic caps found in Certificate."},
+      "prescriptions_rx": {"score": 85, "authority": 1, "rationale": "Covered as part of eligible medical expenses. UHC pharmacy network in-network. No Rx-specific cap found at L1."},
+      "post_discharge_care": {"score": 90, "authority": 1, "rationale": "PT: covered, no visit cap (L1). Home Nursing: covered with pre-cert (L1). DME: covered no dollar cap (L1). OT/Speech/Rehab: NEEDS MANUAL REVIEW."},
+      "network_quality": {"score": 97, "authority": 1, "rationale": "UHC PPO — largest US network (1.3M+ providers). 100% coinsurance eliminates OON financial exposure entirely. Direct billing standard via UHC."},
+      "claims_experience": {"score": 95, "authority": 6, "rationale": "MyIMG portal. 180-day deadline. 100% coinsurance = no financial uncertainty on claim amounts. Claim complexity score 42 (easiest in group)."},
+      "eligibility_flexibility": {"score": 82, "authority": 1, "rationale": "Flexible purchase. Renewable up to 2 years. Must be outside home country. B-1/B-2 compatible. Non-US citizen eligibility confirmed."},
+      "price_value": {"score": 55, "authority": 6, "rationale": "Premium pricing — highest cost plan in the group. Value is justified for high-risk travelers (cardiac history, age 65+) but cost-prohibitive for healthy travelers."},
+      "weighted_score": 95.3,
+      "overall_rank": 1
+    },
+
+    "Patriot_America_Plus": {
+      "hospitalization": {"score": 95, "authority": 1, "rationale": "90% coinsurance in-network (first $5K then 100%), 80% OON. $50K-$1M plan max. UHC PPO. Strong but not 100% certainty on OON claims."},
+      "er_coverage": {"score": 95, "authority": 1, "rationale": "Same coinsurance schedule. $25 urgent care copay benefit. Urgent care in-network."},
+      "icu_coverage": {"score": 95, "authority": 1, "rationale": "ICU at same coinsurance structure. No cap."},
+      "surgery": {"score": 95, "authority": 1, "rationale": "90%/100% in-network coinsurance. Pre-cert required (50% penalty if missed)."},
+      "acute_onset_preexisting": {"score": 96, "authority": 1, "rationale": "No cardiac or stroke sub-limits. Acute onset up to plan max (age <70). 3-year lookback, 30-day stability. Only marginally below PAPL due to OON exposure."},
+      "diagnostics_mri_ct_labs": {"score": 93, "authority": 1, "rationale": "Covered at 90%/100% coinsurance. No diagnostic caps at L1."},
+      "prescriptions_rx": {"score": 85, "authority": 1, "rationale": "Covered as eligible medical expenses. UHC pharmacy network."},
+      "post_discharge_care": {"score": 90, "authority": 1, "rationale": "Same as PAPL — PT no visit cap, Home Nursing covered, DME covered (all L1). OT/Speech/Rehab NEEDS MANUAL REVIEW."},
+      "network_quality": {"score": 90, "authority": 1, "rationale": "UHC PPO. 90% in-network coinsurance creates minor OON financial exposure vs PAPL's 100%."},
+      "claims_experience": {"score": 90, "authority": 6, "rationale": "MyIMG portal. 180-day deadline. Complexity score 45."},
+      "eligibility_flexibility": {"score": 82, "authority": 1, "rationale": "Same as PAPL."},
+      "price_value": {"score": 65, "authority": 6, "rationale": "High cost but below PAPL. Best value among comprehensive plans for mixed health profiles (pre-existing risk + large claim risk)."},
+      "weighted_score": 91.7,
+      "overall_rank": 2
+    },
+
+    "CoverAmerica_Gold": {
+      "hospitalization": {"score": 90, "authority": 1, "rationale": "100% in-network coinsurance. 80%/100% OON. $50K-$1M plan max. UHC PPO. Strong hospitalization coverage."},
+      "er_coverage": {"score": 90, "authority": 1, "rationale": "100% in-network. Same coinsurance structure."},
+      "icu_coverage": {"score": 88, "authority": 1, "rationale": "ICU covered at 100% in-network. No separate ICU cap found."},
+      "surgery": {"score": 90, "authority": 1, "rationale": "100% in-network. Pre-cert requirements assumed similar to IMG (NEEDS MANUAL REVIEW for exact service list)."},
+      "acute_onset_preexisting": {"score": 65, "authority": 1, "rationale": "Cardiac/stroke sub-limit $36,000 (age ≤69). NO coverage for cardiac/stroke age 70+. Indian travelers with cardiac or hypertension history face significant exposure. No cardiac sub-limit on non-cardiac conditions. COVID trap: effectively no COVID coverage on sub-30-day trips (exclusion for 'known epidemic')."},
+      "diagnostics_mri_ct_labs": {"score": 90, "authority": 1, "rationale": "Covered at 100% in-network. No diagnostic caps identified."},
+      "prescriptions_rx": {"score": 83, "authority": 1, "rationale": "Covered as eligible medical expenses."},
+      "post_discharge_care": {"score": 82, "authority": 2, "rationale": "IMG-administered — likely similar to PAP post-discharge benefits but not separately confirmed from CAG Certificate. Confidence reduced."},
+      "network_quality": {"score": 88, "authority": 1, "rationale": "UHC PPO. 100% in-network coinsurance is strong. OON 80%/100% creates some exposure."},
+      "claims_experience": {"score": 80, "authority": 6, "rationale": "MyIMG portal. Claims deadline possibly 90 days (vs 180 for PAP — UNCONFIRMED). 80% OON adds uncertainty. Complexity score 50."},
+      "eligibility_flexibility": {"score": 88, "authority": 1, "rationale": "Can purchase in USA. 5-day to 365-day coverage. Border Entry Protection is unique benefit. Returning customer discount."},
+      "price_value": {"score": 72, "authority": 6, "rationale": "Mid-high price. Good value for healthy travelers under 70. Cardiac sub-limit significantly reduces value for high cardiac risk travelers."},
+      "weighted_score": 83.0,
+      "overall_rank": 3
+    },
+
+    "SC_Travel_Medical_Choice": {
+      "hospitalization": {"score": 78, "authority": 1, "rationale": "Percentage-based coinsurance. UHC + PHCS dual network. Good hospitalization coverage within plan max. Slightly lower score due to 36-month lookback adding complexity."},
+      "er_coverage": {"score": 80, "authority": 1, "rationale": "ER covered. COVID covered same as illness. No ER-specific exclusions found."},
+      "icu_coverage": {"score": 78, "authority": 1, "rationale": "ICU covered under hospitalization. No separate ICU cap."},
+      "surgery": {"score": 80, "authority": 1, "rationale": "Surgery covered. 7-day illness waiting period means illness-caused surgery in first 7 days not covered."},
+      "acute_onset_preexisting": {"score": 72, "authority": 1, "rationale": "Non-cardiac: $75,000 (age ≤69), $7,500 (age 70-79). Cardiac: $50,000 (age ≤69), $5,000 (age 70-79). NO coverage age 80+. Criterion (f): explicitly bars chronic conditions with expected episodes or flare-ups — disqualifies most Indian seniors' chronic conditions from acute onset. 36-month lookback is strictest in group."},
+      "diagnostics_mri_ct_labs": {"score": 80, "authority": 1, "rationale": "Covered as eligible medical expenses. No diagnostic caps found."},
+      "prescriptions_rx": {"score": 80, "authority": 1, "rationale": "Covered as eligible expenses. UHC + PHCS pharmacy."},
+      "post_discharge_care": {"score": 65, "authority": 1, "rationale": "PT: $50/visit, 10 visits, $500 max (L1). Home Nursing: NEEDS MANUAL REVIEW. OT/Speech/Rehab: NEEDS MANUAL REVIEW. PT cap is low vs actual PT costs ($150-200/session in US)."},
+      "network_quality": {"score": 85, "authority": 1, "rationale": "Dual network (UHC PPO + PHCS/Multiplan) is unique advantage — widest provider access in group. OON deductible max $1,000 caps exposure."},
+      "claims_experience": {"score": 85, "authority": 6, "rationale": "Seven Corners portal clean and established. 90-day deadline stricter than IMG but manageable. Complexity score 48."},
+      "eligibility_flexibility": {"score": 82, "authority": 1, "rationale": "Can purchase in USA. Flexible deductible options $0-$5,000. 7-day waiting period for illness. No 80+ coverage for acute onset."},
+      "price_value": {"score": 75, "authority": 6, "rationale": "Moderate price. Good value for travelers who need PT coverage, have some cardiac risk, and want dual network."},
+      "weighted_score": 77.6,
+      "overall_rank": 4
+    },
+
+    "Safe_Travels_USA_Comprehensive": {
+      "hospitalization": {"score": 82, "authority": 1, "rationale": "Comprehensive hospitalization coverage. 100% in-network coinsurance after deductible. FirstHealth/Aetna network — smaller than UHC but adequate for major metro areas. $50K-$1M plan max."},
+      "er_coverage": {"score": 82, "authority": 1, "rationale": "ER covered. Same coinsurance. FirstHealth in-network."},
+      "icu_coverage": {"score": 80, "authority": 1, "rationale": "ICU covered. No separate ICU cap."},
+      "surgery": {"score": 82, "authority": 1, "rationale": "Surgery covered. Pre-cert requirements NEEDS MANUAL REVIEW."},
+      "acute_onset_preexisting": {"score": 60, "authority": 1, "rationale": "Cardiac/stroke sub-limit $25,000 (age ≤69) — lowest cardiac limit of percentage-based plans. $15,000 (age 70-79). Hypertension explicitly classified as cardiac condition — applies $25K limit. Total acute onset $35K (age 70-79), $20K (age 80+). Significantly constrains value for Indian travelers aged 65+ with hypertension/cardiac history."},
+      "diagnostics_mri_ct_labs": {"score": 82, "authority": 1, "rationale": "Covered as eligible medical expenses. No diagnostic caps."},
+      "prescriptions_rx": {"score": 60, "authority": 1, "rationale": "No pharmacy in-network (FirstHealth excludes pharmacy). All Rx is pay-upfront then manual reimbursement. Significant friction for multi-medication travelers."},
+      "post_discharge_care": {"score": 55, "authority": 1, "rationale": "PT: $50/visit, 10 visits, $500 max (L1). Other post-discharge benefits NEEDS MANUAL REVIEW. No pharmacy in-network increases Rx burden post-discharge."},
+      "network_quality": {"score": 65, "authority": 1, "rationale": "FirstHealth/Aetna — smaller than UHC. No pharmacy in-network is a real gap. Direct billing available for medical providers but pharmacy always OOP."},
+      "claims_experience": {"score": 65, "authority": 6, "rationale": "I-94 requirement unique friction point. Claims deadline unconfirmed. Complexity score 58. Trawick smaller claims operation vs IMG."},
+      "eligibility_flexibility": {"score": 90, "authority": 1, "rationale": "Best eligibility flexibility — can purchase in USA, no citizenship restrictions, renewable up to 364 days, sports coverage add-on available."},
+      "price_value": {"score": 78, "authority": 6, "rationale": "Lower-mid pricing. Good value for healthy travelers in major metro areas (strong hospital network). Poor value for travelers with hypertension/cardiac risk due to low sub-limits."},
+      "weighted_score": 72.9,
+      "overall_rank": 5
+    },
+
+    "SC_Travel_Medical_Basic": {
+      "hospitalization": {"score": 75, "authority": 1, "rationale": "Same structure as Choice for hospitalization. Dual UHC+PHCS network. Good hospitalization coverage."},
+      "er_coverage": {"score": 78, "authority": 1, "rationale": "ER covered. COVID covered same as illness."},
+      "icu_coverage": {"score": 75, "authority": 1, "rationale": "ICU covered. No separate cap."},
+      "surgery": {"score": 78, "authority": 1, "rationale": "Surgery covered. 7-day illness waiting period."},
+      "acute_onset_preexisting": {"score": 58, "authority": 1, "rationale": "Cardiac/stroke/other conditions: $25,000 (age ≤69), $2,500 (age 70-79). NO coverage age 80+. Criterion (f): same chronic condition exclusion as Choice — disqualifies most Indian seniors with stable chronic conditions. 36-month lookback. Lower limits than Choice across all age groups."},
+      "diagnostics_mri_ct_labs": {"score": 78, "authority": 1, "rationale": "Covered. No diagnostic caps."},
+      "prescriptions_rx": {"score": 78, "authority": 1, "rationale": "Covered as eligible medical expenses."},
+      "post_discharge_care": {"score": 35, "authority": 1, "rationale": "PT: EXPLICITLY EXCLUDED (L1). Major gap for post-fracture/post-surgery recovery. Home Nursing/OT/Speech/Rehab: NEEDS MANUAL REVIEW. PT exclusion is significant for any musculoskeletal injury."},
+      "network_quality": {"score": 85, "authority": 1, "rationale": "Same dual UHC+PHCS network as Choice — shared advantage."},
+      "claims_experience": {"score": 82, "authority": 6, "rationale": "Same Seven Corners process as Choice. 90-day deadline. Complexity score 50."},
+      "eligibility_flexibility": {"score": 80, "authority": 1, "rationale": "Same as Choice. No 80+ acute onset coverage."},
+      "price_value": {"score": 80, "authority": 6, "rationale": "Lower price than Choice. Good value for healthy travelers under 70 who are unlikely to need PT. Poor value if musculoskeletal injury occurs."},
+      "weighted_score": 71.6,
+      "overall_rank": 6
+    },
+
+    "INF_Elite_X": {
+      "hospitalization": {"score": 72, "authority": 2, "rationale": "Hospital/ICU sub-limit $15,000 (per service type — not plan max). Pre-cert required for non-emergency admissions. UHC Options PPO. 30-40% OON penalty worst in group. Service-level sub-limits create complex claims exposure."},
+      "er_coverage": {"score": 70, "authority": 2, "rationale": "ER sub-limit $7,500. For major ER events (cardiac arrest, trauma), $7.5K may be insufficient. Pre-cert exception for emergencies but follow-up care requires pre-cert."},
+      "icu_coverage": {"score": 70, "authority": 2, "rationale": "ICU sub-limit $15,000 (combined with Hospital). ICU stays averaging $3,000-$10,000/day in US make $15K limit potentially insufficient for extended stay."},
+      "surgery": {"score": 72, "authority": 2, "rationale": "Surgery sub-limit $15,000. Major surgery (hip replacement, cardiac bypass) typically exceeds this. Pre-cert required. Asst. Surgeon $5K sub-limit adds complexity."},
+      "acute_onset_preexisting": {"score": 88, "authority": 2, "rationale": "Unique advantage: pre-existing conditions DIRECTLY covered (not just acute onset model). Stable medication exception (24 months unchanged = NOT pre-existing). Pre-ex limits $25K-$50K (age 0-69), $20K (age 70-99). BUT: Cancer absolutely excluded. Service sub-limits apply within pre-ex coverage. 90-day minimum plan required. Best plan for non-cancer pre-existing conditions."},
+      "diagnostics_mri_ct_labs": {"score": 72, "authority": 2, "rationale": "Covered as eligible expenses. No specific diagnostic cap at L2. Sub-limits may affect complex diagnostic episodes."},
+      "prescriptions_rx": {"score": 55, "authority": 2, "rationale": "Pre-ex Rx: $500 sub-limit. New condition Rx: UNCONFIRMED. $500 Rx cap for pre-existing conditions is very low for travelers on multiple medications."},
+      "post_discharge_care": {"score": 55, "authority": 2, "rationale": "PT: $50/visit, $500 max (L2). Home Nursing: NEEDS MANUAL REVIEW. OT/Speech/Rehab: NEEDS MANUAL REVIEW."},
+      "network_quality": {"score": 68, "authority": 5, "rationale": "UHC Options PPO confirmed but smaller than standard UHC PPO. 30-40% OON penalty is worst in group — critical risk for Indian travelers in areas with limited UHC Options coverage. INF website URL discrepancy (shows First Health URL but is UHC Options) adds confusion."},
+      "claims_experience": {"score": 58, "authority": 6, "rationale": "Robin Assist less established than IMG/Seven Corners. Pre-ex claims require 24-month medication documentation burden. Claims deadline unconfirmed. Complexity score 62."},
+      "eligibility_flexibility": {"score": 65, "authority": 2, "rationale": "90-day MINIMUM plan requirement — inflexible for short 1-2 month visits. Good age range (0-99). Cancer travelers should not use this plan."},
+      "price_value": {"score": 70, "authority": 6, "rationale": "Premium pricing for pre-ex coverage. Justified ONLY for travelers with stable pre-existing conditions (diabetes, hypertension, stable heart disease) who are NOT cancer patients. Poor value for healthy travelers or cancer history."},
+      "weighted_score": 71.0,
+      "overall_rank": 7
+    },
+
+    "Atlas_America": {
+      "note": "Phase 23 QC gate: Atlas America evidence is L5/L6 only. All scores are provisional pending TMHCC Certificate (CE-001). Maximum confidence 45. These scores should be treated as estimates, not evidence-backed rankings.",
+      "hospitalization": {"score": 70, "authority": 5, "rationale": "Estimated from brochure. 100% in-network coinsurance expected (similar to WorldTrips portfolio structure). NEEDS MANUAL REVIEW."},
+      "er_coverage": {"score": 65, "authority": 5, "rationale": "Estimated. NEEDS MANUAL REVIEW."},
+      "icu_coverage": {"score": 65, "authority": 5, "rationale": "Estimated. NEEDS MANUAL REVIEW."},
+      "surgery": {"score": 65, "authority": 5, "rationale": "Estimated. NEEDS MANUAL REVIEW."},
+      "acute_onset_preexisting": {"score": 45, "authority": 5, "rationale": "Sub-limits and exact acute onset terms unconfirmed. TMHCC Certificate needed. Cannot score confidently. Penalty applied per QC gate."},
+      "diagnostics_mri_ct_labs": {"score": 60, "authority": 5, "rationale": "Estimated. NEEDS MANUAL REVIEW."},
+      "prescriptions_rx": {"score": 55, "authority": 5, "rationale": "Estimated. NEEDS MANUAL REVIEW."},
+      "post_discharge_care": {"score": 45, "authority": 5, "rationale": "Estimated. NEEDS MANUAL REVIEW. Home Country Coverage REMOVED (CE-001)."},
+      "network_quality": {"score": 78, "authority": 5, "rationale": "UHC PPO confirmed from brochure (L5). Direct billing expected. OON rate unconfirmed."},
+      "claims_experience": {"score": 70, "authority": 6, "rationale": "WorldTrips portal. Claims deadline unconfirmed (possibly 60 days cert-end like VisitorSecure). Complexity score 52."},
+      "eligibility_flexibility": {"score": 70, "authority": 5, "rationale": "Purchase restrictions added for NY/WA under TMHCC (CE-001). Eligibility profile incomplete."},
+      "price_value": {"score": 68, "authority": 6, "rationale": "Mid-tier pricing. Value unknown pending Certificate review."},
+      "weighted_score": 61.7,
+      "overall_rank": 8,
+      "evidence_warning": "PROVISIONAL RANKING — upgrade to position 3-5 range expected once TMHCC Certificate obtained and evidence upgraded to L1."
+    },
+
+    "VisitorSecure": {
+      "note": "Phase 23 QC gate: VisitorSecure TMHCC Certificate re-verification required. All scores reduced 15 points from raw estimates per QC-004. Additionally, scheduled benefit plan structure fundamentally limits all category scores.",
+      "hospitalization": {"score": 35, "authority": 1, "rationale": "Scheduled benefit plan — pays fixed dollar amounts per service type, not % of actual cost. US hospital room and board averages $3,000-$5,000/day; VisitorSecure scheduled amounts cover a fraction. Major hospitalization creates $30,000-$100,000 OOP exposure."},
+      "er_coverage": {"score": 30, "authority": 1, "rationale": "Fixed ER benefit amount per schedule. US ER average charge $2,200+; scheduled benefit may be $200-$500. Massive OOP gap."},
+      "icu_coverage": {"score": 25, "authority": 1, "rationale": "ICU scheduled amount insufficient for even 1 day of US ICU at average costs."},
+      "surgery": {"score": 30, "authority": 1, "rationale": "Surgery scheduled benefit. Major surgery (appendectomy $25K-$80K, hip replacement $30K-$50K) far exceeds scheduled amounts."},
+      "acute_onset_preexisting": {"score": 20, "authority": 1, "rationale": "Criterion (a): acute onset 'does not directly or indirectly relate to a chronic condition.' This is the broadest acute onset exclusion in the group. Most Indian seniors' cardiac events, diabetic complications, hypertensive crises are denied under criterion (a). Even if approved, scheduled benefit amounts cap recovery."},
+      "diagnostics_mri_ct_labs": {"score": 35, "authority": 1, "rationale": "Scheduled amounts for MRI/CT far below actual costs. MRI average $1,300; scheduled amount likely $150-300."},
+      "prescriptions_rx": {"score": 30, "authority": 1, "rationale": "$150-$300 total Rx for entire trip. Travelers on multiple medications will exhaust this in 1-2 months."},
+      "post_discharge_care": {"score": 40, "authority": 1, "rationale": "PT at $40/visit, 12 visits. Low per-visit rate. Home Nursing/OT/Speech: TMHCC re-verify needed."},
+      "network_quality": {"score": 25, "authority": 1, "rationale": "No PPO network. No direct billing. Must pay upfront for all services. For major events, Indian travelers must have $10,000-$50,000 available to pay hospitals before filing reimbursement."},
+      "claims_experience": {"score": 25, "authority": 6, "rationale": "No direct billing. 60-day cert-end deadline (confusing). 5-8 weeks processing. Must pay upfront. Highest complexity score (75) in group."},
+      "eligibility_flexibility": {"score": 75, "authority": 1, "rationale": "Flexible 14-day minimum. Affordable. Purchase restrictions for NY/WA/MD (TMHCC CE-001). Renewability flexible."},
+      "price_value": {"score": 85, "authority": 6, "rationale": "Lowest price in group. For very healthy, young travelers with no pre-existing conditions and short trips, provides baseline coverage at minimal cost. Not appropriate for Indian seniors with health history."},
+      "weighted_score": 33.3,
+      "overall_rank": 9,
+      "evidence_warning": "Score may change after TMHCC Certificate verification but fundamental scheduled benefit structure will keep VisitorSecure at rank 8-9 for typical Indian B-1/B-2 senior traveler profile."
+    }
+  },
+
+  "final_rankings": [
+    {
+      "rank": 1,
+      "plan": "Patriot America Platinum",
+      "carrier": "SiriusPoint / IMG",
+      "score": 95.3,
+      "badge": "BEST OVERALL",
+      "best_for": "High-risk travelers (cardiac history, age 65+), travelers who need 100% certainty on coverage amounts, non-US citizens wanting maximum acute onset protection",
+      "key_strength": "100% coinsurance on AND off network, $1M acute onset with no cardiac sub-limits",
+      "key_weakness": "Premium pricing — highest cost in group; pre-cert 50% penalty requires diligence"
+    },
+    {
+      "rank": 2,
+      "plan": "Patriot America Plus",
+      "carrier": "SiriusPoint / IMG",
+      "score": 91.7,
+      "badge": "BEST VALUE COMPREHENSIVE",
+      "best_for": "Most Indian B-1/B-2 travelers aged 50-75 with mixed health history",
+      "key_strength": "Same pre-existing protection as PAPL, 180-day claims deadline, established IMG claims portal — at lower premium than Platinum",
+      "key_weakness": "90%/80% coinsurance split means OON exposure exists; 50% pre-cert penalty"
+    },
+    {
+      "rank": 3,
+      "plan": "CoverAmerica Gold",
+      "carrier": "SiriusPoint / IMG",
+      "score": 83.0,
+      "badge": "BEST FOR HEALTHY TRAVELERS",
+      "best_for": "Healthy travelers under 70 with no cardiac/stroke history; travelers wanting COVID coverage; returning visitors (5% discount)",
+      "key_strength": "100% in-network coinsurance, COVID coverage, unique Border Entry Protection benefit",
+      "key_weakness": "Cardiac/stroke sub-limit $36K (age ≤69), ZERO cardiac coverage age 70+, COVID trap on sub-30-day trips"
+    },
+    {
+      "rank": 4,
+      "plan": "SC Travel Medical Choice",
+      "carrier": "Crum & Forster / Seven Corners",
+      "score": 77.6,
+      "badge": "BEST DUAL NETWORK",
+      "best_for": "Travelers in rural areas or secondary cities (dual UHC+PHCS network advantage), moderate cardiac risk travelers, those likely to need post-discharge PT",
+      "key_strength": "Dual UHC+PHCS network (widest provider access), $75K non-cardiac / $50K cardiac acute onset, PT covered",
+      "key_weakness": "Criterion (f) bars chronic conditions from acute onset — most Indian seniors' conditions ineligible; no 80+ acute onset coverage"
+    },
+    {
+      "rank": 5,
+      "plan": "Safe Travels USA Comprehensive",
+      "carrier": "Nationwide / Trawick",
+      "score": 72.9,
+      "badge": "BEST ELIGIBILITY FLEXIBILITY",
+      "best_for": "Travelers already in USA who need to buy immediately, healthy travelers (no cardiac history), short visits where pharmacy use is minimal",
+      "key_strength": "Can purchase from USA, easiest eligibility, $1M plan max, 100% in-network",
+      "key_weakness": "Cardiac/stroke sub-limit $25K (lowest), hypertension counted as cardiac, NO pharmacy in-network, I-94 required for claims, unclear claims deadline"
+    },
+    {
+      "rank": 6,
+      "plan": "SC Travel Medical Basic",
+      "carrier": "Crum & Forster / Seven Corners",
+      "score": 71.6,
+      "badge": "BEST BUDGET (HEALTHY UNDER 70)",
+      "best_for": "Healthy travelers under 70, short 1-3 month visits with low pre-existing risk, travelers who accept limited PT coverage",
+      "key_strength": "Dual UHC+PHCS network, COVID covered, lower premium than Choice",
+      "key_weakness": "PT EXPLICITLY EXCLUDED, $25K acute onset cap (all conditions), criterion (f) bars chronic conditions, no 80+ acute onset"
+    },
+    {
+      "rank": 7,
+      "plan": "INF Elite X",
+      "carrier": "Crum & Forster / Robin Assist",
+      "score": 71.0,
+      "badge": "BEST FOR PRE-EXISTING CONDITIONS (NON-CANCER)",
+      "best_for": "Travelers with stable diabetes, hypertension, stable cardiac conditions — who have NOT had cancer, who are staying 90+ days",
+      "key_strength": "DIRECT pre-existing condition coverage (unique in group), stable medication exception (24-month stability = not pre-existing), fastest claims processing (10-15 days)",
+      "key_weakness": "Cancer absolutely excluded, 90-day minimum plan, service sub-limits ($15K hospital, $7.5K ER), worst OON penalty (30-40%), Robin Assist less established"
+    },
+    {
+      "rank": 8,
+      "plan": "Atlas America",
+      "carrier": "TMHCC / WorldTrips",
+      "score": 61.7,
+      "badge": "PROVISIONAL — EVIDENCE INCOMPLETE",
+      "best_for": "Cannot recommend until TMHCC Certificate obtained",
+      "key_strength": "UHC PPO network (if confirmed L1), WorldTrips administration",
+      "key_weakness": "All evidence is L5/L6 — no Certificate obtained. Home Country Coverage REMOVED (CE-001). Ranking is provisional.",
+      "evidence_warning": "PROVISIONAL — obtain TMHCC Certificate before recommending"
+    },
+    {
+      "rank": 9,
+      "plan": "VisitorSecure",
+      "carrier": "TMHCC / WorldTrips",
+      "score": 33.3,
+      "badge": "BUDGET ONLY — NOT FOR SENIORS WITH HEALTH HISTORY",
+      "best_for": "Very healthy travelers under 50, extremely short visits (< 30 days), travelers who only want catastrophic-level protection at minimal cost",
+      "key_strength": "Lowest premium, flexible plan duration (14 days minimum), simple to purchase",
+      "key_weakness": "Scheduled benefit plan — massive gap between benefit amounts and actual US medical costs. No PPO network — must pay upfront. Criterion (a) bars most Indian seniors' conditions from acute onset. $150-300 total Rx cap. Highest claim complexity in group."
+    }
+  ],
+
+  "persona_based_recommendations": {
+    "note": "These recommendations synthesize rankings for specific Indian B-1/B-2 traveler profiles. Not insurance advice.",
+    "personas": [
+      {
+        "persona": "Healthy traveler, age 50-65, 3-month visit",
+        "top_pick": "CoverAmerica Gold or SC Travel Medical Choice",
+        "rationale": "No cardiac risk = cardiac sub-limit not a concern. 100% in-network (CAG) or dual network + PT (SC Choice). Mid-range price appropriate."
+      },
+      {
+        "persona": "Traveler with hypertension/diabetes, age 55-70, 3-6 month visit",
+        "top_pick": "Patriot America Plus (no cardiac sub-limits)",
+        "second_pick": "INF Elite X (if on stable medication 24+ months and NOT cancer history)",
+        "rationale": "Hypertension is classified as cardiac by Safe Travels ($25K cap) and has a $36K cap at CAG. PAP has no cardiac sub-limit. INF's stable medication exception may actually exclude hypertension from the pre-existing definition entirely if unchanged for 24 months."
+      },
+      {
+        "persona": "Traveler with cardiac history (prior heart attack, stents, bypass), age 60-75",
+        "top_pick": "Patriot America Platinum",
+        "second_pick": "Patriot America Plus",
+        "avoid": ["CoverAmerica Gold (age 70+ = zero cardiac coverage)", "SC Basic/Choice (criterion f + $25K-$50K cap)", "Safe Travels ($25K cap, hypertension=cardiac)"],
+        "rationale": "PAPL/PAP are the only plans with no cardiac sub-limits. A repeat cardiac event in the US averages $30,000-$200,000. Any plan with a $25K-$36K cardiac sub-limit provides false security."
+      },
+      {
+        "persona": "Parent with cancer history (in remission), age 55-70",
+        "top_pick": "Patriot America Plus or SC Travel Medical Choice",
+        "avoid": ["INF Elite X (absolute cancer exclusion)"],
+        "rationale": "Cancer in remission is a pre-existing condition. Most plans use acute onset model — cancer recurrence while traveling is unlikely to qualify as 'acute onset'. PAP/PAPL provide plan-max acute onset coverage including cancer if it meets acute onset criteria."
+      },
+      {
+        "persona": "Very healthy traveler, age 30-45, 2-week vacation",
+        "top_pick": "CoverAmerica Gold or Safe Travels USA Comprehensive",
+        "budget_pick": "SC Travel Medical Basic",
+        "rationale": "Low pre-existing risk means cardiac sub-limits less relevant. Short trip favors flexible purchase (Safe Travels can buy in USA). Budget travelers do fine with SC Basic."
+      },
+      {
+        "persona": "Traveler in rural area / secondary city (not NYC/LA/Chicago)",
+        "top_pick": "SC Travel Medical Choice",
+        "rationale": "Dual UHC+PHCS network provides the widest provider access in small towns and rural areas where a single network may have gaps."
+      }
+    ]
+  }
+}

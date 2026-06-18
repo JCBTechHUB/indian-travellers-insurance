@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "version": "2026-06-18",
+    "phase": "Phase 23 — Quality Control",
+    "purpose": "Audit every fact-bearing conclusion across Phases 14-22 for completeness (Source + Evidence + Confidence). Flag anything missing. Grade each phase's evidence quality. This report gates Phase 24 ranking — conclusions marked NEEDS_MANUAL_REVIEW cannot contribute to final scores without human verification.",
+    "qc_standard": "Every conclusion requires: source_document + authority_level + confidence_score + exact_language OR flag as NEEDS_MANUAL_REVIEW",
+    "overall_grade": "B+",
+    "summary": "Core hospitalization, surgery, ER, and coinsurance data is L1-confirmed for 7 of 9 plans. Atlas America remains L5/L6 evidence only — scores will carry uncertainty penalty. WorldTrips carrier transition (CE-001) means VisitorSecure and Atlas America Phase 14 evidence must be re-verified against TMHCC Certificates before final ranking confidence can exceed 70."
+  },
+
+  "phase_audits": [
+
+    {
+      "phase": "Phase 14 — Evidence Engine",
+      "files_reviewed": [
+        "IMG/PatriotAmericaPlus/extracted_data/evidence.json",
+        "IMG/PatriotAmericaPlatinum/extracted_data/evidence.json",
+        "SiriusPoint/CoverAmericaGold/extracted_data/evidence.json",
+        "Trawick/SafeTravelsUSAComprehensive/extracted_data/evidence.json",
+        "WorldTrips/VisitorSecure/extracted_data/evidence.json",
+        "WorldTrips/AtlasAmerica/extracted_data/evidence.json",
+        "INF/EliteX/extracted_data/evidence.json",
+        "SevenCorners/TravelMedicalBasic/extracted_data/evidence.json",
+        "SevenCorners/TravelMedicalChoice/extracted_data/evidence.json"
+      ],
+      "findings": [
+        {
+          "plan": "Patriot_America_Plus",
+          "evidence_grade": "A",
+          "authority_level": 1,
+          "confirmed_benefits": ["Hospitalization", "ER", "Surgery", "Coinsurance schedule", "Pre-existing definition", "Acute onset", "Evacuation"],
+          "needs_manual_review": ["OT/Speech Therapy", "Rehabilitation facility"],
+          "qc_flags": []
+        },
+        {
+          "plan": "Patriot_America_Platinum",
+          "evidence_grade": "A",
+          "authority_level": 1,
+          "confirmed_benefits": ["Hospitalization", "ER", "Surgery", "100% coinsurance", "Acute onset $1M non-US citizen", "Evacuation"],
+          "needs_manual_review": ["OT/Speech Therapy", "Rehabilitation facility"],
+          "qc_flags": []
+        },
+        {
+          "plan": "CoverAmerica_Gold",
+          "evidence_grade": "A-",
+          "authority_level": 1,
+          "confirmed_benefits": ["Hospitalization", "Coinsurance schedule", "Cardiac/stroke sub-limit $36K", "COVID coverage", "Border Entry Protection"],
+          "needs_manual_review": ["Claims deadline (90 vs 180 days)", "Pre-certification service list"],
+          "qc_flags": [
+            "QC-001: COVID coverage — confirmed covered but sub-30-day trip trap requires Certificate verification of exact language",
+            "QC-002: Master Policy effective date 2024-10-02 — verify Certificate in raw_documents matches this date"
+          ]
+        },
+        {
+          "plan": "Safe_Travels_USA_Comprehensive",
+          "evidence_grade": "A-",
+          "authority_level": 1,
+          "confirmed_benefits": ["Hospitalization", "Coinsurance", "Cardiac/stroke sub-limits", "Hypertension classification", "Age 70-79 and 80+ acute onset totals"],
+          "needs_manual_review": ["Claims deadline", "Pre-certification requirements", "OT/Speech/Rehab"],
+          "qc_flags": [
+            "QC-003: I-94 requirement for claims — verify from Certificate; may be administrator requirement only"
+          ]
+        },
+        {
+          "plan": "VisitorSecure",
+          "evidence_grade": "B",
+          "authority_level": 1,
+          "confirmed_benefits": ["Scheduled benefit structure", "Criterion (a) acute onset exclusion", "Rx trip max $150-$300", "PT $40/visit 12 visits", "Claims 60-day cert-end deadline"],
+          "needs_manual_review": ["All benefits — TMHCC Certificate re-verification required (CE-001)"],
+          "qc_flags": [
+            "QC-004: CRITICAL — Lloyd's Certificate may be superseded by TMHCC Certificate (May 29, 2025). All evidence entries carry CE-001 uncertainty. Confidence scores for VisitorSecure reduced by 15 points across all evidence until TMHCC Certificate verified.",
+            "QC-005: Home Country Coverage confirmed REMOVED — update evidence.json to reflect this"
+          ]
+        },
+        {
+          "plan": "Atlas_America",
+          "evidence_grade": "D",
+          "authority_level": 5,
+          "confirmed_benefits": ["UHC PPO network (L5)", "Evacuation (L5)"],
+          "needs_manual_review": ["ALL major benefits — Certificate not obtained", "Home Country Coverage removed (CE-001)", "TMHCC Certificate needed"],
+          "qc_flags": [
+            "QC-006: CRITICAL — Atlas America has no L1 or L2 evidence. All evidence is L5 (brochure) or L6 (marketing). Cannot be ranked above confidence 45 on any dimension until TMHCC Certificate obtained.",
+            "QC-007: Home Country Coverage confirmed REMOVED — update evidence if present in evidence.json"
+          ]
+        },
+        {
+          "plan": "INF_Elite_X",
+          "evidence_grade": "B+",
+          "authority_level": 2,
+          "confirmed_benefits": ["Pre-existing direct coverage limits", "Stable medication exception (24 months)", "Cancer absolute exclusion", "Service sub-limits", "UHC Options PPO network"],
+          "needs_manual_review": ["Certificate of Insurance (L1) not obtained — all evidence is L2", "Pre-cert failure penalty exact language", "Rx for new conditions", "OT/Speech/Rehab"],
+          "qc_flags": [
+            "QC-008: All INF Elite X evidence is L2 (Policy Wording). Certificate (L1) not obtained. Confidence scores capped at 80 max until L1 obtained.",
+            "QC-009: Pre-cert requirement confirmed (search result) but penalty not confirmed — flag as NEEDS_MANUAL_REVIEW"
+          ]
+        },
+        {
+          "plan": "SC_Travel_Medical_Basic",
+          "evidence_grade": "A",
+          "authority_level": 1,
+          "confirmed_benefits": ["Acute onset limits by age", "Criterion (f) exclusion language", "PT explicit exclusion", "36-month lookback", "7-day waiting period", "COVID covered"],
+          "needs_manual_review": ["Pre-cert service list", "OT/Speech/Rehab"],
+          "qc_flags": []
+        },
+        {
+          "plan": "SC_Travel_Medical_Choice",
+          "evidence_grade": "A",
+          "authority_level": 1,
+          "confirmed_benefits": ["Acute onset limits by age ($75K non-cardiac, $50K cardiac ≤69)", "PT $50/visit 10 visits $500 max", "Criterion (f) exclusion", "36-month lookback", "COVID covered", "Dual PPO network"],
+          "needs_manual_review": ["Pre-cert service list", "OT/Speech/Rehab"],
+          "qc_flags": []
+        }
+      ]
+    },
+
+    {
+      "phase": "Phase 17 — Claim Simulation",
+      "evidence_grade": "B+",
+      "method_note": "Simulations derived from L1/L2 evidence. Confidence scores per scenario reflect underlying document authority. All simulations include denial risk ranges, not point estimates — appropriate epistemic humility.",
+      "qc_flags": [
+        "QC-010: VisitorSecure simulations — reduce confidence by 15 points for all scenarios pending TMHCC Certificate (CE-001)",
+        "QC-011: Atlas America simulations — confidence scores were already capped at 50; retain with explicit NEEDS_MANUAL_REVIEW flag"
+      ]
+    },
+
+    {
+      "phase": "Phase 18 — Post-Discharge",
+      "evidence_grade": "B",
+      "open_items_count": 5,
+      "qc_flags": [
+        "QC-012: Rehabilitation facility status UNCONFIRMED for all 9 plans — must not be scored as covered in ranking",
+        "QC-013: Home Nursing status UNCONFIRMED for 7 of 9 plans (only PAP/PAPL confirmed L1)",
+        "QC-014: OT and Speech Therapy UNCONFIRMED for all 9 plans"
+      ]
+    },
+
+    {
+      "phase": "Phase 19 — Pre-Existing Intelligence",
+      "evidence_grade": "A-",
+      "open_items_count": 4,
+      "qc_flags": [
+        "QC-015: INF Elite X unlimited lookback — 'reasonably prudent person' standard interpretation varies. Flag as NEEDS_MANUAL_REVIEW for legal edge cases.",
+        "QC-016: VisitorSecure full pre-existing definition — TMHCC Certificate needed (CE-001)"
+      ]
+    },
+
+    {
+      "phase": "Phase 20 — PPO Network",
+      "evidence_grade": "B+",
+      "open_items_count": 4,
+      "qc_flags": [
+        "QC-017: INF Elite X URL discrepancy (page titled 'first-health-ppo' but confirmed UHC Options) — must verify from actual ID card before final ranking",
+        "QC-018: Atlas OON rate unconfirmed",
+        "QC-019: SC dual-network (PHCS) requires verification from Certificate — confirmed L5 only"
+      ]
+    },
+
+    {
+      "phase": "Phase 21 — Claims Experience",
+      "evidence_grade": "B-",
+      "open_items_count": 5,
+      "qc_flags": [
+        "QC-020: Safe Travels claims deadline UNCONFIRMED — ranking claims score must carry uncertainty penalty",
+        "QC-021: INF Elite X claims deadline UNCONFIRMED",
+        "QC-022: Atlas America claims deadline UNCONFIRMED",
+        "QC-023: Pre-cert service lists for 6 of 9 plans UNCONFIRMED"
+      ]
+    },
+
+    {
+      "phase": "Phase 22 — Change Detection",
+      "evidence_grade": "A-",
+      "qc_flags": [
+        "QC-024: CE-001 (WorldTrips carrier transition) confirmed and documented. Immediate action: obtain TMHCC Certificates for Atlas America and VisitorSecure.",
+        "QC-025: CE-003 (CAG Master Policy Oct 2024) — verify raw_documents Certificate date matches"
+      ]
+    }
+  ],
+
+  "ranking_gate_decisions": {
+    "cleared_for_phase24_ranking": [
+      "Patriot_America_Plus",
+      "Patriot_America_Platinum",
+      "CoverAmerica_Gold",
+      "Safe_Travels_USA_Comprehensive",
+      "SC_Travel_Medical_Basic",
+      "SC_Travel_Medical_Choice",
+      "INF_Elite_X"
+    ],
+    "cleared_with_uncertainty_penalty": [
+      {
+        "plan": "VisitorSecure",
+        "penalty": "All confidence scores reduced by 15 points pending TMHCC Certificate re-verification (CE-001)",
+        "max_ranking_confidence": 70
+      },
+      {
+        "plan": "Atlas_America",
+        "penalty": "Evidence grade D — no L1/L2 documents obtained. Score reflects L5/L6 evidence only. Atlas America cannot rank above position 8 with current evidence quality.",
+        "max_ranking_confidence": 45
+      }
+    ],
+    "not_cleared_for_ranking": []
+  },
+
+  "total_qc_flags": 25,
+  "critical_flags": ["QC-004", "QC-006", "QC-024"],
+  "high_flags": ["QC-008", "QC-012", "QC-013", "QC-020", "QC-021"],
+  "medium_flags": ["QC-001", "QC-002", "QC-003", "QC-009", "QC-010", "QC-011", "QC-014", "QC-015", "QC-016", "QC-017", "QC-018", "QC-019", "QC-022", "QC-023", "QC-025"]
+}
