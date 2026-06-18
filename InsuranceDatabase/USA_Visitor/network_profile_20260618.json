@@ -1,0 +1,386 @@
+{
+  "meta": {
+    "version": "2026-06-18",
+    "phase": "Phase 20 — PPO Network Intelligence",
+    "purpose": "Identify PPO network name, size, and provider access quality for each of the 9 B-1/B-2 plans. Network quality directly determines whether in-network coinsurance rates apply (e.g., 100% vs 80%) and whether direct billing is available.",
+    "research_sources": [
+      "patriotamericainsurance.net/ppo-network/",
+      "visitorscoverage.com/coveramerica-gold-insurance/providers/",
+      "visoa.com/providers/trawick-international/ppo-network/",
+      "atlasamericainsurance.net/ppo-network/",
+      "infplans.com/first-health-ppo/",
+      "sevencorners.com/about/assist/find-providers",
+      "visitorscoverage.com/seven-corners-travel-medical-basic-insurance/providers/"
+    ],
+    "authority_level": 6,
+    "confidence_note": "PPO network data is from marketing/aggregator sources (L6). Network composition and size figures are industry-standard estimates and may not reflect real-time changes. Verify specific provider participation at time of care.",
+    "network_importance": "Network matters most for plans with meaningful in-network vs out-of-network coinsurance differentials. For plans paying 100% everywhere (Patriot America Platinum, Safe Travels), network access affects direct billing but not payout percentage.",
+    "indian_traveler_context": "Indian visitors to USA cluster heavily in: New Jersey (Edison/Jersey City), California (Bay Area/LA/San Diego), Texas (Houston/Dallas/Austin), Illinois (Chicago), New York (NYC metro), Georgia (Atlanta). All networks must be assessed for coverage quality in these metro areas."
+  },
+
+  "plans": [
+
+    {
+      "plan_id": "Patriot_America_Plus",
+      "carrier": "SiriusPoint / IMG",
+      "ppo_network": {
+        "name_for_indian_nationals": "UnitedHealthCare (UHC) PPO Network",
+        "name_for_eu_citizens": "FirstHealth PPO Network",
+        "applicable_to_indian_b1b2_visitors": "UnitedHealthCare PPO Network",
+        "note_on_selection": "Network is determined by citizenship/passport. Non-US, non-EU citizens (Indian nationals) → UHC PPO. EU passport holders → FirstHealth PPO. Check ID card for network logo.",
+        "provider_search_url": "https://us1.welcometouhc.com/find-a-doctor",
+        "outside_usa": "No PPO — any provider. Use IMG International Provider Access (IPA): ipa.imglobal.com",
+        "what_to_say_to_provider": "'My insurance uses the United Healthcare PPO Network and I found your name listed as a provider.' Do NOT say 'I have Patriot America Insurance' or 'I have IMG Insurance' — providers will not recognize this.",
+        "direct_billing_available": true,
+        "authority_level_of_network_data": 6,
+        "confidence": 92
+      },
+      "network_quality": {
+        "uhc_ppo_size_estimate": "1.3M+ physician/provider locations; 6,500+ hospitals nationwide",
+        "all_50_states": true,
+        "major_indian_community_hubs": {
+          "new_jersey_nj": "Excellent — major UHC network presence; Edison, Jersey City, Newark metro",
+          "california_ca": "Excellent — Bay Area, LA, San Diego, Sacramento all well-covered",
+          "texas_tx": "Excellent — Houston, Dallas, Austin, San Antonio",
+          "illinois_il": "Excellent — Chicago metro",
+          "new_york_ny": "Excellent — NYC metro, Long Island",
+          "georgia_ga": "Strong — Atlanta metro"
+        },
+        "urgent_care_access": "Strong — UHC PPO includes major urgent care chains (Concentra, GoHealth, etc.)",
+        "specialist_access": "Excellent — largest US specialist network",
+        "rural_access": "Moderate — thinner in very rural areas but adequate for most US destinations",
+        "overall_network_rating": "A+ — largest PPO network in USA, best choice for Indian visitors"
+      },
+      "in_network_vs_oon_impact": {
+        "in_network_coinsurance": "100%",
+        "oon_coinsurance": "90%",
+        "financial_impact_of_oon": "10% OON penalty — significant on large bills. On $50,000 hospitalization: $5,000 additional patient cost if OON.",
+        "key_advice": "Always confirm UHC network participation before choosing a hospital or specialist. Non-PPO facilities trigger 10% OON penalty."
+      }
+    },
+
+    {
+      "plan_id": "Patriot_America_Platinum",
+      "carrier": "SiriusPoint / IMG",
+      "ppo_network": {
+        "name_for_indian_nationals": "UnitedHealthCare (UHC) PPO Network",
+        "applicable_to_indian_b1b2_visitors": "UnitedHealthCare PPO Network",
+        "provider_search_url": "https://us1.welcometouhc.com/find-a-doctor",
+        "outside_usa": "No PPO — any provider. Use IPA: ipa.imglobal.com",
+        "what_to_say_to_provider": "Same as Patriot America Plus — mention UHC PPO Network, not IMG or Patriot.",
+        "direct_billing_available": true,
+        "confidence": 92
+      },
+      "network_quality": {
+        "same_as": "Patriot_America_Plus",
+        "overall_network_rating": "A+"
+      },
+      "in_network_vs_oon_impact": {
+        "in_network_coinsurance": "100%",
+        "oon_coinsurance": "100%",
+        "financial_impact_of_oon": "ZERO — Patriot America Platinum pays 100% everywhere. Network access matters for direct billing convenience, not for coinsurance savings.",
+        "key_advice": "Network access still matters for direct billing and pre-negotiated rates, but Platinum patients have no financial penalty for OON providers."
+      }
+    },
+
+    {
+      "plan_id": "CoverAmerica_Gold",
+      "carrier": "SiriusPoint (admin: IMG)",
+      "ppo_network": {
+        "name": "UnitedHealthCare (UHC) PPO Network",
+        "applicable_to_indian_b1b2_visitors": "UnitedHealthCare PPO Network",
+        "provider_search_url": "https://www.whyuhc.com/us1",
+        "outside_usa": "No PPO — any provider. Use IPA: ipa.imglobal.com",
+        "what_to_say_to_provider": "Mention United Healthcare as your PPO provider. Do not say 'CoverAmerica' or 'VisitorsCoverage' — providers will not recognize these.",
+        "direct_billing_available": true,
+        "authority_level_of_network_data": 6,
+        "confidence": 90
+      },
+      "network_quality": {
+        "uhc_ppo_size_estimate": "1.3M+ providers, 6,500+ hospitals",
+        "all_50_states": true,
+        "major_indian_community_hubs": "Same as IMG plans — excellent in NJ, CA, TX, IL, NY, GA",
+        "overall_network_rating": "A+"
+      },
+      "in_network_vs_oon_impact": {
+        "in_network_coinsurance": "100%",
+        "oon_coinsurance": "80%",
+        "financial_impact_of_oon": "20% OON penalty — MORE impactful than IMG plans. On $50,000 hospitalization: $10,000 additional patient cost if OON.",
+        "key_advice": "With 80% OON coinsurance, staying in UHC network is more important for CAG than for IMG plans. Avoid OON providers when possible."
+      }
+    },
+
+    {
+      "plan_id": "Safe_Travels_USA_Comprehensive",
+      "carrier": "Nationwide / Trawick International",
+      "ppo_network": {
+        "name": "FirstHealth PPO Network",
+        "parent_company": "Aetna / CVS Health",
+        "applicable_to_all_visitors": "FirstHealth PPO Network",
+        "provider_search_url": "https://providerlocator.firsthealth.com/",
+        "what_to_say_to_provider": "Mention FirstHealth PPO per logo on ID card. Do NOT say 'Safe Travels' or 'Trawick' — providers will not recognize these names.",
+        "direct_billing_available": true,
+        "authority_level_of_network_data": 6,
+        "confidence": 88,
+        "important_limitation": "NO pharmacies in-network for FirstHealth. All pharmacy claims are out-of-network. No dental providers in-network."
+      },
+      "network_quality": {
+        "firsthealth_ppo_size_estimate": "~5,700+ hospitals, ~730,000+ providers nationwide (smaller than UHC)",
+        "all_50_states": true,
+        "comparison_to_uhc": "Smaller than UHC PPO but still nationwide. FirstHealth (Aetna) is a recognized and respected network. Hospital coverage is generally good in major metros.",
+        "major_indian_community_hubs": {
+          "new_jersey_nj": "Good — major hospitals in Edison/Newark accept FirstHealth/Aetna",
+          "california_ca": "Good — Bay Area and Southern CA hospitals generally in-network",
+          "texas_tx": "Good — Houston, Dallas major systems in-network",
+          "illinois_il": "Good — Chicago metro",
+          "new_york_ny": "Good — NYC area, though some smaller facilities may not participate",
+          "georgia_ga": "Good — Emory, Piedmont and other Atlanta systems"
+        },
+        "urgent_care_access": "Moderate — smaller urgent care chain presence vs UHC",
+        "specialist_access": "Good — especially for common specialties",
+        "pharmacy_access": "NONE in-network — all pharmacies OON",
+        "overall_network_rating": "B+ — solid but noticeably smaller than UHC. Pharmacy gap is a practical limitation."
+      },
+      "in_network_vs_oon_impact": {
+        "in_network_coinsurance": "100%",
+        "oon_coinsurance": "100%",
+        "financial_impact_of_oon": "ZERO — Safe Travels pays 100% everywhere. Network matters for direct billing and negotiated rates only.",
+        "pharmacy_gap": "All outpatient Rx is OON — insured pays out-of-pocket then submits for reimbursement. No direct billing at pharmacy."
+      }
+    },
+
+    {
+      "plan_id": "VisitorSecure",
+      "carrier": "TMHCC / WorldTrips",
+      "ppo_network": {
+        "name": "NO PPO NETWORK",
+        "explanation": "VisitorSecure is a SCHEDULED BENEFIT plan. It does not maintain a PPO network. Insureds may visit any doctor or hospital of their choice. Plan pays fixed scheduled dollar amounts regardless of whether the provider is 'in-network' or 'out-of-network'.",
+        "direct_billing_available": false,
+        "what_to_say_to_provider": "No network to reference. Insured pays provider directly or provider bills insured, then insured submits claim to WorldTrips for reimbursement at fixed scheduled amounts.",
+        "authority_level_of_network_data": 6,
+        "confidence": 88
+      },
+      "network_quality": {
+        "any_provider_accepted": true,
+        "financial_benefit_of_network": "NONE — scheduled benefit amounts are fixed regardless of provider. In-network vs OON distinction is irrelevant for payout calculation.",
+        "practical_consequence": "Without direct billing, insured must pay provider upfront and submit claim. Many US hospitals require upfront payment for uninsured/out-of-network patients.",
+        "overall_network_rating": "N/A — not applicable for scheduled benefit plan"
+      },
+      "in_network_vs_oon_impact": {
+        "note": "Not applicable. All providers are effectively 'any provider.' Fixed scheduled amounts apply regardless.",
+        "practical_risk": "Without network pre-negotiated rates, providers bill at full rack rates. Plan pays fixed low amounts. Gap between billed and scheduled amount is entirely patient responsibility."
+      }
+    },
+
+    {
+      "plan_id": "Atlas_America",
+      "carrier": "TMHCC / WorldTrips",
+      "ppo_network": {
+        "name": "UnitedHealthCare (UHC) PPO Network",
+        "applicable_to_indian_b1b2_visitors": "UnitedHealthCare PPO Network",
+        "provider_search_url": "https://www.whyuhc.com/us1",
+        "what_to_say_to_provider": "Mention United Healthcare PPO Network. Do not say 'Atlas America' or 'WorldTrips'.",
+        "direct_billing_available": true,
+        "authority_level_of_network_data": 5,
+        "confidence": 80,
+        "flag": "Confirmed from brochure/aggregator sources — full Certificate verification needed"
+      },
+      "network_quality": {
+        "uhc_ppo_size_estimate": "1.3M+ providers, 6,500+ hospitals",
+        "all_50_states": true,
+        "major_indian_community_hubs": "Same excellent coverage as IMG/CAG plans in NJ, CA, TX, IL, NY, GA",
+        "overall_network_rating": "A+ (assuming UHC confirmed)"
+      },
+      "in_network_vs_oon_impact": {
+        "in_network_coinsurance": "100% (per brochure data — NEEDS MANUAL REVIEW from Certificate)",
+        "oon_coinsurance": "NEEDS MANUAL REVIEW",
+        "confidence": 55
+      }
+    },
+
+    {
+      "plan_id": "INF_Elite_X",
+      "carrier": "Crum & Forster SPC (admin: Robin Assist)",
+      "ppo_network": {
+        "name": "UnitedHealthcare Options PPO Network",
+        "applicable_to_indian_b1b2_visitors": "UnitedHealthcare Options PPO Network",
+        "provider_search_url": "https://infplans.com/first-health-ppo/",
+        "note_on_url": "INF's provider search page URL contains 'first-health-ppo' but the actual network is UnitedHealthcare Options PPO. The URL path is misleading — confirm network via ID card received upon purchase.",
+        "what_to_say_to_provider": "Mention United Healthcare or UnitedHealthcare Options PPO Network. Do NOT say 'INF Plans' or 'INF Elite X' — providers will not recognize these.",
+        "direct_billing_available": true,
+        "authority_level_of_network_data": 6,
+        "confidence": 82,
+        "flag": "VERIFY — URL discrepancy between 'first-health-ppo' page name and stated UHC Options network. Check INF ID card logo to confirm actual network at purchase."
+      },
+      "network_quality": {
+        "uhc_options_ppo": "UHC Options PPO is a specific tier within UnitedHealthcare's network offerings. Broadly similar access to the main UHC PPO but may have slightly different provider composition in some areas.",
+        "all_50_states": true,
+        "major_indian_community_hubs": {
+          "new_jersey_nj": "Good to Excellent",
+          "california_ca": "Good to Excellent",
+          "texas_tx": "Good to Excellent",
+          "illinois_il": "Good",
+          "new_york_ny": "Good"
+        },
+        "overall_network_rating": "A (pending confirmation of UHC Options vs standard UHC PPO distinction)"
+      },
+      "in_network_vs_oon_impact": {
+        "in_network_coinsurance": "80-90% (plan tier dependent — higher tiers = 90%)",
+        "oon_coinsurance": "60-70%",
+        "financial_impact_of_oon": "30-40% OON penalty — MOST SEVERE of all 9 plans. On $50,000 hospitalization OON: $15,000-$20,000 additional patient cost.",
+        "key_advice": "INF Elite X has the harshest OON penalty. Staying in-network is MORE critical for INF policyholders than any other plan. Always verify UHC network participation BEFORE choosing any provider.",
+        "minimum_plan_age": 90,
+        "minimum_plan_age_note": "INF Elite X has 90-day minimum purchase period — cannot be used for short trips."
+      }
+    },
+
+    {
+      "plan_id": "SC_Travel_Medical_Basic",
+      "carrier": "Crum & Forster SPC via ITI SP / Seven Corners",
+      "ppo_network": {
+        "name_primary": "UnitedHealthCare (UHC) PPO Network",
+        "name_secondary": "PHCS / Multiplan Network",
+        "applicable_to_indian_b1b2_visitors": "UHC PPO (primary); PHCS/Multiplan (secondary — if UHC not available in area)",
+        "provider_search_url": "https://www.sevencorners.com/about/assist/find-providers",
+        "what_to_say_to_provider": "'My coverage uses the United Healthcare or Multiplan PPO network and I found your name on the registry.' Do NOT say 'Seven Corners' or 'Travel Medical Basic' — providers will not recognize these.",
+        "direct_billing_available": true,
+        "authority_level_of_network_data": 6,
+        "confidence": 88,
+        "dual_network_note": "Having both UHC and PHCS/Multiplan as options is a practical advantage — if a provider is not in UHC, they may be in Multiplan. Insured can choose whichever network the provider participates in."
+      },
+      "network_quality": {
+        "uhc_ppo_size_estimate": "1.3M+ providers, 6,500+ hospitals",
+        "phcs_multiplan_size_estimate": "~4,500 hospitals, ~700,000+ providers — largest independent PPO network",
+        "combined_coverage": "Combined UHC + PHCS/Multiplan covers virtually all US hospitals and most specialists",
+        "all_50_states": true,
+        "major_indian_community_hubs": "Excellent coverage via dual-network access in all major Indian community metros",
+        "overall_network_rating": "A+ — dual network access is a practical differentiator"
+      },
+      "in_network_vs_oon_impact": {
+        "in_network_coinsurance": "100%",
+        "oon_coinsurance": "80% (first $10,000 OON billed); 100% thereafter (OOP max $2,000)",
+        "financial_impact_of_oon": "Max $2,000 patient OOP on OON expenses — OOP cap limits exposure even if OON.",
+        "key_advice": "OOP max of $2,000 on OON expenses means even if insured accidentally uses OON provider, maximum additional out-of-pocket is $2,000. Practical safety net."
+      }
+    },
+
+    {
+      "plan_id": "SC_Travel_Medical_Choice",
+      "carrier": "Crum & Forster SPC via ITI SP / Seven Corners",
+      "ppo_network": {
+        "name_primary": "UnitedHealthCare (UHC) PPO Network",
+        "name_secondary": "PHCS / Multiplan Network",
+        "applicable_to_indian_b1b2_visitors": "UHC PPO (primary); PHCS/Multiplan (secondary)",
+        "provider_search_url": "https://www.sevencorners.com/about/assist/find-providers",
+        "what_to_say_to_provider": "Same as SC Basic — mention United Healthcare or Multiplan PPO network.",
+        "direct_billing_available": true,
+        "authority_level_of_network_data": 6,
+        "confidence": 88
+      },
+      "network_quality": {
+        "same_as": "SC_Travel_Medical_Basic",
+        "overall_network_rating": "A+ — same dual network access"
+      },
+      "in_network_vs_oon_impact": {
+        "in_network_coinsurance": "100%",
+        "oon_coinsurance": "90% (first $10,000 OON billed); 100% thereafter (OOP max $1,000)",
+        "financial_impact_of_oon": "Max $1,000 patient OOP on OON expenses — better than Basic's $2,000 OOP max.",
+        "key_advice": "Better OON protection than Basic. $1,000 OOP max means very low exposure even for OON use."
+      }
+    }
+  ],
+
+  "cross_plan_network_comparison": {
+    "network_ranking": [
+      {
+        "rank": 1,
+        "plans": ["Patriot_America_Plus", "Patriot_America_Platinum", "CoverAmerica_Gold", "Atlas_America"],
+        "network": "UnitedHealthCare PPO",
+        "size": "1.3M+ providers / 6,500+ hospitals",
+        "rating": "A+"
+      },
+      {
+        "rank": 2,
+        "plans": ["SC_Travel_Medical_Basic", "SC_Travel_Medical_Choice"],
+        "network": "UHC PPO + PHCS/Multiplan (dual)",
+        "size": "Largest combined coverage in USA",
+        "rating": "A+ — dual access is practical advantage",
+        "note": "Dual network means provider not in UHC may still be in-network via Multiplan"
+      },
+      {
+        "rank": 3,
+        "plans": ["INF_Elite_X"],
+        "network": "UnitedHealthcare Options PPO",
+        "size": "Large — UHC sub-network",
+        "rating": "A",
+        "note": "Similar to UHC PPO but penalty for OON is most severe of all plans (30-40%)"
+      },
+      {
+        "rank": 4,
+        "plans": ["Safe_Travels_USA_Comprehensive"],
+        "network": "FirstHealth PPO (Aetna/CVS Health)",
+        "size": "~5,700 hospitals / 730,000+ providers — smaller than UHC",
+        "rating": "B+",
+        "note": "Solid nationwide coverage but smaller than UHC. No pharmacies in-network."
+      },
+      {
+        "rank": 5,
+        "plans": ["VisitorSecure"],
+        "network": "NO PPO network",
+        "size": "N/A — any provider",
+        "rating": "N/A — scheduled benefit plan; network irrelevant to payout",
+        "note": "Freedom to use any provider but no direct billing and no pre-negotiated rates"
+      }
+    ],
+
+    "oon_penalty_ranking_worst_to_best": [
+      {"plan": "INF_Elite_X", "oon_coinsurance": "60-70%", "patient_pays_oon": "30-40%", "note": "Worst OON penalty — most critical to stay in-network"},
+      {"plan": "CoverAmerica_Gold", "oon_coinsurance": "80%", "patient_pays_oon": "20%"},
+      {"plan": "SC_Travel_Medical_Basic", "oon_coinsurance": "80% capped at $2,000 OOP", "patient_pays_oon": "max $2,000"},
+      {"plan": "Patriot_America_Plus", "oon_coinsurance": "90%", "patient_pays_oon": "10%"},
+      {"plan": "SC_Travel_Medical_Choice", "oon_coinsurance": "90% capped at $1,000 OOP", "patient_pays_oon": "max $1,000"},
+      {"plan": "Patriot_America_Platinum", "oon_coinsurance": "100%", "patient_pays_oon": "0%", "note": "Best — no OON penalty"},
+      {"plan": "Safe_Travels_USA_Comprehensive", "oon_coinsurance": "100%", "patient_pays_oon": "0%", "note": "No OON penalty — but FirstHealth network is smaller"},
+      {"plan": "Atlas_America", "oon_coinsurance": "NEEDS MANUAL REVIEW", "patient_pays_oon": "UNKNOWN"},
+      {"plan": "VisitorSecure", "oon_coinsurance": "N/A — scheduled benefit", "patient_pays_oon": "N/A"}
+    ],
+
+    "direct_billing_availability": {
+      "yes": ["Patriot_America_Plus", "Patriot_America_Platinum", "CoverAmerica_Gold", "Safe_Travels_USA_Comprehensive", "Atlas_America", "INF_Elite_X", "SC_Travel_Medical_Basic", "SC_Travel_Medical_Choice"],
+      "no": ["VisitorSecure"],
+      "note": "Direct billing means the hospital bills the insurance company directly. Without it, insured must pay upfront and submit reimbursement claim — a major practical burden for large US hospital bills."
+    },
+
+    "pharmacy_in_network_status": {
+      "bundled_under_eligible_medical_expenses": ["Patriot_America_Plus", "Patriot_America_Platinum", "CoverAmerica_Gold"],
+      "no_pharmacy_ppo": ["Safe_Travels_USA_Comprehensive"],
+      "needs_manual_review": ["Atlas_America", "INF_Elite_X", "SC_Travel_Medical_Basic", "SC_Travel_Medical_Choice"],
+      "not_applicable": ["VisitorSecure"]
+    },
+
+    "key_finding_for_indian_travelers": "All comprehensive plans except Safe Travels use UHC PPO (the largest US provider network). This is highly favorable for Indian travelers whose preferred providers (many with South Asian doctors and staff in NJ, CA, TX hubs) are predominantly in UHC network. Safe Travels' FirstHealth network is adequate but has no pharmacy network — a practical gap for any traveler needing prescription refills."
+  },
+
+  "open_items": [
+    {
+      "id": "NW-001",
+      "description": "INF Elite X URL discrepancy: provider search page titled 'first-health-ppo' but stated network is UHC Options PPO. Verify via ID card received upon purchase. If FirstHealth, update this record.",
+      "priority": "high"
+    },
+    {
+      "id": "NW-002",
+      "description": "Atlas America OON coinsurance rate not confirmed from Certificate. Brochure implies 100% everywhere but needs Certificate verification.",
+      "priority": "high"
+    },
+    {
+      "id": "NW-003",
+      "description": "Seven Corners Basic/Choice — confirm which network is on ID card (UHC or Multiplan). Dual-network claim needs verification from actual ID card or Certificate.",
+      "priority": "medium"
+    },
+    {
+      "id": "NW-004",
+      "description": "Safe Travels pharmacy OON gap — document whether outpatient Rx reimbursement is available for OON pharmacies and at what coinsurance rate.",
+      "priority": "medium"
+    }
+  ]
+}
