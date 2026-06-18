@@ -1,0 +1,367 @@
+{
+  "meta": {
+    "version": "2026-06-18",
+    "phase": "Phase 22 — Coverage Change Detection: Initial Baseline",
+    "purpose": "Establishes the evidence baseline snapshot for all 9 B-1/B-2 plans as of the research date. Future research passes compare against this baseline to detect added/removed benefits, coverage reductions, or coverage improvements. All future change_report files reference this baseline.",
+    "research_date": "2026-06-17 to 2026-06-18",
+    "next_review_recommended": "2026-09-18 (90-day cycle)",
+    "disclaimer": "Baseline reflects documents obtained during Phases 13-14. Document versions noted per plan. Changes detected against THIS baseline only — not against pre-2026 policy history.",
+    "known_change_events": [
+      {
+        "event_id": "CE-001",
+        "carrier": "WorldTrips (Atlas America + VisitorSecure)",
+        "change_type": "CARRIER_TRANSITION",
+        "effective_date": "2025-05-29",
+        "description": "WorldTrips transitioned from Lloyd's of London underwriter to TMHCC (Tokio Marine HCC) for all Atlas Series products and VisitorSecure. Policies sold in Florida: Houston Casualty Company (HC). All other locations: TMHCC (CI) Insurance SPC Ltd.",
+        "benefits_removed": ["Home Country Coverage", "Incidental Home Country Coverage"],
+        "benefits_added": [],
+        "coverage_changes": ["Restricted countries list now follows TMHCC Noted Countries and Territories list", "New purchase location restrictions added (Australia, Canada, NY, WA, MD, EEA countries)"],
+        "impact_on_evidence_files": "HIGH — any Certificate PDFs obtained before 2025-05-29 are from the old Lloyd's carrier and apply only to pre-transition policies. New policies issued after 2025-05-29 are governed by TMHCC Certificate. Re-download required.",
+        "action_required": "DOWNLOAD new TMHCC Certificate of Insurance for Atlas America and VisitorSecure. Verify all Phase 14 evidence entries against new Certificate.",
+        "source": "https://www.atlasamericainsurance.net/atlas-carrier-transition-product-updates-2025/",
+        "authority_level": 6
+      },
+      {
+        "event_id": "CE-002",
+        "carrier": "Trawick International (Safe Travels USA Comprehensive)",
+        "change_type": "NEW_PRODUCT_LINE",
+        "effective_date": "2025-08-01",
+        "description": "Trawick launched new trip cancellation products (Pathway Essential, Pathway Plus, Pathway Premium). These are trip cancellation plans — NOT visitor health insurance. No impact on Safe Travels USA Comprehensive coverage.",
+        "benefits_removed": [],
+        "benefits_added": [],
+        "coverage_changes": [],
+        "impact_on_evidence_files": "NONE — different product line",
+        "action_required": "None",
+        "source": "WebSearch — US News Trawick review 2026",
+        "authority_level": 6
+      },
+      {
+        "event_id": "CE-003",
+        "carrier": "SiriusPoint / IMG (CoverAmerica Gold)",
+        "change_type": "MASTER_POLICY_DATE",
+        "effective_date": "2024-10-02",
+        "description": "CoverAmerica Gold Master Policy effective date confirmed as October 2, 2024. This is a routine policy renewal — no specific benefit changes identified.",
+        "benefits_removed": [],
+        "benefits_added": [],
+        "coverage_changes": [],
+        "impact_on_evidence_files": "LOW — confirms Certificate obtained is current. Verify Certificate version matches October 2024 effective date.",
+        "action_required": "Confirm Certificate file date matches October 2024 effective date. Flag if Certificate in raw_documents/ predates this.",
+        "source": "visitorscoverage.com — CAG policy document",
+        "authority_level": 4
+      }
+    ]
+  },
+
+  "plan_baselines": [
+
+    {
+      "plan_id": "Patriot_America_Plus",
+      "carrier": "SiriusPoint",
+      "administrator": "IMG",
+      "evidence_file": "InsuranceDatabase/USA_Visitor/IMG/PatriotAmericaPlus/extracted_data/evidence.json",
+      "baseline_document": {
+        "type": "Certificate of Insurance",
+        "authority_level": 1,
+        "document_notes": "Obtained Phase 13-14",
+        "version_date": "CONFIRM FROM FILE"
+      },
+      "key_benefit_snapshot": {
+        "medical_maximum_age_0_79": "$50,000 / $100,000 / $250,000 / $500,000 / $1,000,000",
+        "medical_maximum_age_80_plus": "$10,000",
+        "in_network_coinsurance": "90% after deductible (first $5,000), then 100%",
+        "oon_coinsurance": "80% after deductible",
+        "ppо_network": "UHC PPO",
+        "covid_covered": true,
+        "acute_onset_maximum": "Plan maximum (age <70)",
+        "cardiac_stroke_sublimit": "None",
+        "lookback_period": "3 years",
+        "precert_penalty": "50% reduction of eligible expenses",
+        "claims_deadline_days": 180
+      },
+      "change_monitoring": {
+        "high_risk_items": [
+          "Coinsurance schedule — any reduction from 90%/100% split",
+          "Acute onset maximum — any cap introduction",
+          "Pre-certification penalty — any increase above 50%",
+          "Age 80+ maximum — currently $10K, only 1 plan in market at this level"
+        ],
+        "watch_for": ["SiriusPoint financial rating changes", "IMG administrator contract renewal"]
+      }
+    },
+
+    {
+      "plan_id": "Patriot_America_Platinum",
+      "carrier": "SiriusPoint",
+      "administrator": "IMG",
+      "evidence_file": "InsuranceDatabase/USA_Visitor/IMG/PatriotAmericaPlatinum/extracted_data/evidence.json",
+      "baseline_document": {
+        "type": "Certificate of Insurance",
+        "authority_level": 1,
+        "document_notes": "Obtained Phase 13-14",
+        "version_date": "CONFIRM FROM FILE"
+      },
+      "key_benefit_snapshot": {
+        "medical_maximum": "$1,000,000 (non-US citizens)",
+        "in_network_coinsurance": "100% after deductible",
+        "oon_coinsurance": "100% after deductible",
+        "acute_onset_maximum": "$1,000,000 (non-US citizen, age <70)",
+        "cardiac_stroke_sublimit": "None",
+        "lookback_period": "3 years",
+        "precert_penalty": "50% reduction",
+        "claims_deadline_days": 180
+      },
+      "change_monitoring": {
+        "high_risk_items": [
+          "100% coinsurance — any reduction to 90% would be a material downgrade",
+          "Non-US citizen $1M acute onset cap — unique in market, monitor for reduction",
+          "Pre-cert penalty — unique severity in market at 50%"
+        ],
+        "watch_for": ["SiriusPoint financial rating changes", "Premium price increase >15% year-over-year"]
+      }
+    },
+
+    {
+      "plan_id": "CoverAmerica_Gold",
+      "carrier": "SiriusPoint (admin: IMG)",
+      "administrator": "IMG",
+      "evidence_file": "InsuranceDatabase/USA_Visitor/SiriusPoint/CoverAmericaGold/extracted_data/evidence.json",
+      "baseline_document": {
+        "type": "Certificate of Insurance",
+        "authority_level": 1,
+        "effective_date": "2024-10-02",
+        "document_notes": "Master Policy effective October 2, 2024 confirmed"
+      },
+      "key_benefit_snapshot": {
+        "in_network_coinsurance": "100% after deductible",
+        "oon_coinsurance": "80% first $5,000, then 100%",
+        "covid_covered": true,
+        "border_entry_protection": "Yes — non-refundable trip costs if denied entry at US border",
+        "acute_onset_cardiac_max": "$36,000 (age ≤69), None (age 70+)",
+        "acute_onset_stroke_max": "$36,000 (age ≤69), None (age 70+)",
+        "returning_customer_discount": "Approx 5%",
+        "claims_deadline_days": "90 (UNCONFIRMED — verify from Certificate)"
+      },
+      "change_monitoring": {
+        "high_risk_items": [
+          "COVID coverage — plan explicitly covers COVID; monitor for re-exclusion",
+          "Border Entry Protection benefit — unique differentiator; monitor for removal",
+          "Cardiac/stroke sub-limit — $36K is already low; any further reduction is material",
+          "Returning customer discount — marketing-level data, verify from Certificate"
+        ],
+        "watch_for": ["SiriusPoint / IMG contract changes", "Next Master Policy renewal date (post-Oct 2024)"]
+      }
+    },
+
+    {
+      "plan_id": "Safe_Travels_USA_Comprehensive",
+      "carrier": "Nationwide Mutual",
+      "administrator": "Trawick International",
+      "evidence_file": "InsuranceDatabase/USA_Visitor/Trawick/SafeTravelsUSAComprehensive/extracted_data/evidence.json",
+      "baseline_document": {
+        "type": "Certificate of Insurance",
+        "authority_level": 1,
+        "document_notes": "Obtained Phase 13-14"
+      },
+      "key_benefit_snapshot": {
+        "medical_maximum": "Up to $1,000,000",
+        "acute_onset_cardiac_max": "$25,000 (age ≤69), $15,000 (age 70-79)",
+        "acute_onset_stroke_max": "$25,000 (age ≤69), $15,000 (age 70-79)",
+        "acute_onset_total_age_70_79": "$35,000",
+        "acute_onset_total_age_80_plus": "$20,000",
+        "hypertension_treatment": "Classified as cardiac condition — $25K sub-limit applies",
+        "ppо_network": "FirstHealth (Aetna)",
+        "pharmacy_network": "None in-network",
+        "claims_deadline_days": "NEEDS MANUAL REVIEW"
+      },
+      "change_monitoring": {
+        "high_risk_items": [
+          "Cardiac/stroke sub-limits — Indian travelers with hypertension heavily affected by any reduction",
+          "Hypertension classification as cardiac — monitor for definition clarification",
+          "Age 70-79 and 80+ acute onset totals — already low vs competitors",
+          "FirstHealth network — any switch to smaller network materially impacts usability"
+        ],
+        "watch_for": ["Nationwide annual policy renewal", "Trawick product restructuring (new Pathway products are different line — monitor if Safe Travels line is affected)"]
+      }
+    },
+
+    {
+      "plan_id": "VisitorSecure",
+      "carrier": "TMHCC (CI) Insurance SPC Ltd [post-2025-05-29] / Lloyd's of London [pre-2025-05-29]",
+      "administrator": "WorldTrips",
+      "evidence_file": "InsuranceDatabase/USA_Visitor/WorldTrips/VisitorSecure/extracted_data/evidence.json",
+      "baseline_document": {
+        "type": "Certificate of Insurance",
+        "authority_level": 1,
+        "document_notes": "CRITICAL: Verify Certificate version is post-2025-05-29 TMHCC version, NOT Lloyd's version",
+        "change_event": "CE-001"
+      },
+      "key_benefit_snapshot": {
+        "plan_type": "Scheduled benefit (fixed dollar amounts per service)",
+        "acute_onset_criterion": "Criterion (a): Acute onset does NOT directly or indirectly relate to a chronic condition",
+        "claims_deadline": "60 days from last day of Certificate period",
+        "ppо_network": "None",
+        "home_country_coverage": "REMOVED as of 2025-05-29",
+        "pharmacy_rx_max": "$150-$300 total for trip",
+        "pt_per_visit": "$40 fixed",
+        "pt_max_visits": 12,
+        "claims_processing": "15-30 business days review + 10 days payment"
+      },
+      "change_monitoring": {
+        "high_risk_items": [
+          "CARRIER CHANGE (CE-001) — new TMHCC Certificate must be obtained and all Phase 14 evidence re-verified",
+          "Home Country Coverage — CONFIRMED REMOVED as of May 29 2025",
+          "Acute onset criterion (a) — 'does not relate to chronic condition' — broader exclusion than competitors; monitor for any liberalization",
+          "Scheduled benefit amounts — any reduction in fixed dollar amounts is a material coverage reduction",
+          "60-day Certificate-end deadline — unique in market; monitor for extension to standard 90-day service-date basis"
+        ],
+        "action_required_before_ranking": "Re-download TMHCC Certificate. Verify all evidence.json entries against TMHCC version. Flag any entries from Lloyd's Certificate as superseded."
+      }
+    },
+
+    {
+      "plan_id": "Atlas_America",
+      "carrier": "TMHCC (CI) Insurance SPC Ltd [post-2025-05-29] / Lloyd's of London [pre-2025-05-29]",
+      "administrator": "WorldTrips",
+      "evidence_file": "InsuranceDatabase/USA_Visitor/WorldTrips/AtlasAmerica/extracted_data/evidence.json",
+      "baseline_document": {
+        "type": "Certificate of Insurance",
+        "authority_level": 1,
+        "document_notes": "CRITICAL: Verify Certificate version is post-2025-05-29 TMHCC version. Atlas America Certificate not yet obtained (Phase 13-14 open item). NEEDS MANUAL REVIEW.",
+        "change_event": "CE-001"
+      },
+      "key_benefit_snapshot": {
+        "ppо_network": "UHC PPO",
+        "home_country_coverage": "REMOVED as of 2025-05-29",
+        "note": "Full benefit snapshot requires TMHCC Certificate — not yet obtained"
+      },
+      "change_monitoring": {
+        "high_risk_items": [
+          "CARRIER CHANGE (CE-001) — TMHCC Certificate must be obtained before any ranking",
+          "Home Country Coverage — CONFIRMED REMOVED as of May 29 2025",
+          "All Atlas America evidence entries are UNVERIFIED pending TMHCC Certificate"
+        ],
+        "action_required_before_ranking": "Obtain TMHCC Atlas America Certificate of Insurance. Build evidence.json from TMHCC Certificate, not Lloyd's."
+      }
+    },
+
+    {
+      "plan_id": "INF_Elite_X",
+      "carrier": "Crum & Forster SPC",
+      "administrator": "Robin Assist",
+      "evidence_file": "InsuranceDatabase/USA_Visitor/INF/EliteX/extracted_data/evidence.json",
+      "baseline_document": {
+        "type": "Policy Wording",
+        "authority_level": 2,
+        "document_notes": "Certificate of Insurance not obtained — evidence built from Policy Wording (L2)"
+      },
+      "key_benefit_snapshot": {
+        "preexisting_definition": "Reasonably prudent person standard — no fixed lookback",
+        "stable_medication_exception": "Conditions managed by stable medication (no change in type/frequency/quantity for 24 months) = NOT pre-existing",
+        "preexisting_direct_coverage_max": "$25,000-$50,000 (age 0-69), $20,000 (age 70-99)",
+        "cancer_exclusion": "Absolute — cancer not covered under any circumstance",
+        "ppо_network": "UHC Options PPO",
+        "oon_penalty": "30-40%",
+        "minimum_plan_duration": "90 days",
+        "precertification": "Required for non-emergency hospital admissions (CONFIRMED from search results)",
+        "claims_processing": "10-15 business days"
+      },
+      "change_monitoring": {
+        "high_risk_items": [
+          "Stable medication exception — the single most differentiating clause in the database; monitor for tightening or removal",
+          "Pre-ex direct coverage limits ($25K-$50K) — monitor for reduction",
+          "90-day minimum plan — any extension would reduce flexibility",
+          "Cancer exclusion — confirm remains in new policy versions (limits use case but is consistent)",
+          "Crum & Forster SPC financial ratings"
+        ],
+        "action_required_before_ranking": "Obtain Certificate of Insurance (L1) to upgrade evidence from L2 Policy Wording."
+      }
+    },
+
+    {
+      "plan_id": "SC_Travel_Medical_Basic",
+      "carrier": "Crum & Forster SPC via ITI SP",
+      "administrator": "Seven Corners",
+      "evidence_file": "InsuranceDatabase/USA_Visitor/SevenCorners/TravelMedicalBasic/extracted_data/evidence.json",
+      "baseline_document": {
+        "type": "Certificate of Insurance",
+        "authority_level": 1,
+        "document_notes": "Obtained Phase 13-14"
+      },
+      "key_benefit_snapshot": {
+        "acute_onset_cardiac_max": "$25,000 (age ≤69), $2,500 (age 70-79), None (age 80+)",
+        "acute_onset_non_cardiac_max": "$25,000 (age ≤69), $2,500 (age 70-79), None (age 80+)",
+        "lookback_period": "36 months",
+        "criterion_f": "Chronic conditions with expected episodes or flare-ups excluded from acute onset",
+        "pt_coverage": "Explicitly excluded",
+        "covid_covered": true,
+        "ppо_network": "UHC PPO + PHCS/Multiplan (dual)",
+        "waiting_period_illness": "7 days",
+        "claims_deadline_days": 90
+      },
+      "change_monitoring": {
+        "high_risk_items": [
+          "Criterion (f) — explicit chronic condition bar for acute onset; monitor for any relaxation",
+          "PT exclusion — explicit; monitor for reinstatement (Choice already includes PT)",
+          "Dual PPO network (UHC + PHCS) — unique advantage; monitor if PHCS removed",
+          "Age 80+ coverage gap — no acute onset coverage for any condition; monitor for restoration"
+        ],
+        "watch_for": ["Seven Corners annual product refresh", "Crum & Forster SPC contract renewal"]
+      }
+    },
+
+    {
+      "plan_id": "SC_Travel_Medical_Choice",
+      "carrier": "Crum & Forster SPC via ITI SP",
+      "administrator": "Seven Corners",
+      "evidence_file": "InsuranceDatabase/USA_Visitor/SevenCorners/TravelMedicalChoice/extracted_data/evidence.json",
+      "baseline_document": {
+        "type": "Certificate of Insurance",
+        "authority_level": 1,
+        "document_notes": "Obtained Phase 13-14"
+      },
+      "key_benefit_snapshot": {
+        "acute_onset_cardiac_max": "$50,000 (age ≤69), $5,000 (age 70-79), None (age 80+)",
+        "acute_onset_non_cardiac_max": "$75,000 (age ≤69), $7,500 (age 70-79), None (age 80+)",
+        "lookback_period": "36 months",
+        "criterion_f": "Same chronic condition bar as Basic",
+        "pt_max_per_visit": "$50",
+        "pt_max_visits": 10,
+        "pt_max_total": "$500",
+        "covid_covered": true,
+        "ppо_network": "UHC PPO + PHCS/Multiplan (dual)",
+        "waiting_period_illness": "7 days",
+        "claims_deadline_days": 90
+      },
+      "change_monitoring": {
+        "high_risk_items": [
+          "PT benefit ($50/visit, 10 visits) — only non-IMG plan with PT; monitor for reduction",
+          "Cardiac acute onset at $50K vs Basic $25K — monitor if gap narrows",
+          "Age 80+ acute onset gap — same as Basic; monitor for age extension"
+        ],
+        "watch_for": ["Seven Corners annual product refresh", "Any convergence with Basic tier"]
+      }
+    }
+
+  ],
+
+  "cross_plan_monitoring_triggers": {
+    "immediate_re_research_required": [
+      "Any plan's Certificate of Insurance document gets a new effective date",
+      "Any carrier financial rating drops below A- (AM Best) or BBB+ (S&P)",
+      "Any carrier is acquired, renamed, or exits the US visitor insurance market",
+      "Any carrier announces withdrawal from specific visa categories or age groups"
+    ],
+    "quarterly_review_items": [
+      "WorldTrips TMHCC Certificate for Atlas America and VisitorSecure — obtain post-May 2025 versions",
+      "INF Elite X Certificate of Insurance — obtain L1 document to replace L2 Policy Wording evidence",
+      "Safe Travels USA Comprehensive — confirm claims deadline from Certificate",
+      "All plans — verify benefit dollar amounts unchanged from baseline snapshot"
+    ],
+    "annual_review_items": [
+      "Re-crawl all Phase 11 Priority 1-3 sources for new plans",
+      "Check for any new B-1/B-2 compatible plans launched by carriers",
+      "Verify all carrier financial ratings still strong",
+      "Run full claim simulation refresh against updated Certificates"
+    ]
+  }
+}
