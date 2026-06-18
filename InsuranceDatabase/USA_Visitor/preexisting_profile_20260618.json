@@ -1,0 +1,729 @@
+{
+  "meta": {
+    "version": "2026-06-18",
+    "phase": "Phase 19 — Pre-existing Condition Intelligence",
+    "purpose": "Extract and compare pre-existing condition definitions, lookback periods, acute onset rules, stability requirements, and waiting periods across all 9 B-1/B-2 plans. Test against 6 real-world conditions relevant to Indian travelers.",
+    "disclaimer": "Evidence-based only. All conclusions reflect policy language as of documents obtained. Never use for actual claims determination. Confidence scores reflect document quality.",
+    "test_conditions": [
+      "rotator_cuff_injury",
+      "type2_diabetes_stable_medication",
+      "hypertension_controlled",
+      "coronary_artery_disease",
+      "cancer_history_in_remission",
+      "stroke_history_prior_tia"
+    ]
+  },
+
+  "plan_preex_profiles": {
+
+    "Patriot_America_Plus": {
+      "carrier": "SiriusPoint / IMG",
+      "authority_level": 1,
+      "confidence": 100,
+      "definition": {
+        "text": "Any Injury, Illness, sickness, disease, or other physical, medical, Mental or Nervous Disorder, condition or ailment that, with reasonable medical certainty, existed at the time of Application or at any time during the three (3) years prior to the Effective Date of this insurance, whether or not previously manifested, symptomatic, known, diagnosed, treated, or disclosed.",
+        "lookback_period_months": 36,
+        "reasonable_medical_certainty_clause": true,
+        "applies_even_if_undiagnosed": true,
+        "applies_even_if_asymptomatic": false
+      },
+      "stable_medication_exception": false,
+      "base_coverage": "EXCLUDED",
+      "acute_onset": {
+        "available": true,
+        "coverage_limit_non_us_citizen_age_under70": "Up to Period of Coverage Maximum",
+        "coverage_limit_non_us_citizen_age_70_plus": "NOT AVAILABLE",
+        "evacuation_limit_acute_onset": "$25,000",
+        "waiting_period_days": 0,
+        "criteria": [
+          "a. Treatment obtained within 24 hours of sudden/unexpected outbreak",
+          "b. Insured Person under age 70",
+          "c. Not traveling against medical advice",
+          "d. Not traveling to seek treatment for pre-existing condition",
+          "e. Not in modified treatment program for pre-existing condition",
+          "f. Condition stabilized at least 30 days prior to Effective Date without change in Treatment",
+          "g. Must be outside Country of Residence",
+          "h. Chronic, congenital, or gradually worsening conditions are NOT acute onset"
+        ],
+        "stability_period_days": 30,
+        "chronic_condition_exclusion": true,
+        "key_restriction": "Age cutoff 70 — no acute onset coverage for seniors age 70+. 30-day stability window is shortest of all plans (most favorable to insured)."
+      }
+    },
+
+    "Patriot_America_Platinum": {
+      "carrier": "SiriusPoint / IMG",
+      "authority_level": 1,
+      "confidence": 100,
+      "definition": {
+        "text": "Same as Patriot America Plus — 3-year lookback, reasonable medical certainty clause.",
+        "lookback_period_months": 36,
+        "reasonable_medical_certainty_clause": true,
+        "applies_even_if_undiagnosed": true
+      },
+      "stable_medication_exception": false,
+      "base_coverage": "EXCLUDED",
+      "acute_onset": {
+        "available": true,
+        "coverage_limit_non_us_citizen_age_under70": "$1,000,000",
+        "coverage_limit_non_us_citizen_age_70_plus": "NOT AVAILABLE",
+        "coverage_limit_us_citizen_age_under65_no_primary": "$20,000",
+        "coverage_limit_us_citizen_age_under65_with_primary": "$1,000,000",
+        "coverage_limit_us_citizen_age_65_to_69": "$2,500",
+        "evacuation_limit_acute_onset": "Up to Period of Coverage Maximum",
+        "waiting_period_days": 0,
+        "stability_period_days": 30,
+        "chronic_condition_exclusion": true,
+        "key_advantage": "BEST acute onset limit for non-US citizens under 70 — $1,000,000. No cardiac sub-limits. Evacuation = plan maximum."
+      }
+    },
+
+    "CoverAmerica_Gold": {
+      "carrier": "SiriusPoint (via VisitorsCoverage)",
+      "authority_level": 1,
+      "confidence": 100,
+      "definition": {
+        "text": "3-year lookback, reasonable medical certainty clause — identical to IMG definition.",
+        "lookback_period_months": 36,
+        "reasonable_medical_certainty_clause": true,
+        "applies_even_if_undiagnosed": true
+      },
+      "stable_medication_exception": false,
+      "base_coverage": "EXCLUDED",
+      "acute_onset": {
+        "available": true,
+        "coverage_limit_age_under70": "Up to Period of Coverage Maximum (EXCEPT cardiac — see sub-limit)",
+        "cardiac_stroke_sub_limit_age_under70": "$36,000",
+        "cardiac_stroke_sub_limit_age_70_plus": "NOT COVERED",
+        "coverage_limit_age_70_79": "$30,000 (non-cardiac only)",
+        "evacuation_limit_acute_onset": "$1,000,000 (includes pre-existing — unique feature)",
+        "waiting_period_days": 0,
+        "stability_period_days": 30,
+        "chronic_condition_exclusion": true,
+        "unique_feature": "Evacuation coverage INCLUDES pre-existing conditions — the only plan with this benefit",
+        "key_weakness": "Cardiac/stroke sub-limit $36,000 — lowest of all plans for cardiac acute onset. No cardiac coverage age 70+."
+      }
+    },
+
+    "Safe_Travels_USA_Comprehensive": {
+      "carrier": "Nationwide / Trawick International",
+      "authority_level": 1,
+      "confidence": 100,
+      "definition": {
+        "text": "3-year lookback, reasonable medical certainty clause — identical to IMG definition.",
+        "lookback_period_months": 36,
+        "reasonable_medical_certainty_clause": true,
+        "applies_even_if_undiagnosed": true
+      },
+      "stable_medication_exception": false,
+      "base_coverage": "EXCLUDED",
+      "acute_onset": {
+        "available": true,
+        "coverage_limit_age_under70": "Up to Medical Maximum (EXCEPT cardiac/stroke — see sub-limit)",
+        "cardiac_stroke_sub_limit_age_under70": "$25,000",
+        "cardiac_stroke_sub_limit_age_70_plus": "$15,000",
+        "coverage_limit_age_70_79": "$35,000 total",
+        "coverage_limit_age_80_plus": "$20,000 total",
+        "cardiac_conditions_defined": ["coronary artery disease", "hypertension", "hyperlipidemia", "congestive heart failure", "arrhythmias", "cardiomyopathy", "valvular heart disease", "congenital heart disease", "rheumatic heart disease", "heart attack", "myocardial infarction", "stroke"],
+        "evacuation_limit_acute_onset": "$25,000",
+        "waiting_period_days": 0,
+        "stability_period_days": 30,
+        "chronic_condition_exclusion": true,
+        "key_weakness": "Hypertension listed as a 'Cardiac Condition' — hypertensive crisis falls under $25K sub-limit. Most comprehensive cardiac definition of all plans."
+      }
+    },
+
+    "VisitorSecure": {
+      "carrier": "TMHCC / WorldTrips",
+      "authority_level": 1,
+      "confidence": 95,
+      "definition": {
+        "text": "Not explicitly extracted in full — Certificate needed for complete definition.",
+        "lookback_period_months": "NEEDS MANUAL REVIEW",
+        "reasonable_medical_certainty_clause": "NEEDS MANUAL REVIEW"
+      },
+      "stable_medication_exception": false,
+      "base_coverage": "EXCLUDED",
+      "acute_onset": {
+        "available": true,
+        "coverage_limit_plan_a": "$50,000 lifetime maximum (eligible medical expenses)",
+        "coverage_limit_plan_d": "$130,000 lifetime maximum",
+        "coverage_limit_age_70_plus": "NOT AVAILABLE",
+        "evacuation_limit_acute_onset": "$25,000 lifetime maximum",
+        "waiting_period_days": 0,
+        "stability_period_days": "NEEDS MANUAL REVIEW",
+        "chronic_condition_exclusion": true,
+        "chronic_exclusion_language": "The Acute onset of a Pre-Existing Condition does not directly or indirectly relate to a chronic condition or congenital condition",
+        "key_weakness": "Chronic condition exclusion in acute onset — explicit. Most chronic conditions Indians present with (hypertension, diabetes, CAD) are directly excluded from acute onset."
+      },
+      "plan_type_warning": "SCHEDULED BENEFIT — even if acute onset is approved, payouts are fixed dollar amounts, not URC."
+    },
+
+    "Atlas_America": {
+      "carrier": "TMHCC / WorldTrips",
+      "authority_level": 5,
+      "confidence": 35,
+      "definition": {"text": "NEEDS MANUAL REVIEW — full Certificate not obtained"},
+      "stable_medication_exception": "NEEDS MANUAL REVIEW",
+      "base_coverage": "NEEDS MANUAL REVIEW",
+      "acute_onset": {"available": "NEEDS MANUAL REVIEW", "confidence": 35},
+      "flag": "ALL DATA NEEDS MANUAL REVIEW — full Certificate required"
+    },
+
+    "INF_Elite_X": {
+      "carrier": "Crum & Forster SPC (admin: Robin Assist)",
+      "authority_level": 2,
+      "confidence": 92,
+      "definition": {
+        "text": "Any illness, disease, or other medical condition of the Covered Person for which medical advice, diagnosis, care, monitoring or treatment was recommended or received from a Doctor, and/or which would have caused a reasonably prudent person to seek medical attention, before the Effective Date.",
+        "lookback_period_months": "No fixed lookback period — based on 'reasonably prudent person' standard (potentially unlimited)",
+        "reasonable_medical_certainty_clause": false,
+        "applies_even_if_undiagnosed": true,
+        "note": "No fixed 3-year lookback — any prior medical contact or prudent-person reason to seek care = pre-existing. Broader in some ways than IMG's 3-year lookback."
+      },
+      "stable_medication_exception": {
+        "available": true,
+        "description": "Conditions managed by stable medication (no change in type, frequency, or quantity within 24 months preceding the Effective Date) are NOT considered pre-existing conditions.",
+        "stability_period_months": 24,
+        "what_counts_as_change": "Change in drug name/type, change in dosage frequency, change in dosage quantity — ANY of these nullifies the exception",
+        "what_does_not_count_as_change": "Refilling same prescription at same dose and frequency",
+        "examples_that_qualify": ["Stable metformin 500mg twice daily for 3 years", "Lisinopril 10mg once daily for 2+ years unchanged", "Aspirin 81mg daily for 2+ years unchanged"],
+        "examples_that_disqualify": ["Dose increased from 5mg to 10mg in past 24 months", "Added second medication", "Switched from one statin to another"],
+        "flag": "KEY DIFFERENTIATOR — unique exception that converts stable chronic conditions into non-pre-existing. Highly favorable for Indian travelers with well-managed conditions."
+      },
+      "base_coverage": "COVERED with sub-limits (unique — not just acute onset)",
+      "preex_maximum_age_under70": {
+        "options": ["$25,000", "$30,000", "$40,000", "$50,000"],
+        "deductible_options": ["$1,500", "$2,000", "$2,500", "$5,000", "$10,000"]
+      },
+      "preex_maximum_age_70_99": "$20,000",
+      "preex_service_sub_limits": {
+        "hospital_icu_room_board": "$15,000",
+        "hospital_miscellaneous": "$15,000",
+        "surgeries": "$15,000",
+        "hospital_emergency": "$7,500",
+        "assistant_surgeon": "$5,000",
+        "prescriptions": "$500"
+      },
+      "acute_onset": {
+        "available": false,
+        "note": "INF Elite X does not use the acute onset model. Pre-existing conditions are directly covered (not as 'acute onset') under the pre-existing sub-limits above."
+      },
+      "critical_exclusions": {
+        "cancer": "ANY condition directly or indirectly related to or caused by cancer is EXCLUDED — includes new cancer diagnoses, treatment, and post-cancer follow-up",
+        "dialysis": "Dialysis excluded",
+        "ongoing_preventive_care": "Ongoing preventive care excluded",
+        "mental_health": "Mental Health Disorders excluded",
+        "cataract": "Cataract surgery and eye sickness excluded"
+      },
+      "illness_waiting_period": "5 days from Effective Date (sickness which requires immediate attention within 5 days of policy effective date excluded)"
+    },
+
+    "SC_Travel_Medical_Basic": {
+      "carrier": "Crum & Forster SPC via ITI SP / Seven Corners",
+      "authority_level": 1,
+      "confidence": 98,
+      "definition": {
+        "text": "Any Injury or Illness, including Mental Illness, which meets one or more of the following criteria prior to Your Effective Date: (a) You were diagnosed; (b) You received Treatment; (c) Treatment was recommended to You; (d) There is reasonable medical certainty that the Injury or Illness existed, whether or not a diagnosis had been made.",
+        "lookback_period_months": 36,
+        "reasonable_medical_certainty_clause": true,
+        "applies_even_if_undiagnosed": true,
+        "flag": "36-MONTH LOOKBACK — same duration as IMG but 'reasonable medical certainty' can capture even undiagnosed conditions. No asymptomatic exclusion."
+      },
+      "stable_medication_exception": false,
+      "base_coverage": "EXCLUDED",
+      "acute_onset": {
+        "available": true,
+        "coverage_limit_age_14d_to_69": "$25,000",
+        "coverage_limit_age_70_79": "$2,500",
+        "coverage_limit_age_80_plus": "NOT AVAILABLE",
+        "evacuation_limit_acute_onset": "NEEDS MANUAL REVIEW",
+        "waiting_period_days": 7,
+        "stability_period_days": 30,
+        "chronic_condition_exclusion": true,
+        "chronic_exclusion_criterion_f": "f. The condition is NOT a previously diagnosed chronic condition, the nature of which involves expected episodes or flare-ups, OR a condition that is slowly, progressively deteriorating.",
+        "key_weaknesses": [
+          "7-day waiting period — longest of all plans",
+          "$2,500 limit for age 70-79 is inadequate for any serious event",
+          "No coverage age 80+",
+          "$25,000 age <70 limit is lowest absolute dollar amount among comprehensive plans",
+          "Criterion (f) explicitly bars most chronic conditions typical in Indian travelers (diabetes, CAD, hypertension)"
+        ]
+      }
+    },
+
+    "SC_Travel_Medical_Choice": {
+      "carrier": "Crum & Forster SPC via ITI SP / Seven Corners",
+      "authority_level": 1,
+      "confidence": 98,
+      "definition": {
+        "text": "Identical to SC Travel Medical Basic — 36-month lookback, reasonable medical certainty clause.",
+        "lookback_period_months": 36,
+        "reasonable_medical_certainty_clause": true,
+        "applies_even_if_undiagnosed": true
+      },
+      "stable_medication_exception": false,
+      "base_coverage": "EXCLUDED",
+      "acute_onset": {
+        "available": true,
+        "cardiac_stroke_age_14d_to_69": "$50,000",
+        "cardiac_stroke_age_70_79": "$5,000",
+        "cardiac_stroke_age_80_plus": "NOT AVAILABLE",
+        "other_preex_age_14d_to_69": "$75,000",
+        "other_preex_age_70_79": "$7,500",
+        "other_preex_age_80_plus": "NOT AVAILABLE",
+        "waiting_period_days": 7,
+        "stability_period_days": 30,
+        "chronic_condition_exclusion": true,
+        "chronic_exclusion_criterion_f": "Identical to Basic — previously diagnosed chronic condition with expected episodes or flare-ups excluded",
+        "key_advantage_over_basic": "Separate cardiac ($50K) and non-cardiac ($75K) limits significantly better than Basic's $25K combined. Age 70-79 cardiac $5K vs Basic's $2.5K.",
+        "key_weakness": "Criterion (f) still bars most chronic conditions. 7-day wait period. No coverage age 80+."
+      }
+    }
+  },
+
+  "condition_simulations": {
+
+    "rotator_cuff_injury": {
+      "description": "Traveler had rotator cuff pain 2 years ago (saw orthopedist, received cortisone injection, no surgery). Now re-injures the same shoulder during trip. Seeks ER care, MRI, orthopedic consult. Total billed: $6,000.",
+      "preexisting_status": "PRE-EXISTING for all plans (received treatment within 3-year lookback)",
+      "acute_onset_eligibility": "BETTER than cardiac/diabetic — rotator cuff re-injury is sudden, not a 'chronic condition with expected episodes' in the same way. However, carriers may argue recurrent shoulder instability is expected.",
+      "plan_results": {
+        "Patriot_America_Plus": {
+          "verdict": "LIKELY COVERED via Acute Onset",
+          "coverage_path": "Acute Onset — rotator cuff re-injury is sudden/unexpected, not a progressive chronic condition",
+          "coverage_limit": "Up to Period of Coverage Maximum",
+          "denial_risk": 28,
+          "confidence": 82,
+          "key_risk": "Carrier may argue prior documented cortisone injection = condition with expected recurrence. 30-day stability: was shoulder 'stable' with no treatment for 30 days before departure?"
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "LIKELY COVERED via Acute Onset",
+          "coverage_path": "Acute Onset up to $1M (non-US citizen)",
+          "denial_risk": 25,
+          "confidence": 85,
+          "key_risk": "Same stability and chronic-condition risk as Plus. Better payout ceiling."
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "LIKELY COVERED via Acute Onset (non-cardiac)",
+          "coverage_path": "Acute Onset, no cardiac sub-limit applies",
+          "coverage_limit": "Up to Period of Coverage Maximum",
+          "denial_risk": 30,
+          "confidence": 82
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "LIKELY COVERED via Acute Onset",
+          "coverage_path": "Acute Onset — not a cardiac condition, no $25K cardiac sub-limit applies",
+          "coverage_limit": "Up to Medical Maximum",
+          "denial_risk": 28,
+          "confidence": 82
+        },
+        "VisitorSecure": {
+          "verdict": "NEEDS MANUAL REVIEW — scheduled benefit + chronic exclusion risk",
+          "coverage_path": "Acute Onset if re-injury not classified as 'chronic condition' — but chronic exclusion criterion (a) may apply",
+          "denial_risk": 45,
+          "confidence": 65,
+          "key_risk": "Even if approved, scheduled benefits severely underpay $6,000 orthopedic workup"
+        },
+        "INF_Elite_X": {
+          "verdict": "LIKELY COVERED — pre-existing coverage (not acute onset model)",
+          "coverage_path": "Pre-existing condition directly covered under $25K-$50K sub-limits. Does not need to meet acute onset criteria.",
+          "coverage_limit": "Up to pre-ex maximum ($25K-$50K), service sub-limits apply",
+          "denial_risk": 15,
+          "confidence": 85,
+          "key_risk": "Cortisone injection likely means stable medication exception does NOT apply (injectable treatment, not oral medication). Falls under pre-ex sub-limits. Hospital emergency sub-limit $7.5K may cap ER costs."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "PARTIALLY COVERED — acute onset likely available",
+          "coverage_path": "Acute Onset — re-injury is sudden. Criterion (f) risk lower than cardiac/diabetic.",
+          "coverage_limit": "$25,000 maximum",
+          "denial_risk": 32,
+          "confidence": 80,
+          "key_risk": "7-day waiting period. $25K is adequate for a $6K claim if approved."
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "LIKELY COVERED — non-cardiac acute onset $75K",
+          "coverage_path": "Non-cardiac acute onset: $75,000 — more than adequate for $6K claim",
+          "denial_risk": 30,
+          "confidence": 82,
+          "key_risk": "Same criterion (f) and 7-day wait as Basic. Better limit."
+        }
+      },
+      "best_plan_for_this_condition": "Patriot_America_Platinum — $1M limit, no cardiac sub-limit, 0-day wait",
+      "worst_plan_for_this_condition": "VisitorSecure — scheduled benefits cap payout far below actual cost"
+    },
+
+    "type2_diabetes_stable_medication": {
+      "description": "Traveler diagnosed with Type 2 diabetes 7 years ago. On metformin 500mg twice daily — same dose for 3 years, no changes. Develops diabetic ketoacidosis (DKA) during trip. ER + 2-day ICU. Billed: $45,000.",
+      "preexisting_status": "PRE-EXISTING for all plans (on treatment, diagnosed). EXCEPTION: INF Elite X — stable medication (no change 24+ months) → NOT pre-existing under INF definition.",
+      "plan_results": {
+        "Patriot_America_Plus": {
+          "verdict": "COVERED via Acute Onset — moderate denial risk",
+          "coverage_path": "DKA is sudden/unexpected. Metformin unchanged > 30 days. Main risk: criterion (h) — diabetes is a chronic condition. But DKA as a distinct episode may qualify.",
+          "coverage_limit": "Up to Period of Coverage Maximum",
+          "denial_risk": 38,
+          "confidence": 80,
+          "key_risk": "Carrier scrutiny: is DKA an 'expected episode or flare-up' of diabetes? First-ever DKA = stronger acute onset case. Prior DKA episodes = much higher denial risk."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "COVERED via Acute Onset — $1M ceiling",
+          "coverage_limit": "$1,000,000 (non-US citizen)",
+          "denial_risk": 35,
+          "confidence": 82
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "COVERED via Acute Onset — DKA is non-cardiac",
+          "coverage_path": "DKA = metabolic event, not cardiac → no $36K cardiac sub-limit. Full plan max applies if approved.",
+          "denial_risk": 35,
+          "confidence": 80
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "COVERED via Acute Onset — DKA non-cardiac",
+          "coverage_path": "Diabetes not in the explicit cardiac conditions list. Full plan max if approved. 30-day stability met.",
+          "denial_risk": 33,
+          "confidence": 82
+        },
+        "VisitorSecure": {
+          "verdict": "HIGH DENIAL RISK — chronic condition exclusion applies",
+          "coverage_path": "Criterion (a): acute onset must not relate to a 'chronic condition'. Type 2 diabetes is explicitly a chronic condition. DKA directly related to diabetes = LIKELY DENIED.",
+          "denial_risk": 72,
+          "confidence": 85,
+          "key_risk": "Even if approved, scheduled benefit caps leave massive gap on $45K bill."
+        },
+        "INF_Elite_X": {
+          "verdict": "BEST OUTCOME — stable medication exception → NOT pre-existing → full plan coverage",
+          "coverage_path": "Metformin unchanged 24+ months → INF stable medication exception applies → diabetes NOT pre-existing → DKA covered at full plan max (80-90% in-network), not pre-ex sub-limits",
+          "coverage_limit": "Up to $150K-$1M (plan maximum), 80-90% in-network",
+          "denial_risk": 15,
+          "confidence": 85,
+          "key_risk": "If metformin dose was ever adjusted → exception fails → falls to $25K-$50K pre-ex sub-limits. Also: 5-day illness waiting period if plan purchased mid-trip.",
+          "flag": "UNIQUE ADVANTAGE — INF is the only plan where stable diabetics on fixed medication get full comprehensive coverage, not subject to pre-ex sub-limits."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "HIGH DENIAL RISK — criterion (f) chronic condition exclusion",
+          "coverage_path": "Criterion (f): diabetes is a 'previously diagnosed chronic condition with expected episodes or flare-ups'. DKA as expected episode = LIKELY DENIED on criterion (f).",
+          "coverage_limit": "$25,000 if approved",
+          "denial_risk": 65,
+          "confidence": 88
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "PARTIALLY COVERED — high denial risk on criterion (f)",
+          "coverage_path": "Non-cardiac acute onset $75,000 — adequate for $45K if approved. But same criterion (f) risk as Basic.",
+          "coverage_limit": "$75,000 if approved",
+          "denial_risk": 58,
+          "confidence": 88
+        }
+      },
+      "best_plan_for_this_condition": "INF_Elite_X — stable medication exception converts diabetes from pre-existing to covered. Full plan max applies.",
+      "worst_plan_for_this_condition": "VisitorSecure — chronic condition exclusion + scheduled benefit caps"
+    },
+
+    "hypertension_controlled": {
+      "description": "Traveler on lisinopril 10mg once daily for 5 years, stable dose 2.5 years. Develops severe hypertensive crisis (BP 220/140) during trip. ER + 1-day observation. Billed: $12,000.",
+      "preexisting_status": "PRE-EXISTING for all plans. INF: stable medication exception may apply if same dose 24+ months.",
+      "note_on_safe_travels": "Hypertension explicitly listed as a 'Cardiac Condition' under Safe Travels — the $25K cardiac sub-limit applies, not full plan max.",
+      "plan_results": {
+        "Patriot_America_Plus": {
+          "verdict": "LIKELY COVERED via Acute Onset",
+          "coverage_path": "Hypertensive crisis is sudden/Medical Emergency. Lisinopril unchanged > 30 days. Acute onset up to plan max.",
+          "coverage_limit": "Up to Period of Coverage Maximum — no cardiac sub-limit in PAP",
+          "denial_risk": 32,
+          "confidence": 82,
+          "key_risk": "Carrier may argue hypertension is chronic with expected episodes. 30-day stability met with unchanged lisinopril.",
+          "flag": "PAP has NO explicit cardiac sub-limit on acute onset — full plan max applies unlike CAG ($36K) and Safe Travels ($25K)."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "LIKELY COVERED via Acute Onset — $1M ceiling",
+          "coverage_limit": "$1,000,000 (non-US citizen)",
+          "denial_risk": 28,
+          "confidence": 85
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "PARTIALLY COVERED — $36K cardiac sub-limit may apply",
+          "coverage_path": "Hypertensive crisis may be classified as 'cardiac' → $36K cap applies. $12K bill well within $36K limit. But classification is carrier's call.",
+          "coverage_limit": "Likely $36,000 maximum (cardiac sub-limit)",
+          "denial_risk": 30,
+          "confidence": 80,
+          "key_risk": "Hypertension not explicitly listed as cardiac in CAG Certificate. Carrier may or may not apply cardiac sub-limit."
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "COVERED — hypertension sub-limit applies ($25K)",
+          "coverage_path": "Hypertension EXPLICITLY listed as a Cardiac Condition. $25K sub-limit applies. $12K bill within $25K limit.",
+          "coverage_limit": "$25,000 maximum (age ≤69) — adequate for $12K",
+          "denial_risk": 25,
+          "confidence": 90,
+          "key_risk": "Adequate for THIS $12K scenario. But for major cardiac event with HTN background, $25K sub-limit becomes a serious constraint."
+        },
+        "VisitorSecure": {
+          "verdict": "HIGH DENIAL RISK — chronic condition",
+          "denial_risk": 68,
+          "confidence": 82,
+          "key_risk": "Criterion (a): hypertension is a chronic condition. Even if approved, scheduled benefits cap $12K bill."
+        },
+        "INF_Elite_X": {
+          "verdict": "BEST OUTCOME if stable medication exception applies",
+          "coverage_path": "Lisinopril 10mg unchanged 2.5 years (>24 months) → stable medication exception → hypertension NOT pre-existing → full plan max coverage",
+          "coverage_limit": "Up to $150K-$1M (plan max) at 80-90% in-network",
+          "denial_risk": 12,
+          "confidence": 88,
+          "key_risk": "Exception fails if dose was ever changed within 24 months. Must verify prescription history.",
+          "flag": "BEST PLAN for well-controlled hypertension on stable medication."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "HIGH DENIAL RISK — criterion (f) + low limit",
+          "coverage_path": "Hypertension = chronic condition with expected episodes → criterion (f) likely triggers denial. If approved: $25K limit adequate for $12K.",
+          "denial_risk": 60,
+          "confidence": 88
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "PARTIALLY COVERED — denial risk + cardiac $50K",
+          "coverage_path": "Cardiac acute onset $50K. But criterion (f) same risk as Basic.",
+          "coverage_limit": "$50,000 if approved",
+          "denial_risk": 52,
+          "confidence": 88
+        }
+      },
+      "best_plan_for_this_condition": "INF_Elite_X (stable lisinopril ≥24 months) or Patriot_America_Platinum (no cardiac sub-limit, $1M ceiling)",
+      "worst_plan_for_this_condition": "VisitorSecure — chronic exclusion + scheduled benefits"
+    },
+
+    "coronary_artery_disease": {
+      "description": "Traveler with known CAD, on atorvastatin 40mg + aspirin 81mg — both stable and unchanged for 3 years. Has acute STEMI (heart attack) during trip. ER + cardiac catheterization + stent + 3-day ICU. Billed: $120,000.",
+      "preexisting_status": "PRE-EXISTING for all plans. INF: stable medication exception may apply (statin + aspirin both stable 3 years).",
+      "plan_results": {
+        "Patriot_America_Plus": {
+          "verdict": "COVERED via Acute Onset — elevated denial risk",
+          "coverage_path": "Heart attack is sudden/Medical Emergency. Medication stable > 30 days. Acute onset up to plan max (no cardiac sub-limit).",
+          "coverage_limit": "Up to Period of Coverage Maximum",
+          "denial_risk": 38,
+          "confidence": 82,
+          "key_risk": "Known CAD = carrier will aggressively review 'stable 30 days'. Any recent cardiology visit, medication adjustment, or stress test documentation creates risk.",
+          "flag": "NO cardiac sub-limit is a major advantage vs CAG ($36K) and Safe Travels ($25K) for this $120K scenario."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "COVERED via Acute Onset — $1M ceiling, no cardiac sub-limit",
+          "coverage_limit": "$1,000,000",
+          "denial_risk": 35,
+          "confidence": 85,
+          "flag": "BEST plan for this scenario if acute onset criteria met — $1M covers $120K fully."
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "PARTIALLY COVERED — $36K cardiac sub-limit",
+          "coverage_limit": "$36,000 maximum",
+          "estimated_patient_oop": "~$84,000 (after $36K plan payment + deductible)",
+          "denial_risk": 30,
+          "confidence": 88,
+          "flag": "CRITICAL WEAKNESS — $36K is the worst cardiac acute onset sub-limit. Patient owes ~$84K on $120K STEMI bill."
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "PARTIALLY COVERED — $25K cardiac sub-limit",
+          "coverage_limit": "$25,000 maximum (CAD explicitly a cardiac condition)",
+          "estimated_patient_oop": "~$95,000",
+          "denial_risk": 28,
+          "confidence": 92,
+          "flag": "WORST cardiac coverage of comprehensive plans — $25K on $120K STEMI leaves $95K gap."
+        },
+        "VisitorSecure": {
+          "verdict": "HIGH DENIAL RISK — chronic cardiac condition + scheduled benefits",
+          "coverage_path": "Known CAD = chronic condition → criterion (a) excludes it. Even if approved, scheduled benefit caps leave massive gap.",
+          "denial_risk": 78,
+          "confidence": 88
+        },
+        "INF_Elite_X": {
+          "verdict": "VARIABLE — depends on stable medication verification",
+          "coverage_path_if_stable": "Statin + aspirin unchanged 3 years → stable medication exception → CAD NOT pre-existing → full plan coverage at 80-90% in-network, up to $150K-$1M. Hospital room cap $20K + ancillary $20K = $40K combined hospital sub-limit STILL applies for new conditions.",
+          "coverage_path_if_not_stable": "Falls to pre-ex sub-limits: max $25K-$50K, surgery $15K, ICU room $15K, hospital misc $15K, ER $7.5K",
+          "denial_risk_if_stable_exception_applies": 15,
+          "denial_risk_if_falls_to_preex": 12,
+          "confidence": 82,
+          "flag": "If stable exception applies: INF covers CAD better than CAG/Safe Travels. If it doesn't apply: pre-ex sub-limits ($25K-$50K) are still better than SC Basic's $25K combined limit but hospital sub-limits create exposure on $120K bill."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "HIGH DENIAL RISK — chronic cardiac + $25K limit",
+          "coverage_path": "CAD = chronic condition with expected episodes → criterion (f) very likely triggered. If approved: $25K cap on $120K bill = $95K patient OOP.",
+          "denial_risk": 70,
+          "confidence": 90
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "HIGH DENIAL RISK — criterion (f) + $50K cardiac cap",
+          "coverage_path": "Cardiac acute onset $50K if approved. Patient still owes $70K on $120K bill. Criterion (f) denial risk same as Basic.",
+          "denial_risk": 62,
+          "confidence": 90
+        }
+      },
+      "best_plan_for_this_condition": "Patriot_America_Platinum — $1M limit, no cardiac sub-limit, 30-day stability only (vs 7-day wait in SC). INF_Elite_X as strong second if stable medication exception applies.",
+      "worst_plan_for_this_condition": "Safe_Travels_USA_Comprehensive — $25K cardiac cap, explicit hypertension/CAD in sub-limit definition"
+    },
+
+    "cancer_history_in_remission": {
+      "description": "Traveler had breast cancer 2 years ago, completed treatment, declared in remission 18 months ago. Develops unrelated chest pain during trip (found to be musculoskeletal, not cardiac/cancer). Also scenario: cancer-related complication (lymphedema, neuropathy from chemo). Billed: $8,000 (chest pain workup).",
+      "preexisting_status": "Cancer history = pre-existing for all plans (treatment within 3-year lookback).",
+      "plan_results": {
+        "Patriot_America_Plus": {
+          "verdict": "LIKELY COVERED if chest pain is unrelated to cancer",
+          "coverage_path": "Unrelated new condition (musculoskeletal chest pain) is a new illness, not a pre-existing condition. Covered at plan rates. However, carrier will scrutinize to ensure no cancer connection.",
+          "coverage_limit": "Up to Period of Coverage Maximum for new illness",
+          "denial_risk": 20,
+          "confidence": 75,
+          "key_risk": "Carrier may dispute whether chest pain is cancer-related. Full workup documentation required. Cancer-related complications (lymphedema, neuropathy) = pre-existing exclusion applies."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "LIKELY COVERED if unrelated to cancer",
+          "denial_risk": 18,
+          "confidence": 78
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "LIKELY COVERED if unrelated to cancer",
+          "denial_risk": 22,
+          "confidence": 72
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "LIKELY COVERED if unrelated to cancer",
+          "denial_risk": 22,
+          "confidence": 72
+        },
+        "VisitorSecure": {
+          "verdict": "PARTIALLY COVERED — scheduled benefits cap payout",
+          "denial_risk": 25,
+          "confidence": 65
+        },
+        "INF_Elite_X": {
+          "verdict": "DENIED — cancer exclusion is absolute",
+          "coverage_path": "CRITICAL: INF excludes any condition 'directly or indirectly related to or caused by cancer'. Carrier will argue cancer history = any chest pain could be indirectly related to cancer. Even an unrelated condition in a cancer history patient creates claim dispute risk.",
+          "coverage_limit": "$0",
+          "denial_risk": 95,
+          "confidence": 90,
+          "flag": "CRITICAL — cancer history travelers should NOT use INF Elite X. The broad 'directly or indirectly related to cancer' language creates near-total exposure for any claim a cancer history traveler files."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "LIKELY COVERED if unrelated to cancer — acute onset not needed for new illness",
+          "coverage_path": "Chest pain is a new illness. Not pre-existing (unless cancer-related). Covered up to $25K if acute onset needed, or as new condition.",
+          "denial_risk": 25,
+          "confidence": 75
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "LIKELY COVERED if unrelated to cancer",
+          "denial_risk": 22,
+          "confidence": 78
+        }
+      },
+      "best_plan_for_cancer_history_travelers": "Any IMG plan (PAP/PAPL) — broad coverage, no cancer exclusion for unrelated new conditions. Explicitly: NOT INF Elite X.",
+      "worst_plan_for_cancer_history_travelers": "INF_Elite_X — absolute cancer exclusion captures any condition 'indirectly related to cancer'"
+    },
+
+    "stroke_history_prior_tia": {
+      "description": "Traveler had TIA (mini-stroke) 18 months ago. On aspirin 81mg + clopidogrel 75mg since then — stable, no dose changes. Has new ischemic stroke during trip. ER + 3-day hospitalization + neurology. Billed: $95,000.",
+      "preexisting_status": "PRE-EXISTING for all plans (treatment within 18 months — well within 3-year lookback). INF stable medication exception: TIA 18 months ago means the condition itself started within 24 months → exception likely does NOT apply even if medication is stable (the condition was initiated within 24 months).",
+      "note_on_inf": "The INF stable medication exception requires no change in medication type/frequency/quantity for 24 months. The medication started 18 months ago (after TIA). Starting a new medication = a change. Exception likely FAILS for this scenario.",
+      "plan_results": {
+        "Patriot_America_Plus": {
+          "verdict": "COVERED via Acute Onset — elevated denial risk",
+          "coverage_path": "Stroke is sudden/Medical Emergency. Aspirin+clopidogrel stable > 30 days (stable since 18 months ago = well beyond 30-day stability window).",
+          "coverage_limit": "Up to Period of Coverage Maximum (no stroke sub-limit in PAP)",
+          "denial_risk": 40,
+          "confidence": 80,
+          "key_risk": "Prior TIA = carrier will strongly argue known condition with expected recurrence. 'Chronic or gradually worsening' criterion may be invoked. TIA recurrence rate is well-documented.",
+          "flag": "PAP has NO explicit stroke sub-limit. If acute onset approved, $95K bill could be covered in full (up to plan max)."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "COVERED via Acute Onset — $1M ceiling",
+          "coverage_limit": "$1,000,000",
+          "denial_risk": 36,
+          "confidence": 82,
+          "flag": "Best outcome ceiling — $95K covered in full if approved."
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "PARTIALLY COVERED — $36K cardiac/stroke sub-limit",
+          "coverage_limit": "$36,000 maximum (stroke explicitly in cardiac sub-limit)",
+          "estimated_patient_oop": "~$59,000",
+          "denial_risk": 30,
+          "confidence": 90
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "PARTIALLY COVERED — $25K cardiac/stroke sub-limit",
+          "coverage_limit": "$25,000 maximum (stroke = cardiac condition)",
+          "estimated_patient_oop": "~$70,000",
+          "denial_risk": 28,
+          "confidence": 92
+        },
+        "VisitorSecure": {
+          "verdict": "LIKELY DENIED — chronic stroke condition + scheduled benefits",
+          "denial_risk": 75,
+          "confidence": 85
+        },
+        "INF_Elite_X": {
+          "verdict": "COVERED under pre-ex sub-limits — stable medication exception likely fails",
+          "coverage_path": "Clopidogrel started 18 months ago (after TIA). Starting the medication = a change within 24 months. INF exception likely fails → TIA/stroke history = pre-existing → sub-limits apply.",
+          "coverage_limit": "$20,000-$50,000 (pre-ex maximum), service sub-limits: surgery $15K, hospital room $15K, etc.",
+          "estimated_patient_oop": "~$50,000-$75,000 on $95K bill",
+          "denial_risk": 10,
+          "confidence": 78,
+          "note": "Unlike other plans, INF WILL pay the pre-ex sub-limits reliably since it doesn't require 'acute onset' criteria. But $20K-$50K is insufficient for $95K stroke."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "HIGH DENIAL RISK — chronic condition criterion (f) + $2,500 limit age 70-79",
+          "coverage_path": "Prior TIA = chronic condition with expected recurrence. Criterion (f) very likely triggered. If approved age <70: $25K; age 70-79: $2,500.",
+          "denial_risk": 72,
+          "confidence": 90
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "HIGH DENIAL RISK — criterion (f) + cardiac $50K",
+          "coverage_path": "Stroke sub-limit: $50K (age <70) / $5K (70-79). But criterion (f) denial risk very high for known TIA history.",
+          "denial_risk": 65,
+          "confidence": 90
+        }
+      },
+      "best_plan_for_this_condition": "Patriot_America_Platinum — no stroke sub-limit, $1M ceiling. INF_Elite_X as backup (sub-limits apply but no acute onset criteria needed).",
+      "worst_plan_for_this_condition": "Safe_Travels_USA_Comprehensive — $25K stroke cap leaves $70K gap on $95K stroke hospitalization"
+    }
+  },
+
+  "summary_matrix": {
+    "condition_vs_best_plan": {
+      "rotator_cuff_injury": "Patriot_America_Platinum",
+      "type2_diabetes_stable_medication": "INF_Elite_X (stable medication exception)",
+      "hypertension_controlled": "INF_Elite_X (if stable meds 24+ months) or Patriot_America_Platinum",
+      "coronary_artery_disease": "Patriot_America_Platinum (no cardiac sub-limit, $1M)",
+      "cancer_history_in_remission": "Patriot_America_Plus / Patriot_America_Platinum (never INF_Elite_X)",
+      "stroke_history_prior_tia": "Patriot_America_Platinum (no stroke sub-limit, $1M)"
+    },
+    "condition_vs_worst_plan": {
+      "rotator_cuff_injury": "VisitorSecure",
+      "type2_diabetes_stable_medication": "VisitorSecure (chronic exclusion)",
+      "hypertension_controlled": "VisitorSecure (chronic exclusion)",
+      "coronary_artery_disease": "Safe_Travels_USA_Comprehensive ($25K cardiac cap)",
+      "cancer_history_in_remission": "INF_Elite_X (absolute cancer exclusion)",
+      "stroke_history_prior_tia": "Safe_Travels_USA_Comprehensive ($25K stroke cap)"
+    },
+    "key_differentiators": {
+      "INF_Elite_X_stable_medication_exception": "UNIQUE — only plan that converts stable chronic conditions to non-pre-existing. Best for diabetes/hypertension when medications unchanged 24+ months. AVOID for cancer history.",
+      "Patriot_America_Platinum_no_cardiac_sub_limit": "UNIQUE — $1M acute onset for non-US citizens with no cardiac/stroke sub-limits. Best ceiling for all cardiac and stroke scenarios.",
+      "Seven_Corners_criterion_f": "RESTRICTIVE — explicitly bars chronic conditions with expected episodes. Most chronic conditions Indian travelers present with face high denial risk under criterion (f).",
+      "Safe_Travels_broadest_cardiac_definition": "Hypertension explicitly a 'cardiac condition' — $25K sub-limit applies to hypertension, not just heart attacks. Most restrictive cardiac definition of all 9 plans.",
+      "CoverAmerica_Gold_evacuation_preex": "UNIQUE — emergency evacuation coverage includes pre-existing conditions. No other plan has this."
+    }
+  },
+
+  "open_items": [
+    {
+      "id": "PE-001",
+      "description": "INF Elite X: No fixed lookback period — 'reasonably prudent person' standard could be interpreted as unlimited lookback. Need legal review of this language vs. 3-year lookback plans.",
+      "priority": "medium"
+    },
+    {
+      "id": "PE-002",
+      "description": "VisitorSecure: Full pre-existing condition definition not extracted. Lookback period and stability requirements unknown. Certificate needed.",
+      "priority": "high"
+    },
+    {
+      "id": "PE-003",
+      "description": "Atlas America: All pre-existing condition data unknown. Full Certificate required.",
+      "priority": "high"
+    },
+    {
+      "id": "PE-004",
+      "description": "INF Elite X stable medication exception edge case: What if a traveler is on 2 medications — one stable 3 years, one newly added 12 months ago? Does the exception apply to the stable medication condition or does the new medication nullify it entirely? Needs Policy Wording legal interpretation.",
+      "priority": "medium"
+    }
+  ]
+}
