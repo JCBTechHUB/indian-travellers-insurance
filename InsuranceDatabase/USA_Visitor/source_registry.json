@@ -198,14 +198,19 @@
         "INF_Elite_X",
         "INF_Elite_Plus_X",
         "INF_Premier_X",
+        "INF_Standard_X",
         "INF_Easy_Select",
-        "INF_Standard_X"
+        "Safevista_Protect",
+        "HOP_Advantage",
+        "HOP_Prestige",
+        "BMI_Assist"
       ],
       "plans_removed": [],
-      "new_plans_detected": ["INF_Elite_Plus_X", "INF_Premier_X", "INF_Easy_Select"],
-      "carrier": "Verify — INF acts as MGA; underlying carrier varies by plan",
-      "am_best_rating": "Verify per plan",
-      "notes": "INF specializes in pre-existing condition coverage for Indian visitors. Elite X and Elite Plus X use network (X suffix = network plan). Premier X is fixed indemnity. Easy Select = budget tier. Phase 12 also shows INF_Premier and INF_Standard without X suffix — verify if same or different plans."
+      "new_plans_detected": ["INF_Elite_Plus_X", "INF_Premier_X", "INF_Standard_X", "Safevista_Protect", "HOP_Advantage", "HOP_Prestige", "BMI_Assist"],
+      "carrier": "Crum & Forster SPC (confirmed for Elite X series). BMI Assist and HOP series — carrier varies.",
+      "am_best_rating": "Crum & Forster = A (Excellent). Others — verify per plan",
+      "notes": "INF specializes in pre-existing condition coverage for Indian visitors. X suffix = network plan. Policy docs obtained from sec.infplans.com for all except Easy Select (portal-only). INF_Premier and INF_Standard (no X) from Phase 12 — verify if legacy plans or different products.",
+      "policy_docs_obtained": ["INF_Elite_X", "INF_Elite_Plus_X", "INF_Premier_X", "INF_Standard_X", "Safevista_Protect", "HOP_Advantage", "HOP_Prestige", "BMI_Assist"]
     }
   ],
   "carrier_identifications_resolved": {
@@ -234,7 +239,7 @@
       "directory": "Unknown_Carrier or IMG — to be verified"
     }
   },
-  "total_plans_discovered": 32,
+  "total_plans_discovered": 37,
   "plans_needing_carrier_identification": [],
   "plans_needing_eligibility_verification": [
     "GeoBlue_Trekker",
@@ -245,5 +250,7 @@
     "Liaison_Majestic",
     "Liaison_Travel_Plus"
   ],
-  "crawl_status": "PHASE 11 COMPLETE — All Priority 1 and Priority 2 sources crawled. ICI direct fetch still timing out (client-rendered). Priority 3 not started."
+  "crawl_status": "PHASE 11 COMPLETE — All Priority 1 and Priority 2 sources crawled. ICI direct fetch still timing out (client-rendered). Priority 3 not started. Seven Corners plan docs require portal login (apps.sevencorners.com/purchase).",
+  "seven_corners_note": "Seven Corners PDF docs require JavaScript purchase portal — https://apps.sevencorners.com/purchase#/plan-details. Liaison Economy and Elite certs not yet obtained.",
+  "documents_not_publicly_accessible": ["Seven_Corners_Liaison_Economy", "Seven_Corners_Liaison_Elite", "INF_Easy_Select", "Visitors_Care"]
 }
