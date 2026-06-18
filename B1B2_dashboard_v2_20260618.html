@@ -10,18 +10,18 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg-base:        #09090b;
-      --bg-surface:     #111113;
-      --bg-surface-2:   #18181b;
-      --bg-surface-3:   #1f1f23;
-      --bg-hover:       #25252a;
-      --border:         rgba(255,255,255,0.06);
-      --border-hover:   rgba(255,255,255,0.12);
+      --bg-base:        #141608;
+      --bg-surface:     #1c1f0b;
+      --bg-surface-2:   #23270f;
+      --bg-surface-3:   #2a2f13;
+      --bg-hover:       #313716;
+      --border:         rgba(190,210,90,0.09);
+      --border-hover:   rgba(190,210,90,0.18);
       --border-active:  rgba(79,110,247,0.35);
       --text-primary:   #f4f4f5;
-      --text-secondary: #a1a1aa;
-      --text-muted:     #52525b;
-      --text-label:     #71717a;
+      --text-secondary: #b0b89a;
+      --text-muted:     #6b7455;
+      --text-label:     #848c6a;
       --accent:         #4f6ef7;
       --accent-dim:     rgba(79,110,247,0.12);
       --accent-glow:    rgba(79,110,247,0.25);
@@ -41,6 +41,7 @@
       font-family: var(--font);
       background: var(--bg-base);
       color: var(--text-primary);
+      /* olive green tint applied via bg-base #141608 */
       font-size: 13px;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
@@ -54,7 +55,7 @@
     .header {
       position: sticky; top: 0; z-index: 100;
       height: 52px;
-      background: rgba(9,9,11,0.9);
+      background: rgba(20,22,8,0.93);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       display: flex; align-items: center;
