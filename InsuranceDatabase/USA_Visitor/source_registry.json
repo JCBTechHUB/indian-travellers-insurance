@@ -1,13 +1,14 @@
 {
   "category": "USA_Visitor",
   "last_full_crawl": "2026-06-17",
+  "carrier_directory_note": "Some duplicate carrier directories exist from Phase 12 (INF vs INF_Plans, SevenCorners vs Seven_Corners, Trawick vs Trawick_International). Consolidation tracked in research_backlog.md B-022.",
   "sources": [
     {
       "priority": 1,
       "source_name": "VisitorsCoverage",
       "source_url": "https://www.visitorscoverage.com/visitor-health-insurance/plans/",
       "last_crawl_date": "2026-06-17",
-      "crawl_method": "web_fetch",
+      "crawl_method": "web_fetch (partial — client-rendered)",
       "plans_found": [
         "CoverAmerica_Gold",
         "ChoiceAmerica",
@@ -16,7 +17,7 @@
       ],
       "plans_removed": [],
       "new_plans_detected": [],
-      "notes": "Client-rendered page — full plan list requires JavaScript. Partial crawl via marketing pages."
+      "notes": "Client-rendered page — full plan list requires JavaScript. Partial crawl via marketing pages. CoverAmerica_Gold carrier = SiriusPoint (not VisitorsCoverage)."
     },
     {
       "priority": 1,
@@ -33,7 +34,7 @@
       ],
       "plans_removed": [],
       "new_plans_detected": ["Patriot_America_Platinum"],
-      "notes": "High-end 2026 article crawled directly. Good plan detail at brochure level."
+      "notes": "High-end 2026 article crawled. Brochure-level data only."
     },
     {
       "priority": 1,
@@ -68,83 +69,181 @@
         "Atlas_Group",
         "Global_Medical_Insurance"
       ],
-      "notes": "Most comprehensive plan list found. Footer sidebar lists all available plans."
+      "notes": "Most comprehensive aggregator list. Footer sidebar lists all available plans."
     },
     {
       "priority": 1,
       "source_name": "International Citizens Insurance",
       "source_url": "https://www.internationalinsurance.com/visitors/",
       "last_crawl_date": "2026-06-17",
-      "crawl_method": "WebSearch (fetch timed out)",
+      "crawl_method": "WebSearch only (web_fetch timed out twice)",
       "plans_found": [
         "Atlas_America",
-        "Safe_Travels_USA"
+        "Patriot_America_Platinum",
+        "Liaison_Travel (Seven Corners)",
+        "Safe_Travels_USA (Trawick)"
       ],
       "plans_removed": [],
       "new_plans_detected": [],
-      "notes": "INCOMPLETE — fetch timed out. Only partial data via WebSearch. Needs re-crawl."
+      "notes": "INCOMPLETE — direct fetch timed out on both attempts. No new plans beyond what P1/P2 already found. Still needs direct crawl for full plan detail."
     },
     {
       "priority": 2,
       "source_name": "IMG Direct",
-      "source_url": "https://www.imglobal.com",
-      "last_crawl_date": null,
-      "crawl_method": "pending",
-      "plans_found": [],
-      "notes": "Not yet crawled. Schedule for Phase 11 P2 crawl."
+      "source_url": "https://www.imglobal.com/visitor-insurance",
+      "last_crawl_date": "2026-06-17",
+      "crawl_method": "WebSearch (web_fetch timed out)",
+      "plans_found": [
+        "Patriot_America_Platinum",
+        "Patriot_America_Plus",
+        "Patriot_America_Lite",
+        "Patriot_America_Standard",
+        "Visitors_Care",
+        "Visitors_Preferred",
+        "Visitors_Protect_Insurance"
+      ],
+      "plans_removed": [],
+      "new_plans_detected": ["Patriot_America_Lite", "Patriot_America_Standard", "Visitors_Preferred"],
+      "carrier": "SiriusPoint Specialty Insurance Corporation",
+      "am_best_rating": "A- (Excellent)",
+      "notes": "Patriot series has at least 4 tiers: Lite, Standard/Plus, Platinum. Visitors_Protect underwritten by SiriusPoint, administered by IMG."
     },
     {
       "priority": 2,
       "source_name": "WorldTrips Direct",
-      "source_url": "https://www.worldtrips.com",
-      "last_crawl_date": null,
-      "crawl_method": "pending",
-      "plans_found": [],
-      "notes": "Not yet crawled."
+      "source_url": "https://www.worldtrips.com/us-visitor-health-insurance",
+      "last_crawl_date": "2026-06-17",
+      "crawl_method": "WebSearch (web_fetch timed out)",
+      "plans_found": [
+        "Atlas_America",
+        "Atlas_America_Premium",
+        "Atlas_Group",
+        "Atlas_Travel",
+        "VisitorSecure"
+      ],
+      "plans_removed": [],
+      "new_plans_detected": [],
+      "carrier": "Tokio Marine HCC",
+      "am_best_rating": "A++ (Superior)",
+      "notes": "Atlas America = main visitor plan. Atlas Premium = higher limits. No new plans beyond what Visitor Guard found."
     },
     {
       "priority": 2,
       "source_name": "Seven Corners Direct",
-      "source_url": "https://www.sevencorners.com",
-      "last_crawl_date": null,
-      "crawl_method": "pending",
-      "plans_found": [],
-      "notes": "Not yet crawled."
+      "source_url": "https://www.sevencorners.com/plans/travel-medical-insurance/including-usa",
+      "last_crawl_date": "2026-06-17",
+      "crawl_method": "WebSearch (web_fetch returned empty body — client-rendered)",
+      "plans_found": [
+        "Liaison_Travel_Basic",
+        "Liaison_Travel_Economy",
+        "Liaison_Travel_Choice",
+        "Liaison_Travel_Elite",
+        "Liaison_Majestic",
+        "Liaison_Travel_Plus"
+      ],
+      "plans_removed": [],
+      "new_plans_detected": [
+        "Liaison_Travel_Basic",
+        "Liaison_Travel_Economy",
+        "Liaison_Travel_Choice",
+        "Liaison_Travel_Elite"
+      ],
+      "carrier": "Specialty Risk International (Seven Corners)",
+      "am_best_rating": "Verify",
+      "notes": "Liaison Travel series (Basic/Economy/Choice/Elite) confirmed for trips including USA. Liaison_Majestic and Liaison_Travel_Plus from Phase 12 — verify if current plans or renamed. Acute onset coverage starts at Economy tier."
     },
     {
       "priority": 2,
       "source_name": "Trawick Direct",
       "source_url": "https://www.trawickinternational.com",
-      "last_crawl_date": null,
-      "crawl_method": "pending",
-      "plans_found": [],
-      "notes": "Not yet crawled."
+      "last_crawl_date": "2026-06-17",
+      "crawl_method": "WebSearch",
+      "plans_found": [
+        "Safe_Travels_USA_Comprehensive",
+        "Safe_Travels_USA",
+        "Safe_Travels_USA_Cost_Saver",
+        "Safe_Travels_Elite"
+      ],
+      "plans_removed": [],
+      "new_plans_detected": ["Safe_Travels_USA"],
+      "carrier": "Crum & Forster SPC",
+      "am_best_rating": "A (Excellent)",
+      "notes": "Three distinct Safe Travels USA tiers confirmed: Cost Saver < USA < Comprehensive. Safe_Travels_Elite appears to be a separate series. B-021 documented."
     },
     {
       "priority": 2,
       "source_name": "GeoBlue",
       "source_url": "https://www.geo-blue.com",
-      "last_crawl_date": null,
-      "crawl_method": "pending",
-      "plans_found": [],
-      "notes": "Not yet crawled."
+      "last_crawl_date": "2026-06-17",
+      "crawl_method": "WebSearch",
+      "plans_found": [
+        "GeoBlue_Trekker",
+        "GeoBlue_Xplorer",
+        "GeoBlue_Voyager",
+        "GeoBlue_Navigator"
+      ],
+      "plans_removed": [],
+      "new_plans_detected": ["GeoBlue_Trekker", "GeoBlue_Xplorer", "GeoBlue_Voyager", "GeoBlue_Navigator"],
+      "carrier": "Blue Cross Blue Shield (BCBS Global Solutions)",
+      "am_best_rating": "Verify",
+      "notes": "ELIGIBILITY TBD — GeoBlue plans are primarily designed for US citizens/residents traveling abroad or expats. Trekker and Voyager explicitly exclude USA coverage. Xplorer may cover USA for expats returning. Needs eligibility check before adding to B-1/B-2 rankings."
     },
     {
       "priority": 2,
       "source_name": "INF Plans Direct",
-      "source_url": "https://www.infplans.com",
-      "last_crawl_date": null,
-      "crawl_method": "pending",
-      "plans_found": [],
-      "notes": "Not yet crawled."
+      "source_url": "https://www.infplans.com/visitors-insurance-plans/",
+      "last_crawl_date": "2026-06-17",
+      "crawl_method": "WebSearch (web_fetch returned empty — client-rendered)",
+      "plans_found": [
+        "INF_Elite_X",
+        "INF_Elite_Plus_X",
+        "INF_Premier_X",
+        "INF_Easy_Select",
+        "INF_Standard_X"
+      ],
+      "plans_removed": [],
+      "new_plans_detected": ["INF_Elite_Plus_X", "INF_Premier_X", "INF_Easy_Select"],
+      "carrier": "Verify — INF acts as MGA; underlying carrier varies by plan",
+      "am_best_rating": "Verify per plan",
+      "notes": "INF specializes in pre-existing condition coverage for Indian visitors. Elite X and Elite Plus X use network (X suffix = network plan). Premier X is fixed indemnity. Easy Select = budget tier. Phase 12 also shows INF_Premier and INF_Standard without X suffix — verify if same or different plans."
     }
   ],
-  "total_plans_discovered": 20,
-  "plans_needing_carrier_identification": [
-    "Visitors_Protect_Insurance",
-    "International_Major_Medical",
+  "carrier_identifications_resolved": {
+    "Visitors_Protect_Insurance": {
+      "carrier": "SiriusPoint Specialty Insurance Corporation",
+      "am_best": "A- (Excellent)",
+      "administrator": "IMG (International Medical Group)",
+      "directory": "IMG/Visitors_Protect_Insurance (moved from Unknown_Carrier)"
+    },
+    "Diplomat_America": {
+      "carrier": "Crum & Forster SPC",
+      "am_best": "A (Excellent)",
+      "administrator": "Global Underwriters",
+      "directory": "IMG/Diplomat_America (NOTE: verify — Global Underwriters is administrator, not IMG)"
+    },
+    "International_Major_Medical": {
+      "carrier": "Lloyd's of London",
+      "am_best": "A (Excellent)",
+      "network": "First Health Network",
+      "directory": "Unknown_Carrier/International_Major_Medical (to be moved)"
+    },
+    "Global_Medical_Insurance": {
+      "carrier": "SiriusPoint Specialty Insurance Corporation",
+      "administrator": "IMG",
+      "eligibility_flag": "LIKELY NOT B-1/B-2 ELIGIBLE — annual plan with underwriting, preventive/maternity care. Designed for expats, not short-term visitors.",
+      "directory": "Unknown_Carrier or IMG — to be verified"
+    }
+  },
+  "total_plans_discovered": 32,
+  "plans_needing_carrier_identification": [],
+  "plans_needing_eligibility_verification": [
+    "GeoBlue_Trekker",
+    "GeoBlue_Xplorer",
+    "GeoBlue_Voyager",
+    "GeoBlue_Navigator",
     "Global_Medical_Insurance",
-    "Diplomat_America"
+    "Liaison_Majestic",
+    "Liaison_Travel_Plus"
   ],
-  "crawl_status": "PARTIAL — Priority 1 incomplete (ICI timed out). Priority 2 and 3 not started."
+  "crawl_status": "PHASE 11 COMPLETE — All Priority 1 and Priority 2 sources crawled. ICI direct fetch still timing out (client-rendered). Priority 3 not started."
 }
