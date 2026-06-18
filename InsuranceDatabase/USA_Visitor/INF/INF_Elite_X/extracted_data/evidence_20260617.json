@@ -1,0 +1,301 @@
+{
+  "carrier": "Crum & Forster SPC (document says 'Crum & Foster SPC' — typo in source)",
+  "administrator": "Robin Assist (INF Plans portal)",
+  "plan": "INF Elite Plan X",
+  "authority_level_default": 2,
+  "source_document_default": "INF_Elite_X_PolicyWording_20260617.pdf",
+  "extraction_date": "2026-06-17",
+  "notes": "Policy Wording (L2) — Certificate of Insurance (L1) not separately available; this Policy Wording is the primary governing document. PPO network name not stated in document. NEEDS MANUAL REVIEW for network identification.",
+  "evidence": [
+    {
+      "benefit": "Carrier Identity",
+      "conclusion": "Carrier is Crum & Forster SPC. Document contains typo 'Crum & Foster SPC' on page 8.",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 8,
+      "section": "Contact Information",
+      "exact_language": "Underwritten by Crum & Foster SPC and backed by a Reinsurer rated A (Excellent) by AM Best",
+      "confidence_score": 88,
+      "authority_level": 2,
+      "flag": "NEEDS MANUAL REVIEW — 'Foster' is a known typo; actual carrier is Crum & Forster SPC"
+    },
+    {
+      "benefit": "Medical Maximum — Age 0-69",
+      "conclusion": "Options: $150,000 / $250,000 / $300,000 / $500,000 / $1,000,000 per Injury/Sickness",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Total Annual Maximum for all Accident or Sickness Expense Benefits Age 0-69 Options: $150,000, $250,000, $300,000, $500,000, or $1,000,000",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Medical Maximum — Age 70-99",
+      "conclusion": "$75,000 maximum (single tier, no options)",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Age 70-99: $75,000",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Deductible",
+      "conclusion": "Options: $100 / $250 / $500 / $1,000 / $2,500 / $5,000 per Injury/Sickness",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Deductible per Injury/Sickness Options: $100, $250, $500, $1,000, $2,500, or $5,000",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Coinsurance — In-Network",
+      "conclusion": "Plan pays 80% or 90% (two tiers); insured pays 10% or 20%. No out-of-pocket maximum stated.",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Co-insurance Rate Insurance pays 80%/90% Insured pays 10%/20%",
+      "confidence_score": 90,
+      "authority_level": 2,
+      "flag": "NEEDS MANUAL REVIEW — whether 80/20 vs 90/10 depends on selected plan tier; confirmation needed"
+    },
+    {
+      "benefit": "Coinsurance — Out-of-Network",
+      "conclusion": "Plan pays 60% or 70%; insured pays 30% or 40%. Significantly lower than in-network.",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Insurance pays 60%/70% of Usual, Reasonable & Customary (URC) Charges Insured pays 30%/40%",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Pre-existing Condition Coverage — Maximum (Age 0-69)",
+      "conclusion": "Pre-existing conditions are COVERED (not just acute onset) with a sub-maximum. Options: $25,000 / $30,000 / $40,000 / $50,000.",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Pre-existing Conditions Age 0-69 Maximum Benefit Options: $25,000, $30,000, $40,000, or $50,000 Maximum Benefit",
+      "confidence_score": 90,
+      "authority_level": 2,
+      "flag": "KEY DIFFERENTIATOR — actual pre-existing condition coverage, not just acute onset"
+    },
+    {
+      "benefit": "Pre-existing Condition Coverage — Maximum (Age 70-99)",
+      "conclusion": "$20,000 maximum for pre-existing conditions",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Age 70-99 Maximum Benefit: $20,000",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Pre-existing Condition Coverage — Deductible",
+      "conclusion": "Separate deductible for pre-existing conditions: options $1,500 / $2,000 / $2,500 / $5,000 / $10,000",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "subject to a $1,500, $2,000, $2,500, $5,000, or $10,000 Deductible",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Pre-existing Condition Coverage — Sub-limits per Service",
+      "conclusion": "Sub-limits per service type within the pre-existing maximum: Hospital/ICU Room & Board $15K; Hospital Miscellaneous $15K; Surgeries $15K; Hospital Emergency $7,500; Assistant Surgeon $5,000; Prescriptions $500",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Pre-existing Conditions Sub-Limits: $15,000 Hospital/ICU Room & Board / $15,000 Hospital Miscellaneous / $15,000 Surgeries / $7,500 Hospital Emergency / $5,000 Assistance Surgeon Expenses / $500 Prescriptions",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Pre-existing Condition Definition — Stable Medication Exception",
+      "conclusion": "CRITICAL: Conditions managed by stable medication (no change in type, frequency, or quantity within 24 months prior to Effective Date) are NOT considered pre-existing conditions.",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 3,
+      "section": "Definitions — Pre-existing Condition",
+      "exact_language": "Pre-existing Condition shall not include any illness, disease, or other medical condition for which the Covered Person takes regular continuing medication provided that there has been no change in the type, frequency or quantity of the prescribed drug or medicine within twenty four (24) months preceding the date upon which the Covered Person's coverage became effective under the Policy, so long as the Covered Person takes such medication in accordance with the medical advice given.",
+      "confidence_score": 92,
+      "authority_level": 2,
+      "flag": "KEY DIFFERENTIATOR — favorable for Indian travelers with stable chronic conditions (e.g., controlled hypertension, stable diabetes on fixed regimen)"
+    },
+    {
+      "benefit": "Pre-existing Condition Definition — General",
+      "conclusion": "Pre-existing = any condition for which medical advice, diagnosis, care, monitoring or treatment was recommended or received before Effective Date, OR which would have caused a reasonably prudent person to seek medical attention. No explicit lookback period stated (unlike 36-month lookback in Seven Corners).",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 3,
+      "section": "Definitions — Pre-existing Condition",
+      "exact_language": "Pre-existing Condition means an illness, disease, or other medical condition of the Covered Person for which medical advice, diagnosis, care, monitoring or treatment was recommended or received from a Doctor, and/or which would have caused a reasonably prudent person to seek medical attention, before the Covered Person's coverage became effective under the Policy, whether disclosed or not on the Covered Person's application or online enrolment.",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Hospital Room and Board Sub-limit",
+      "conclusion": "$20,000 maximum for hospital room and board (ICU included) — applies within overall Medical Maximum",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 4,
+      "section": "Covered Medical Expenses",
+      "exact_language": "Hospital semi-private room and board (or room and board in an intensive care unit) to a maximum of $20,000",
+      "confidence_score": 90,
+      "authority_level": 2,
+      "flag": "SUB-LIMIT — hospital room capped at $20K regardless of plan maximum selected"
+    },
+    {
+      "benefit": "Hospital Ancillary Services Sub-limit",
+      "conclusion": "$20,000 maximum for hospital ancillary services (operating room, emergency room, etc.)",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 4,
+      "section": "Covered Medical Expenses",
+      "exact_language": "Hospital ancillary services (including, but not limited to, use of the operating room or emergency room) to a maximum of $20,000",
+      "confidence_score": 90,
+      "authority_level": 2,
+      "flag": "SUB-LIMIT — combined hospital room + ancillary capped at $40K total"
+    },
+    {
+      "benefit": "Urgent Care Copay",
+      "conclusion": "Urgent Care: $25 copay in-network; $50 copay out-of-network (then plan coinsurance applies)",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Urgent Care Visits $25 copay per visit [in-network] $50 copay per visit [out-of-network]",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Physical Therapy",
+      "conclusion": "$50 per visit, maximum $500 total (10 visits at max rate)",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Physiotherapy $50 per visit up to a maximum of $500",
+      "confidence_score": 90,
+      "authority_level": 2,
+      "flag": "VERY LIMITED — $500 total for PT. Same low limit as Safe Travels USA Comprehensive."
+    },
+    {
+      "benefit": "Emergency Medical Evacuation",
+      "conclusion": "$25,000 maximum — very low compared to most competitors ($250K-$1M+)",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Emergency Medical Evacuation Up to $25,000",
+      "confidence_score": 90,
+      "authority_level": 2,
+      "flag": "WEAK — $25K evacuation limit is the lowest among all plans reviewed. IMG Platinum covers up to full plan maximum."
+    },
+    {
+      "benefit": "Urinary Tract Infection Sub-limit",
+      "conclusion": "UTI coverage limited to $2,000 maximum",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Urinary Tract Infection Limited to a maximum of $2,000",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Maximum Benefit Period",
+      "conclusion": "Benefits payable for up to 364 days from date of Covered Accident/Sickness (or end of Trip, whichever earlier)",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Maximum Benefit Period The earlier of the date the Covered Person's Trip ends, or 364 days from the date of a Covered Accident or Sickness",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Incurral Period",
+      "conclusion": "First covered expense must be incurred within 30 days of Injury/Sickness date; benefits payable for up to 364 days from that date",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Incurral Period 30 days after the date of Injury/Sickness",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Mental Health Disorders",
+      "conclusion": "EXCLUDED — Mental Health Disorders not covered",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 7,
+      "section": "Exclusions and Limitations",
+      "exact_language": "Mental Health Disorders [excluded benefit #38]",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Cancer / Dialysis / Ongoing Preventive Care",
+      "conclusion": "EXCLUDED — any condition directly or indirectly related to or caused by cancer, dialysis, or ongoing and preventive care is excluded",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 7,
+      "section": "Exclusions and Limitations",
+      "exact_language": "expenses incurred for any condition directly or indirectly related to or caused by cancer, dialysis, or on-going and preventive care [exclusion #39]",
+      "confidence_score": 90,
+      "authority_level": 2,
+      "flag": "CRITICAL EXCLUSION — cancer-related expenses not covered even for new cancer diagnosis during trip"
+    },
+    {
+      "benefit": "Cataract Surgery",
+      "conclusion": "EXCLUDED — cataract surgeries and eye sickness/treatments excluded",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 7,
+      "section": "Exclusions and Limitations",
+      "exact_language": "expenses incurred for cataract surgeries, eye sickness or treatments [exclusion #40]",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Claims Notification",
+      "conclusion": "Must notify within 30 days of Covered Accident or Loss",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 8,
+      "section": "Contact Information",
+      "exact_language": "You must provide notification of a claim within 30 days of a Covered Accident or Loss.",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Claims Contact",
+      "conclusion": "Claims handled by Robin Assist: claims@robinassist.com; phone 1-888-207-1694; portal at infplans.com/claims",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 8,
+      "section": "Contact Information",
+      "exact_language": "Robin Assist, 45 East Lincoln Street, Columbus, OH 43215. Phone number: 1-888-207-1694; or email: Claims@robinassist.com.",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "PPO Network Name",
+      "conclusion": "NEEDS MANUAL REVIEW — in-network and out-of-network coinsurance rates specified but PPO network name not stated in Policy Wording",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Co-insurance Rate Insurance pays 80%/90% [In-Network] ... Insurance pays 60%/70% [Out-of-Network]",
+      "confidence_score": 50,
+      "authority_level": 2,
+      "flag": "NEEDS MANUAL REVIEW — confirm PPO network name from ID card or infplans.com portal"
+    },
+    {
+      "benefit": "Eligibility",
+      "conclusion": "Non-US residents traveling outside their Home Country. Dependents (spouse, unmarried children age 14 days to 18) covered if traveling with insured.",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Class of Eligible Persons",
+      "exact_language": "Non-US residents who have completed the online application form and been accepted for cover. All persons eligible for insurance must be traveling outside of their Home Country and have paid the required Premium.",
+      "confidence_score": 90,
+      "authority_level": 2
+    },
+    {
+      "benefit": "Accidental Death and Dismemberment",
+      "conclusion": "Principal Sum: $25,000. Aggregate limit per policy: $50,000.",
+      "source_document": "INF_Elite_X_PolicyWording_20260617.pdf",
+      "page_number": 1,
+      "section": "Benefit Schedule",
+      "exact_language": "Accidental Death and Dismemberment Up to $25,000 Principal Sum",
+      "confidence_score": 90,
+      "authority_level": 2
+    }
+  ]
+}

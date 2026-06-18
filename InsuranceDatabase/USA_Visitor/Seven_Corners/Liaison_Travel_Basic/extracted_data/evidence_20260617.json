@@ -1,0 +1,331 @@
+{
+  "carrier": "Crum & Forster Segregated Portfolio Company (SPC) Captive",
+  "policyholder": "ITI SP (Fairmont Specialty Trust, ITA Global Trust, Cayman Islands)",
+  "administrator": "Seven Corners, Inc., 303 Congressional Blvd, Carmel IN 46032",
+  "plan": "Seven Corners Travel Medical Basic",
+  "plan_id": "FSG25-250506-01TM",
+  "master_policy_effective": "05/06/2026",
+  "master_policy_expiration": "05/05/2027",
+  "authority_level_default": 1,
+  "source_document_default": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+  "extraction_date": "2026-06-17",
+  "notes": "Certificate of Insurance (L1). CRITICAL FLAG: Document states 'THIS IS LIMITED BENEFIT, SHORT DURATION COVERAGE' and 'THE POLICY IS NOT RENEWABLE'. Despite this label, the plan pays URC (actual) costs, not fixed scheduled benefit amounts — the 'limited benefit' designation appears to refer to it being a short-term travel plan (not ACA-compliant), not a scheduled/indemnity structure. PPO network name NOT stated in certificate text — NEEDS MANUAL REVIEW.",
+  "evidence": [
+    {
+      "benefit": "Plan Name Confirmation",
+      "conclusion": "Correct plan name is 'Seven Corners Travel Medical Basic', NOT 'Liaison Travel Basic'. The directory name is legacy.",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 7,
+      "section": "Footer",
+      "exact_language": "Seven Corners Travel Medical Basic 7 FSG25-250506-01TM",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Carrier Identity",
+      "conclusion": "Carrier: Crum & Forster Segregated Portfolio Company (SPC) Captive. Policyholder: ITI SP (Fairmont Specialty Trust, Cayman Islands).",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 29,
+      "section": "Definitions — Company",
+      "exact_language": "Company: Crum & Forster Segregated Portfolio Company (SPC) Captive.",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Limited Benefit / Short Duration Warning",
+      "conclusion": "Plan carries 'LIMITED BENEFIT, SHORT DURATION COVERAGE' disclosure. Plan is NOT RENEWABLE.",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 1,
+      "section": "Cover Page",
+      "exact_language": "THIS IS LIMITED BENEFIT, SHORT DURATION COVERAGE",
+      "confidence_score": 98,
+      "authority_level": 1,
+      "flag": "CRITICAL — 'Limited benefit' designation refers to short-term/non-ACA status, not scheduled benefit structure. Plan still pays URC amounts. Confirm interpretation."
+    },
+    {
+      "benefit": "Medical Maximum — Age 14 days to 69 years",
+      "conclusion": "Options: $50,000 / $100,000 / $500,000 / $1,000,000",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Medical Maximum Options 14 days to 69 years: $50,000; $100,000; $500,000; $1,000,000",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Medical Maximum — Age 70-79",
+      "conclusion": "Options: $50,000 / $100,000",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "70 to 79 years: $50,000; $100,000",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Medical Maximum — Age 80 and over",
+      "conclusion": "$10,000 only (single tier, no options)",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "80 years & over: $10,000",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Deductible",
+      "conclusion": "Options: $0 / $100 / $250 / $500 / $1,000 / $5,000 per Period of Coverage",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Deductible Options (You pay) $0; $100; $250; $500; $1,000; $5,000",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Coinsurance — In-Network (USA)",
+      "conclusion": "100% paid by plan after deductible — no coinsurance penalty in-network",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Inside the United States: In PPO Network: 100% to Medical Maximum",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Coinsurance — Out-of-Network (USA)",
+      "conclusion": "Plan pays 80% of first $10,000 in Covered Expenses, then 100% to Medical Maximum. Effective OOP max on Covered Expenses: $2,000.",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Out of PPO Network: 80% of the first $10,000 in Covered Expenses, then 100% to Medical Maximum",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Coinsurance — Outside USA",
+      "conclusion": "100% to Medical Maximum — no coinsurance penalty outside USA",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Outside the United States: 100% to Medical Maximum",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Emergency Room — Copay",
+      "conclusion": "$100 copay per ER visit (in addition to deductible and coinsurance); ER covered at URC up to Medical Maximum",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Emergency Room Services URC up to Medical Maximum $100 Copay per visit",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Physician Office Visits — Copay",
+      "conclusion": "$30 copay per visit; covered at URC up to Medical Maximum",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Physician Office Visits URC up to Medical Maximum $30 Copay per visit",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Urgent Care Visits — Copay",
+      "conclusion": "$30 copay per Urgent Care visit; covered at URC up to Medical Maximum",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Urgent Care Visits URC up to Medical Maximum $30 Copay per visit",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Prescription Drugs",
+      "conclusion": "URC up to Medical Maximum — no separate prescription sub-limit; subject to deductible and coinsurance",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 9,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Prescription Drugs URC up to Medical Maximum",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Physical Therapy / Physiotherapy",
+      "conclusion": "EXCLUDED — Physiotherapy and Chiropractic Care are explicitly excluded with no exceptions",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 26,
+      "section": "Section 9 — Exclusions, item aa",
+      "exact_language": "Physiotherapy and Chiropractic Care Exclusion: You are not covered for Physiotherapy or Chiropractic Care.",
+      "confidence_score": 98,
+      "authority_level": 1,
+      "flag": "KEY WEAKNESS — no PT/physio coverage at all. Competitor plans provide limited PT; this plan has zero."
+    },
+    {
+      "benefit": "Mental Illness",
+      "conclusion": "EXCLUDED — Mental Illness not covered",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 26,
+      "section": "Section 9 — Exclusions, item v",
+      "exact_language": "Mental Illness Exclusion: You are not covered for Mental Illness or Rest Cures.",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Local Ambulance — In USA",
+      "conclusion": "$5,000 maximum within USA",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 9,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Inside the United States: $5,000",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Acute Onset of Pre-Existing Conditions — Age 14d to 69",
+      "conclusion": "$25,000 maximum",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 9,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Acute Onset of Pre-Existing Conditions 14 days to 69 years: $25,000",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Acute Onset of Pre-Existing Conditions — Age 70-79",
+      "conclusion": "$2,500 maximum — very low",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 9,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "70 to 79 years: $2,500",
+      "confidence_score": 98,
+      "authority_level": 1,
+      "flag": "VERY LIMITED for seniors — $2,500 acute onset for age 70-79"
+    },
+    {
+      "benefit": "Acute Onset of Pre-Existing Conditions — Age 80+",
+      "conclusion": "NOT AVAILABLE — no acute onset coverage for age 80 and over",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 9,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "80 years & over: N/A",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Acute Onset Definition",
+      "conclusion": "Acute onset requires: (a) sudden, unexpected, no advanced warning; (b) Medical Emergency; (c) during Period of Coverage AND after 7-day waiting period; (d) Treatment within 24 hours; (e) no Rx change in last 30 days; (f) condition is NOT a chronic condition with expected episodes or a deteriorating condition.",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 28,
+      "section": "Section 10 — Definitions — Acute Onset of Pre-Existing Condition(s)",
+      "exact_language": "Acute Onset of Pre-Existing Condition(s): The occurrence of a Pre-Existing Condition that meets all the following criteria: a. It is sudden, unexpected, and occurs without advanced warning; b. It is a Medical Emergency; c. It occurs during the Period of Coverage, and after the 168-hour (7-day) waiting period; d. You obtained Treatment within twenty-four (24) hours of the occurrence; e. You did not have a change in prescription or Treatment related to the underlying Pre-Existing Condition within the last thirty (30) days; and f. Your Pre-Existing Condition is not Congenital, a previously diagnosed chronic condition with expected episodes or flare-ups, or a deteriorating condition which cannot be controlled and gradually intensifies over time.",
+      "confidence_score": 98,
+      "authority_level": 1,
+      "flag": "RESTRICTIVE — condition f explicitly excludes 'previously diagnosed chronic condition with expected episodes or flare-ups' which would disqualify most cardiac/diabetic/hypertension acute events"
+    },
+    {
+      "benefit": "Acute Onset — 7-Day Waiting Period",
+      "conclusion": "Coverage begins 168 hours (7 days) after Effective Date. Ceases when condition no longer acute or upon Hospital discharge.",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 13,
+      "section": "Section 3.6 — Acute Onset of Pre-Existing Condition(s)",
+      "exact_language": "Coverage begins 168 hours (7 days) after the Effective Date and ceases on the earliest of: a. The condition no longer being considered acute; or b. Your discharge from the Hospital.",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Pre-existing Condition Definition",
+      "conclusion": "36-month lookback: condition is pre-existing if diagnosed, treated, recommended treatment, OR if there is reasonable medical certainty it existed within the last 36 months, whether or not manifested or disclosed.",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 34,
+      "section": "Section 10 — Definitions — Pre-Existing Condition(s)",
+      "exact_language": "Pre-Existing Condition(s): Any Injury or Illness, including Mental Illness, which meets one or more of the following criteria prior to Your Effective Date: a. You were diagnosed; b. You received Treatment; c. Treatment was recommended to You; d. There is reasonable medical certainty that the Injury or Illness existed within the last thirty-six (36) months, whether or not previously manifested, symptomatic, known, diagnosed, treated, or disclosed.",
+      "confidence_score": 98,
+      "authority_level": 1,
+      "flag": "36-MONTH LOOKBACK — broad definition; 'reasonable medical certainty' clause can capture even undiagnosed conditions"
+    },
+    {
+      "benefit": "Emergency Medical Evacuation",
+      "conclusion": "$250,000 — separate from Medical Maximum. Must be arranged by Seven Corners Assist.",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 9,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Emergency Medical Evacuation and Repatriation $250,000 (separate from Medical Maximum)",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "COVID-19 Treatment",
+      "conclusion": "Covered at URC up to Medical Maximum — treated same as any other illness",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 9,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "COVID-19 Treatment URC up to Medical Maximum",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Period of Coverage",
+      "conclusion": "Minimum 5 days; maximum 364 days. Extendable in 5-day increments up to 364 days total.",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Period of Coverage 5 days to 364 days Extension of Coverage Extendable for a total of up to 364 days",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Benefit Period",
+      "conclusion": "180 days from onset of covered Injury/Illness (time window to incur and receive treatment)",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "Benefit Period 180 days",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Claims Notification",
+      "conclusion": "Written notice of claim must be given within 90 days after the Occurrence",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 37,
+      "section": "Section 11.1 — Notice of Claim",
+      "exact_language": "Written notice of claim must be given to the Company within ninety (90) days after the Occurrence or commencement of any Occurrence covered by the Plan.",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Claims Contact",
+      "conclusion": "Claims email: claims@sevencorners.com",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 9,
+      "section": "Per context from prior extraction (pages 1-5)",
+      "exact_language": "claims@sevencorners.com",
+      "confidence_score": 95,
+      "authority_level": 1
+    },
+    {
+      "benefit": "Eligibility",
+      "conclusion": "Must be traveling outside Home Country. Green card holders traveling within USA are NOT eligible.",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 6,
+      "section": "Section 1.2 — Eligibility",
+      "exact_language": "You are traveling outside Your Home Country ... You are not a United States green card holder traveling within the United States.",
+      "confidence_score": 98,
+      "authority_level": 1
+    },
+    {
+      "benefit": "PPO Network Name",
+      "conclusion": "NEEDS MANUAL REVIEW — certificate references 'PPO Network' and 'In PPO Network' but does not name the network. Network identity not confirmed from this document.",
+      "source_document": "Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "page_number": 8,
+      "section": "Section 2 — Schedule of Benefits",
+      "exact_language": "In PPO Network: 100% to Medical Maximum",
+      "confidence_score": 50,
+      "authority_level": 1,
+      "flag": "NEEDS MANUAL REVIEW — confirm PPO network name from Seven Corners ID card or sevencorners.com"
+    }
+  ]
+}

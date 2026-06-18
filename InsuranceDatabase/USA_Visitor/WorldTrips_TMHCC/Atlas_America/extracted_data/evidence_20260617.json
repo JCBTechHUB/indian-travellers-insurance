@@ -1,0 +1,103 @@
+[
+  {
+    "carrier": "TMHCC (CI) Insurance SPC Ltd. (Tokio Marine HCC)",
+    "plan": "Atlas Travel (Atlas America)",
+    "benefit": "DOCUMENT TYPE FLAG",
+    "conclusion": "NEEDS MANUAL REVIEW — Document obtained is a 3-page Confirmation of Coverage (not a full Certificate of Insurance). Additional data sourced from Atlas Series brochure/comparison doc (authority L5). Full Certificate PDF not obtained.",
+    "source_document": "Atlas_America_Certificate_20260617.pdf",
+    "page_number": 2,
+    "section": "CONFIRMATION OF COVERAGE",
+    "exact_language": "We are pleased to confirm short term medical coverage under the Atlas series, provided through membership in the TMHCC(CI) - Travel Trust",
+    "confidence_score": 70,
+    "authority_level": 4,
+    "flag": "NEEDS MANUAL REVIEW — Full Certificate not obtained. Evidence below is from Confirmation of Coverage (L4) and Brochure/Comparison (L5). Obtain full Certificate from worldtrips.com for authoritative evidence."
+  },
+  {
+    "carrier": "TMHCC (CI) Insurance SPC Ltd. (Tokio Marine HCC)",
+    "plan": "Atlas Travel (Atlas America)",
+    "benefit": "Carrier Confirmation",
+    "conclusion": "Carrier: TMHCC(CI) Insurance SPC Ltd. Administered by WorldTrips (Tokio Marine HCC group). Confirmed for India → United States travel.",
+    "source_document": "Atlas_America_Certificate_20260617.pdf",
+    "page_number": 2,
+    "section": "CONFIRMATION OF COVERAGE",
+    "exact_language": "coverage under the Atlas series, provided through membership in the TMHCC(CI) - Travel Trust, Cayman Islands, Bermuda and to its members by TMHCC (CI) Insurance SPC Ltd. This insurance is administered by WorldTrips, a member of the Tokio Marine HCC group of companies.",
+    "confidence_score": 100,
+    "authority_level": 4
+  },
+  {
+    "carrier": "TMHCC (CI) Insurance SPC Ltd. (Tokio Marine HCC)",
+    "plan": "Atlas Travel (Atlas America)",
+    "benefit": "Network",
+    "conclusion": "UnitedHealthcare Options PPO network confirmed explicitly on ID card. Payer ID: USN01.",
+    "source_document": "Atlas_America_Certificate_20260617.pdf",
+    "page_number": 1,
+    "section": "Insurance ID Card",
+    "exact_language": "Plan Name: UnitedHealthcare Options PPO / Provider UnitedHealthcare Member ID / Payer ID: USN01",
+    "confidence_score": 100,
+    "authority_level": 4
+  },
+  {
+    "carrier": "TMHCC (CI) Insurance SPC Ltd. (Tokio Marine HCC)",
+    "plan": "Atlas Travel (Atlas America)",
+    "benefit": "Maximum Coverage Limit",
+    "conclusion": "Age 80+: $10,000; Age 65-79: $50K or $100K; Others: $50K, $100K, $250K, $500K, $1M, or $2M. Source: brochure/comparison (L5).",
+    "source_document": "Atlas_America_Premium_Comparison_20260617.pdf",
+    "page_number": 3,
+    "section": "Atlas Series Schedule of Benefits — Overall Maximum Limit Per Certificate Period",
+    "exact_language": "Age 80 or older - $10,000; Age 65 to 79 - $50,000 or $100,000; All others - $50,000, $100,000, $250,000, $500,000, $1,000,000, or $2,000,000",
+    "confidence_score": 70,
+    "authority_level": 5,
+    "flag": "NEEDS MANUAL REVIEW — Source is brochure/comparison, not full Certificate."
+  },
+  {
+    "carrier": "TMHCC (CI) Insurance SPC Ltd. (Tokio Marine HCC)",
+    "plan": "Atlas Travel (Atlas America)",
+    "benefit": "Coinsurance",
+    "conclusion": "Atlas Travel: pays 100% of eligible expenses after deductible up to overall max. No in-network/out-of-network differential (unlike Atlas Essential which has 70% PPO/outside PPO). Source: brochure (L5).",
+    "source_document": "Atlas_America_Premium_Comparison_20260617.pdf",
+    "page_number": 3,
+    "section": "Atlas Series Schedule of Benefits — Coinsurance",
+    "exact_language": "We will pay 100% of eligible expenses after the deductible up to the overall maximum limit. [Atlas Travel column]",
+    "confidence_score": 70,
+    "authority_level": 5,
+    "flag": "NEEDS MANUAL REVIEW — Source is brochure/comparison, not full Certificate."
+  },
+  {
+    "carrier": "TMHCC (CI) Insurance SPC Ltd. (Tokio Marine HCC)",
+    "plan": "Atlas Travel (Atlas America)",
+    "benefit": "Emergency Room",
+    "conclusion": "ER illness (US): $200 co-payment for ER facility fee if illness does not result in hospitalization. No co-payment for injury. No co-payment outside US. Source: brochure (L5).",
+    "source_document": "Atlas_America_Premium_Comparison_20260617.pdf",
+    "page_number": 3,
+    "section": "Atlas Series Schedule of Benefits — Emergency Room Co-payment",
+    "exact_language": "You shall be responsible for a $200 co-payment for the emergency room facility fee for each use of the emergency room for an illness unless you are admitted to the hospital. There will be no co-payment for emergency room treatment of an injury.",
+    "confidence_score": 70,
+    "authority_level": 5,
+    "flag": "NEEDS MANUAL REVIEW — Source is brochure/comparison, not full Certificate."
+  },
+  {
+    "carrier": "TMHCC (CI) Insurance SPC Ltd. (Tokio Marine HCC)",
+    "plan": "Atlas Travel (Atlas America)",
+    "benefit": "Acute Onset of Pre-existing Conditions",
+    "conclusion": "Acute Onset covered up to overall max + $25,000 emergency medical evacuation. Must be under 80. Not available for Atlas Essential. Source: brochure (L5).",
+    "source_document": "Atlas_America_Premium_Comparison_20260617.pdf",
+    "page_number": 3,
+    "section": "Atlas Series Schedule of Benefits — Acute Onset of Pre-existing Condition",
+    "exact_language": "Acute Onset of Pre-existing Condition Up to the overall maximum limit / Up to $25,000 lifetime maximum for Emergency Medical Evacuation",
+    "confidence_score": 70,
+    "authority_level": 5,
+    "flag": "NEEDS MANUAL REVIEW — Source is brochure/comparison, not full Certificate."
+  },
+  {
+    "carrier": "TMHCC (CI) Insurance SPC Ltd. (Tokio Marine HCC)",
+    "plan": "Atlas Travel (Atlas America)",
+    "benefit": "COVID-19",
+    "conclusion": "COVID-19 covered same as any other illness. Source: Confirmation of Coverage (L4).",
+    "source_document": "Atlas_America_Certificate_20260617.pdf",
+    "page_number": 2,
+    "section": "CONFIRMATION OF COVERAGE",
+    "exact_language": "COVID 19: Covered same as any other illness to the above mentioned medical maximum.",
+    "confidence_score": 80,
+    "authority_level": 4
+  }
+]
