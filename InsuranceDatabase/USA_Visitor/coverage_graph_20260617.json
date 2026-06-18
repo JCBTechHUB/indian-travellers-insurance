@@ -1,0 +1,409 @@
+{
+  "meta": {
+    "version": "2026-06-17",
+    "phase": "Phase 15 — Coverage Knowledge Graph",
+    "purpose": "Normalized benefit mapping across all B-1/B-2 plans. Enables apples-to-apples comparison for Phase 24 ranking. Every value traces to an evidence.json record.",
+    "plans_included": 9,
+    "plans_with_full_certificate": 8,
+    "plans_with_partial_docs": 1,
+    "note": "Atlas_America has only L4/L5 docs — all its values are NEEDS MANUAL REVIEW. All other plans are L1 Certificate or L2 Policy Wording."
+  },
+
+  "plan_index": {
+    "Patriot_America_Plus": {
+      "display_name": "Patriot America Plus",
+      "carrier": "SiriusPoint Specialty Insurance Corporation",
+      "administrator": "IMG (International Medical Group)",
+      "am_best": "A- (Excellent)",
+      "plan_type": "Comprehensive",
+      "evidence_file": "IMG/Patriot_America_Plus/extracted_data/evidence_20260617.json",
+      "authority_level": 1
+    },
+    "Patriot_America_Platinum": {
+      "display_name": "Patriot America Platinum",
+      "carrier": "SiriusPoint Specialty Insurance Corporation",
+      "administrator": "IMG (International Medical Group)",
+      "am_best": "A- (Excellent)",
+      "plan_type": "Comprehensive",
+      "evidence_file": "IMG/Patriot_America_Platinum/extracted_data/evidence_20260617.json",
+      "authority_level": 1
+    },
+    "CoverAmerica_Gold": {
+      "display_name": "CoverAmerica Gold",
+      "carrier": "Sirius Specialty Insurance Corporation (publ) [now SiriusPoint — 2021 cert not updated]",
+      "administrator": "VisitorsCoverage (aggregator)",
+      "am_best": "A- (Excellent)",
+      "plan_type": "Comprehensive",
+      "evidence_file": "VisitorsCoverage_SiriusPoint/CoverAmerica_Gold/extracted_data/evidence_20260617.json",
+      "authority_level": 1,
+      "flag": "NEEDS MANUAL REVIEW — carrier name in document is pre-rebrand"
+    },
+    "Safe_Travels_USA_Comprehensive": {
+      "display_name": "Safe Travels USA Comprehensive",
+      "carrier": "Zurich Insurance Europe AG, Belgian Branch",
+      "administrator": "Trawick International",
+      "am_best": "AA (Stable)",
+      "plan_type": "Comprehensive",
+      "evidence_file": "Trawick/Safe_Travels_USA_Comprehensive/extracted_data/evidence_20260617.json",
+      "authority_level": 1
+    },
+    "VisitorSecure": {
+      "display_name": "VisitorSecure",
+      "carrier": "TMHCC(CI) Insurance SPC Ltd. (Tokio Marine HCC)",
+      "administrator": "WorldTrips",
+      "am_best": "A++ (Superior)",
+      "plan_type": "SCHEDULED BENEFIT — fixed dollar amounts per service, NOT comprehensive major medical",
+      "evidence_file": "WorldTrips_TMHCC/VisitorSecure/extracted_data/evidence_20260617.json",
+      "authority_level": 1,
+      "flag": "CRITICAL — Scheduled/indemnity plan. Caps per service regardless of actual cost. Do not compare directly to comprehensive plans."
+    },
+    "Atlas_America": {
+      "display_name": "Atlas America",
+      "carrier": "Tokio Marine HCC",
+      "administrator": "WorldTrips",
+      "am_best": "A++ (Superior)",
+      "plan_type": "Comprehensive",
+      "evidence_file": "WorldTrips_TMHCC/Atlas_America/extracted_data/evidence_20260617.json",
+      "authority_level": 4,
+      "flag": "NEEDS MANUAL REVIEW — full Certificate not obtained. All values from Confirmation of Coverage (L4) + brochure (L5)."
+    },
+    "INF_Elite_X": {
+      "display_name": "INF Elite Plan X",
+      "carrier": "Crum & Forster SPC",
+      "administrator": "Robin Assist (INF Plans portal)",
+      "am_best": "A (Excellent)",
+      "plan_type": "Comprehensive — with actual pre-existing condition coverage (not just acute onset)",
+      "evidence_file": "INF/INF_Elite_X/extracted_data/evidence_20260617.json",
+      "authority_level": 2,
+      "flag": "KEY DIFFERENTIATOR — covers actual pre-existing conditions. Cancer and mental health EXCLUDED."
+    },
+    "SC_Travel_Medical_Basic": {
+      "display_name": "Seven Corners Travel Medical Basic",
+      "carrier": "Crum & Forster SPC (via ITI SP segregated portfolio)",
+      "administrator": "Seven Corners Inc.",
+      "am_best": "A (Excellent)",
+      "plan_type": "Comprehensive (labeled 'Limited Benefit, Short Duration' = short-term/non-ACA designation, not indemnity structure)",
+      "evidence_file": "Seven_Corners/Liaison_Travel_Basic/extracted_data/evidence_20260617.json",
+      "authority_level": 1,
+      "flag": "NOT RENEWABLE. Physiotherapy completely excluded."
+    },
+    "SC_Travel_Medical_Choice": {
+      "display_name": "Seven Corners Travel Medical Choice",
+      "carrier": "Crum & Forster SPC (via ITI SP segregated portfolio)",
+      "administrator": "Seven Corners Inc.",
+      "am_best": "A (Excellent)",
+      "plan_type": "Comprehensive (labeled 'Limited Benefit, Short Duration' = short-term/non-ACA designation)",
+      "evidence_file": "Seven_Corners/Liaison_Travel_Choice/extracted_data/evidence_20260617.json",
+      "authority_level": 1,
+      "flag": "NOT RENEWABLE. Upgrade tier above Basic."
+    }
+  },
+
+  "comparison_matrix": {
+
+    "medical_maximum_age_under70": {
+      "canonical_name": "Medical Maximum — Age Under 70",
+      "aliases": ["Total Maximum Benefit", "Medical Maximum Options", "Total Annual Maximum", "Period of Coverage Limit"],
+      "plans": {
+        "Patriot_America_Plus":       { "value": "$50K / $100K / $250K / $500K / $1M", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "$1M / $2M / $5M / $8M (age ≤64); $1M (age 65–69)", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "$50K / $100K / $250K (age ≤64); $50K / $100K (age 65–69)", "confidence": 95, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "$20K / $50K / $100K / $250K / $500K / $1M", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "Plan A $50K / Plan B $75K / Plan C $100K / Plan D $175K (age 14d–69)", "confidence": 95, "authority_level": 1, "flag": "SCHEDULED BENEFIT — these are aggregate caps; individual services capped separately" },
+        "Atlas_America":              { "value": "$50K / $100K / $250K / $500K / $1M / $2M", "confidence": 60, "authority_level": 4, "flag": "NEEDS MANUAL REVIEW" },
+        "INF_Elite_X":                { "value": "$150K / $250K / $300K / $500K / $1M (age 0–69)", "confidence": 90, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "$50K / $100K / $500K / $1M (age 14d–69)", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "$50K / $100K / $500K / $1M (age 14d–69)", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "medical_maximum_age_70_79": {
+      "canonical_name": "Medical Maximum — Age 70–79",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "$50K / $100K", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "$100K", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "$50K / $100K (age 65+)", "confidence": 95, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "Same tiers as under-70 (no explicit reduction stated)", "confidence": 80, "authority_level": 1, "flag": "NEEDS MANUAL REVIEW — verify age-band reduction" },
+        "VisitorSecure":              { "value": "Plan A $50K / Plan B $75K / Plan C $100K (age 70–79)", "confidence": 95, "authority_level": 1, "flag": "SCHEDULED BENEFIT" },
+        "Atlas_America":              { "value": "$50K / $100K (age 65–79)", "confidence": 60, "authority_level": 4, "flag": "NEEDS MANUAL REVIEW" },
+        "INF_Elite_X":                { "value": "$75K (age 70–99)", "confidence": 90, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "$50K / $100K (age 70–79)", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "$50K / $100K (age 70–79)", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "medical_maximum_age_80_plus": {
+      "canonical_name": "Medical Maximum — Age 80+",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "$10K (age 80–84); NOT AVAILABLE age 85+", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "$20K (age 80+)", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "NEEDS MANUAL REVIEW — not clearly stated for age 80+", "confidence": 50, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 1 },
+        "VisitorSecure":              { "value": "Plan A $10K / Plan B–D NOT AVAILABLE (age 80+)", "confidence": 95, "authority_level": 1, "flag": "SCHEDULED BENEFIT" },
+        "Atlas_America":              { "value": "$10K (age 80+)", "confidence": 60, "authority_level": 4, "flag": "NEEDS MANUAL REVIEW" },
+        "INF_Elite_X":                { "value": "$75K (age 70–99; no separate 80+ reduction stated)", "confidence": 90, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "$10K (age 80+)", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "$10K (age 80+)", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "deductible_options": {
+      "canonical_name": "Deductible Options (per Period of Coverage / per Injury/Sickness)",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "$0 / $100 / $250 / $500 / $1,000 / $2,500", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "$0 / $100 / $250 / $500 / $1,000 / $2,500 / $5,000 / $10,000 / $25,000", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "$100 / $250 / $500 / $1,000 / $2,500 / $5,000 (NO $0 option)", "confidence": 95, "authority_level": 1, "flag": "Minimum $100 deductible — no $0 option unlike IMG plans" },
+        "Safe_Travels_USA_Comprehensive": { "value": "$0 / $50 / $100 / $250 / $500 / $1,000 / $2,500 / $5,000 (includes $50 option)", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "$0 / $50 / $100 (age 14d–69); $100 / $200 (age 70+)", "confidence": 95, "authority_level": 1, "flag": "SCHEDULED BENEFIT — deductible per period, applied before fixed benefit amounts" },
+        "Atlas_America":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 4 },
+        "INF_Elite_X":                { "value": "$100 / $250 / $500 / $1,000 / $2,500 / $5,000 per Injury/Sickness", "confidence": 90, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "$0 / $100 / $250 / $500 / $1,000 / $5,000", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "$0 / $100 / $250 / $500 / $1,000 / $5,000", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "coinsurance_in_network": {
+      "canonical_name": "Coinsurance — In-Network / USA PPO (Plan pays)",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "100% (plan pays all after deductible)", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "100% everywhere (no PPO distinction)", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "100% in-network", "confidence": 95, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "100% everywhere (no PPO distinction)", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "N/A — scheduled benefit; UHC Options PPO used for discounts but no coinsurance split", "confidence": 95, "authority_level": 1 },
+        "Atlas_America":              { "value": "100% (no PPO penalty)", "confidence": 60, "authority_level": 4, "flag": "NEEDS MANUAL REVIEW" },
+        "INF_Elite_X":                { "value": "80% or 90% (plan pays); insured pays 10% or 20%", "confidence": 90, "authority_level": 2, "flag": "IMPORTANT — NOT 100% in-network. INF has ongoing coinsurance even in-network." },
+        "SC_Travel_Medical_Basic":    { "value": "100% in PPO network", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "100% in PPO network", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "coinsurance_out_of_network": {
+      "canonical_name": "Coinsurance — Out-of-Network / Non-PPO (Plan pays)",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "90% (insured pays 10%); OOP max $500 per Period of Coverage", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "100% everywhere (no out-of-network penalty)", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "80% (insured pays 20%); OOP max $1,000", "confidence": 95, "authority_level": 1, "flag": "Weaker than IMG Patriot Plus (90%) and Platinum (100%)" },
+        "Safe_Travels_USA_Comprehensive": { "value": "100% everywhere (no out-of-network penalty)", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "N/A — scheduled benefit plan; UHC PPO for discount access only", "confidence": 95, "authority_level": 1 },
+        "Atlas_America":              { "value": "100% (no PPO penalty)", "confidence": 60, "authority_level": 4, "flag": "NEEDS MANUAL REVIEW" },
+        "INF_Elite_X":                { "value": "60% or 70% (plan pays); insured pays 30% or 40%", "confidence": 90, "authority_level": 2, "flag": "CRITICAL WEAKNESS — 30-40% out-of-pocket out-of-network. Highest OOP exposure of all plans." },
+        "SC_Travel_Medical_Basic":    { "value": "80% of first $10K Covered Expenses, then 100%; effective OOP max $2,000", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "90% of first $10K Covered Expenses, then 100%; effective OOP max $1,000", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "emergency_room": {
+      "canonical_name": "Emergency Room Coverage",
+      "aliases": ["ER Services", "Hospital Emergency Room"],
+      "plans": {
+        "Patriot_America_Plus":       { "value": "Injury: 100% in-network, 90% OON. Illness: same + $250 extra deductible per ER visit for illness", "confidence": 98, "authority_level": 1, "flag": "$250 extra ER illness deductible" },
+        "Patriot_America_Platinum":   { "value": "100% everywhere. Illness: $250 extra deductible per ER visit for illness", "confidence": 98, "authority_level": 1, "flag": "$250 extra ER illness deductible" },
+        "CoverAmerica_Gold":          { "value": "Standard coinsurance applies; no extra ER deductible noted", "confidence": 80, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "100% up to Medical Maximum; $200 extra deductible per ER visit for illness (not injury)", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "$375–$785 fixed (must be admitted to hospital); no benefit if not admitted", "confidence": 95, "authority_level": 1, "flag": "SCHEDULED BENEFIT — admission required; very limited" },
+        "Atlas_America":              { "value": "$200 co-payment per ER visit for illness", "confidence": 60, "authority_level": 4, "flag": "NEEDS MANUAL REVIEW" },
+        "INF_Elite_X":                { "value": "Hospital ancillary (includes ER): capped at $20,000 total; no separate ER copay stated", "confidence": 88, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "URC up to Medical Maximum; $100 copay per ER visit", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "URC up to Medical Maximum; $100 copay per ER visit", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "physical_therapy": {
+      "canonical_name": "Physical Therapy (Post-Discharge / Outpatient PT)",
+      "aliases": ["Physiotherapy", "PT"],
+      "plans": {
+        "Patriot_America_Plus":       { "value": "Covered: 100% in-network, 90% OON, 100% international. No visit cap stated in evidence.", "confidence": 88, "authority_level": 1, "flag": "NEEDS MANUAL REVIEW — no visit/dollar cap confirmed from Certificate" },
+        "Patriot_America_Platinum":   { "value": "Covered: 100% everywhere. No visit cap stated in evidence.", "confidence": 88, "authority_level": 1, "flag": "NEEDS MANUAL REVIEW — no visit/dollar cap confirmed from Certificate" },
+        "CoverAmerica_Gold":          { "value": "Covered: 100% in-network, 80% OON. Requires medical order or treatment plan.", "confidence": 88, "authority_level": 1, "flag": "NEEDS MANUAL REVIEW — no visit/dollar cap confirmed from Certificate" },
+        "Safe_Travels_USA_Comprehensive": { "value": "$50/visit, max 10 visits ($500 total). Must be prescribed by Physician. 1 visit/day.", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "$40/visit, max 12 visits. Fixed dollar amounts per visit.", "confidence": 95, "authority_level": 1, "flag": "SCHEDULED BENEFIT" },
+        "Atlas_America":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 4 },
+        "INF_Elite_X":                { "value": "$50/visit, max $500 total (10 visits). Very limited.", "confidence": 90, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "EXCLUDED — Physiotherapy and Chiropractic Care completely excluded", "confidence": 98, "authority_level": 1, "flag": "ZERO PT coverage" },
+        "SC_Travel_Medical_Choice":   { "value": "$50/visit, max 10 visits ($500 total). Must be prescribed by Physician.", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "emergency_medical_evacuation": {
+      "canonical_name": "Emergency Medical Evacuation",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "$1,000,000. Must be coordinated by Company. In-network 100%, OON 90%.", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "Up to full Period of Coverage limit (e.g., $8M if $8M plan). Highest of all plans.", "confidence": 98, "authority_level": 1, "flag": "BEST — evacuation limit = plan max" },
+        "CoverAmerica_Gold":          { "value": "$1,000,000 — INCLUDES pre-existing conditions (unique among all plans reviewed)", "confidence": 95, "authority_level": 1, "flag": "KEY FEATURE — pre-existing included in evacuation" },
+        "Safe_Travels_USA_Comprehensive": { "value": "100% up to $1,000,000. Acute Onset evacuation: up to $25,000.", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "$50,000 lifetime max. ONLY for members under age 70.", "confidence": 95, "authority_level": 1, "flag": "CRITICAL WEAKNESS — $50K only; unavailable age 70+" },
+        "Atlas_America":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 4 },
+        "INF_Elite_X":                { "value": "$25,000 maximum. Lowest of all plans reviewed.", "confidence": 90, "authority_level": 2, "flag": "CRITICAL WEAKNESS — $25K evacuation limit" },
+        "SC_Travel_Medical_Basic":    { "value": "$250,000 (separate from Medical Maximum). Must be arranged by Seven Corners Assist.", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "$500,000 (separate from Medical Maximum). Must be arranged by Seven Corners Assist.", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "acute_onset_age_under70": {
+      "canonical_name": "Acute Onset of Pre-existing Conditions — Age Under 70",
+      "note": "INF Elite X does not use acute onset — it covers pre-existing conditions directly. Listed as N/A here.",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "Up to full Period of Coverage limit (e.g., $1M if $1M plan). Age <70 required. 30-day stability, 24-hr treatment.", "confidence": 98, "authority_level": 1, "flag": "BEST acute onset among comprehensive plans" },
+        "Patriot_America_Platinum":   { "value": "Non-US citizens: $1,000,000 (age ≤69). US citizens: tiered by whether they have primary health plan.", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "Up to full Period of Coverage limit EXCEPT cardiac: $36,000 sub-limit for angina/heart attack/stroke (age ≤69).", "confidence": 95, "authority_level": 1, "flag": "$36K cardiac sub-limit" },
+        "Safe_Travels_USA_Comprehensive": { "value": "Up to Medical Maximum EXCEPT cardiac/stroke: $25,000 sub-limit (age ≤69). Overall acute onset benefit is Medical Maximum.", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "Subject to scheduled benefit amounts per service type. Effective acute onset coverage is very limited.", "confidence": 90, "authority_level": 1, "flag": "SCHEDULED BENEFIT — actual payout far less than headline" },
+        "Atlas_America":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 4 },
+        "INF_Elite_X":                { "value": "N/A — INF covers actual pre-existing conditions directly (not acute onset model). Pre-ex max: $25K–$50K.", "confidence": 90, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "$25,000 total (age 14d–69). 7-day waiting period. No cardiac-specific sub-limit.", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "Cardiac/Stroke: $50,000; All other: $75,000 (age 14d–69). 7-day waiting period.", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "acute_onset_age_70_79": {
+      "canonical_name": "Acute Onset of Pre-existing Conditions — Age 70–79",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "NOT COVERED — acute onset only available for insured persons under age 70", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "NOT COVERED — acute onset only available for insured persons under age 70", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "Total $30,000 (age 70–79). Cardiac NOT covered age 70+.", "confidence": 95, "authority_level": 1, "flag": "Only plan with named 70–79 acute onset tier among comprehensive plans" },
+        "Safe_Travels_USA_Comprehensive": { "value": "$35,000 (age 70+). Cardiac/stroke sub-limit: $15,000 (age 70+).", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "Subject to reduced scheduled benefit amounts; significantly limited", "confidence": 85, "authority_level": 1 },
+        "Atlas_America":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 4 },
+        "INF_Elite_X":                { "value": "Pre-ex covered directly: $20K max (age 70–99). Not acute-onset model.", "confidence": 90, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "$2,500 (age 70–79). Very limited.", "confidence": 98, "authority_level": 1, "flag": "WEAK — $2,500 only" },
+        "SC_Travel_Medical_Choice":   { "value": "Cardiac/Stroke: $5,000; All other: $7,500 (age 70–79).", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "acute_onset_age_80_plus": {
+      "canonical_name": "Acute Onset of Pre-existing Conditions — Age 80+",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "NOT COVERED", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "NOT COVERED", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "NOT COVERED (age 80+)", "confidence": 95, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "$20,000 (age 80+). Cardiac/stroke sub-limit: $15,000.", "confidence": 95, "authority_level": 1, "flag": "ONLY plan with acute onset coverage for age 80+" },
+        "VisitorSecure":              { "value": "NOT COVERED age 80+ for acute onset specifically", "confidence": 90, "authority_level": 1 },
+        "Atlas_America":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 4 },
+        "INF_Elite_X":                { "value": "Pre-ex covered directly: $20K max (age 70–99). Applies at 80+.", "confidence": 90, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "NOT AVAILABLE (N/A)", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "NOT AVAILABLE (N/A)", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "preexisting_condition_coverage_model": {
+      "canonical_name": "Pre-existing Condition Coverage Model",
+      "note": "Documents whether the plan covers pre-existing conditions at all, and in what form.",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "EXCLUDED except Acute Onset (up to plan max, age <70). 3-year lookback.", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "EXCLUDED except Acute Onset ($1M for non-US citizens age ≤69). 3-year lookback.", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "EXCLUDED except Acute Onset (plan max with cardiac sub-limits). 3-year lookback.", "confidence": 95, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "EXCLUDED except Acute Onset (Medical Maximum with cardiac sub-limits). 3-year lookback.", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "EXCLUDED except Acute Onset (within scheduled benefit limits).", "confidence": 90, "authority_level": 1 },
+        "Atlas_America":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 4 },
+        "INF_Elite_X":                { "value": "ACTUALLY COVERED — $25K–$50K max (age 0–69), $20K (age 70–99). Separate deductible. Sub-limits per service type. EXCEPTION: Stable medication (no change in 24 months) = NOT pre-existing.", "confidence": 90, "authority_level": 2, "flag": "KEY DIFFERENTIATOR — only plan that covers actual pre-existing conditions, not just acute onset" },
+        "SC_Travel_Medical_Basic":    { "value": "EXCLUDED except Acute Onset ($25K age ≤69). 36-month lookback. Chronic conditions with expected flare-ups EXCLUDED from acute onset.", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "EXCLUDED except Acute Onset (cardiac $50K / other $75K, age ≤69). 36-month lookback. Chronic conditions with expected flare-ups EXCLUDED from acute onset.", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "preexisting_lookback_period": {
+      "canonical_name": "Pre-existing Condition Lookback Period",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "3 years (36 months)", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "3 years (36 months)", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "3 years (36 months)", "confidence": 95, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "3 years (36 months)", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "NEEDS MANUAL REVIEW — not explicitly stated in Description of Coverage", "confidence": 60, "authority_level": 1 },
+        "Atlas_America":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 4 },
+        "INF_Elite_X":                { "value": "No explicit lookback period — pre-ex defined as any condition for which advice/treatment received before Effective Date. EXCEPTION: stable medication 24 months = not pre-existing.", "confidence": 90, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "36 months. Includes conditions where 'reasonable medical certainty' existed even if undiagnosed.", "confidence": 98, "authority_level": 1, "flag": "'Reasonable medical certainty' clause is broad — can capture undiagnosed conditions" },
+        "SC_Travel_Medical_Choice":   { "value": "36 months. Same broad definition including 'reasonable medical certainty'.", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "ppo_network": {
+      "canonical_name": "PPO Network Name (USA)",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "NEEDS MANUAL REVIEW — Certificate says 'approved list of independent PPO providers'; network name not explicitly stated", "confidence": 50, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "NEEDS MANUAL REVIEW — same as Plus", "confidence": 50, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "NEEDS MANUAL REVIEW — network name not confirmed from Certificate", "confidence": 50, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "NEEDS MANUAL REVIEW — network name not confirmed from Certificate", "confidence": 50, "authority_level": 1 },
+        "VisitorSecure":              { "value": "UnitedHealthcare Options PPO (confirmed from ID card). Payer ID: USN01.", "confidence": 95, "authority_level": 1, "flag": "CONFIRMED from ID card" },
+        "Atlas_America":              { "value": "UnitedHealthcare Options PPO (confirmed from ID card). Payer ID: USN01.", "confidence": 80, "authority_level": 4, "flag": "Confirmed from ID card but full cert not obtained" },
+        "INF_Elite_X":                { "value": "NEEDS MANUAL REVIEW — network not named in Policy Wording", "confidence": 50, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "NEEDS MANUAL REVIEW — 'PPO Network' referenced but not named in Certificate", "confidence": 50, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "NEEDS MANUAL REVIEW — 'PPO Network' referenced but not named in Certificate", "confidence": 50, "authority_level": 1 }
+      }
+    },
+
+    "covid19_coverage": {
+      "canonical_name": "COVID-19 Coverage",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "Covered — treated as any Eligible Medical Expense. No waiting period.", "confidence": 98, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "Covered — treated as any Eligible Medical Expense.", "confidence": 98, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "Covered BUT requires 30 days initial coverage purchase. COVID-19 NOT covered on shorter trips.", "confidence": 95, "authority_level": 1, "flag": "30-day minimum purchase for COVID-19 coverage" },
+        "Safe_Travels_USA_Comprehensive": { "value": "Covered — no waiting requirement. COVID-19, SARS-CoV-2, and any mutation covered up to Medical Maximum.", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "NEEDS MANUAL REVIEW — not confirmed from Description of Coverage", "confidence": 50, "authority_level": 1 },
+        "Atlas_America":              { "value": "Covered — same as any illness per brochure", "confidence": 60, "authority_level": 4, "flag": "NEEDS MANUAL REVIEW" },
+        "INF_Elite_X":                { "value": "NEEDS MANUAL REVIEW — not explicitly mentioned in Policy Wording", "confidence": 50, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "Covered — URC up to Medical Maximum. No waiting period.", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "Covered — URC up to Medical Maximum. No waiting period.", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "mental_health": {
+      "canonical_name": "Mental Health / Mental Illness Coverage",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "NEEDS MANUAL REVIEW — not addressed in evidence extracted", "confidence": 50, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "NEEDS MANUAL REVIEW — not addressed in evidence extracted", "confidence": 50, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "NEEDS MANUAL REVIEW — not addressed in evidence extracted", "confidence": 50, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "Mental/Nervous Disorder: $2,500 per Period of Insurance (sub-limit)", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 1 },
+        "Atlas_America":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 4 },
+        "INF_Elite_X":                { "value": "EXCLUDED — Mental Health Disorders explicitly excluded", "confidence": 90, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "EXCLUDED — Mental Illness explicitly excluded", "confidence": 98, "authority_level": 1 },
+        "SC_Travel_Medical_Choice":   { "value": "EXCLUDED — Mental Illness explicitly excluded", "confidence": 98, "authority_level": 1 }
+      }
+    },
+
+    "cancer_coverage": {
+      "canonical_name": "Cancer Coverage (New Diagnosis During Trip)",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "Covered if new condition during trip — not a pre-existing condition", "confidence": 88, "authority_level": 1, "flag": "NEEDS MANUAL REVIEW — confirm no cancer-specific exclusion" },
+        "Patriot_America_Platinum":   { "value": "Covered if new condition during trip", "confidence": 88, "authority_level": 1, "flag": "NEEDS MANUAL REVIEW" },
+        "CoverAmerica_Gold":          { "value": "NEEDS MANUAL REVIEW — not confirmed", "confidence": 50, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "NEEDS MANUAL REVIEW — not confirmed", "confidence": 50, "authority_level": 1 },
+        "VisitorSecure":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 1 },
+        "Atlas_America":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 4 },
+        "INF_Elite_X":                { "value": "EXCLUDED — 'any condition directly or indirectly related to or caused by cancer' excluded", "confidence": 90, "authority_level": 2, "flag": "CRITICAL — even new cancer diagnosis during trip excluded" },
+        "SC_Travel_Medical_Basic":    { "value": "Covered if new condition during trip (no cancer-specific exclusion found)", "confidence": 88, "authority_level": 1, "flag": "NEEDS MANUAL REVIEW — verify no cancer exclusion in full exclusions section" },
+        "SC_Travel_Medical_Choice":   { "value": "Covered if new condition during trip (no cancer-specific exclusion found)", "confidence": 88, "authority_level": 1, "flag": "NEEDS MANUAL REVIEW" }
+      }
+    },
+
+    "period_of_coverage_maximum": {
+      "canonical_name": "Maximum Period of Coverage / Renewability",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "Up to 24 months (extendable). Renewable.", "confidence": 95, "authority_level": 1 },
+        "Patriot_America_Platinum":   { "value": "Up to 24 months (extendable). Renewable.", "confidence": 95, "authority_level": 1 },
+        "CoverAmerica_Gold":          { "value": "5 days to 12 months. Extension available.", "confidence": 95, "authority_level": 1 },
+        "Safe_Travels_USA_Comprehensive": { "value": "Up to 364 days maximum. Cannot have resided in USA >365 days prior.", "confidence": 95, "authority_level": 1 },
+        "VisitorSecure":              { "value": "NEEDS MANUAL REVIEW — maximum duration not confirmed from evidence", "confidence": 60, "authority_level": 1 },
+        "Atlas_America":              { "value": "NEEDS MANUAL REVIEW", "confidence": 50, "authority_level": 4 },
+        "INF_Elite_X":                { "value": "Up to 364 days from date of Covered Accident/Sickness. Benefits period = 364 days.", "confidence": 88, "authority_level": 2 },
+        "SC_Travel_Medical_Basic":    { "value": "5 to 364 days. NOT RENEWABLE.", "confidence": 98, "authority_level": 1, "flag": "NOT RENEWABLE — one fixed period only" },
+        "SC_Travel_Medical_Choice":   { "value": "5 to 364 days. NOT RENEWABLE.", "confidence": 98, "authority_level": 1, "flag": "NOT RENEWABLE" }
+      }
+    },
+
+    "special_unique_features": {
+      "canonical_name": "Unique/Differentiating Features Per Plan",
+      "plans": {
+        "Patriot_America_Plus":       { "value": "SiriusPoint carrier (A-). Up to $1M max. 90% OON coinsurance. Strong acute onset (plan max). Up to 24-month duration." },
+        "Patriot_America_Platinum":   { "value": "100% coinsurance everywhere. Evacuation = plan max (up to $8M). Teladoc included. Best-in-class for high net worth visitors." },
+        "CoverAmerica_Gold":          { "value": "B-1/B-2 visa required (others just need non-resident status). Evacuation includes pre-existing. Border Entry Protection $550. Flu vaccination covered." },
+        "Safe_Travels_USA_Comprehensive": { "value": "No PPO penalty (100% everywhere). $20K acute onset for age 80+. $2,500 mental health sub-limit. Well Doctor Visit $125. Zurich carrier (AA rated)." },
+        "VisitorSecure":              { "value": "SCHEDULED BENEFIT — fixed dollar caps. UHC PPO confirmed. Best for young/healthy travelers who just need catastrophic coverage at low premium." },
+        "Atlas_America":              { "value": "UHC PPO confirmed. 100% coinsurance. $200 ER co-payment. NEEDS MANUAL REVIEW for full details." },
+        "INF_Elite_X":                { "value": "Only plan covering actual pre-existing conditions (not just acute onset). Stable medication exception. BUT: low evacuation ($25K), no cancer, no mental health, high OON exposure (30-40%)." },
+        "SC_Travel_Medical_Basic":    { "value": "No PT. $25K acute onset. 7-day waiting period. NOT RENEWABLE. Best as entry-level price option for healthy travelers." },
+        "SC_Travel_Medical_Choice":   { "value": "$75K non-cardiac acute onset. $500K evacuation. PT included. Better OON coinsurance (90%). Upgrade path from Basic with meaningful improvements." }
+      }
+    }
+  }
+}

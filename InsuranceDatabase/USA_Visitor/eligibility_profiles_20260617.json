@@ -1,0 +1,398 @@
+{
+  "meta": {
+    "version": "2026-06-17",
+    "phase": "Phase 16 — Coverage Gap Analysis / Eligibility Profiles",
+    "purpose": "Per-plan eligibility rules critical for Indian B-1/B-2 travelers. Answers: Can they buy after arriving in USA? Are there waiting periods? Can they extend? What visa type is required?",
+    "target_user": "Indian nationals visiting USA on B-1/B-2 visa or Visa Waiver Program"
+  },
+
+  "profiles": {
+
+    "Patriot_America_Plus": {
+      "display_name": "Patriot America Plus",
+      "carrier": "SiriusPoint Specialty Insurance Corporation",
+      "administrator": "IMG",
+      "evidence_source": "IMG/Patriot_America_Plus/raw_documents/Patriot_America_Plus_Certificate_20260617.pdf",
+      "authority_level": 1,
+
+      "effective_date_rule": {
+        "rule": "Later of: (a) date of coverage indicated on Declaration, OR (b) date Insured Person departs Country of Residence",
+        "source_page": 32,
+        "exact_language": "Effective Date; Effective Date of Coverage: The later of (a) the date of coverage for the Insured Person as indicated on the Declaration or (b) the date that the Insured Person departs their Country of Residence.",
+        "confidence": 98
+      },
+      "can_buy_while_already_in_usa": {
+        "answer": "YES — purchase is allowed after arrival in USA",
+        "basis": "Eligibility requires only that Insured Person has legally departed Country of Residence and legally entered Destination Country. Since the traveler has already departed India and entered the USA, both conditions are satisfied. Effective Date = day of application (if departure already occurred).",
+        "caveat": "NEEDS MANUAL REVIEW — confirm no undocumented waiting period for illness when purchased mid-trip. IMG's online purchase portal may enforce a waiting period not in Certificate text.",
+        "confidence": 80
+      },
+      "illness_waiting_period": {
+        "days": null,
+        "note": "NEEDS MANUAL REVIEW — no explicit illness waiting period found in Certificate text. Standard industry practice is 0–5 days for illness when purchased from home country, but mid-trip purchase waiting periods vary.",
+        "confidence": 40
+      },
+      "accident_waiting_period": {
+        "days": 0,
+        "note": "Accidents covered immediately from Effective Date",
+        "confidence": 90
+      },
+      "must_depart_home_country_first": {
+        "answer": "YES (but condition is already met once traveler is in USA)",
+        "basis": "Eligibility requirement (5): 'on the Effective Date and on subsequent renewal dates, must have legally departed the Country of Residence and legally entered the Destination Country'",
+        "source_page": 16,
+        "confidence": 98
+      },
+      "habitual_residency_restriction": {
+        "answer": "Cannot have established Habitual Residency in Destination Country (USA)",
+        "note": "B-1/B-2 visitors on short trips satisfy this — they are visitors, not habitual residents",
+        "confidence": 90
+      },
+      "visa_type_required": {
+        "answer": "No specific visa type required — any non-resident traveler outside Country of Residence",
+        "note": "Does NOT require B-1/B-2 visa specifically",
+        "confidence": 90
+      },
+      "minimum_age": "14 days",
+      "maximum_age": "84 (age 85+ not eligible)",
+      "minimum_period": "5 days",
+      "maximum_period": "24 continuous months (extendable in 5-day increments up to 365 days at a time)",
+      "renewable": true,
+      "extension_allowed": true,
+      "extension_note": "Extendable up to 24 months total. Must meet eligibility requirements at renewal. New pre-existing conditions look-back applied from original Effective Date.",
+      "prior_insurance_required": false,
+      "can_purchase_online": true,
+      "purchase_portal": "imglobal.com",
+      "covid_waiting_period": null,
+      "covid_note": "No COVID-19 waiting period",
+      "residency_restriction": "Must not have established Habitual Residency in USA. B-1/B-2 visitors qualify."
+    },
+
+    "Patriot_America_Platinum": {
+      "display_name": "Patriot America Platinum",
+      "carrier": "SiriusPoint Specialty Insurance Corporation",
+      "administrator": "IMG",
+      "evidence_source": "IMG/Patriot_America_Platinum/raw_documents/Patriot_America_Platinum_Certificate_20260617.pdf",
+      "authority_level": 1,
+
+      "effective_date_rule": {
+        "rule": "Same as Patriot America Plus — later of Declaration date or departure from Country of Residence",
+        "confidence": 98
+      },
+      "can_buy_while_already_in_usa": {
+        "answer": "YES — same rules as Patriot America Plus",
+        "caveat": "NEEDS MANUAL REVIEW — same mid-trip illness waiting period uncertainty as Plus",
+        "confidence": 80
+      },
+      "illness_waiting_period": { "days": null, "note": "NEEDS MANUAL REVIEW", "confidence": 40 },
+      "accident_waiting_period": { "days": 0, "confidence": 90 },
+      "must_depart_home_country_first": { "answer": "YES (already met once in USA)", "confidence": 98 },
+      "visa_type_required": { "answer": "No specific visa type required", "confidence": 90 },
+      "minimum_age": "14 days",
+      "maximum_age": "79 (age 80+ not eligible for full plan; $20K max)",
+      "minimum_period": "5 days",
+      "maximum_period": "36 continuous months (UPGRADE vs Plus: 36 vs 24 months)",
+      "renewable": true,
+      "extension_allowed": true,
+      "extension_note": "Up to 36 months total. Premium must be paid when due.",
+      "prior_insurance_required": false,
+      "covid_waiting_period": null,
+      "residency_restriction": "Cannot have established Habitual Residency in USA"
+    },
+
+    "CoverAmerica_Gold": {
+      "display_name": "CoverAmerica Gold",
+      "carrier": "Sirius Specialty Insurance Corporation (publ) / SiriusPoint",
+      "administrator": "VisitorsCoverage (aggregator)",
+      "evidence_source": "VisitorsCoverage_SiriusPoint/CoverAmerica_Gold/raw_documents/CoverAmerica_Gold_Certificate_20260617.pdf",
+      "authority_level": 1,
+
+      "effective_date_rule": {
+        "rule": "Same as Patriot America Plus — later of Declaration date or departure from Country of Residence",
+        "confidence": 95
+      },
+      "can_buy_while_already_in_usa": {
+        "answer": "YES — same departure-based effective date rule as IMG plans",
+        "caveat": "NEEDS MANUAL REVIEW — confirm no mid-trip illness waiting period",
+        "confidence": 75
+      },
+      "illness_waiting_period": { "days": null, "note": "NEEDS MANUAL REVIEW", "confidence": 40 },
+      "accident_waiting_period": { "days": 0, "confidence": 90 },
+      "must_depart_home_country_first": { "answer": "YES (already met once in USA)", "confidence": 95 },
+      "visa_type_required": {
+        "answer": "B-1/B-2 VISA SPECIFICALLY REQUIRED — or Visa Waiver Program (ESTA)",
+        "basis": "Certificate explicitly requires B-1/B-2 visa or Visa Waiver Program. Other visa types (H-1B, F-1, etc.) are NOT eligible.",
+        "source_note": "From evidence.json record — Eligibility: B-1/B-2 Visa Specific",
+        "confidence": 95,
+        "flag": "IMPORTANT RESTRICTION — Only B-1/B-2 and VWP. Unlike other plans which don't specify visa type."
+      },
+      "minimum_age": "14 days",
+      "maximum_age": "69 for full coverage; 65-69 reduced maximums",
+      "minimum_period": "5 days",
+      "maximum_period": "12 months (shorter than IMG's 24–36 months)",
+      "renewable": true,
+      "extension_allowed": true,
+      "extension_note": "Up to 24 months total. 5-day minimum extension.",
+      "prior_insurance_required": false,
+      "covid_waiting_period": {
+        "days": 30,
+        "note": "COVID-19 treatment only covered if initial Period of Coverage was purchased for at least 30 days. Trips shorter than 30 days have NO COVID-19 coverage.",
+        "confidence": 95,
+        "flag": "IMPORTANT — COVID-19 restriction unique to this plan"
+      },
+      "residency_restriction": "Cannot have established Habitual Residency in USA"
+    },
+
+    "Safe_Travels_USA_Comprehensive": {
+      "display_name": "Safe Travels USA Comprehensive",
+      "carrier": "Zurich Insurance Europe AG, Belgian Branch",
+      "administrator": "Trawick International",
+      "evidence_source": "Trawick/Safe_Travels_USA_Comprehensive/raw_documents/Safe_Travels_USA_Comprehensive_Certificate_20260617.pdf",
+      "authority_level": 1,
+
+      "effective_date_rule": {
+        "rule": "Latest of: (1) date Covered Person purchases, (2) moment of departure from Home Country, or (3) requested start date",
+        "source_page": 4,
+        "note": "Can be purchased before or after departure",
+        "confidence": 90
+      },
+      "can_buy_while_already_in_usa": {
+        "answer": "YES — can purchase after arrival in USA, provided they have not resided in USA for more than 365 days",
+        "basis": "Eligibility requires 'non-US citizens who reside outside the USA' — this refers to permanent residence (India), not current physical location. The 365-day residency restriction is the key limit.",
+        "caveat": "NEEDS MANUAL REVIEW — confirm no waiting period for illness when purchased mid-trip",
+        "confidence": 80
+      },
+      "illness_waiting_period": { "days": null, "note": "NEEDS MANUAL REVIEW", "confidence": 40 },
+      "accident_waiting_period": { "days": 0, "confidence": 90 },
+      "must_depart_home_country_first": {
+        "answer": "YES — 'Insured must arrive in the USA before traveling to other countries'",
+        "source_page": 4,
+        "confidence": 90
+      },
+      "visa_type_required": { "answer": "No specific visa type required", "confidence": 90 },
+      "residency_restriction": {
+        "critical": "CANNOT have resided in USA for more than 365 days prior to Effective Date. Long-stay visitors who have been in the USA for over a year are INELIGIBLE.",
+        "source_page": 4,
+        "exact_language": "This Certificate of Coverage is not available to any individual who has been residing within the United States for more than 365 days prior to their Effective Date or who is considered a Habitual Resident of the country or jurisdiction in which care is received.",
+        "confidence": 98,
+        "flag": "KEY RESTRICTION for extended B-1/B-2 visitors"
+      },
+      "minimum_age": "14 days",
+      "maximum_age": "89 (age 90+ not eligible)",
+      "minimum_period": "5 days",
+      "maximum_period": "364 days (total across all extensions)",
+      "renewable": false,
+      "extension_allowed": true,
+      "extension_note": "Extension up to 364 days total. 5-day minimum. No grace periods. Once lapsed, must reapply — new pre-existing lookback and deductible from reapplication date.",
+      "prior_insurance_required": false,
+      "covid_waiting_period": null,
+      "coverage_area_note": "Primarily USA. Other countries covered for up to 30 days during Period of Insurance. Insured must arrive in USA first."
+    },
+
+    "VisitorSecure": {
+      "display_name": "VisitorSecure",
+      "carrier": "TMHCC(CI) Insurance SPC Ltd. (Tokio Marine HCC)",
+      "administrator": "WorldTrips",
+      "evidence_source": "WorldTrips_TMHCC/VisitorSecure/raw_documents/VisitorSecure_Description_of_Coverage_20260617.pdf",
+      "authority_level": 1,
+      "plan_type_warning": "SCHEDULED BENEFIT PLAN — not comprehensive major medical",
+
+      "can_buy_while_already_in_usa": {
+        "answer": "NEEDS MANUAL REVIEW — eligibility rules not fully confirmed from Description of Coverage",
+        "confidence": 40
+      },
+      "illness_waiting_period": { "days": null, "note": "NEEDS MANUAL REVIEW", "confidence": 40 },
+      "accident_waiting_period": { "days": 0, "confidence": 70 },
+      "must_depart_home_country_first": { "answer": "NEEDS MANUAL REVIEW", "confidence": 40 },
+      "visa_type_required": { "answer": "NEEDS MANUAL REVIEW", "confidence": 40 },
+      "minimum_age": "14 days",
+      "maximum_age": "79 (Plans B-D); age 80+ limited to Plan A with $10K maximum",
+      "minimum_period": "NEEDS MANUAL REVIEW",
+      "maximum_period": "NEEDS MANUAL REVIEW",
+      "renewable": null,
+      "extension_allowed": null,
+      "prior_insurance_required": false,
+      "notes": "All eligibility fields flagged NEEDS MANUAL REVIEW — obtain full Certificate of Insurance from worldtrips.com to complete Phase 16 for this plan."
+    },
+
+    "Atlas_America": {
+      "display_name": "Atlas America",
+      "carrier": "Tokio Marine HCC",
+      "administrator": "WorldTrips",
+      "evidence_source": "WorldTrips_TMHCC/Atlas_America/extracted_data/evidence_20260617.json",
+      "authority_level": 4,
+      "flag": "ALL FIELDS — NEEDS MANUAL REVIEW. Full Certificate not obtained. Data from Confirmation of Coverage (L4) only.",
+
+      "can_buy_while_already_in_usa": { "answer": "NEEDS MANUAL REVIEW", "confidence": 40 },
+      "illness_waiting_period": { "days": null, "note": "NEEDS MANUAL REVIEW", "confidence": 30 },
+      "accident_waiting_period": { "days": null, "confidence": 30 },
+      "visa_type_required": { "answer": "NEEDS MANUAL REVIEW", "confidence": 30 },
+      "minimum_age": "NEEDS MANUAL REVIEW",
+      "maximum_age": "NEEDS MANUAL REVIEW",
+      "minimum_period": "NEEDS MANUAL REVIEW",
+      "maximum_period": "NEEDS MANUAL REVIEW",
+      "renewable": null,
+      "extension_allowed": null
+    },
+
+    "INF_Elite_X": {
+      "display_name": "INF Elite Plan X",
+      "carrier": "Crum & Forster SPC",
+      "administrator": "Robin Assist",
+      "evidence_source": "INF/INF_Elite_X/raw_documents/INF_Elite_X_PolicyWording_20260617.pdf",
+      "authority_level": 2,
+
+      "effective_date_rule": {
+        "rule": "Coverage is effective from date application is accepted and premium paid. Policy wording does not state a 'must depart first' rule.",
+        "confidence": 80,
+        "note": "NEEDS MANUAL REVIEW — confirm effective date rule from INF portal or ID card. Unlike IMG plans, no explicit departure-trigger for Effective Date found in Policy Wording."
+      },
+      "can_buy_while_already_in_usa": {
+        "answer": "LIKELY YES — non-US residents traveling outside Home Country. No departure-first requirement found in Policy Wording.",
+        "caveat": "NEEDS MANUAL REVIEW — confirm from INF Plans purchase portal (infplans.com) whether mid-trip purchase is allowed and if there's an illness waiting period.",
+        "confidence": 70
+      },
+      "illness_waiting_period": {
+        "days": 5,
+        "note": "Exclusion in Policy Wording: 'Any sickness which was known or unknown to the Covered Person which requires immediate medical attention within 5 days after the policy effective date' — this functions as a 5-day illness waiting period",
+        "source_page": 7,
+        "exact_language": "Any sickness which was known or unknown to the Covered Person which requires immediate medical attention within 5 days after the policy effective date [excluded]",
+        "confidence": 90,
+        "flag": "EXPLICIT 5-DAY ILLNESS WAITING PERIOD — any illness requiring immediate attention within 5 days of purchase is excluded"
+      },
+      "accident_waiting_period": { "days": 0, "confidence": 90 },
+      "must_depart_home_country_first": {
+        "answer": "Implied YES — eligible class is 'Non-US residents traveling outside Home Country'",
+        "confidence": 80
+      },
+      "visa_type_required": { "answer": "No specific visa type required — non-US residents only", "confidence": 90 },
+      "minimum_age": "Not stated explicitly; dependents from age 14 days",
+      "maximum_age": "99",
+      "minimum_period": "NEEDS MANUAL REVIEW",
+      "maximum_period": "364 days from date of Covered Accident/Sickness",
+      "renewable": null,
+      "extension_allowed": null,
+      "prior_insurance_required": false,
+      "special_eligibility_notes": [
+        "Non-US citizens only — US citizens and US residents explicitly not covered",
+        "Cancer, mental health, and dialysis EXCLUDED — check for specific Indian traveler needs",
+        "Pre-existing conditions covered with sub-limits — unique among all plans"
+      ]
+    },
+
+    "SC_Travel_Medical_Basic": {
+      "display_name": "Seven Corners Travel Medical Basic",
+      "carrier": "Crum & Forster SPC (via ITI SP)",
+      "administrator": "Seven Corners Inc.",
+      "evidence_source": "Seven_Corners/Liaison_Travel_Basic/raw_documents/Liaison_Travel_Basic_Certificate_FSG25_20260617.pdf",
+      "authority_level": 1,
+
+      "effective_date_rule": {
+        "rule": "Latest of: (a) 12:00am ET day AFTER Company receives Application and premium if online; (b) moment of departure from Home Country; (c) 12:00am ET on requested date",
+        "source_page": 6,
+        "exact_language": "The date Your coverage begins under the terms of the Certificate, which is the latest of the following: a. 12:00 a.m. United States Eastern Time on the date after the Company receives Your Application and correct premium payment if Application and payment are made online; b. The moment You depart Your Home Country; or c. 12:00 a.m. United States Eastern Time on the date You request on Your Application.",
+        "confidence": 98
+      },
+      "can_buy_while_already_in_usa": {
+        "answer": "YES — if already in USA (already departed Home Country), Effective Date = day after application accepted online",
+        "basis": "Condition (b) — departure from Home Country — is already satisfied once traveler is in USA. Effective Date becomes day after online purchase.",
+        "caveat": "NEEDS MANUAL REVIEW — confirm Seven Corners purchase portal allows mid-trip purchase for B-1/B-2 visitors. Also confirm no undocumented waiting period.",
+        "confidence": 85
+      },
+      "illness_waiting_period": {
+        "days": null,
+        "note": "NEEDS MANUAL REVIEW — no explicit illness waiting period found in Certificate text",
+        "confidence": 50
+      },
+      "accident_waiting_period": { "days": 0, "confidence": 95 },
+      "must_depart_home_country_first": {
+        "answer": "YES (condition already met once traveler is in USA)",
+        "source_page": 6,
+        "confidence": 98
+      },
+      "visa_type_required": {
+        "answer": "No specific visa type required — must be traveling outside Home Country and not be a US green card holder",
+        "exact_language": "You are not a United States green card holder traveling within the United States.",
+        "confidence": 98
+      },
+      "minimum_age": "14 days",
+      "maximum_age": "No stated maximum (age 80+ limited to $10K medical maximum)",
+      "minimum_period": "5 days",
+      "maximum_period": "364 days total (extendable in 5-day increments)",
+      "renewable": false,
+      "extension_allowed": true,
+      "extension_note": "Extendable up to 364 days total. NOT RENEWABLE after 364 days — must purchase new policy. New policy resets pre-existing lookback.",
+      "prior_insurance_required": false,
+      "not_eligible": ["US green card holders traveling within USA", "US citizens"],
+      "special_restrictions": [
+        "NOT RENEWABLE — one fixed period per Certificate",
+        "Physiotherapy completely excluded",
+        "Mental Illness excluded",
+        "7-day waiting period for acute onset of pre-existing conditions"
+      ]
+    },
+
+    "SC_Travel_Medical_Choice": {
+      "display_name": "Seven Corners Travel Medical Choice",
+      "carrier": "Crum & Forster SPC (via ITI SP)",
+      "administrator": "Seven Corners Inc.",
+      "evidence_source": "Seven_Corners/Liaison_Travel_Choice/raw_documents/Liaison_Travel_Choice_Certificate_FSG25_20260617.pdf",
+      "authority_level": 1,
+
+      "effective_date_rule": {
+        "rule": "Identical to Basic — latest of day after online application accepted, moment of Home Country departure, or requested date",
+        "confidence": 98
+      },
+      "can_buy_while_already_in_usa": {
+        "answer": "YES — same rules as Basic",
+        "confidence": 85
+      },
+      "illness_waiting_period": { "days": null, "note": "NEEDS MANUAL REVIEW", "confidence": 50 },
+      "accident_waiting_period": { "days": 0, "confidence": 95 },
+      "must_depart_home_country_first": { "answer": "YES (already met once in USA)", "confidence": 98 },
+      "visa_type_required": {
+        "answer": "No specific visa type — must not be US green card holder",
+        "confidence": 98
+      },
+      "minimum_age": "14 days",
+      "maximum_age": "No stated maximum (age 80+ limited to $10K maximum)",
+      "minimum_period": "5 days",
+      "maximum_period": "364 days total",
+      "renewable": false,
+      "extension_allowed": true,
+      "extension_note": "Same as Basic — up to 364 days, NOT RENEWABLE after that",
+      "prior_insurance_required": false,
+      "not_eligible": ["US green card holders traveling within USA"],
+      "special_restrictions": [
+        "NOT RENEWABLE",
+        "Mental Illness excluded",
+        "7-day waiting period for acute onset of pre-existing conditions",
+        "Acute onset definition explicitly excludes chronic conditions with 'expected episodes or flare-ups'"
+      ]
+    }
+  },
+
+  "phase16_open_items": [
+    {
+      "id": "E-001",
+      "priority": "HIGH",
+      "issue": "Illness waiting period when purchased mid-trip (already in USA) not confirmed for any plan",
+      "plans_affected": ["Patriot_America_Plus", "Patriot_America_Platinum", "CoverAmerica_Gold", "Safe_Travels_USA_Comprehensive", "SC_Travel_Medical_Basic", "SC_Travel_Medical_Choice"],
+      "action": "Test purchase flow on each portal with a USA-based address. Contact carrier to confirm waiting period policy for mid-trip purchase."
+    },
+    {
+      "id": "E-002",
+      "priority": "HIGH",
+      "issue": "VisitorSecure and Atlas America full eligibility profile not complete — Certificate not obtained",
+      "plans_affected": ["VisitorSecure", "Atlas_America"],
+      "action": "Download full Certificate from worldtrips.com. Atlas America portal login required."
+    },
+    {
+      "id": "E-003",
+      "priority": "MEDIUM",
+      "issue": "INF Elite X — confirm mid-trip purchase availability from infplans.com portal",
+      "plans_affected": ["INF_Elite_X"],
+      "action": "Test infplans.com purchase portal with USA address. Confirm effective date rule and any portal-enforced waiting periods."
+    }
+  ]
+}
