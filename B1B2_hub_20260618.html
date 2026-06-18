@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B-1/B-2 Insurance Guide — Indian Travellers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:          #09090b;
+      --surface:     #111113;
+      --surface-2:   #18181b;
+      --surface-3:   #1f1f23;
+      --hover:       #25252a;
+      --border:      rgba(255,255,255,0.06);
+      --border-h:    rgba(255,255,255,0.12);
+      --border-act:  rgba(79,110,247,0.35);
+      --t1:          #f4f4f5;
+      --t2:          #a1a1aa;
+      --t3:          #52525b;
+      --t4:          #71717a;
+      --acc:         #4f6ef7;
+      --acc-d:       rgba(79,110,247,0.12);
+      --acc-g:       rgba(79,110,247,0.25);
+      --grn:         #22c55e;
+      --grn-d:       rgba(34,197,94,0.10);
+      --amb:         #f59e0b;
+      --amb-d:       rgba(245,158,11,0.10);
+      --red:         #ef4444;
+      --red-d:       rgba(239,68,68,0.10);
+      --pur:         #a78bfa;
+      --pur-d:       rgba(167,139,250,0.10);
+      --ora:         #f97316;
+      --ora-d:       rgba(249,115,22,0.10);
+      --font:        'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --r:           8px;
+      --r-sm:        5px;
+    }
+    html, body { font-family: var(--font); background: var(--bg); color: var(--t1); font-size: 13px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 999px; }
+
+    /* ── HEADER ── */
+    .hdr {
+      position: sticky; top: 0; z-index: 100;
+      height: 52px; background: rgba(9,9,11,0.9); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 32px; gap: 14px;
+    }
+    .back-link {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--t3); font-size: 12px; text-decoration: none;
+      transition: color 0.1s;
+    }
+    .back-link:hover { color: var(--t2); }
+    .hdr-div { width: 1px; height: 20px; background: var(--border); }
+    .hdr-icon {
+      width: 26px; height: 26px; background: var(--acc-d);
+      border: 1px solid var(--acc-g); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .hdr-title { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+    .hdr-sub { font-size: 12px; color: var(--t2); }
+    .hdr-sp { flex: 1; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 9px; border-radius: 999px; font-size: 11px;
+      font-weight: 500; border: 1px solid; white-space: nowrap;
+    }
+    .chip-n { color: var(--t2); background: rgba(255,255,255,0.04); border-color: var(--border); }
+    .chip-g { color: var(--grn); background: var(--grn-d); border-color: rgba(34,197,94,0.22); }
+    .chip-a { color: var(--amb); background: var(--amb-d); border-color: rgba(245,158,11,0.22); }
+
+    /* ── SECTION TABS ── */
+    .section-nav {
+      border-bottom: 1px solid var(--border);
+      display: flex; padding: 0 32px; background: var(--surface);
+    }
+    .snav-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 14px 20px; font-size: 13px; font-weight: 500;
+      font-family: var(--font); border: none; background: transparent;
+      color: var(--t3); cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: all 0.12s;
+    }
+    .snav-btn:hover { color: var(--t2); }
+    .snav-btn.on { color: var(--t1); border-bottom-color: var(--acc); }
+    .snav-num {
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; border: 1px solid;
+    }
+    .snav-btn.on .snav-num { background: var(--acc-d); border-color: var(--border-act); color: var(--acc); }
+    .snav-btn:not(.on) .snav-num { border-color: var(--border); color: var(--t3); }
+
+    /* ── SECTION PANEL ── */
+    .section-panel { display: none; }
+    .section-panel.on { display: block; }
+
+    /* ── SECTION INTRO ── */
+    .sec-intro {
+      padding: 28px 32px 0;
+      max-width: 860px;
+    }
+    .sec-title { font-size: 20px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 6px; }
+    .sec-desc { font-size: 13px; color: var(--t2); line-height: 1.7; margin-bottom: 20px; }
+    .sec-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+
+    /* ── PRIORITY FILTER ── */
+    .priority-bar {
+      padding: 0 32px 20px;
+    }
+    .priority-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--t3); margin-bottom: 10px; }
+    .priority-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pchip {
+      padding: 6px 14px; border-radius: 999px;
+      font-size: 12px; font-weight: 500; font-family: var(--font);
+      border: 1px solid var(--border); background: transparent;
+      color: var(--t2); cursor: pointer; transition: all 0.1s;
+    }
+    .pchip:hover { border-color: var(--border-h); color: var(--t1); background: var(--hover); }
+    .pchip.on { background: var(--acc-d); border-color: var(--border-act); color: var(--acc); }
+
+    /* ── PLAN LIST ── */
+    .plan-container { padding: 0 32px 48px; }
+
+    .plan-section-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--t3);
+      padding: 14px 0 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .plan-section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .prow {
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      margin-bottom: 8px;
+      overflow: hidden;
+      transition: border-color 0.1s;
+    }
+    .prow:hover { border-color: var(--border-h); }
+    .prow.hidden { display: none; }
+
+    .prow-top {
+      display: grid;
+      grid-template-columns: 32px 1fr auto 80px 36px;
+      gap: 12px; align-items: center;
+      padding: 13px 16px;
+      cursor: pointer;
+    }
+    .rchip {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; border: 1px solid; flex-shrink: 0;
+    }
+    .r1 { color: #f59e0b; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.08); }
+    .r2 { color: #94a3b8; border-color: rgba(148,163,184,0.3); background: rgba(148,163,184,0.06); }
+    .r3 { color: #cd7c2c; border-color: rgba(205,124,44,0.3); background: rgba(205,124,44,0.08); }
+    .r4 { color: var(--t3); border-color: var(--border); }
+    .pname { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; }
+    .pcarr { font-size: 11px; color: var(--t3); margin-top: 1px; }
+    .ptags { display: flex; gap: 4px; }
+    .tag { display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 500; }
+    .tg { background: var(--grn-d); color: var(--grn); }
+    .ta { background: var(--amb-d); color: var(--amb); }
+    .tr { background: var(--red-d); color: var(--red); }
+    .tp { background: var(--pur-d); color: var(--pur); }
+    .tx { background: var(--acc-d); color: var(--acc); }
+    .to { background: var(--ora-d); color: var(--ora); }
+    .tn { background: rgba(255,255,255,0.04); color: var(--t3); }
+    .score-cell { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .snum { font-size: 17px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .sbar { width: 44px; height: 3px; background: var(--surface-3); border-radius: 999px; overflow: hidden; }
+    .sbar-f { height: 100%; border-radius: 999px; }
+    .sg { color: var(--grn); } .ag { color: var(--amb); } .rg { color: var(--red); }
+    .fg { background: var(--grn); } .fa { background: var(--amb); } .fr { background: var(--red); }
+    .chevron { color: var(--t3); transition: transform 0.18s; font-size: 14px; }
+    .prow.open .chevron { transform: rotate(180deg); }
+
+    /* ── EXPAND DETAIL ── */
+    .prow-detail {
+      display: none; padding: 0 16px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .prow.open .prow-detail { display: block; }
+    .det-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 16px; }
+    .det-col { }
+    .det-sec-lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--t3); margin-bottom: 10px; }
+    .fact-row { display: flex; gap: 7px; margin-bottom: 7px; align-items: flex-start; }
+    .fdot { width: 5px; height: 5px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+    .fdg { background: var(--grn); } .fdr { background: var(--red); } .fda { background: var(--amb); }
+    .ftext { font-size: 12px; color: var(--t2); line-height: 1.5; }
+    .dim-row { margin-bottom: 9px; }
+    .dim-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+    .dim-name { font-size: 11px; color: var(--t2); }
+    .dim-snum { font-size: 11px; font-weight: 600; }
+    .dim-bar { height: 3px; background: var(--surface-3); border-radius: 999px; overflow: hidden; }
+    .dim-fill { height: 100%; border-radius: 999px; }
+    .best-for-box { padding: 12px; background: var(--surface-2); border-radius: var(--r); font-size: 12px; color: var(--t2); line-height: 1.6; margin-bottom: 14px; }
+    .visit-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; background: var(--acc-d);
+      border: 1px solid var(--border-act); border-radius: var(--r-sm);
+      color: var(--acc); font-size: 12px; font-weight: 500;
+      text-decoration: none; transition: background 0.1s;
+    }
+    .visit-link:hover { background: rgba(79,110,247,0.22); }
+    .prov-warn {
+      margin-top: 12px; padding: 12px;
+      background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.18);
+      border-radius: var(--r); font-size: 11px; color: #fca5a5; line-height: 1.5;
+    }
+
+    /* ── DISCLAIMER ── */
+    .disc {
+      padding: 20px 32px; border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .disc-lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--t4); margin-bottom: 7px; }
+    .disc-txt { font-size: 11px; color: var(--t3); line-height: 1.75; max-width: 960px; }
+
+    /* ── NOTICE BANNER ── */
+    .notice {
+      margin: 0 32px 20px;
+      padding: 14px 16px;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--r);
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .notice-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .notice-text { font-size: 12px; color: var(--t2); line-height: 1.6; }
+    .notice-text strong { color: var(--t1); }
+
+    /* ── TOP PICK HIGHLIGHT ── */
+    .top-pick { border-color: rgba(79,110,247,0.3) !important; }
+    .top-pick .prow-top { background: var(--acc-d); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <a class="back-link" href="#">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back to Visa Guide
+  </a>
+  <div class="hdr-div"></div>
+  <div class="hdr-icon">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+      <path d="M6.5 1.5L11 4.25V8.75L6.5 11.5L2 8.75V4.25L6.5 1.5Z" stroke="#4f6ef7" stroke-width="1.2" fill="none"/>
+      <circle cx="6.5" cy="6.5" r="1.8" fill="#4f6ef7"/>
+    </svg>
+  </div>
+  <span class="hdr-title">B-1/B-2 Insurance Guide</span>
+  <div class="hdr-div"></div>
+  <span class="hdr-sub">Visitor / Tourist Visa</span>
+  <div class="hdr-sp"></div>
+  <span class="chip chip-n">Updated Jun 2026</span>
+  <span class="chip chip-g">
+    <svg width="6" height="6" viewBox="0 0 6 6"><circle cx="3" cy="3" r="3" fill="#22c55e"/></svg>
+    Evidence-Backed
+  </span>
+</header>
+
+<!-- SECTION NAVIGATION -->
+<nav class="section-nav">
+  <button class="snav-btn on" onclick="showSection(0,this)">
+    <span class="snav-num">1</span>
+    Visitor Health Insurance
+  </button>
+  <button class="snav-btn" onclick="showSection(1,this)">
+    <span class="snav-num">2</span>
+    Comprehensive Travel Insurance
+  </button>
+  <button class="snav-btn" onclick="showSection(2,this)">
+    <span class="snav-num">3</span>
+    Indian Plans (Buy from India)
+  </button>
+</nav>
+
+<!-- ════════════════════════════════════════
+     SECTION 1: VISITOR HEALTH INSURANCE
+     ════════════════════════════════════════ -->
+<div class="section-panel on" id="sec0">
+  <div class="sec-intro">
+    <div class="sec-title">Visitor Health Insurance</div>
+    <div class="sec-desc">
+      US-based visitor health plans purpose-built for B-1/B-2 visa holders. These cover emergency medical care, hospitalization, surgery, and urgent care during your US visit. Our evidence database covers 9 plans across 12 dimensions — each scored against real Certificate of Insurance documents, not marketing brochures.
+    </div>
+    <div class="sec-meta">
+      <span class="chip chip-g">9 Plans Reviewed</span>
+      <span class="chip chip-g">7 of 9 Certificate Verified (L1)</span>
+      <span class="chip chip-n">Evidence Phase: Jun 2026</span>
+      <span class="chip chip-a">Best for: Most Indian B-1/B-2 visitors</span>
+    </div>
+  </div>
+
+  <div class="priority-bar">
+    <div class="priority-label">What matters most to you?</div>
+    <div class="priority-chips">
+      <button class="pchip on" onclick="filterS1('all',this)">All Plans (Top 9)</button>
+      <button class="pchip" onclick="filterS1('preex',this)">I have Pre-existing Conditions</button>
+      <button class="pchip" onclick="filterS1('cardiac',this)">Cardiac / Hypertension Risk</button>
+      <button class="pchip" onclick="filterS1('age70',this)">Age 70 or Older</button>
+      <button class="pchip" onclick="filterS1('budget',this)">Budget-Friendly</button>
+      <button class="pchip" onclick="filterS1('healthy',this)">Healthy — No Pre-existing</button>
+    </div>
+  </div>
+
+  <div class="plan-container" id="s1list"></div>
+</div>
+
+<!-- ════════════════════════════════════════
+     SECTION 2: COMPREHENSIVE TRAVEL INSURANCE
+     ════════════════════════════════════════ -->
+<div class="section-panel" id="sec1">
+  <div class="sec-intro">
+    <div class="sec-title">Comprehensive Travel Insurance</div>
+    <div class="sec-desc">
+      Combines medical coverage with trip protection benefits: trip cancellation / interruption, lost baggage, flight delays, and emergency evacuation. Best suited for B-1/B-2 visitors with pre-paid non-refundable trips, business travelers, or those wanting all-in-one coverage. Note: medical benefit limits in travel insurance are typically lower than dedicated visitor health plans — review the medical sub-limits carefully.
+    </div>
+    <div class="sec-meta">
+      <span class="chip chip-n">10 Plans Listed</span>
+      <span class="chip chip-a">General Research — Not L1 Evidence-Backed</span>
+      <span class="chip chip-n">Best for: Pre-paid trips, trip cancellation risk</span>
+    </div>
+  </div>
+
+  <div class="notice">
+    <div class="notice-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <circle cx="8" cy="8" r="6.5" stroke="#f59e0b" stroke-width="1.2"/>
+        <path d="M8 5v3.5M8 10.5v.5" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="notice-text">
+      <strong>Important:</strong> These plans have NOT been put through our Phase 11–24 evidence research pipeline. Ratings here are based on general research and provider reputation. If medical coverage is your primary concern (pre-existing conditions, cardiac risk, age 70+), use <strong>Section 1 (Visitor Health Insurance)</strong> instead — those plans are designed specifically for extended medical coverage without trip cancellation overhead.
+    </div>
+  </div>
+
+  <div class="priority-bar">
+    <div class="priority-label">What matters most to you?</div>
+    <div class="priority-chips">
+      <button class="pchip on" onclick="filterS2('all',this)">All Plans</button>
+      <button class="pchip" onclick="filterS2('medical',this)">Strong Medical Coverage</button>
+      <button class="pchip" onclick="filterS2('trip',this)">Trip Cancellation Priority</button>
+      <button class="pchip" onclick="filterS2('adventure',this)">Adventure / Sports</button>
+      <button class="pchip" onclick="filterS2('budget',this)">Budget-Friendly</button>
+    </div>
+  </div>
+
+  <div class="plan-container" id="s2list"></div>
+</div>
+
+<!-- ════════════════════════════════════════
+     SECTION 3: INDIAN PLANS (BUY FROM INDIA)
+     ════════════════════════════════════════ -->
+<div class="section-panel" id="sec2">
+  <div class="sec-intro">
+    <div class="sec-title">Indian Insurance Plans — Buy Before You Leave</div>
+    <div class="sec-desc">
+      Indian insurance companies offer outbound international travel policies that cover your US visit. These must typically be purchased before departure from India. They are denominated in INR, paid through Indian bank accounts, and claims are processed by the Indian insurer (sometimes through a US assistance company). A good option if you want to manage everything from India, or if your US visa has been approved but you haven't left yet.
+    </div>
+    <div class="sec-meta">
+      <span class="chip chip-n">10 Indian Carriers</span>
+      <span class="chip chip-a">General Research — Verify current plans before purchase</span>
+      <span class="chip chip-n">Best for: Pre-departure purchase, INR payment</span>
+    </div>
+  </div>
+
+  <div class="notice">
+    <div class="notice-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <circle cx="8" cy="8" r="6.5" stroke="#f59e0b" stroke-width="1.2"/>
+        <path d="M8 5v3.5M8 10.5v.5" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="notice-text">
+      <strong>Heads up:</strong> Indian travel insurance plan terms, premiums, and pre-existing condition rules change frequently. Always verify directly from the insurer's website before purchase. Medical benefit limits for US coverage can be significantly lower than US-based visitor health plans (Sections 1 &amp; 2). <strong>For senior travelers (60+) with pre-existing conditions, Section 1 plans generally offer superior US hospital coverage.</strong>
+    </div>
+  </div>
+
+  <div class="priority-bar">
+    <div class="priority-label">What matters most to you?</div>
+    <div class="priority-chips">
+      <button class="pchip on" onclick="filterS3('all',this)">All Plans</button>
+      <button class="pchip" onclick="filterS3('preex',this)">Pre-existing Conditions</button>
+      <button class="pchip" onclick="filterS3('senior',this)">Senior Citizen (60+)</button>
+      <button class="pchip" onclick="filterS3('short',this)">Short Trip (Under 30 Days)</button>
+      <button class="pchip" onclick="filterS3('long',this)">Long Stay (30–180 Days)</button>
+      <button class="pchip" onclick="filterS3('budget',this)">Budget</button>
+    </div>
+  </div>
+
+  <div class="plan-container" id="s3list"></div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disc">
+  <div class="disc-lbl">Disclosure</div>
+  <div class="disc-txt">
+    Section 1 rankings are based on the ITI evidence database (Phases 11–24, June 2026). Sections 2 and 3 are based on general research and are not subject to the same L1 Certificate evidence standard. Rankings in all sections are within the B-1/B-2 category only. This is not a recommendation to purchase any specific plan. Verify all coverage from the current policy document before purchasing. Consult a licensed insurance advisor. Coverage terms and premiums change frequently — always check directly with the carrier.
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   SECTION 1 DATA — Evidence-backed plans
+   ══════════════════════════════════════ */
+const S1 = [
+  {
+    rank:1, name:"Patriot America Platinum", carrier:"SiriusPoint / IMG",
+    score:95.3, badge:"BEST OVERALL", bc:"g", auth:"L1 Certificate", prov:false,
+    filters:["all","preex","cardiac","age70"],
+    url:"https://www.imglobal.com/travel-medical-insurance/patriot-america-platinum",
+    tags:[{l:"100% OON Coinsurance",c:"tg"},{l:"No Cardiac Sub-limit",c:"tg"}],
+    bestFor:"High-risk travelers (cardiac history, age 65+). 100% coinsurance on AND off network. Best acute onset for non-US citizens with no cardiac sub-limits.",
+    pros:[
+      "100% coinsurance in-network AND out-of-network after deductible",
+      "Acute onset up to $1M plan max — no cardiac or stroke sub-limits",
+      "UHC PPO direct billing (1.3M+ US providers)",
+      "PT covered no visit cap; home nursing confirmed at Certificate level",
+      "180-day claims filing deadline — most generous in group",
+    ],
+    cons:[
+      "Premium pricing — highest cost plan in the group",
+      "Pre-certification required for non-emergency admissions (50% penalty if missed)",
+    ],
+    dims:[
+      {n:"Hospitalization",s:100},{n:"ER Coverage",s:100},{n:"Acute Onset Pre-ex",s:100},
+      {n:"Network Quality (UHC PPO)",s:97},{n:"Post-Discharge Care",s:90},{n:"Claims Experience",s:95},
+    ],
+  },
+  {
+    rank:2, name:"Patriot America Plus", carrier:"SiriusPoint / IMG",
+    score:91.7, badge:"BEST VALUE COMPREHENSIVE", bc:"g", auth:"L1 Certificate", prov:false,
+    filters:["all","preex","cardiac","age70"],
+    url:"https://www.imglobal.com/travel-medical-insurance/patriot-america-plus",
+    tags:[{l:"180-Day Claims",c:"tg"},{l:"UHC PPO",c:"tx"}],
+    bestFor:"Most Indian B-1/B-2 travelers aged 50–75 with mixed health history. Best balance of comprehensive coverage and cost.",
+    pros:[
+      "Same pre-existing acute onset protection as Platinum — no cardiac sub-limits",
+      "90% in-network then 100% coinsurance (after first $5K)",
+      "180-day claims filing deadline via MyIMG portal",
+      "$25 urgent care copay option saves ER trips for minor issues",
+    ],
+    cons:[
+      "80% coinsurance out-of-network — some OON financial exposure",
+      "Pre-certification required — 50% penalty if missed",
+    ],
+    dims:[
+      {n:"Hospitalization",s:95},{n:"ER Coverage",s:95},{n:"Acute Onset Pre-ex",s:96},
+      {n:"Network Quality (UHC PPO)",s:90},{n:"Post-Discharge Care",s:90},{n:"Claims Experience",s:90},
+    ],
+  },
+  {
+    rank:3, name:"CoverAmerica Gold", carrier:"SiriusPoint / IMG",
+    score:83.0, badge:"BEST FOR HEALTHY TRAVELERS", bc:"g", auth:"L1 Certificate", prov:false,
+    filters:["all","healthy"],
+    url:"https://www.imglobal.com/travel-medical-insurance/coveramerica-gold",
+    tags:[{l:"100% In-Network",c:"tg"},{l:"Zero Cardiac Age 70+",c:"tr"}],
+    bestFor:"Healthy travelers under 70 with no cardiac or stroke history. Good COVID coverage and unique Border Entry Protection.",
+    pros:[
+      "100% in-network coinsurance — strong hospital coverage",
+      "COVID-19 covered as illness (unique among reviewed plans)",
+      "Border Entry Protection — unique benefit for new arrivals",
+      "5% returning visitor discount; purchasable from within USA",
+    ],
+    cons:[
+      "Cardiac / stroke sub-limit only $36,000 (age under 70)",
+      "ZERO cardiac or stroke coverage for age 70 and above",
+      "COVID excluded on trips under 30 days",
+    ],
+    dims:[
+      {n:"Hospitalization",s:90},{n:"ER Coverage",s:90},{n:"Acute Onset Pre-ex",s:65},
+      {n:"Network Quality (UHC PPO)",s:88},{n:"Post-Discharge Care",s:82},{n:"Claims Experience",s:80},
+    ],
+  },
+  {
+    rank:4, name:"SC Travel Medical Choice", carrier:"Crum & Forster / Seven Corners",
+    score:77.6, badge:"BEST DUAL NETWORK", bc:"a", auth:"L1 Certificate", prov:false,
+    filters:["all","healthy"],
+    url:"https://www.sevencorners.com/plans/visitors-insurance",
+    tags:[{l:"Dual UHC+PHCS",c:"tx"},{l:"PT Covered",c:"tg"}],
+    bestFor:"Travelers in rural or secondary US cities (dual network advantage). Moderate cardiac risk. Those likely to need post-discharge physical therapy.",
+    pros:[
+      "Dual PPO network — UHC + PHCS/Multiplan — widest provider access in group",
+      "PT covered ($500 max); COVID covered as illness",
+      "$75K non-cardiac / $50K cardiac acute onset (age under 70)",
+    ],
+    cons:[
+      "Criterion (f) bars chronic conditions with expected flare-ups",
+      "36-month lookback — strictest in group; disqualifies most Indian seniors",
+      "No acute onset coverage for age 80 and above",
+    ],
+    dims:[
+      {n:"Hospitalization",s:78},{n:"ER Coverage",s:80},{n:"Acute Onset Pre-ex",s:72},
+      {n:"Network Quality (Dual)",s:85},{n:"Post-Discharge Care",s:65},{n:"Claims Experience",s:85},
+    ],
+  },
+  {
+    rank:5, name:"Safe Travels USA Comprehensive", carrier:"Nationwide / Trawick",
+    score:72.9, badge:"BEST ELIGIBILITY FLEXIBILITY", bc:"a", auth:"L1 Certificate", prov:false,
+    filters:["all","healthy"],
+    url:"https://www.trawickinternational.com/products/safe-travels-usa-comprehensive/",
+    tags:[{l:"Purchase in USA",c:"tx"},{l:"No Pharmacy Network",c:"tr"}],
+    bestFor:"Travelers already in the USA who need to buy immediately. Healthy travelers with no cardiac history, short visits with minimal prescription needs.",
+    pros:[
+      "Can purchase from within the USA — most flexible eligibility",
+      "100% in-network coinsurance after deductible; $1M plan max",
+      "No citizenship restrictions; sports coverage add-on available",
+    ],
+    cons:[
+      "Cardiac / stroke sub-limit only $25,000 — lowest in group",
+      "Hypertension classified as cardiac — applies $25K limit",
+      "NO pharmacy in-network — all Rx requires upfront payment",
+    ],
+    dims:[
+      {n:"Hospitalization",s:82},{n:"ER Coverage",s:82},{n:"Acute Onset Pre-ex",s:60},
+      {n:"Network Quality",s:65},{n:"Eligibility Flexibility",s:90},{n:"Claims Experience",s:65},
+    ],
+  },
+  {
+    rank:6, name:"SC Travel Medical Basic", carrier:"Crum & Forster / Seven Corners",
+    score:71.6, badge:"BUDGET — HEALTHY UNDER 70", bc:"a", auth:"L1 Certificate", prov:false,
+    filters:["all","budget","healthy"],
+    url:"https://www.sevencorners.com/plans/visitors-insurance",
+    tags:[{l:"Dual Network",c:"tx"},{l:"PT Excluded",c:"tr"}],
+    bestFor:"Healthy travelers under 70, short 1–3 month visits. Accepts no PT coverage in exchange for a lower premium.",
+    pros:[
+      "Dual UHC+PHCS network — same wide access as Choice",
+      "COVID covered as illness; lower premium than Choice",
+    ],
+    cons:[
+      "Physical Therapy EXPLICITLY EXCLUDED — confirmed at Certificate level",
+      "Acute onset: $25K (age under 70), $2,500 (age 70–79), none for 80+",
+      "Criterion (f) bars expected chronic condition flare-ups",
+    ],
+    dims:[
+      {n:"Hospitalization",s:75},{n:"ER Coverage",s:78},{n:"Acute Onset Pre-ex",s:58},
+      {n:"Network Quality (Dual)",s:85},{n:"Post-Discharge Care",s:35},{n:"Price / Value",s:80},
+    ],
+  },
+  {
+    rank:7, name:"INF Elite X", carrier:"Crum & Forster / Robin Assist",
+    score:71.0, badge:"BEST PRE-EX (NON-CANCER)", bc:"p", auth:"L2 Policy Wording", prov:false,
+    filters:["all","preex"],
+    url:"https://www.infplans.com/elite-network-x/",
+    tags:[{l:"Direct Pre-ex Coverage",c:"tp"},{l:"Cancer Excluded",c:"tr"}],
+    bestFor:"Travelers with stable diabetes, hypertension, or stable cardiac conditions — WITHOUT cancer history — staying 90+ days. Unique direct pre-existing condition model.",
+    pros:[
+      "DIRECT pre-existing condition coverage — unique in the group",
+      "Stable medication exception: unchanged 24 months = not pre-existing",
+      "UHC Options PPO; fastest claim processing (10–15 days)",
+      "Pre-ex limits $25K–$50K (age 0–69), $20K (age 70–99)",
+    ],
+    cons:[
+      "Cancer ABSOLUTELY EXCLUDED — any cancer history disqualifies",
+      "90-day minimum plan — inflexible for 1–2 month visits",
+      "Service sub-limits: $15K hospital, $7.5K ER",
+      "30–40% OON penalty — worst in the group",
+    ],
+    dims:[
+      {n:"Hospitalization",s:72},{n:"ER Coverage",s:70},{n:"Acute Onset Pre-ex",s:88},
+      {n:"Network Quality",s:68},{n:"Pre-ex Direct Coverage",s:88},{n:"Claims Experience",s:58},
+    ],
+  },
+  {
+    rank:8, name:"Atlas America", carrier:"TMHCC / WorldTrips",
+    score:61.7, badge:"PROVISIONAL — CERT PENDING", bc:"a", auth:"L5 Brochure", prov:true,
+    filters:["all"],
+    url:"https://www.worldtrips.com/us-visitor-health-insurance",
+    tags:[{l:"PROVISIONAL",c:"ta"},{l:"TMHCC Cert Needed",c:"tr"}],
+    bestFor:"Cannot make a recommendation until the TMHCC Certificate is obtained. Expected to rank 3rd–5th once evidence is upgraded.",
+    pros:[
+      "UHC PPO network (confirmed from brochure — L5)",
+      "TMHCC carrier rated AM Best A++ — upgrade from prior Lloyd's carrier",
+      "WorldTrips established administration platform",
+    ],
+    cons:[
+      "ALL evidence is brochure / marketing only — no Certificate obtained",
+      "Home Country Coverage REMOVED (carrier transition May 2025)",
+      "Purchase restrictions: NY, WA, MD and EEA countries now ineligible",
+    ],
+    provWarn:"PROVISIONAL — CE-001: WorldTrips changed carrier from Lloyd's to TMHCC on May 29, 2025. All prior evidence is superseded. Cannot be recommended until new Certificate is reviewed.",
+    dims:[
+      {n:"Hospitalization",s:70},{n:"ER Coverage",s:65},{n:"Acute Onset Pre-ex",s:45},
+      {n:"Network Quality",s:78},{n:"Evidence Quality",s:20},{n:"Claims Experience",s:70},
+    ],
+  },
+  {
+    rank:9, name:"VisitorSecure", carrier:"TMHCC / WorldTrips",
+    score:33.3, badge:"BUDGET ONLY — NOT FOR SENIORS", bc:"r", auth:"L1 Certificate", prov:false,
+    filters:["all","budget"],
+    url:"https://www.worldtrips.com/visitor-secure",
+    tags:[{l:"Scheduled Benefits",c:"tr"},{l:"No PPO Network",c:"tr"}],
+    bestFor:"Very healthy travelers under 50, trips under 30 days, travelers who only need minimal baseline coverage at lowest cost.",
+    pros:[
+      "Lowest premium in the group",
+      "14-day minimum — most flexible entry point",
+      "Simple to purchase online",
+    ],
+    cons:[
+      "SCHEDULED BENEFIT plan — fixed amounts far below actual US medical costs",
+      "No PPO — must pay all costs upfront, then file for reimbursement",
+      "Criterion (a) bars most chronic-condition-related events",
+      "$150–300 total Rx cap for entire trip",
+    ],
+    dims:[
+      {n:"Hospitalization",s:35},{n:"ER Coverage",s:30},{n:"Acute Onset Pre-ex",s:20},
+      {n:"Network Access",s:25},{n:"Post-Discharge Care",s:40},{n:"Price / Value",s:85},
+    ],
+  },
+];
+
+/* ══════════════════════════════════════
+   SECTION 2 DATA — Comprehensive Travel
+   ══════════════════════════════════════ */
+const S2 = [
+  {
+    rank:1, name:"Allianz OneTrip Prime", carrier:"Allianz Global Assistance",
+    score:88, badge:"MOST TRUSTED BRAND", bc:"g",
+    filters:["all","trip","medical"],
+    url:"https://www.allianztravelinsurance.com",
+    tags:[{l:"Trip Cancellation",c:"tg"},{l:"$500K Medical",c:"tg"}],
+    bestFor:"Travelers who want a widely recognized brand with solid trip cancellation + decent medical coverage.",
+    pros:[
+      "Up to $500K medical evacuation benefit",
+      "Trip cancellation up to 100% of trip cost",
+      "24/7 global assistance hotline — very responsive",
+      "Lost baggage, flight delay, and trip interruption all included",
+    ],
+    cons:[
+      "Medical coverage ($10K–$50K typical) much lower than visitor health plans",
+      "Pre-existing conditions require 'look-back' waiver — time-sensitive purchase required",
+      "Premiums scale steeply for seniors 65+",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:72},{n:"Trip Cancellation",s:95},{n:"Baggage / Delay",s:88},
+      {n:"Evacuation",s:92},{n:"Claims Service",s:82},{n:"Price / Value",s:70},
+    ],
+  },
+  {
+    rank:2, name:"AIG Travel Guard Preferred", carrier:"AIG Travel",
+    score:85, badge:"BEST TRIP PROTECTION", bc:"g",
+    filters:["all","trip","medical"],
+    url:"https://www.travelguard.com",
+    tags:[{l:"Trip Cancel",c:"tg"},{l:"CFAR Option",c:"tx"}],
+    bestFor:"Travelers with expensive non-refundable bookings who want Cancel For Any Reason (CFAR) option.",
+    pros:[
+      "Cancel For Any Reason add-on available (CFAR — up to 75% back)",
+      "Strong trip cancellation and interruption benefits",
+      "Medical and dental emergency coverage included",
+      "Security evacuation benefit for political emergencies",
+    ],
+    cons:[
+      "Medical limits ($50K–$100K) still below dedicated visitor health plans",
+      "CFAR must be purchased within 15 days of initial trip deposit",
+      "Pre-existing condition waiver requires early purchase",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:75},{n:"Trip Cancellation",s:92},{n:"CFAR Option",s:90},
+      {n:"Evacuation",s:88},{n:"Claims Service",s:78},{n:"Price / Value",s:65},
+    ],
+  },
+  {
+    rank:3, name:"Seven Corners RoundTrip Choice", carrier:"Crum & Forster / Seven Corners",
+    score:82, badge:"BEST BALANCED VALUE", bc:"g",
+    filters:["all","trip","medical"],
+    url:"https://www.sevencorners.com/trip-protection",
+    tags:[{l:"Trip + Medical",c:"tg"},{l:"Good Claims",c:"tg"}],
+    bestFor:"Travelers who already know Seven Corners from visitor health plans and want an all-in-one trip protection option.",
+    pros:[
+      "Same trusted Seven Corners administration as SC Visitor Health plans",
+      "Solid medical limits; trip cancellation and interruption included",
+      "Sports / adventure activities covered on most tiers",
+      "Competitive pricing among comprehensive plans",
+    ],
+    cons:[
+      "Medical limits lower than dedicated visitor health plans",
+      "Pre-existing condition coverage requires early purchase",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:78},{n:"Trip Cancellation",s:85},{n:"Evacuation",s:85},
+      {n:"Sports Coverage",s:82},{n:"Claims Service",s:85},{n:"Price / Value",s:78},
+    ],
+  },
+  {
+    rank:4, name:"Berkshire Hathaway Premium", carrier:"Berkshire Hathaway Travel Protection",
+    score:80, badge:"BEST FAST CLAIMS", bc:"g",
+    filters:["all","medical","trip"],
+    url:"https://www.bhtravelprotection.com",
+    tags:[{l:"Fast Reimbursement",c:"tg"},{l:"Premium Tier",c:"tx"}],
+    bestFor:"Travelers who want the fastest possible claims reimbursement (known for near-instant digital claims).",
+    pros:[
+      "Industry-leading digital claims — reimbursements often within 24 hours",
+      "Berkshire Hathaway financial strength behind claims",
+      "Comprehensive medical + trip protection + baggage",
+    ],
+    cons:[
+      "Premium pricing — higher cost than comparable plans",
+      "Medical limits still lower than visitor health plans",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:80},{n:"Trip Cancellation",s:85},{n:"Claims Speed",s:95},
+      {n:"Evacuation",s:85},{n:"Financial Strength",s:95},{n:"Price / Value",s:60},
+    ],
+  },
+  {
+    rank:5, name:"IMG iTravelInsured SE", carrier:"SiriusPoint / IMG",
+    score:78, badge:"BEST IMG ALL-IN-ONE", bc:"a",
+    filters:["all","trip","medical"],
+    url:"https://www.imglobal.com/travel-insurance/itravelinsured",
+    tags:[{l:"IMG Quality",c:"tx"},{l:"Trip + Medical",c:"tg"}],
+    bestFor:"Travelers who want the quality IMG medical administration bundled with trip protection in one policy.",
+    pros:[
+      "IMG quality medical claims processing (same as Patriot America plans)",
+      "Trip cancellation + interruption + baggage + delay",
+      "Pre-existing condition waiver available with early purchase",
+    ],
+    cons:[
+      "Medical limits lower than IMG dedicated visitor health plans",
+      "Not as specialized for long B-1/B-2 visits as Patriot America",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:78},{n:"Trip Cancellation",s:82},{n:"Claims Service",s:90},
+      {n:"Evacuation",s:85},{n:"Price / Value",s:72},{n:"Ease of Claims",s:88},
+    ],
+  },
+  {
+    rank:6, name:"Travelex Travel Select", carrier:"Travelex Insurance Services",
+    score:74, badge:"GOOD VALUE ALL-IN-ONE", bc:"a",
+    filters:["all","budget","trip"],
+    url:"https://www.travelexinsurance.com",
+    tags:[{l:"Budget-Friendly",c:"tg"},{l:"Family Option",c:"tx"}],
+    bestFor:"Families traveling together — children often covered free under family plans. Budget-friendly trip protection.",
+    pros:[
+      "Children covered free under one parent's policy",
+      "Good trip cancellation and interruption benefits",
+      "Simple claims process; reasonable premiums",
+    ],
+    cons:[
+      "Medical limits are basic — not suitable for extended B-1/B-2 stays",
+      "Pre-existing condition waiver requires quick purchase after trip deposit",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:65},{n:"Trip Cancellation",s:80},{n:"Family Value",s:90},
+      {n:"Evacuation",s:75},{n:"Claims Service",s:72},{n:"Price / Value",s:82},
+    ],
+  },
+  {
+    rank:7, name:"World Nomads Explorer", carrier:"Nationwide / World Nomads",
+    score:72, badge:"BEST FOR ADVENTURE SPORTS", bc:"a",
+    filters:["all","adventure"],
+    url:"https://www.worldnomads.com",
+    tags:[{l:"150+ Adventure Sports",c:"to"},{l:"Digital-First",c:"tx"}],
+    bestFor:"Active travelers (hiking, cycling, water sports). Covers 150+ adventure activities not covered by standard travel plans.",
+    pros:[
+      "Covers 150+ adventure and sports activities",
+      "Can extend or buy coverage while already traveling",
+      "Clean digital claims app — user-friendly",
+    ],
+    cons:[
+      "Medical limits are lower than visitor health plans",
+      "Older travelers (65+) face steep pricing or exclusions",
+      "Pre-existing conditions generally excluded",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:70},{n:"Adventure Sports",s:95},{n:"Trip Cancellation",s:72},
+      {n:"Flexibility",s:88},{n:"Claims App",s:85},{n:"Price / Value",s:68},
+    ],
+  },
+  {
+    rank:8, name:"HTH TripProtector Preferred", carrier:"HTH Worldwide",
+    score:70, badge:"STRONG MEDICAL + TRIP", bc:"a",
+    filters:["all","medical","trip"],
+    url:"https://www.hthworldwide.com",
+    tags:[{l:"High Medical Limits",c:"tg"},{l:"Pre-ex Waiver",c:"tx"}],
+    bestFor:"Travelers who want higher medical limits than typical travel plans, combined with trip protection.",
+    pros:[
+      "Higher medical limits ($500K) among travel plans",
+      "Pre-existing condition waiver if purchased within 14 days of deposit",
+      "Primary medical coverage — pays before other insurance",
+    ],
+    cons:[
+      "Higher premium than budget options",
+      "Less name recognition than Allianz or AIG",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:85},{n:"Trip Cancellation",s:82},{n:"Pre-ex Waiver",s:80},
+      {n:"Evacuation",s:88},{n:"Claims Service",s:72},{n:"Price / Value",s:65},
+    ],
+  },
+  {
+    rank:9, name:"Trawick Safe Travels Journey", carrier:"Trawick International",
+    score:68, badge:"BUDGET TRIP PROTECTION", bc:"a",
+    filters:["all","budget","trip"],
+    url:"https://www.trawickinternational.com",
+    tags:[{l:"Budget",c:"tg"},{l:"Trip + Medical",c:"tx"}],
+    bestFor:"Budget-conscious travelers wanting basic trip cancellation + modest medical coverage bundled.",
+    pros:[
+      "Competitive pricing — one of the most affordable comprehensive plans",
+      "Trip cancellation and interruption coverage included",
+      "Good for short, low-cost trips",
+    ],
+    cons:[
+      "Medical limits are basic — not suitable for high-risk seniors",
+      "Claims process less established than IMG or Seven Corners",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:60},{n:"Trip Cancellation",s:78},{n:"Evacuation",s:72},
+      {n:"Claims Service",s:65},{n:"Price / Value",s:88},{n:"Pre-ex Options",s:55},
+    ],
+  },
+  {
+    rank:10, name:"GeoBlue Trekker Essential", carrier:"GeoBlue / Worldwide Insurance Services",
+    score:65, badge:"MEDICAL-FOCUSED TRAVEL", bc:"a",
+    filters:["all","medical"],
+    url:"https://www.geo-blue.com",
+    tags:[{l:"Medical-Only Focus",c:"tx"},{l:"Blue Cross Network",c:"tg"}],
+    bestFor:"Travelers who primarily want medical coverage and Blue Cross / Blue Shield hospital access while traveling.",
+    pros:[
+      "Blue Cross / Blue Shield network access in USA",
+      "Medical-first approach with solid emergency evacuation",
+      "Clean telemedicine access included",
+    ],
+    cons:[
+      "Trip cancellation not included in base plan",
+      "Primarily designed for US residents traveling abroad — eligibility for Indian visitors not confirmed",
+      "Verify B-1/B-2 foreign national eligibility before purchasing",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:80},{n:"Network (BCBS)",s:85},{n:"Evacuation",s:80},
+      {n:"Telemedicine",s:88},{n:"Trip Cancellation",s:15},{n:"Price / Value",s:72},
+    ],
+  },
+];
+
+/* ══════════════════════════════════════
+   SECTION 3 DATA — Indian Insurance Plans
+   ══════════════════════════════════════ */
+const S3 = [
+  {
+    rank:1, name:"Tata AIG Travel Guard International", carrier:"Tata AIG General Insurance",
+    score:87, badge:"MOST POPULAR FOR USA TRAVEL", bc:"g",
+    filters:["all","preex","senior","long"],
+    url:"https://www.tataaig.com/travel-insurance",
+    tags:[{l:"Most Popular",c:"tg"},{l:"Pre-ex Add-on",c:"tp"}],
+    bestFor:"Most Indian travelers going to the USA. Wide awareness, good cashless hospital network via assistance company, pre-existing add-on for eligible conditions.",
+    pros:[
+      "Pre-existing disease add-on available (subject to underwriting)",
+      "Cashless hospitalization via US assistance company (select hospitals)",
+      "Trip cancellation and baggage loss included",
+      "Senior citizen plans up to age 85 available",
+      "US-specific plans with higher medical limits available",
+    ],
+    cons:[
+      "Pre-existing add-on requires underwriting — not all conditions accepted",
+      "Medical limits on standard plans may be lower than US visitor health plans",
+      "Claims settlement can take longer than US-based plans",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:82},{n:"Pre-ex Options",s:80},{n:"Senior Coverage",s:78},
+      {n:"Cashless Network",s:72},{n:"Claims Service",s:70},{n:"Price / Value",s:85},
+    ],
+  },
+  {
+    rank:2, name:"Star Health International Travel", carrier:"Star Health and Allied Insurance",
+    score:84, badge:"BEST HOSPITAL NETWORK (India-side)",bc:"g",
+    filters:["all","preex","senior","long","short"],
+    url:"https://www.starhealth.in/travel-insurance",
+    tags:[{l:"Strong India Network",c:"tg"},{l:"Pre-ex Option",c:"tp"}],
+    bestFor:"Travelers who want the backing of India's largest standalone health insurer. Good for senior citizens and those with pre-existing conditions on eligible plans.",
+    pros:[
+      "India's largest standalone health insurer — strong claims reputation",
+      "Pre-existing disease coverage available on specific plans",
+      "Senior citizen travel plans up to age 80",
+      "Personal accident and baggage loss included",
+      "OPD benefits on some plans",
+    ],
+    cons:[
+      "Pre-existing waiting period applies — not day-1 coverage in most plans",
+      "US cashless hospital network depends on US assistance partner",
+      "Medical limits may need to be enhanced via riders for extended stays",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:80},{n:"Pre-ex Options",s:78},{n:"Senior Coverage",s:82},
+      {n:"Claims Reputation",s:85},{n:"Price / Value",s:80},{n:"Cashless USA",s:65},
+    ],
+  },
+  {
+    rank:3, name:"HDFC Ergo Overseas Travel Insurance", carrier:"HDFC ERGO General Insurance",
+    score:81, badge:"BEST DIGITAL EXPERIENCE", bc:"g",
+    filters:["all","senior","long","short"],
+    url:"https://www.hdfcergo.com/travel-insurance",
+    tags:[{l:"Digital Claims",c:"tx"},{l:"Instant Policy",c:"tg"}],
+    bestFor:"Tech-savvy travelers who want instant policy issuance, digital claims tracking, and solid USA coverage with HDFC brand reliability.",
+    pros:[
+      "Instant policy issuance — digital and paperless",
+      "Good medical evacuation and repatriation coverage",
+      "Trip cancellation and personal liability included",
+      "HDFC Bank customer: easy payment and KYC",
+      "Strong brand and claims settlement record",
+    ],
+    cons:[
+      "Pre-existing condition coverage limited compared to dedicated plans",
+      "Standard medical limits may need enhancement for US travel",
+      "Senior plan premiums are high at advanced ages",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:78},{n:"Digital Experience",s:92},{n:"Evacuation",s:80},
+      {n:"Trip Cancellation",s:78},{n:"Claims Service",s:80},{n:"Price / Value",s:75},
+    ],
+  },
+  {
+    rank:4, name:"Bajaj Allianz Travel Endure", carrier:"Bajaj Allianz General Insurance",
+    score:79, badge:"BEST COMPREHENSIVE COVERAGE", bc:"g",
+    filters:["all","long","short"],
+    url:"https://www.bajajallianz.com/travel-insurance",
+    tags:[{l:"Wide Coverage",c:"tg"},{l:"Allianz Backed",c:"tx"}],
+    bestFor:"Travelers wanting comprehensive protection — Allianz (German insurer) backing means solid international standards for travel claims.",
+    pros:[
+      "Allianz group backing — international claims standards",
+      "Comprehensive: medical + trip + baggage + personal liability",
+      "Good emergency evacuation benefit",
+      "Multi-trip annual plans available for frequent travelers",
+    ],
+    cons:[
+      "Pre-existing conditions generally excluded on standard plans",
+      "Senior plan availability varies — verify at time of purchase",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:78},{n:"Trip Cancellation",s:82},{n:"Evacuation",s:80},
+      {n:"Allianz Standards",s:85},{n:"Pre-ex Options",s:55},{n:"Price / Value",s:72},
+    ],
+  },
+  {
+    rank:5, name:"ICICI Lombard International Travel", carrier:"ICICI Lombard General Insurance",
+    score:77, badge:"BEST FOR FREQUENT TRAVELERS", bc:"a",
+    filters:["all","long","short","budget"],
+    url:"https://www.icicilombard.com/travel-insurance",
+    tags:[{l:"Annual Multi-trip",c:"tx"},{l:"Digital-First",c:"tg"}],
+    bestFor:"Frequent travelers (multiple US visits per year) — annual multi-trip plans offer good value. Strong digital claims experience.",
+    pros:[
+      "Annual multi-trip plans — excellent value for multiple visits",
+      "Fast digital claims via ICICI Lombard app",
+      "Good medical and evacuation limits",
+      "ICICI Bank integration — seamless for existing customers",
+    ],
+    cons:[
+      "Pre-existing conditions excluded on most plans",
+      "Single trip plans not as competitive vs. specialists",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:75},{n:"Annual Plan Value",s:92},{n:"Digital Claims",s:88},
+      {n:"Trip Cancellation",s:72},{n:"Pre-ex Options",s:45},{n:"Price / Value",s:80},
+    ],
+  },
+  {
+    rank:6, name:"Care Health Travel Elite", carrier:"Care Health Insurance (Religare)",
+    score:75, badge:"GOOD PRE-EX OPTIONS", bc:"a",
+    filters:["all","preex","senior"],
+    url:"https://www.careinsurance.com/travel-insurance",
+    tags:[{l:"Pre-ex Option",c:"tp"},{l:"Senior Plans",c:"tg"}],
+    bestFor:"Travelers with pre-existing conditions who want Indian insurer with dedicated health insurance expertise.",
+    pros:[
+      "Care Health has strong pre-existing condition handling from health insurance background",
+      "Senior citizen plans available",
+      "Good medical limits on higher-tier plans",
+    ],
+    cons:[
+      "Travel insurance is secondary business — health insurance is their core",
+      "Pre-existing conditions subject to waiting periods and sub-limits",
+      "US cashless network limited — often reimbursement-based",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:75},{n:"Pre-ex Options",s:78},{n:"Senior Coverage",s:75},
+      {n:"Cashless USA",s:60},{n:"Claims Service",s:72},{n:"Price / Value",s:72},
+    ],
+  },
+  {
+    rank:7, name:"Niva Bupa Travel Companion", carrier:"Niva Bupa Health Insurance",
+    score:73, badge:"TRUSTED HEALTH INSURER", bc:"a",
+    filters:["all","preex","senior","long"],
+    url:"https://www.nivabupa.com/travel-insurance",
+    tags:[{l:"Health Insurer Backing",c:"tg"},{l:"Pre-ex Option",c:"tp"}],
+    bestFor:"Travelers who trust the Bupa brand (international health insurance heritage) for travel coverage.",
+    pros:[
+      "Bupa group heritage — strong health insurance brand",
+      "Pre-existing condition riders available",
+      "Medical + personal accident + evacuation",
+    ],
+    cons:[
+      "Travel insurance product is less mature than their health insurance",
+      "Pre-existing sub-limits apply — not full coverage",
+      "Premiums for senior plans with pre-ex riders can be high",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:73},{n:"Pre-ex Options",s:72},{n:"Brand Trust",s:82},
+      {n:"Senior Coverage",s:72},{n:"Claims Service",s:70},{n:"Price / Value",s:70},
+    ],
+  },
+  {
+    rank:8, name:"New India Assurance — Overseas Mediclaim", carrier:"New India Assurance (Govt.)",
+    score:70, badge:"GOVERNMENT-BACKED RELIABILITY", bc:"a",
+    filters:["all","budget","long"],
+    url:"https://www.newindia.co.in/overseas-mediclaim",
+    tags:[{l:"Govt Backed",c:"tg"},{l:"Reliable Claims",c:"tg"}],
+    bestFor:"Travelers who prefer a government-backed insurer with a long track record. Good for longer stays on a budget.",
+    pros:[
+      "Government of India backing — no insolvency risk",
+      "Long-established overseas mediclaim product (decades of history)",
+      "Competitive premiums; widely available through agents",
+      "Covers medical + personal accident + baggage",
+    ],
+    cons:[
+      "Older product design — less digital-friendly",
+      "Pre-existing conditions generally excluded",
+      "Claims processing can be slower than private insurers",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:70},{n:"Government Backing",s:95},{n:"Long Stay Value",s:75},
+      {n:"Digital Experience",s:45},{n:"Claims Speed",s:58},{n:"Price / Value",s:82},
+    ],
+  },
+  {
+    rank:9, name:"Oriental Insurance — Overseas Mediclaim", carrier:"Oriental Insurance (Govt.)",
+    score:67, badge:"ESTABLISHED BUDGET OPTION", bc:"a",
+    filters:["all","budget","short"],
+    url:"https://www.orientalinsurance.org.in",
+    tags:[{l:"Budget",c:"tg"},{l:"Govt Backed",c:"tg"}],
+    bestFor:"Budget travelers preferring a government insurer for short US visits with basic medical coverage.",
+    pros:[
+      "Government of India PSU — financial reliability",
+      "Basic but reliable overseas medical coverage",
+      "Very competitive premiums",
+    ],
+    cons:[
+      "Very limited digital experience",
+      "Pre-existing conditions excluded",
+      "Coverage limits may be lower than US-based plans",
+      "Agent-based purchase only in most cases",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:65},{n:"Government Backing",s:95},{n:"Short Trip Value",s:78},
+      {n:"Digital Experience",s:30},{n:"Claims Speed",s:52},{n:"Price / Value",s:88},
+    ],
+  },
+  {
+    rank:10, name:"Reliance General Overseas Travel", carrier:"Reliance General Insurance",
+    score:62, badge:"BUDGET BASELINE OPTION", bc:"r",
+    filters:["all","budget","short"],
+    url:"https://www.reliancegeneral.co.in/travel-insurance",
+    tags:[{l:"Budget",c:"tg"},{l:"Basic Coverage",c:"tn"}],
+    bestFor:"Very budget-conscious travelers for short visits with no pre-existing conditions and low medical risk.",
+    pros:[
+      "Low premiums — most affordable option in this list",
+      "Covers emergency medical, personal accident, and baggage",
+    ],
+    cons:[
+      "Lower medical limits — may be insufficient for major US medical events",
+      "Pre-existing conditions excluded",
+      "Claims experience less established than larger carriers",
+    ],
+    dims:[
+      {n:"Medical Coverage",s:58},{n:"Trip Cancellation",s:60},{n:"Pre-ex Options",s:20},
+      {n:"Claims Service",s:55},{n:"Price / Value",s:92},{n:"Coverage Depth",s:48},
+    ],
+  },
+];
+
+/* ══════════════════════════════════════
+   HELPERS
+   ══════════════════════════════════════ */
+function sc(s){ return s>=80?'sg':s>=60?'ag':'rg'; }
+function fc(s){ return s>=80?'fg':s>=60?'fa':'fr'; }
+function rc(r){ return r===1?'r1':r===2?'r2':r===3?'r3':'r4'; }
+function badgeSty(bc){
+  const m={g:'background:rgba(34,197,94,0.1);color:#22c55e',a:'background:rgba(245,158,11,0.1);color:#f59e0b',r:'background:rgba(239,68,68,0.1);color:#ef4444',p:'background:rgba(167,139,250,0.1);color:#a78bfa'};
+  return m[bc]||m.a;
+}
+
+function renderPlanRow(p, sectionId) {
+  const id = `${sectionId}-${p.rank}`;
+  return `
+    <div class="prow" id="${id}" data-filters="${p.filters.join(' ')}">
+      <div class="prow-top" onclick="toggleRow('${id}')">
+        <div class="rchip ${rc(p.rank)}">${p.rank}</div>
+        <div>
+          <div class="pname">${p.name}</div>
+          <div class="pcarr">${p.carrier}</div>
+        </div>
+        <div class="ptags">${p.tags.map(t=>`<span class="tag ${t.c}">${t.l}</span>`).join('')}
+          <span style="font-size:10px;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,0.04);color:#52525b;">${p.auth||''}</span>
+        </div>
+        <div class="score-cell">
+          <div class="snum ${sc(p.score)}">${p.score}</div>
+          <div class="sbar"><div class="sbar-f ${fc(p.score)}" style="width:${p.score}%"></div></div>
+        </div>
+        <div class="chevron">▾</div>
+      </div>
+      <div class="prow-detail">
+        <div class="best-for-box">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#52525b;margin-right:8px;">BEST FOR</span>
+          ${p.bestFor}
+        </div>
+        ${p.provWarn?`<div class="prov-warn">${p.provWarn}</div>`:''}
+        <div class="det-grid">
+          <div class="det-col">
+            <div class="det-sec-lbl">Strengths</div>
+            ${p.pros.map(s=>`<div class="fact-row"><div class="fdot fdg"></div><div class="ftext">${s}</div></div>`).join('')}
+            <div class="det-sec-lbl" style="margin-top:14px">Limitations</div>
+            ${p.cons.map(s=>`<div class="fact-row"><div class="fdot fdr"></div><div class="ftext">${s}</div></div>`).join('')}
+          </div>
+          <div class="det-col">
+            <div class="det-sec-lbl">Score Breakdown</div>
+            ${p.dims.map(d=>`
+              <div class="dim-row">
+                <div class="dim-hdr">
+                  <span class="dim-name">${d.n}</span>
+                  <span class="dim-snum ${sc(d.s)}">${d.s}</span>
+                </div>
+                <div class="dim-bar"><div class="dim-fill ${fc(d.s)}" style="width:${d.s}%"></div></div>
+              </div>
+            `).join('')}
+            <div style="margin-top:16px">
+              <a href="${p.url}" target="_blank" class="visit-link">Visit Website &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function toggleRow(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+/* ══════════════════════════════════════
+   RENDER ALL SECTIONS
+   ══════════════════════════════════════ */
+function renderS1() {
+  document.getElementById('s1list').innerHTML =
+    `<div class="plan-section-label">Top 9 Plans — Evidence Ranked</div>` +
+    S1.map(p => renderPlanRow(p, 's1')).join('');
+}
+function renderS2() {
+  document.getElementById('s2list').innerHTML =
+    `<div class="plan-section-label">Top 10 Plans — Comprehensive Travel</div>` +
+    S2.map(p => renderPlanRow(p, 's2')).join('');
+}
+function renderS3() {
+  document.getElementById('s3list').innerHTML =
+    `<div class="plan-section-label">Top 10 Indian Carriers — Buy Before Departure</div>` +
+    S3.map(p => renderPlanRow(p, 's3')).join('');
+}
+
+/* ══════════════════════════════════════
+   FILTER FUNCTIONS
+   ══════════════════════════════════════ */
+function doFilter(prefix, filter, btn) {
+  document.querySelectorAll(`#${prefix} .pchip`).forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll(`[id^="${prefix.replace('sec','s')}-"]`).forEach(row=>{
+    const f = row.dataset.filters||'';
+    row.classList.toggle('hidden', filter!=='all' && !f.includes(filter));
+  });
+}
+function filterS1(f,btn){ doFilter('sec0',f,btn); }
+function filterS2(f,btn){ doFilter('sec1',f,btn); }
+function filterS3(f,btn){ doFilter('sec2',f,btn); }
+
+/* ══════════════════════════════════════
+   SECTION SWITCH
+   ══════════════════════════════════════ */
+function showSection(idx, btn) {
+  document.querySelectorAll('.section-panel').forEach((p,i)=>p.classList.toggle('on', i===idx));
+  document.querySelectorAll('.snav-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+/* ══════════════════════════════════════
+   INIT
+   ══════════════════════════════════════ */
+renderS1(); renderS2(); renderS3();
+// Auto-open the top plan in section 1
+setTimeout(()=>{ const el=document.getElementById('s1-1'); if(el)el.classList.add('open'); }, 200);
+</script>
+</body>
+</html>
