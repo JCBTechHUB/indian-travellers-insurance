@@ -1,0 +1,554 @@
+{
+  "meta": {
+    "version": "2026-06-18",
+    "phase": "Phase 21 — Claims Experience Intelligence",
+    "purpose": "Document claim submission process, required documents, filing deadlines, appeal procedures, and claim complexity scores for all 9 B-1/B-2 plans. Claim process complexity directly affects traveler experience — a great plan with a terrible claims process fails in practice.",
+    "disclaimer": "Claims process data sourced from carrier/aggregator websites (L6) and plan documents. Processes may change. Always verify current procedures with the plan administrator at time of claim. This is NOT claims advice.",
+    "complexity_score_guide": {
+      "0_29": "Low complexity — easy to navigate, streamlined digital process, generous deadlines",
+      "30_49": "Moderate complexity — standard process, some documentation requirements, manageable",
+      "50_69": "High complexity — significant documentation burden, tight deadlines, or major out-of-pocket risk during process",
+      "70_100": "Very high complexity — multiple barriers including upfront payment requirements, complex documentation, restrictive timelines"
+    },
+    "authority_level_of_data": 6,
+    "research_sources": [
+      "visitorscoverage.com/claims-process/patriot-america-plus-insurance/",
+      "visitorscoverage.com/claims-process/coveramerica-gold-insurance/",
+      "sevencorners.com/about/self-service/claims",
+      "worldtrips.com/claims-resource-center/travel-medical",
+      "visitorscoverage.com/claims-process/inf-elite/",
+      "robinassist.com/claims-services/",
+      "trawickinternational.com/claim-information/file-a-claim/",
+      "americanvisitorinsurance.com/trawick-international/claims.asp"
+    ]
+  },
+
+  "plans": [
+
+    {
+      "plan_id": "Patriot_America_Plus",
+      "carrier": "SiriusPoint / IMG",
+      "claims_administrator": "International Medical Group (IMG)",
+      "claims_portal_url": "https://myimg.imglobal.com",
+      "claims_portal_name": "MyIMG",
+
+      "how_to_file": {
+        "online": "Login to MyIMG (myimg.imglobal.com) → Claims → File New Claim. Fastest and recommended method.",
+        "by_mail": "International Medical Group, Attn: Claims Department, P.O. Box 240429, Apple Valley, MN 55124, USA",
+        "phone_claims": "317-655-4500",
+        "phone_status": "800-628-4664 or 317-655-4500",
+        "email": "imgcustomercare@imglobal.com",
+        "direct_billing": "Available via UHC PPO network — providers may bill IMG directly. Not guaranteed — depends on provider billing practices. Always file a claim regardless of billing arrangement."
+      },
+
+      "filing_deadline": {
+        "days_from_service": 180,
+        "deadline_basis": "Date of medical service received",
+        "note": "180 days is the most generous deadline among all 9 plans — 2× more time than Seven Corners' 90-day window.",
+        "confidence": 88
+      },
+
+      "required_documents": {
+        "always_required": [
+          "Completed IMG Claim Form (download from imglobal.com or complete online via MyIMG)",
+          "Copy of passport (photo page)",
+          "Insurance ID card copy",
+          "Itemized billing statement (showing date, service, diagnosis code, procedure code, charges)",
+          "Medical records and physician notes related to the claim",
+          "Receipts for any out-of-pocket payments"
+        ],
+        "conditionally_required": [
+          "Pre-certification confirmation number (if service required pre-cert)",
+          "Hospital discharge summary (for inpatient claims)",
+          "Pharmacy receipts (for prescription reimbursement)",
+          "Lab/imaging reports (if applicable)"
+        ],
+        "total_documents_typically": "5-7"
+      },
+
+      "precertification_requirements": {
+        "required_for": [
+          "Chemotherapy",
+          "Extended Care Facility",
+          "Home Nursing Care",
+          "Inpatient Hospitalization",
+          "Outpatient Surgical procedures",
+          "Interfacility Ambulance Transfer",
+          "Radiation Therapy",
+          "Surgery"
+        ],
+        "penalty_for_failure": "50% reduction of eligible medical expenses for the entire claim",
+        "emergency_exception": "Emergency admission: pre-certify within 48 hours of admission",
+        "how_to_precertify": "Call IMG at 317-655-4500 before the procedure",
+        "flag": "CRITICAL — pre-certification failure triggers 50% penalty. On a $50,000 surgery claim, failure to pre-certify costs the insured $25,000. Always call before ANY scheduled procedure."
+      },
+
+      "appeal_process": {
+        "appeal_deadline": "60 days from date denial notice mailed",
+        "documentation_deadline": "90 days from original claims determination",
+        "how_to_appeal_online": "MyIMG → Claims → My Claims → Claim Details → Submit Appeal",
+        "how_to_appeal_by_mail": "International Medical Group, Attn: Claims Appeals, P.O. Box 88500, Indianapolis, IN 46208-0500",
+        "required_for_appeal": "Written request + all relevant medical records, comments, and supporting documentation",
+        "processing_time": "Not specified — standard review",
+        "confidence": 85
+      },
+
+      "claim_complexity_score": 45,
+      "complexity_rationale": "Online portal (MyIMG) makes filing manageable. 180-day deadline is very generous. Main risk factors: pre-certification requirement with severe 50% penalty, and Indian nationals may be unfamiliar with US itemized billing requirements. Direct billing via UHC reduces manual burden for in-network care.",
+
+      "practical_tips_for_indian_travelers": [
+        "Always save the pre-certification number when you call — write it down, screenshot it",
+        "In an emergency, call IMG within 48 hours of hospital admission (not within 48 hours of discharge)",
+        "Request itemized bill (not just a total bill) from every provider — insurance requires line-item detail",
+        "File claim online via MyIMG — mail delays can push past deadlines for older travelers less familiar with timelines",
+        "Keep all original receipts — even small copays can be submitted"
+      ]
+    },
+
+    {
+      "plan_id": "Patriot_America_Platinum",
+      "carrier": "SiriusPoint / IMG",
+      "claims_administrator": "International Medical Group (IMG)",
+      "note": "Identical claims process to Patriot America Plus — same administrator, same portal, same deadlines.",
+      "claims_portal_url": "https://myimg.imglobal.com",
+
+      "filing_deadline": {"days_from_service": 180, "confidence": 88},
+      "direct_billing": "Yes — UHC PPO network",
+      "precertification_requirements": {
+        "same_as": "Patriot_America_Plus",
+        "penalty_for_failure": "50% reduction of eligible expenses",
+        "flag": "Same 50% pre-cert penalty applies despite 100% coinsurance plan."
+      },
+      "appeal_process": {"same_as": "Patriot_America_Plus", "appeal_deadline": "60 days from denial"},
+
+      "claim_complexity_score": 42,
+      "complexity_rationale": "Same process as PAP. Slightly lower complexity score because 100% coinsurance means no financial uncertainty about in-network vs OON — claim amount is more predictable.",
+
+      "practical_tips_for_indian_travelers": [
+        "Same as Patriot America Plus",
+        "With 100% coinsurance, the main risk is pre-certification failure — which is the same 50% penalty"
+      ]
+    },
+
+    {
+      "plan_id": "CoverAmerica_Gold",
+      "carrier": "SiriusPoint (admin: IMG)",
+      "claims_administrator": "International Medical Group (IMG)",
+      "note": "CoverAmerica Gold is administered by IMG — same MyIMG portal and same process as Patriot America plans.",
+      "claims_portal_url": "https://myimg.imglobal.com",
+
+      "filing_deadline": {
+        "days_from_service": 90,
+        "note": "Aggregator sources indicate 90 days for CoverAmerica Gold (vs 180 days for PAP). Verify in Certificate.",
+        "confidence": 72,
+        "flag": "NEEDS MANUAL REVIEW — PAP is 180 days; CAG may be 90 days. Tighter deadline if confirmed."
+      },
+      "direct_billing": "Yes — UHC PPO network",
+
+      "appeal_process": {
+        "appeal_deadline": "60 days from denial notice",
+        "documentation_deadline": "90 days from original determination",
+        "how_to_appeal": "MyIMG portal → Submit Appeal, or mail to IMG Appeals PO Box 88500, Indianapolis, IN 46208-0500",
+        "confidence": 88
+      },
+
+      "claim_complexity_score": 50,
+      "complexity_rationale": "Same IMG process as PAP/PAPL but possibly tighter 90-day deadline. 80% OON coinsurance means larger out-of-pocket exposure if filed incorrectly or OON. Pre-cert requirements presumed similar to PAP (NEEDS MANUAL REVIEW).",
+
+      "practical_tips_for_indian_travelers": [
+        "Verify exact filing deadline from your Certificate — may be 90 not 180 days",
+        "Stay in UHC network strictly — 80% OON coinsurance is costlier than PAP (90%) and PAPL (100%)",
+        "B-1/B-2 visa requirement: keep visa documentation ready for any claim review"
+      ]
+    },
+
+    {
+      "plan_id": "Safe_Travels_USA_Comprehensive",
+      "carrier": "Nationwide / Trawick International",
+      "claims_administrator": "Trawick International",
+      "claims_portal_url": "https://trawickinternational.com/claim-information/file-a-claim/",
+
+      "how_to_file": {
+        "online": "Trawick member portal at trawickinternational.com",
+        "by_mail": "Trawick International, P.O. Box 2069, Fairhope, AL 36533",
+        "phone": "866-696-0409 or 251-928-0939",
+        "direct_billing": "Available via FirstHealth PPO network — providers may bill Trawick/Nationwide directly"
+      },
+
+      "filing_deadline": {
+        "days_from_service": "NEEDS MANUAL REVIEW",
+        "note": "Specific deadline not confirmed from available sources. Contact Trawick directly or check Certificate. Likely 90 days based on industry standard.",
+        "confidence": 45,
+        "flag": "NEEDS MANUAL REVIEW — verify deadline from Certificate or by contacting Trawick at 866-696-0409"
+      },
+
+      "required_documents": {
+        "always_required": [
+          "Plan name",
+          "Policy ID number (begins with '9')",
+          "Order number (begins with '1' or '2')",
+          "Itemized billing statements",
+          "Medical records",
+          "Receipts for out-of-pocket payments"
+        ],
+        "international_travel_specific": [
+          "Copy of passport (identification page)",
+          "Passport entry/exit stamps showing USA entry",
+          "Copy of I-94 (Arrival/Departure Record)"
+        ],
+        "note": "I-94 requirement is unique to Safe Travels — most other plans do not require this. Indian B-1/B-2 visitors should save their I-94 from CBP website immediately upon arrival.",
+        "total_documents_typically": "6-8"
+      },
+
+      "precertification_requirements": {
+        "required": "NEEDS MANUAL REVIEW — not confirmed from available sources",
+        "confidence": 35
+      },
+
+      "appeal_process": {
+        "available": true,
+        "details": "NEEDS MANUAL REVIEW — appeal procedure not confirmed. Contact Trawick at 866-696-0409.",
+        "confidence": 35
+      },
+
+      "claim_complexity_score": 58,
+      "complexity_rationale": "Higher complexity due to: I-94 requirement (unique friction point — travelers unfamiliar with US immigration documents), unclear claims deadline, unclear pre-certification requirements. No pharmacy in-network means all outpatient Rx requires separate reimbursement claim. FirstHealth network is smaller than UHC — higher chance of encountering OON providers who may not direct-bill.",
+
+      "practical_tips_for_indian_travelers": [
+        "Download your I-94 from cbp.dhs.gov/I94 immediately after arrival — save it digitally and print a copy for claim filing",
+        "Locate your policy ID (starts with 9) and order number (starts with 1 or 2) from your confirmation email before any medical visit",
+        "For pharmacy: pay out of pocket at the pharmacy, save receipts, submit manually for reimbursement — there is no in-network pharmacy billing",
+        "Call Trawick at 866-696-0409 to confirm filing deadline from your specific Certificate"
+      ]
+    },
+
+    {
+      "plan_id": "VisitorSecure",
+      "carrier": "TMHCC / WorldTrips",
+      "claims_administrator": "WorldTrips",
+      "claims_portal_url": "https://www.worldtrips.com/claims-resource-center/travel-medical",
+
+      "how_to_file": {
+        "online": "Login to WorldTrips Member Portal → complete claim form via DocuSign → upload supporting documents",
+        "by_mail": "WorldTrips Claims Department (address on ID card/Certificate)",
+        "direct_billing": "NOT AVAILABLE — no PPO network. Insured must pay provider upfront then file reimbursement claim.",
+        "upfront_payment_warning": "Without direct billing, US hospitals and ERs may require payment at time of service or upon discharge. On large claims ($10,000+), this creates significant financial burden for travelers."
+      },
+
+      "filing_deadline": {
+        "days_from_certificate_end": 60,
+        "deadline_basis": "Last day of Certificate period (NOT date of service)",
+        "note": "DIFFERENT from other plans — 60 days from Certificate END, not from service date. If plan expires April 30 and claim was January 15, you must file by June 29 (60 days after April 30), NOT by April 14 (90 days from service).",
+        "confidence": 92,
+        "flag": "TIGHTEST EFFECTIVE DEADLINE — combining scheduled benefit caps with 60-day Certificate-end deadline means travelers on longer trips may have claims processed while still traveling."
+      },
+
+      "required_documents": {
+        "always_required": [
+          "Completed claim form (via DocuSign through Member Portal)",
+          "Itemized medical bills",
+          "Medical records and physician notes",
+          "Receipts for all payments made",
+          "Insurance ID card"
+        ],
+        "conditionally_required": [
+          "HIPAA Authorization Form (if submitting on behalf of someone else)",
+          "Pharmacy receipts for Rx claims"
+        ],
+        "total_documents_typically": "5-6"
+      },
+
+      "processing_time": {
+        "review_period": "15-30 business days after receiving all documentation",
+        "payment_after_approval": "10 additional business days for payment issuance",
+        "total_estimate": "25-40 business days (5-8 weeks) from submission to payment receipt"
+      },
+
+      "appeal_process": {
+        "appeal_deadline": "90 days from denial",
+        "how_to_appeal_by_mail": "WorldTrips Appeals, PO Box 240358, Apple Valley, MN 55124",
+        "required": "Written appeal request + Claimant Appeal Request Form + supporting documentation (medical records, receipts, itemized bills)",
+        "processing_time": "Standard review",
+        "confidence": 90
+      },
+
+      "claim_complexity_score": 75,
+      "complexity_rationale": "Highest complexity of all 9 plans: (1) No direct billing — insured must pay upfront, often thousands of dollars; (2) Scheduled benefit plan means reimbursement is fixed low amounts regardless of actual costs — insured receives less than expected; (3) 60-day deadline from Certificate end (not service date) is confusing and tighter in practice; (4) Processing time 5-8 weeks is the longest; (5) DocuSign-only online process may be unfamiliar to older Indian travelers.",
+
+      "practical_tips_for_indian_travelers": [
+        "CRITICAL: Budget for large upfront payments — this plan has no direct billing. Consider keeping a credit card with $5,000-$10,000 available limit for medical emergencies",
+        "Calculate your filing deadline from Certificate END date (not service date) — add 60 days to your plan expiry date",
+        "Keep a folder with ALL receipts, bills, and discharge summaries from day of treatment — you have weeks to gather but organize immediately",
+        "Expect 5-8 weeks from submission to payment — plan household budget accordingly",
+        "File BEFORE your Certificate expires if possible — avoids confusion about deadline calculation"
+      ]
+    },
+
+    {
+      "plan_id": "Atlas_America",
+      "carrier": "TMHCC / WorldTrips",
+      "claims_administrator": "WorldTrips",
+      "note": "Same administrator as VisitorSecure — similar claims process but has UHC PPO direct billing.",
+
+      "how_to_file": {
+        "online": "WorldTrips Member Portal (same as VisitorSecure)",
+        "direct_billing": "Available via UHC PPO network — unlike VisitorSecure, Atlas America has direct billing capability",
+        "portal": "worldtrips.com/claims-resource-center/travel-medical"
+      },
+
+      "filing_deadline": {
+        "note": "NEEDS MANUAL REVIEW — exact deadline not confirmed for Atlas America. WorldTrips VisitorSecure is 60 days from Certificate end. Atlas America may differ.",
+        "confidence": 40,
+        "flag": "NEEDS MANUAL REVIEW — confirm Atlas America claims deadline from Certificate"
+      },
+
+      "processing_time": {
+        "same_as": "VisitorSecure — 15-30 business days review + 10 days payment"
+      },
+
+      "claim_complexity_score": 52,
+      "complexity_rationale": "Similar process to VisitorSecure but UHC direct billing significantly reduces upfront payment burden. Key unknowns: exact deadline and OON coinsurance rate. Certificate data needed.",
+
+      "appeal_process": {
+        "same_as": "VisitorSecure (WorldTrips) — 90-day appeal window, mail to WorldTrips Appeals PO Box 240358",
+        "confidence": 60
+      },
+
+      "practical_tips_for_indian_travelers": [
+        "Use UHC PPO network — this avoids upfront payment unlike VisitorSecure",
+        "Confirm claims deadline from your Certificate — may be 60 days from Certificate end",
+        "Same WorldTrips portal as VisitorSecure"
+      ]
+    },
+
+    {
+      "plan_id": "INF_Elite_X",
+      "carrier": "Crum & Forster SPC (admin: Robin Assist)",
+      "claims_administrator": "Robin Assist",
+      "claims_portal_url": "https://claims.robinassist.com/file-a-claim/",
+
+      "how_to_file": {
+        "online": "INF Member Portal → Active Plans → File a Claim. Or visit claims.robinassist.com",
+        "by_mail": "Robin Assist, P.O. Box 211879, Dallas, TX 75211",
+        "email": "claims@robinassist.com",
+        "phone": "888-207-1694",
+        "claim_tracking": "INF Member Portal — track status any time",
+        "direct_billing": "Available via UHC Options PPO network"
+      },
+
+      "filing_deadline": {
+        "days_from_service": "NEEDS MANUAL REVIEW — not confirmed from available sources",
+        "note": "Industry standard is 90 days but must be confirmed from Policy Wording or by contacting Robin Assist at 888-207-1694",
+        "confidence": 35,
+        "flag": "NEEDS MANUAL REVIEW — verify filing deadline from Policy Wording"
+      },
+
+      "required_documents": {
+        "always_required": [
+          "Completed claim form (from INF Member Portal or Robin Assist website)",
+          "Copy of passport",
+          "Insurance ID card",
+          "All itemized bills and receipts",
+          "Medical reports",
+          "Hospital discharge summary (if applicable)"
+        ],
+        "preexisting_claims_additional": [
+          "Medical records demonstrating stable medication (type/frequency/quantity) for 24 months — required to support stable medication exception",
+          "Physician documentation of current medication regimen",
+          "Prior prescription history (pharmacy records)"
+        ],
+        "total_documents_typically": "5-7 (7-9 for pre-ex claims with stable medication exception)"
+      },
+
+      "processing_time": {
+        "after_complete_docs": "10-15 business days",
+        "note": "Fastest stated processing time of all 9 plans when documentation is complete."
+      },
+
+      "precertification_requirements": {
+        "required": "NEEDS MANUAL REVIEW — not explicitly confirmed from Policy Wording",
+        "confidence": 40,
+        "flag": "Pre-certification requirements for hospitalization/surgery not confirmed. Contact Robin Assist at 888-207-1694 before any planned procedure."
+      },
+
+      "appeal_process": {
+        "available": true,
+        "details": "NEEDS MANUAL REVIEW — appeal process not confirmed from sources. Contact Robin Assist.",
+        "confidence": 30
+      },
+
+      "claim_complexity_score": 62,
+      "complexity_rationale": "Moderate-high complexity: (1) Robin Assist is a smaller, less well-known administrator vs IMG/WorldTrips — fewer travelers have navigated it; (2) Pre-existing condition claims require additional documentation proving 24-month medication stability — significant documentation burden; (3) Unknown deadline and pre-cert requirements create planning uncertainty; (4) 90-day minimum plan means claims may pile up over a long period; (5) FASTEST processing (10-15 days) is a genuine advantage once documents submitted.",
+
+      "practical_tips_for_indian_travelers": [
+        "BEFORE trip: Ask your physician in India to provide a letter listing all medications, dosages, and confirming no changes for 24+ months — this is essential for any pre-existing condition claim",
+        "Get pharmacy records from Indian pharmacy showing stable prescription for 24 months — this is the primary evidence for the stable medication exception",
+        "Call Robin Assist (888-207-1694) immediately after any medical event — ask about pre-certification requirements before any planned follow-up care",
+        "Track all claims via INF Member Portal — faster to notice missing documents vs calling",
+        "Cancer history travelers: do not use this plan (absolute cancer exclusion)"
+      ]
+    },
+
+    {
+      "plan_id": "SC_Travel_Medical_Basic",
+      "carrier": "Crum & Forster SPC via ITI SP / Seven Corners",
+      "claims_administrator": "Seven Corners, Inc.",
+      "claims_portal_url": "https://www.sevencorners.com/about/self-service/claims",
+
+      "how_to_file": {
+        "online": "Seven Corners member portal at sevencorners.com → Claims. Recommended for fastest processing.",
+        "by_mail": "Seven Corners, Inc., Attn: Claims, P.O. Box 211760, Eagan, MN 55121",
+        "direct_billing": "Available via UHC PPO network (and PHCS/Multiplan secondary network)"
+      },
+
+      "filing_deadline": {
+        "days_from_service": 90,
+        "deadline_basis": "Date of service",
+        "note": "90-day deadline is stricter than IMG's 180-day window. Travelers with longer trips or delayed billing must monitor this carefully.",
+        "confidence": 88
+      },
+
+      "required_documents": {
+        "always_required": [
+          "Completed Seven Corners Claim Form",
+          "Medical records",
+          "Doctor's notes / physician statement",
+          "Itemized bills",
+          "Receipts for out-of-pocket payments",
+          "ACH authorization form (for direct deposit of reimbursement)"
+        ],
+        "conditionally_required": [
+          "Signed HIPAA authorization (if submitting for a covered dependent)",
+          "Passport copy"
+        ],
+        "total_documents_typically": "5-7"
+      },
+
+      "precertification_requirements": {
+        "notification_required": "7-day advance notification for certain non-emergency services (based on 7-day waiting period structure)",
+        "details": "NEEDS MANUAL REVIEW — specific pre-certification services list not confirmed from Certificate for this plan",
+        "confidence": 55
+      },
+
+      "appeal_process": {
+        "how_to_appeal": "Submit written appeal with supporting documentation to Seven Corners",
+        "processing_time": "Up to 30 days",
+        "portal": "sevencorners.com/about/self-service/claims/appeals",
+        "confidence": 90
+      },
+
+      "claim_complexity_score": 50,
+      "complexity_rationale": "Standard complexity: online portal, UHC direct billing, clear 90-day deadline (stricter than IMG). ACH form requirement is an extra step. Seven Corners has a well-established claims process. PT exclusion means no PT claims to file, reducing one category of paperwork. 7-day waiting period creates a coverage gap in the first week.",
+
+      "practical_tips_for_indian_travelers": [
+        "File claims online — Seven Corners' portal is well-reviewed for usability",
+        "90-day deadline: if hospitalized for 2 weeks, start gathering paperwork while still in hospital to avoid running against the clock",
+        "Complete ACH form at policy purchase to ensure faster direct deposit when approved",
+        "Do NOT seek physiotherapy after an injury — it is excluded entirely. Alert any treating physician immediately.",
+        "After the 7-day waiting period ends, print the date clearly in your phone's calendar — no claims for illness before day 8"
+      ]
+    },
+
+    {
+      "plan_id": "SC_Travel_Medical_Choice",
+      "carrier": "Crum & Forster SPC via ITI SP / Seven Corners",
+      "claims_administrator": "Seven Corners, Inc.",
+      "note": "Identical claims process to SC Travel Medical Basic — same administrator, portal, and deadline.",
+      "claims_portal_url": "https://www.sevencorners.com/about/self-service/claims",
+
+      "filing_deadline": {"days_from_service": 90, "confidence": 88},
+      "direct_billing": "Yes — UHC PPO + PHCS/Multiplan",
+
+      "appeal_process": {
+        "same_as": "SC_Travel_Medical_Basic",
+        "processing_time": "Up to 30 days"
+      },
+
+      "claim_complexity_score": 48,
+      "complexity_rationale": "Same process as Basic. Slightly lower score because PT coverage (up to $500) gives Choice policyholders fewer surprises — Basic generates frustration when PT claims are denied. Choice process is otherwise identical.",
+
+      "practical_tips_for_indian_travelers": [
+        "Same as SC Travel Medical Basic",
+        "PT claims ($50/visit, 10-visit max): get physician prescription before first PT session — required for claim",
+        "File PT claims separately per visit or in batches — do not wait for all 10 visits to complete before filing"
+      ]
+    }
+  ],
+
+  "cross_plan_claims_comparison": {
+
+    "complexity_ranking_easiest_to_hardest": [
+      {"rank": 1, "plan": "Patriot_America_Platinum", "score": 42, "reason": "MyIMG portal, 180-day deadline, 100% coinsurance means no financial uncertainty"},
+      {"rank": 2, "plan": "Patriot_America_Plus", "score": 45, "reason": "Same MyIMG process; 10% OON risk adds minor uncertainty"},
+      {"rank": 3, "plan": "SC_Travel_Medical_Choice", "score": 48, "reason": "Clean Seven Corners portal; 90-day deadline; PT coverage reduces surprise denials"},
+      {"rank": 4, "plan": "SC_Travel_Medical_Basic", "score": 50, "reason": "Same as Choice but PT exclusion creates denial risk and friction"},
+      {"rank": 5, "plan": "CoverAmerica_Gold", "score": 50, "reason": "MyIMG process but potentially tighter 90-day deadline; 80% OON adds uncertainty"},
+      {"rank": 6, "plan": "Atlas_America", "score": 52, "reason": "WorldTrips process; deadline unconfirmed; but UHC direct billing helps"},
+      {"rank": 7, "plan": "Safe_Travels_USA_Comprehensive", "score": 58, "reason": "I-94 requirement; unclear deadline; no pharmacy direct billing; smaller FirstHealth network"},
+      {"rank": 8, "plan": "INF_Elite_X", "score": 62, "reason": "Robin Assist (less familiar); pre-ex claims require extra 24-month medication documentation; unknown deadline; unknown pre-cert"},
+      {"rank": 9, "plan": "VisitorSecure", "score": 75, "reason": "NO direct billing (upfront payment burden); 60-day Certificate-end deadline; 5-8 week processing; scheduled benefits create gap between expectation and reimbursement"}
+    ],
+
+    "deadline_comparison": {
+      "180_days_from_service": ["Patriot_America_Plus", "Patriot_America_Platinum"],
+      "90_days_from_service": ["CoverAmerica_Gold (unconfirmed — may be 90)", "SC_Travel_Medical_Basic", "SC_Travel_Medical_Choice"],
+      "60_days_from_certificate_end": ["VisitorSecure"],
+      "needs_manual_review": ["Safe_Travels_USA_Comprehensive", "Atlas_America", "INF_Elite_X"]
+    },
+
+    "direct_billing_available": {
+      "yes_uhc_network": ["Patriot_America_Plus", "Patriot_America_Platinum", "CoverAmerica_Gold", "Atlas_America", "INF_Elite_X", "SC_Travel_Medical_Basic", "SC_Travel_Medical_Choice"],
+      "yes_firsthealth_network": ["Safe_Travels_USA_Comprehensive"],
+      "no": ["VisitorSecure"]
+    },
+
+    "precertification_consequences": {
+      "50_percent_penalty": ["Patriot_America_Plus", "Patriot_America_Platinum"],
+      "confirmed_required": ["Patriot_America_Plus", "Patriot_America_Platinum"],
+      "needs_manual_review": ["CoverAmerica_Gold", "Safe_Travels_USA_Comprehensive", "Atlas_America", "INF_Elite_X", "SC_Travel_Medical_Basic", "SC_Travel_Medical_Choice"],
+      "not_applicable": ["VisitorSecure"]
+    },
+
+    "processing_time_fastest_to_slowest": [
+      {"plan": "INF_Elite_X", "time": "10-15 business days (once all docs received)"},
+      {"plan": "SC_Travel_Medical_Basic", "time": "Standard — not specified"},
+      {"plan": "SC_Travel_Medical_Choice", "time": "Standard — not specified"},
+      {"plan": "Patriot_America_Plus", "time": "Standard — not specified"},
+      {"plan": "Patriot_America_Platinum", "time": "Standard — not specified"},
+      {"plan": "CoverAmerica_Gold", "time": "Standard — not specified"},
+      {"plan": "Safe_Travels_USA_Comprehensive", "time": "Not specified"},
+      {"plan": "Atlas_America", "time": "15-30 business days review + 10 days payment"},
+      {"plan": "VisitorSecure", "time": "15-30 business days review + 10 business days payment (25-40 total)"}
+    ],
+
+    "key_finding": "Claim process complexity is a hidden but major factor in plan selection. VisitorSecure's no-direct-billing structure means travelers may face upfront medical bills of $10,000+ during their trip — a cash flow crisis for most Indian families. IMG plans (PAP/PAPL/CAG) offer the most mature and established claims portal (MyIMG), the most generous deadlines (180 days), and the clearest appeal path. INF Elite X has the fastest stated processing time (10-15 days) but adds significant documentation burden for pre-existing condition claims."
+  },
+
+  "open_items": [
+    {
+      "id": "CI-001",
+      "description": "Safe Travels USA Comprehensive: claims filing deadline not confirmed. Contact Trawick at 866-696-0409 or check Certificate. Critical for planning.",
+      "priority": "high"
+    },
+    {
+      "id": "CI-002",
+      "description": "INF Elite X: claims filing deadline and pre-certification requirements not confirmed. Contact Robin Assist at 888-207-1694.",
+      "priority": "high"
+    },
+    {
+      "id": "CI-003",
+      "description": "Atlas America: claims deadline not confirmed. May follow WorldTrips' 60-day Certificate-end rule or differ.",
+      "priority": "high"
+    },
+    {
+      "id": "CI-004",
+      "description": "CoverAmerica Gold: confirm whether deadline is 90 days (per aggregator) or 180 days (same as PAP via IMG). Check Certificate.",
+      "priority": "medium"
+    },
+    {
+      "id": "CI-005",
+      "description": "All plans: pre-certification service lists for CAG, Safe Travels, Atlas America, SC Basic/Choice not confirmed. Request from carriers.",
+      "priority": "medium"
+    }
+  ]
+}
