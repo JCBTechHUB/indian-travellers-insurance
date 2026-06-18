@@ -1,0 +1,831 @@
+{
+  "meta": {
+    "version": "2026-06-17",
+    "phase": "Phase 17 — Claim Simulation Engine",
+    "purpose": "Simulate realistic claim scenarios across all 9 B-1/B-2 plans. Scores are probabilistic — not legal determinations. Always based on evidence.json records. Confidence reflects quality of underlying document.",
+    "disclaimer": "These are research estimates only. Actual claim outcomes depend on specific circumstances, attending physician documentation, carrier adjudication, and plan terms in effect at time of claim. Never represent these as coverage guarantees.",
+    "scoring": {
+      "coverage_score": "0-100. How well the plan covers this scenario. 90-100 = very well covered; 60-89 = covered with significant limitations; 30-59 = partially covered with major gaps; 0-29 = likely denied or near-worthless coverage.",
+      "denial_risk": "0-100. Probability of claim denial or significant underpayment. 0-20 = low risk; 21-50 = moderate risk; 51-80 = high risk; 81-100 = very likely denied.",
+      "confidence": "0-100. Confidence in the simulation based on document quality. 90-100 = Certificate L1 with explicit language; 60-89 = Certificate with inferred application; 40-59 = Policy Wording L2 or partial docs; 0-39 = brochure/marketing only."
+    },
+    "plans": ["Patriot_America_Plus", "Patriot_America_Platinum", "CoverAmerica_Gold", "Safe_Travels_USA_Comprehensive", "VisitorSecure", "Atlas_America", "INF_Elite_X", "SC_Travel_Medical_Basic", "SC_Travel_Medical_Choice"]
+  },
+
+  "scenarios": [
+
+    {
+      "id": "S-01",
+      "name": "ER Visit — New Illness (Appendicitis, No Pre-existing History)",
+      "description": "55-year-old Indian visitor on B-1/B-2. No pre-existing conditions. Develops sudden abdominal pain at 10pm. Goes to ER. Diagnosed with appendicitis. ER visit + CT scan + labs. Total billed: $8,500. No admission yet.",
+      "category": "Emergency Room",
+      "age_band": "under_70",
+      "is_preexisting": false,
+      "typical_us_cost": "$6,000–$15,000 for ER eval + appendicitis diagnosis",
+      "results": {
+        "Patriot_America_Plus": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 82,
+          "denial_risk": 15,
+          "confidence": 90,
+          "estimated_plan_payout": "$7,350–$8,000 (after $250 deductible + $250 ER illness copay; 90% OON or 100% in-network)",
+          "key_risks": ["ER illness extra $250 deductible applies", "Out-of-network penalty 10% if not PPO provider", "Pre-certification recommended for CT scan"],
+          "notes": "New illness, not pre-existing. Appendicitis is clearly an acute new condition. Main risk is OON penalty and ER illness deductible."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 88,
+          "denial_risk": 10,
+          "confidence": 90,
+          "estimated_plan_payout": "$8,000–$8,250 (after $250 ER illness deductible; 100% everywhere)",
+          "key_risks": ["ER illness $250 extra deductible applies", "Pre-certification recommended"],
+          "notes": "100% coinsurance everywhere. Only risk is ER illness copay and pre-certification for imaging."
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 78,
+          "denial_risk": 18,
+          "confidence": 88,
+          "estimated_plan_payout": "~$6,200–$7,800 (after deductible; 100% in-network / 80% OON with $1K OOP max)",
+          "key_risks": ["No $0 deductible option — minimum $100", "80% OON coinsurance (weaker than IMG)", "COVID-19 waiting period not applicable here"],
+          "notes": "Appendicitis is covered. Slightly weaker OON coinsurance (80% vs 90%)."
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 85,
+          "denial_risk": 12,
+          "confidence": 88,
+          "estimated_plan_payout": "$7,800–$8,200 (100% coinsurance everywhere; after deductible; $200 ER illness copay)",
+          "key_risks": ["$200 ER illness extra deductible (slightly less than IMG's $250)", "No PPO network restriction — 100% everywhere"],
+          "notes": "100% coinsurance is a strength. No PPO penalty. ER illness $200 copay applies."
+        },
+        "VisitorSecure": {
+          "verdict": "PARTIALLY COVERED — significant gap",
+          "coverage_score": 30,
+          "denial_risk": 25,
+          "confidence": 88,
+          "estimated_plan_payout": "$375–$785 (ER fixed benefit IF hospitalized; $0 if not admitted)",
+          "key_risks": [
+            "SCHEDULED BENEFIT — ER illness benefit only paid if admitted to hospital",
+            "Appendicitis diagnosis in ER (pre-surgical) may not trigger admission benefit",
+            "CT scan and labs may not be separately reimbursed at actual cost",
+            "Fixed daily caps bear no relation to actual $8,500 billed"
+          ],
+          "notes": "CRITICAL — VisitorSecure ER illness benefit requires hospital admission. If not admitted from ER, payout could be $0. Even with admission, fixed caps leave large gap on $8,500 bill."
+        },
+        "Atlas_America": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 80,
+          "denial_risk": 15,
+          "confidence": 55,
+          "estimated_plan_payout": "~$8,000 (100% coinsurance; $200 ER copay; UHC PPO network)",
+          "key_risks": ["NEEDS MANUAL REVIEW — full Certificate not obtained", "$200 ER co-payment per visit"],
+          "notes": "Based on brochure/confirmation data. UHC PPO network is strong for USA. Full cert needed to confirm."
+        },
+        "INF_Elite_X": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 68,
+          "denial_risk": 22,
+          "confidence": 82,
+          "estimated_plan_payout": "$5,500–$7,000 (after deductible; 80-90% in-network; hospital ancillary capped at $20K)",
+          "key_risks": [
+            "In-network coinsurance 80-90% (insured pays 10-20% even in-network)",
+            "Hospital ancillary services (CT scan, ER use) capped at $20,000 total",
+            "Out-of-network exposure 30-40% if not in-network",
+            "5-day illness waiting period if purchased mid-trip"
+          ],
+          "notes": "Appendicitis is a new illness — not pre-existing. Covered at 80-90% in-network. Hospital ancillary $20K cap is adequate for this scenario. Main risk: in-network coinsurance not 100%."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 80,
+          "denial_risk": 14,
+          "confidence": 92,
+          "estimated_plan_payout": "$7,900–$8,300 (after deductible; 100% in-network; $100 ER copay; 80% OON first $10K)",
+          "key_risks": ["$100 ER copay per visit", "80% OON coinsurance on first $10K (OOP max $2K)"],
+          "notes": "100% in-network. $100 ER copay is lower risk. Appendicitis clearly new illness."
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 83,
+          "denial_risk": 12,
+          "confidence": 92,
+          "estimated_plan_payout": "$8,000–$8,350 (after deductible; 100% in-network; $100 ER copay; 90% OON first $10K)",
+          "key_risks": ["$100 ER copay per visit", "90% OON coinsurance on first $10K (OOP max $1K)"],
+          "notes": "Better OON coinsurance than Basic. Same ER copay."
+        }
+      }
+    },
+
+    {
+      "id": "S-02",
+      "name": "ER Visit + Hospitalization — Injury (Fall, Hip Fracture)",
+      "description": "68-year-old Indian visitor. Slips and falls, fractures hip. ER visit + X-ray + surgery + 4-day hospital stay + ICU overnight. Total billed: $65,000.",
+      "category": "Injury + Surgery + Hospitalization",
+      "age_band": "under_70",
+      "is_preexisting": false,
+      "typical_us_cost": "$50,000–$90,000",
+      "results": {
+        "Patriot_America_Plus": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 90,
+          "denial_risk": 8,
+          "confidence": 90,
+          "estimated_plan_payout": "$62,000–$64,500 (injury ER 100% in-network; surgery + ICU 100%; after deductible)",
+          "key_risks": ["No ER injury extra deductible (only illness has extra $250)", "Pre-certification required for surgery and hospitalization", "Must use in-network providers for 100%"],
+          "notes": "Injury (not illness) — no ER extra deductible. 100% in-network. Strong coverage for this scenario."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 94,
+          "denial_risk": 5,
+          "confidence": 92,
+          "estimated_plan_payout": "$64,000–$64,900 (100% everywhere; after deductible)",
+          "key_risks": ["Pre-certification required", "Documentation requirements"],
+          "notes": "Best coverage for this scenario. 100% everywhere, no OON penalty, no ER injury copay."
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 84,
+          "denial_risk": 12,
+          "confidence": 88,
+          "estimated_plan_payout": "$58,000–$62,000 (100% in-network; 80% OON; OOP max $1K)",
+          "key_risks": ["80% OON coinsurance — OOP max $1K limits exposure", "No ER injury extra deductible"],
+          "notes": "OOP max of $1K on OON expenses limits patient exposure for large claim."
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 88,
+          "denial_risk": 8,
+          "confidence": 88,
+          "estimated_plan_payout": "$62,000–$64,500 (100% everywhere; no PPO penalty; after deductible)",
+          "key_risks": ["No PPO network restriction is a strength for injury (any hospital)"],
+          "notes": "100% coinsurance everywhere means no penalty if taken to nearest hospital (not PPO). Strong for emergency trauma."
+        },
+        "VisitorSecure": {
+          "verdict": "PARTIALLY COVERED — major gap",
+          "coverage_score": 18,
+          "denial_risk": 10,
+          "confidence": 88,
+          "estimated_plan_payout": "$7,000–$12,000 (fixed caps: room $1,450–$2,585/day × 4 + ICU $2,200/day + surgery $3,600–$7,800)",
+          "key_risks": [
+            "SCHEDULED BENEFIT — plan pays fixed amounts regardless of actual $65,000 bill",
+            "Room $1,450–$2,585/day: 4 days = $5,800–$10,340",
+            "ICU 1 day = $2,200",
+            "Surgery $3,600–$7,800 per session",
+            "TOTAL ESTIMATED PAYOUT: ~$12,000–$20,000 on a $65,000 bill",
+            "PATIENT OOP: ~$45,000–$53,000"
+          ],
+          "notes": "CRITICAL — scheduled benefit plan leaves $45K+ out-of-pocket on a $65K injury. This plan is NOT suitable for serious injuries or surgeries."
+        },
+        "Atlas_America": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 85,
+          "denial_risk": 10,
+          "confidence": 55,
+          "estimated_plan_payout": "~$62,000–$64,000 (100% coinsurance; UHC PPO)",
+          "key_risks": ["NEEDS MANUAL REVIEW — full cert not obtained"],
+          "notes": "Based on brochure. 100% coinsurance with UHC PPO should cover well."
+        },
+        "INF_Elite_X": {
+          "verdict": "LIKELY COVERED with notable sub-limits",
+          "coverage_score": 62,
+          "denial_risk": 20,
+          "confidence": 82,
+          "estimated_plan_payout": "$45,000–$55,000 (80-90% in-network; BUT hospital room capped $20K + ancillary $20K = $40K combined hospital sub-limit)",
+          "key_risks": [
+            "Hospital room + board: capped at $20,000 regardless of actual cost",
+            "Hospital ancillary (surgery, ER, OR): capped at $20,000 separately",
+            "Combined hospital sub-limit: $40,000 max on actual hospital charges",
+            "Surgery likely fits within $20K ancillary cap for single fracture",
+            "ICU room included in hospital room $20K cap"
+          ],
+          "notes": "Sub-limits create exposure on $65K bill. Hospital room $20K + ancillary $20K = $40K maximum from hospital charges. Plus doctor fees, imaging at coinsurance rate. Patient may owe $15K–$25K."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 84,
+          "denial_risk": 10,
+          "confidence": 92,
+          "estimated_plan_payout": "$62,000–$64,000 (100% in-network; 80% OON first $10K then 100%)",
+          "key_risks": ["$100 ER copay", "OON exposure limited to $2,000 max"],
+          "notes": "No sub-limits for injury scenario. URC up to Medical Maximum. Strong for injury."
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 87,
+          "denial_risk": 8,
+          "confidence": 92,
+          "estimated_plan_payout": "$62,500–$64,500 (100% in-network; 90% OON first $10K then 100%)",
+          "key_risks": ["$100 ER copay", "OON exposure limited to $1,000 max"],
+          "notes": "Better OON limit than Basic. No sub-limits for injury."
+        }
+      }
+    },
+
+    {
+      "id": "S-03",
+      "name": "Acute Cardiac Event — Known Pre-existing Heart Disease",
+      "description": "64-year-old Indian visitor with known coronary artery disease (pre-existing). Sudden severe chest pain, rushed to ER. Heart attack confirmed. Emergency angioplasty + 3-day ICU + 2-day regular stay. Total billed: $120,000.",
+      "category": "Acute Onset of Pre-existing Condition — Cardiac",
+      "age_band": "under_70",
+      "is_preexisting": true,
+      "preexisting_type": "Cardiac / Coronary Artery Disease",
+      "typical_us_cost": "$80,000–$200,000",
+      "results": {
+        "Patriot_America_Plus": {
+          "verdict": "LIKELY COVERED — up to plan maximum via Acute Onset",
+          "coverage_score": 85,
+          "denial_risk": 30,
+          "confidence": 88,
+          "estimated_plan_payout": "Up to plan maximum (e.g., $100K if $100K plan; $1M if $1M plan) after deductible",
+          "key_risks": [
+            "Must meet ALL acute onset criteria: sudden/unexpected, within 24hr treatment, no Rx change in 30 days, not traveling for treatment, stable 30 days prior",
+            "Coronary artery disease is a known chronic condition — carrier will scrutinize 'no Rx change' and '30-day stability' criteria",
+            "If insured recently changed cardiac medications → claim DENIED",
+            "3-year lookback pre-existing definition — CAD almost certainly pre-existing",
+            "Pre-certification required — call immediately on the way to hospital"
+          ],
+          "notes": "Acute onset coverage is the insured's only path. Coverage is up to plan max which is favorable. But denial risk is elevated because cardiac chronic conditions face high scrutiny on stability criteria."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "LIKELY COVERED — Non-US citizens up to $1M via Acute Onset",
+          "coverage_score": 90,
+          "denial_risk": 25,
+          "confidence": 90,
+          "estimated_plan_payout": "Up to $1,000,000 (non-US citizen, age ≤69) after deductible",
+          "key_risks": ["Same acute onset criteria as Plus", "Same 30-day stability/no Rx change requirement", "Best payout ceiling of all plans if criteria met"],
+          "notes": "Best acute onset limit for non-US citizens. $1M covers this scenario fully. Same denial risks as Plus on stability criteria."
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "PARTIALLY COVERED — cardiac sub-limit applies",
+          "coverage_score": 52,
+          "denial_risk": 35,
+          "confidence": 85,
+          "estimated_plan_payout": "$35,000–$36,000 maximum (cardiac sub-limit $36,000 for age ≤69)",
+          "key_risks": [
+            "CARDIAC SUB-LIMIT: $36,000 for angina, heart attacks, strokes (age ≤69)",
+            "$120,000 billed → patient owes ~$84,000 after $36K plan payment + deductible",
+            "Same acute onset criteria apply",
+            "This is the MOST RESTRICTIVE acute onset cardiac coverage among all plans"
+          ],
+          "notes": "CRITICAL WEAKNESS — $36K cardiac sub-limit is far below $120K billed. This plan performs poorly for cardiac pre-existing conditions."
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "PARTIALLY COVERED — cardiac sub-limit",
+          "coverage_score": 45,
+          "denial_risk": 30,
+          "confidence": 85,
+          "estimated_plan_payout": "$24,000–$25,000 maximum (cardiac/stroke sub-limit $25,000 for age ≤69)",
+          "key_risks": [
+            "CARDIAC SUB-LIMIT: $25,000 for cardiac conditions and stroke",
+            "$120,000 billed → patient owes ~$95,000",
+            "30-day stability requirement applies"
+          ],
+          "notes": "Cardiac sub-limit is even lower than CoverAmerica Gold ($25K vs $36K). Not suitable for cardiac pre-existing conditions at this cost level."
+        },
+        "VisitorSecure": {
+          "verdict": "LIKELY DENIED or minimal payout",
+          "coverage_score": 10,
+          "denial_risk": 70,
+          "confidence": 85,
+          "estimated_plan_payout": "$5,000–$10,000 estimated (scheduled benefits for ICU + room + surgery; pre-existing exclusion likely applies)",
+          "key_risks": [
+            "SCHEDULED BENEFIT — fixed caps regardless of $120K bill",
+            "Pre-existing cardiac condition likely excluded unless acute onset criteria met",
+            "Even if acute onset applies, fixed scheduled amounts cap payout far below actual cost",
+            "ICU: $2,200–$3,800/day × 3 days + room $1,450–$2,585/day × 2 + surgery $3,600–$7,800"
+          ],
+          "notes": "WORST OUTCOME — double risk: scheduled benefit caps AND pre-existing exclusion. Potentially $110K+ out of pocket."
+        },
+        "Atlas_America": {
+          "verdict": "NEEDS MANUAL REVIEW",
+          "coverage_score": 60,
+          "denial_risk": 35,
+          "confidence": 40,
+          "estimated_plan_payout": "Unknown — acute onset cardiac terms not confirmed",
+          "key_risks": ["Full Certificate not obtained — acute onset cardiac sub-limits unknown"],
+          "notes": "Cannot simulate accurately without full Certificate. NEEDS MANUAL REVIEW."
+        },
+        "INF_Elite_X": {
+          "verdict": "PARTIALLY COVERED — pre-existing condition covered with sub-limits",
+          "coverage_score": 55,
+          "denial_risk": 20,
+          "confidence": 80,
+          "estimated_plan_payout": "$25,000–$50,000 (pre-ex max $25K–$50K for age 0–69; sub-limits per service type)",
+          "key_risks": [
+            "Pre-existing covered but capped: max $25K–$50K total",
+            "Per-service sub-limits within pre-ex max: Hospital/ICU room $15K, Surgery $15K, Hospital Misc $15K, ER $7,500",
+            "DOES NOT use acute onset model — pre-ex is actually covered",
+            "VERIFY: coronary artery disease managed on stable medication — if no change in 24 months, may NOT be pre-existing under INF definition",
+            "If not pre-existing (stable meds 24 months): covered at full plan maximum up to $1M"
+          ],
+          "notes": "UNIQUE ADVANTAGE: If cardiac meds stable for 24+ months with no changes, INF's stable-medication exception means CAD is NOT pre-existing → covered at full $1M plan max. If meds changed recently → pre-ex sub-limits apply ($25K–$50K). Best plan if stable medication criteria met."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "PARTIALLY COVERED — acute onset $25K limit",
+          "coverage_score": 35,
+          "denial_risk": 40,
+          "confidence": 90,
+          "estimated_plan_payout": "$24,000–$25,000 maximum (acute onset limit $25K total; no cardiac sub-limit separation)",
+          "key_risks": [
+            "Acute onset limit: $25,000 total for age ≤69",
+            "$120K billed → patient owes ~$95,000",
+            "Acute onset definition EXCLUDES 'previously diagnosed chronic condition with expected episodes or flare-ups' — CRITICAL: CAD with known episodes may fail criterion (f)",
+            "7-day waiting period must have passed",
+            "HIGH denial risk on criterion (f) — chronic cardiac condition"
+          ],
+          "notes": "Very limited — $25K cap. Worse than Plus/Platinum by far. High denial risk because chronic CAD with expected episodes is explicitly excluded from acute onset definition."
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "PARTIALLY COVERED — cardiac acute onset $50K",
+          "coverage_score": 48,
+          "denial_risk": 38,
+          "confidence": 90,
+          "estimated_plan_payout": "$48,000–$50,000 maximum (cardiac/stroke acute onset $50K for age ≤69)",
+          "key_risks": [
+            "Cardiac sub-limit: $50,000 (better than Basic's $25K but still far short of $120K)",
+            "Patient owes ~$70,000",
+            "Same chronic condition exclusion risk in acute onset definition",
+            "7-day waiting period"
+          ],
+          "notes": "Better than Basic for cardiac but still limited. $50K cardiac acute onset still leaves $70K patient exposure on this scenario."
+        }
+      }
+    },
+
+    {
+      "id": "S-04",
+      "name": "Emergency Medical Evacuation — Remote Location",
+      "description": "70-year-old Indian visitor has medical emergency while traveling in a rural area. Needs air ambulance evacuation to nearest major hospital. Evacuation cost: $85,000.",
+      "category": "Emergency Medical Evacuation",
+      "age_band": "70_79",
+      "is_preexisting": false,
+      "typical_us_cost": "$50,000–$200,000 for air ambulance",
+      "results": {
+        "Patriot_America_Plus": {
+          "verdict": "LIKELY COVERED — up to $1M",
+          "coverage_score": 90,
+          "denial_risk": 12,
+          "confidence": 88,
+          "estimated_plan_payout": "$84,000–$85,000 (evacuation limit $1M; this $85K well within limit)",
+          "key_risks": ["Must be pre-approved and coordinated by Company", "Age 70 = medical maximum reduced but evacuation may be separate limit"],
+          "notes": "$85K well within $1M evacuation limit. Must call Company first."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "LIKELY COVERED — up to full plan maximum",
+          "coverage_score": 95,
+          "denial_risk": 8,
+          "confidence": 90,
+          "estimated_plan_payout": "$85,000 (evacuation = plan maximum; $85K well within any tier)",
+          "key_risks": ["Must be coordinated by Company", "Age 70: medical max drops to $100K but evacuation limit = full plan max"],
+          "notes": "Best evacuation of all plans. $85K trivially covered."
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "LIKELY COVERED — up to $1M (includes pre-existing)",
+          "coverage_score": 88,
+          "denial_risk": 12,
+          "confidence": 88,
+          "estimated_plan_payout": "$85,000 (evacuation limit $1M; pre-existing evacuation also covered — unique feature)",
+          "key_risks": ["Must be coordinated by Company", "Age 70+ acute onset cardiac not covered — but if evacuation is for non-pre-existing, full $1M applies"],
+          "notes": "Evacuation includes pre-existing conditions — unique advantage."
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 88,
+          "denial_risk": 12,
+          "confidence": 88,
+          "estimated_plan_payout": "$85,000 (evacuation $1M limit; $85K well within limit)",
+          "key_risks": ["Acute onset pre-existing evacuation limited to $25,000 — if the evacuation is due to a pre-existing condition, only $25K applies"],
+          "notes": "If cause is new illness: $1M applies. If cause is acute onset of pre-existing: only $25K. Cause determination is critical."
+        },
+        "VisitorSecure": {
+          "verdict": "NOT COVERED — age 70+ ineligible",
+          "coverage_score": 0,
+          "denial_risk": 100,
+          "confidence": 95,
+          "estimated_plan_payout": "$0 — evacuation only available for members under age 70",
+          "key_risks": ["CRITICAL: Evacuation benefit explicitly not available for age 70+"],
+          "notes": "ZERO evacuation coverage at age 70. $85,000 entirely patient responsibility."
+        },
+        "Atlas_America": {
+          "verdict": "NEEDS MANUAL REVIEW",
+          "coverage_score": 75,
+          "denial_risk": 20,
+          "confidence": 40,
+          "estimated_plan_payout": "Unknown — evacuation limit not confirmed for age 70+",
+          "key_risks": ["Full Certificate not obtained"],
+          "notes": "NEEDS MANUAL REVIEW."
+        },
+        "INF_Elite_X": {
+          "verdict": "PARTIALLY COVERED — very low limit",
+          "coverage_score": 22,
+          "denial_risk": 10,
+          "confidence": 85,
+          "estimated_plan_payout": "$25,000 maximum ($25K evacuation limit — $60,000 patient out of pocket on $85K bill)",
+          "key_risks": [
+            "CRITICAL WEAKNESS: $25,000 evacuation limit — lowest of all plans",
+            "$85K evacuation → patient owes $60,000 after $25K plan payment",
+            "Age 70+ visitors face highest evacuation risk; INF provides worst protection"
+          ],
+          "notes": "INF Elite X has the worst evacuation coverage ($25K). Air ambulances routinely cost $50K–$200K. Evacuation risk is unmitigated."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 88,
+          "denial_risk": 10,
+          "confidence": 92,
+          "estimated_plan_payout": "$85,000 ($250K evacuation limit; $85K well within)",
+          "key_risks": ["Must be arranged by Seven Corners Assist", "Separate from Medical Maximum"],
+          "notes": "$250K evacuation covers this $85K scenario. Must pre-arrange through Seven Corners Assist."
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 90,
+          "denial_risk": 8,
+          "confidence": 92,
+          "estimated_plan_payout": "$85,000 ($500K evacuation limit; easily covers this)",
+          "key_risks": ["Must be arranged by Seven Corners Assist"],
+          "notes": "$500K evacuation is excellent coverage for this scenario."
+        }
+      }
+    },
+
+    {
+      "id": "S-05",
+      "name": "Physical Therapy — 8 Visits After Minor Injury",
+      "description": "45-year-old visitor. Minor back injury. Doctor prescribes 8 visits of outpatient physical therapy. PT billed at $150/visit × 8 = $1,200 total.",
+      "category": "Post-Discharge / PT",
+      "age_band": "under_70",
+      "is_preexisting": false,
+      "typical_us_cost": "$100–$200/visit",
+      "results": {
+        "Patriot_America_Plus": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 82,
+          "denial_risk": 15,
+          "confidence": 78,
+          "estimated_plan_payout": "$1,050–$1,200 (100% in-network; 90% OON; after deductible)",
+          "key_risks": ["NEEDS MANUAL REVIEW — no visit cap confirmed from Certificate; if visit cap exists, payout may be lower"],
+          "notes": "PT covered per evidence.json but no explicit visit cap found. Full Certificate review needed."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 85,
+          "denial_risk": 12,
+          "confidence": 78,
+          "estimated_plan_payout": "$1,200 (100% everywhere; after deductible)",
+          "key_risks": ["NEEDS MANUAL REVIEW — no visit cap confirmed"],
+          "notes": "Same as Plus for this scenario. 100% everywhere if covered."
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 78,
+          "denial_risk": 18,
+          "confidence": 75,
+          "estimated_plan_payout": "$1,000–$1,200 (100% in-network; 80% OON)",
+          "key_risks": ["NEEDS MANUAL REVIEW — no visit cap confirmed", "Requires medical order/treatment plan"],
+          "notes": "PT covered with medical order. Visit cap unknown."
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "COVERED with dollar cap",
+          "coverage_score": 60,
+          "denial_risk": 10,
+          "confidence": 92,
+          "estimated_plan_payout": "$500 maximum (PT capped at $50/visit × 10 visits; 8 visits = $400 at $50/visit)",
+          "key_risks": ["$50/visit cap vs $150 billed — plan pays $50, patient pays $100 per visit regardless of coinsurance", "10-visit maximum per period"],
+          "notes": "Plan pays $50/visit regardless of actual $150 billed. Patient owes $100/visit = $800 out-of-pocket on 8 visits. Very limited PT coverage."
+        },
+        "VisitorSecure": {
+          "verdict": "COVERED with fixed cap",
+          "coverage_score": 40,
+          "denial_risk": 10,
+          "confidence": 88,
+          "estimated_plan_payout": "$320 ($40/visit × 8 visits)",
+          "key_risks": ["$40/visit fixed benefit vs $150 billed — patient pays $110/visit", "12-visit maximum"],
+          "notes": "SCHEDULED BENEFIT — $40 per visit is fixed regardless of actual cost. Patient owes $880 on 8 visits at $150 each."
+        },
+        "Atlas_America": {
+          "verdict": "NEEDS MANUAL REVIEW",
+          "coverage_score": 65,
+          "denial_risk": 20,
+          "confidence": 40
+        },
+        "INF_Elite_X": {
+          "verdict": "COVERED with dollar cap",
+          "coverage_score": 55,
+          "denial_risk": 10,
+          "confidence": 88,
+          "estimated_plan_payout": "$400 ($50/visit × 8 visits; $500 total maximum)",
+          "key_risks": ["$50/visit cap vs $150 billed — plan pays $50, patient pays $100/visit", "$500 total cap (10 visits)"],
+          "notes": "Same PT cap as Safe Travels. Very limited."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "NOT COVERED",
+          "coverage_score": 0,
+          "denial_risk": 100,
+          "confidence": 98,
+          "estimated_plan_payout": "$0 — Physiotherapy explicitly excluded",
+          "key_risks": ["EXCLUDED — 'You are not covered for Physiotherapy or Chiropractic Care'"],
+          "notes": "ZERO PT coverage. Patient owes full $1,200."
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "COVERED with dollar cap",
+          "coverage_score": 55,
+          "denial_risk": 10,
+          "confidence": 92,
+          "estimated_plan_payout": "$400 ($50/visit × 8 visits; $500 total maximum, 10-visit cap)",
+          "key_risks": ["$50/visit vs $150 billed — plan pays $50, patient pays $100/visit"],
+          "notes": "PT covered unlike Basic. Same $500 cap limit."
+        }
+      }
+    },
+
+    {
+      "id": "S-06",
+      "name": "COVID-19 Treatment — Hospitalization",
+      "description": "58-year-old visitor. Contracts COVID-19 and develops severe symptoms. Hospitalized 5 days. Total billed: $25,000. Plan was purchased for 10-day trip.",
+      "category": "COVID-19",
+      "age_band": "under_70",
+      "is_preexisting": false,
+      "typical_us_cost": "$20,000–$50,000 for COVID hospitalization",
+      "results": {
+        "Patriot_America_Plus": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 88,
+          "denial_risk": 10,
+          "confidence": 90,
+          "estimated_plan_payout": "$23,500–$25,000 (100% in-network; no COVID waiting period)",
+          "notes": "COVID covered as any illness. No waiting period restriction."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 92,
+          "denial_risk": 8,
+          "confidence": 90,
+          "estimated_plan_payout": "$24,500–$25,000 (100% everywhere; no COVID restriction)",
+          "notes": "Same as Plus. No COVID restriction."
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "NOT COVERED — 30-day purchase requirement not met",
+          "coverage_score": 0,
+          "denial_risk": 100,
+          "confidence": 95,
+          "estimated_plan_payout": "$0 — plan purchased for 10-day trip; COVID requires 30 days initial coverage",
+          "key_risks": ["CRITICAL: COVID-19 explicitly requires plan purchased for at least 30 days", "10-day trip → NO COVID-19 coverage at all"],
+          "notes": "CRITICAL FAILURE for short-trip buyers. $25,000 entirely patient responsibility."
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 88,
+          "denial_risk": 10,
+          "confidence": 88,
+          "estimated_plan_payout": "$23,500–$25,000 (100% coinsurance; no COVID waiting period)",
+          "notes": "No COVID restriction. Strong coverage."
+        },
+        "VisitorSecure": {
+          "verdict": "NEEDS MANUAL REVIEW",
+          "coverage_score": 30,
+          "denial_risk": 40,
+          "confidence": 45,
+          "estimated_plan_payout": "Unknown — COVID coverage not confirmed from available documents",
+          "notes": "Even if covered, scheduled benefit caps severely limit COVID hospitalization payout."
+        },
+        "Atlas_America": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 80,
+          "denial_risk": 15,
+          "confidence": 55,
+          "estimated_plan_payout": "~$24,000 (100% coinsurance per brochure)",
+          "notes": "NEEDS MANUAL REVIEW — based on brochure data."
+        },
+        "INF_Elite_X": {
+          "verdict": "NEEDS MANUAL REVIEW",
+          "coverage_score": 50,
+          "denial_risk": 35,
+          "confidence": 45,
+          "estimated_plan_payout": "Unknown — COVID not explicitly addressed in Policy Wording",
+          "notes": "NEEDS MANUAL REVIEW. COVID not mentioned in Policy Wording. If covered as illness: 80-90% in-network after deductible. Hospital ancillary cap $20K could limit hospitalization coverage."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 85,
+          "denial_risk": 10,
+          "confidence": 92,
+          "estimated_plan_payout": "$23,500–$25,000 (100% in-network; no COVID restriction)",
+          "notes": "COVID covered same as any illness. No waiting period."
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 87,
+          "denial_risk": 8,
+          "confidence": 92,
+          "estimated_plan_payout": "$24,000–$25,000 (100% in-network; 90% OON; no COVID restriction)",
+          "notes": "Same as Basic. No COVID restriction."
+        }
+      }
+    },
+
+    {
+      "id": "S-07",
+      "name": "New Cancer Diagnosis During Trip",
+      "description": "52-year-old visitor. No known cancer history. Develops unexplained weight loss + cough. ER visit leads to imaging → new lung cancer diagnosis. Biopsy + oncologist consult. Total billed: $18,000 for diagnostic workup.",
+      "category": "New Illness — Cancer",
+      "age_band": "under_70",
+      "is_preexisting": false,
+      "typical_us_cost": "$15,000–$30,000 for cancer diagnostic workup",
+      "results": {
+        "Patriot_America_Plus": {
+          "verdict": "LIKELY COVERED — new diagnosis, not pre-existing",
+          "coverage_score": 80,
+          "denial_risk": 22,
+          "confidence": 78,
+          "estimated_plan_payout": "$15,000–$17,000 (100% in-network; after deductible)",
+          "key_risks": ["Carrier may argue cancer existed (undiagnosed) within 3-year lookback — potential pre-existing dispute", "NEEDS MANUAL REVIEW — no explicit cancer exclusion found but 3-year pre-ex definition could apply if symptomatic"],
+          "notes": "New first-time diagnosis should be covered but carrier may dispute if symptoms existed before Effective Date."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "LIKELY COVERED",
+          "coverage_score": 82,
+          "denial_risk": 20,
+          "confidence": 78,
+          "estimated_plan_payout": "$17,000–$18,000 (100% everywhere)",
+          "key_risks": ["Same pre-existing dispute risk as Plus"],
+          "notes": "100% coinsurance. Same risk of pre-existing dispute."
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "LIKELY COVERED — NEEDS MANUAL REVIEW",
+          "coverage_score": 72,
+          "denial_risk": 25,
+          "confidence": 70,
+          "estimated_plan_payout": "$14,000–$16,000",
+          "notes": "No specific cancer exclusion found. Same pre-existing dispute risk."
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "LIKELY COVERED — NEEDS MANUAL REVIEW",
+          "coverage_score": 75,
+          "denial_risk": 22,
+          "confidence": 70,
+          "estimated_plan_payout": "$16,000–$18,000 (100% coinsurance)",
+          "notes": "No cancer exclusion found in evidence. Pre-existing dispute risk."
+        },
+        "VisitorSecure": {
+          "verdict": "PARTIALLY COVERED — scheduled benefit caps apply",
+          "coverage_score": 25,
+          "denial_risk": 30,
+          "confidence": 70,
+          "estimated_plan_payout": "$3,000–$6,000 (fixed caps for imaging, labs, office visits)",
+          "notes": "Scheduled benefit caps severely limit diagnostic workup payout."
+        },
+        "Atlas_America": {
+          "verdict": "NEEDS MANUAL REVIEW",
+          "coverage_score": 65,
+          "denial_risk": 25,
+          "confidence": 40
+        },
+        "INF_Elite_X": {
+          "verdict": "NOT COVERED — explicit cancer exclusion",
+          "coverage_score": 0,
+          "denial_risk": 100,
+          "confidence": 90,
+          "estimated_plan_payout": "$0 — cancer explicitly excluded",
+          "key_risks": ["CRITICAL: 'expenses incurred for any condition directly or indirectly related to or caused by cancer' EXCLUDED", "Even new cancer diagnosis is excluded under this broad language", "Patient owes full $18,000"],
+          "notes": "COMPLETE EXCLUSION. INF Elite X is unsuitable for any traveler with cancer risk."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "LIKELY COVERED — no cancer exclusion found",
+          "coverage_score": 78,
+          "denial_risk": 20,
+          "confidence": 85,
+          "estimated_plan_payout": "$17,000–$18,000 (100% in-network after deductible)",
+          "key_risks": ["Pre-existing dispute risk if symptoms pre-date coverage"],
+          "notes": "No cancer exclusion in Certificate. New diagnosis should be covered."
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "LIKELY COVERED — no cancer exclusion found",
+          "coverage_score": 80,
+          "denial_risk": 18,
+          "confidence": 85,
+          "estimated_plan_payout": "$17,500–$18,000 (100% in-network)",
+          "notes": "Same as Basic. No cancer exclusion."
+        }
+      }
+    },
+
+    {
+      "id": "S-08",
+      "name": "Stable Diabetic Visitor — Diabetic Ketoacidosis Emergency",
+      "description": "60-year-old visitor with Type 2 diabetes (known pre-existing), managed on fixed daily metformin for 3 years with no medication changes. Develops diabetic ketoacidosis (DKA) during trip — a sudden acute episode. ER + 2-day ICU. Total billed: $45,000.",
+      "category": "Acute Onset of Pre-existing Condition — Diabetes",
+      "age_band": "under_70",
+      "is_preexisting": true,
+      "preexisting_type": "Type 2 Diabetes — stable medication 3 years",
+      "typical_us_cost": "$30,000–$80,000 for DKA hospitalization",
+      "results": {
+        "Patriot_America_Plus": {
+          "verdict": "LIKELY COVERED via Acute Onset — moderate denial risk",
+          "coverage_score": 72,
+          "denial_risk": 35,
+          "confidence": 85,
+          "estimated_plan_payout": "Up to plan maximum (e.g., $45K on $100K plan) after deductible",
+          "key_risks": [
+            "Must meet all acute onset criteria: sudden, Medical Emergency, treated within 24hr, no Rx change in 30 days, stable 30 days prior",
+            "DKA is a sudden acute emergency — meets 'sudden/unexpected' criterion",
+            "Metformin unchanged for 3 years → 30-day stability criterion easily met",
+            "RISK: Carrier may argue DKA is a 'known chronic condition with expected episodes or flare-ups' if insured had prior DKA history"
+          ],
+          "notes": "Good acute onset case IF first-ever DKA episode and medication stable. Main risk is prior DKA history. Recommend documenting stability at departure."
+        },
+        "Patriot_America_Platinum": {
+          "verdict": "LIKELY COVERED via Acute Onset",
+          "coverage_score": 78,
+          "denial_risk": 30,
+          "confidence": 85,
+          "estimated_plan_payout": "Up to $1,000,000 for non-US citizen (age ≤69)",
+          "notes": "Same as Plus but higher ceiling. $1M limit covers $45K easily."
+        },
+        "CoverAmerica_Gold": {
+          "verdict": "LIKELY COVERED via Acute Onset (non-cardiac)",
+          "coverage_score": 75,
+          "denial_risk": 30,
+          "confidence": 82,
+          "estimated_plan_payout": "Up to plan maximum (DKA is not cardiac — no cardiac sub-limit)",
+          "notes": "DKA is not a cardiac condition so $36K cardiac sub-limit doesn't apply. Full plan max applies if acute onset criteria met."
+        },
+        "Safe_Travels_USA_Comprehensive": {
+          "verdict": "LIKELY COVERED via Acute Onset",
+          "coverage_score": 75,
+          "denial_risk": 30,
+          "confidence": 82,
+          "estimated_plan_payout": "Up to Medical Maximum (DKA not cardiac; no cardiac sub-limit)",
+          "notes": "30-day stability applies. DKA meets sudden/unexpected criterion."
+        },
+        "VisitorSecure": {
+          "verdict": "PARTIALLY COVERED — scheduled benefit + pre-existing risk",
+          "coverage_score": 18,
+          "denial_risk": 55,
+          "confidence": 75,
+          "estimated_plan_payout": "$4,000–$8,000 (scheduled ICU + room fixed amounts)",
+          "notes": "Even if acute onset applies, scheduled benefit caps mean massive gap on $45K bill."
+        },
+        "Atlas_America": {
+          "verdict": "NEEDS MANUAL REVIEW",
+          "coverage_score": 60,
+          "denial_risk": 35,
+          "confidence": 40
+        },
+        "INF_Elite_X": {
+          "verdict": "LIKELY WELL COVERED — stable medication exception applies",
+          "coverage_score": 88,
+          "denial_risk": 15,
+          "confidence": 82,
+          "estimated_plan_payout": "$40,000–$44,000 (if stable medication exception applies: NOT pre-existing → full plan maximum at 80-90% in-network)",
+          "key_risks": [
+            "FAVORABLE: Metformin unchanged for 3 years → INF's 24-month stable medication exception applies → diabetes NOT pre-existing under INF definition",
+            "DKA treated at full plan coverage rate (80-90% in-network), not pre-ex sub-limits",
+            "RISK: If metformin dose was ever adjusted → exception fails → pre-ex sub-limits apply ($25K–$50K max)"
+          ],
+          "notes": "BEST PLAN FOR THIS SCENARIO if stable medication condition is met. INF's unique definition turns 'stable diabetic' into 'not pre-existing.' $45K bill covered at 80-90% in-network after deductible."
+        },
+        "SC_Travel_Medical_Basic": {
+          "verdict": "PARTIALLY COVERED — $25K acute onset limit + high denial risk",
+          "coverage_score": 38,
+          "denial_risk": 45,
+          "confidence": 88,
+          "estimated_plan_payout": "$24,000–$25,000 maximum",
+          "key_risks": [
+            "Acute onset limit $25K — patient owes $20K on $45K bill",
+            "Criterion (f) risk: DKA in diabetic is arguably a 'chronic condition with expected episodes'",
+            "High denial risk if carrier argues DKA is expected in diabetic"
+          ],
+          "notes": "Moderate denial risk on the 'expected episodes' criterion. $25K cap leaves $20K gap even if approved."
+        },
+        "SC_Travel_Medical_Choice": {
+          "verdict": "PARTIALLY COVERED — $75K acute onset (non-cardiac), high denial risk",
+          "coverage_score": 65,
+          "denial_risk": 40,
+          "confidence": 88,
+          "estimated_plan_payout": "$43,000–$45,000 if approved (DKA = non-cardiac → $75K limit; $45K < $75K limit)",
+          "key_risks": [
+            "Non-cardiac acute onset: $75K — covers $45K DKA if approved",
+            "Same criterion (f) denial risk: DKA as 'expected episode' in diabetic",
+            "7-day waiting period must have passed"
+          ],
+          "notes": "If approved, Choice pays full $45K (within $75K non-cardiac limit). But same elevated denial risk as Basic on criterion (f)."
+        }
+      }
+    }
+
+  ],
+
+  "scenario_summary": {
+    "best_overall_coverage": "Patriot_America_Platinum — 100% coinsurance everywhere, evacuation = plan max, $1M acute onset for non-US citizens",
+    "best_for_preexisting_chronic": "INF_Elite_X — unique stable medication exception; best if meds stable 24+ months. BUT weak evacuation ($25K) and cancer excluded.",
+    "worst_for_serious_claims": "VisitorSecure — scheduled benefit plan leaves $45K–$100K+ out-of-pocket on major injuries/illnesses",
+    "covid_trap": "CoverAmerica_Gold — zero COVID coverage on trips shorter than 30 days",
+    "cardiac_trap": "CoverAmerica_Gold ($36K) and Safe_Travels_USA_Comprehensive ($25K) have the lowest cardiac acute onset sub-limits",
+    "evacuation_trap": "INF_Elite_X ($25K) and VisitorSecure ($50K, age <70 only) have dangerously low evacuation limits",
+    "cancer_trap": "INF_Elite_X — complete cancer exclusion including new diagnosis",
+    "pt_trap": "SC_Travel_Medical_Basic — complete physiotherapy exclusion"
+  }
+}
