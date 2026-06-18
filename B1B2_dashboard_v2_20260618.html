@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B-1/B-2 Visa Insurance Intelligence — Indian Travellers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-base:        #09090b;
+      --bg-surface:     #111113;
+      --bg-surface-2:   #18181b;
+      --bg-surface-3:   #1f1f23;
+      --bg-hover:       #25252a;
+      --border:         rgba(255,255,255,0.06);
+      --border-hover:   rgba(255,255,255,0.12);
+      --border-active:  rgba(79,110,247,0.35);
+      --text-primary:   #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted:     #52525b;
+      --text-label:     #71717a;
+      --accent:         #4f6ef7;
+      --accent-dim:     rgba(79,110,247,0.12);
+      --accent-glow:    rgba(79,110,247,0.25);
+      --green:          #22c55e;
+      --green-dim:      rgba(34,197,94,0.10);
+      --amber:          #f59e0b;
+      --amber-dim:      rgba(245,158,11,0.10);
+      --red:            #ef4444;
+      --red-dim:        rgba(239,68,68,0.10);
+      --purple:         #a78bfa;
+      --purple-dim:     rgba(167,139,250,0.10);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius: 8px;
+      --radius-sm: 5px;
+    }
+    html, body {
+      font-family: var(--font);
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-size: 13px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
+
+    /* ── HEADER ─────────────────────────────────────── */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      height: 52px;
+      background: rgba(9,9,11,0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 32px; gap: 16px;
+    }
+    .hdr-icon {
+      width: 28px; height: 28px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-glow);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hdr-title { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+    .hdr-sep { width: 1px; height: 20px; background: var(--border); }
+    .hdr-sub { font-size: 13px; color: var(--text-secondary); }
+    .hdr-spacer { flex: 1; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 9px; border-radius: 999px;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.02em;
+      border: 1px solid; white-space: nowrap;
+    }
+    .chip-green { color: var(--green); background: var(--green-dim); border-color: rgba(34,197,94,0.22); }
+    .chip-amber { color: var(--amber); background: var(--amber-dim); border-color: rgba(245,158,11,0.22); }
+    .chip-neutral { color: var(--text-secondary); background: rgba(255,255,255,0.04); border-color: var(--border); }
+
+    /* ── KPI BAR ─────────────────────────────────────── */
+    .kpi-bar {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-bottom: 1px solid var(--border);
+    }
+    .kpi-item {
+      padding: 20px 32px;
+      border-right: 1px solid var(--border);
+    }
+    .kpi-item:last-child { border-right: none; }
+    .kpi-val {
+      font-size: 30px; font-weight: 700;
+      letter-spacing: -0.04em; line-height: 1;
+      margin-bottom: 4px;
+    }
+    .kpi-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .kpi-sub { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+    /* ── FILTER BAR ──────────────────────────────────── */
+    .filter-bar {
+      padding: 10px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .fpill {
+      padding: 5px 13px; border-radius: 999px;
+      font-size: 12px; font-weight: 500; font-family: var(--font);
+      border: 1px solid var(--border);
+      background: transparent; color: var(--text-secondary);
+      cursor: pointer; transition: all 0.1s;
+    }
+    .fpill:hover { border-color: var(--border-hover); color: var(--text-primary); background: var(--bg-hover); }
+    .fpill.on { background: var(--accent-dim); border-color: var(--border-active); color: var(--accent); }
+    .fspacer { flex: 1; }
+    .sort-sel {
+      background: var(--bg-surface-2); border: 1px solid var(--border);
+      color: var(--text-secondary); padding: 5px 10px;
+      border-radius: 6px; font-size: 12px; font-family: var(--font);
+      cursor: pointer; outline: none;
+    }
+    .sort-sel:hover { border-color: var(--border-hover); }
+
+    /* ── TWO-COLUMN ──────────────────────────────────── */
+    .cols {
+      display: grid;
+      grid-template-columns: 56% 44%;
+      min-height: calc(100vh - 196px);
+    }
+
+    /* ── PLAN LIST ───────────────────────────────────── */
+    .plan-list { border-right: 1px solid var(--border); }
+    .list-hdr {
+      padding: 10px 32px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 34px 1fr 140px 64px;
+      gap: 12px; align-items: center;
+    }
+    .list-col {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .plan-row {
+      padding: 14px 32px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 34px 1fr 140px 64px;
+      gap: 12px; align-items: center;
+      cursor: pointer;
+      transition: background 0.1s;
+      position: relative;
+    }
+    .plan-row:hover { background: var(--bg-surface); }
+    .plan-row.sel {
+      background: var(--bg-surface-2);
+    }
+    .plan-row.sel::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: var(--accent);
+    }
+    .plan-row.prov { opacity: 0.72; }
+    .rchip {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; border: 1px solid;
+      flex-shrink: 0;
+    }
+    .r1 { color: #f59e0b; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.08); }
+    .r2 { color: #94a3b8; border-color: rgba(148,163,184,0.3); background: rgba(148,163,184,0.06); }
+    .r3 { color: #cd7c2c; border-color: rgba(205,124,44,0.3); background: rgba(205,124,44,0.08); }
+    .r4 { color: var(--text-muted); border-color: var(--border); background: transparent; }
+    .pinfo { min-width: 0; }
+    .pname { font-size: 13px; font-weight: 600; color: var(--text-primary); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pcarr { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+    .ptags { display: flex; gap: 4px; overflow: hidden; flex-wrap: nowrap; }
+    .tag {
+      display: inline-flex; align-items: center;
+      padding: 2px 7px; border-radius: 4px;
+      font-size: 10px; font-weight: 500;
+      white-space: nowrap; letter-spacing: 0.01em;
+    }
+    .tg { background: var(--green-dim); color: var(--green); }
+    .ta { background: var(--amber-dim); color: var(--amber); }
+    .tr { background: var(--red-dim); color: var(--red); }
+    .tp { background: var(--purple-dim); color: var(--purple); }
+    .tx { background: var(--accent-dim); color: var(--accent); }
+    .tn { background: rgba(255,255,255,0.04); color: var(--text-muted); }
+    .scol { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .snum { font-size: 18px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .sbar { width: 48px; height: 3px; background: var(--bg-surface-3); border-radius: 999px; overflow: hidden; }
+    .sbar-fill { height: 100%; border-radius: 999px; }
+    .sg { color: var(--green); } .ag { color: var(--amber); } .rg { color: var(--red); }
+    .fg { background: var(--green); } .fa { background: var(--amber); } .fr { background: var(--red); }
+
+    /* ── DETAIL PANEL ────────────────────────────────── */
+    .detail-panel {
+      position: sticky; top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+    }
+    .detail-empty {
+      height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: var(--text-muted); gap: 10px;
+    }
+    .detail-empty-icon {
+      width: 40px; height: 40px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .detail-content { padding: 28px 28px 48px; }
+
+    /* Detail hero */
+    .det-hero { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .det-rank-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+    .det-score { font-size: 64px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; margin-bottom: 6px; }
+    .det-name { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 3px; }
+    .det-carr { font-size: 12px; color: var(--text-secondary); margin-bottom: 14px; }
+    .det-badge {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 4px 10px;
+      border-radius: var(--radius-sm); display: inline-block;
+    }
+    .auth-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 8px; border-radius: var(--radius-sm);
+      font-size: 11px; font-weight: 500; border: 1px solid;
+    }
+    .al1 { background: rgba(34,197,94,0.1); color: var(--green); border-color: rgba(34,197,94,0.25); }
+    .al2 { background: rgba(245,158,11,0.1); color: var(--amber); border-color: rgba(245,158,11,0.25); }
+    .al5 { background: rgba(239,68,68,0.1); color: var(--red); border-color: rgba(239,68,68,0.25); }
+
+    /* Sections */
+    .sec-lbl {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px;
+    }
+    .det-bestfor {
+      padding: 14px; background: var(--bg-surface-2);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      font-size: 12px; color: var(--text-secondary); line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .det-facts { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .fact-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: flex-start; }
+    .fdot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+    .fdg { background: var(--green); } .fdr { background: var(--red); }
+    .ftext { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+    /* Dimension bars */
+    .dim-list { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .dim-row { margin-bottom: 11px; }
+    .dim-row:last-child { margin-bottom: 0; }
+    .dim-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .dim-name { font-size: 11.5px; color: var(--text-secondary); }
+    .dim-right { display: flex; align-items: center; gap: 8px; }
+    .dim-wt { font-size: 10px; color: var(--text-muted); }
+    .dim-snum { font-size: 12px; font-weight: 600; }
+    .dim-bar-track { height: 4px; background: var(--bg-surface-3); border-radius: 999px; overflow: hidden; }
+    .dim-bar-fill { height: 100%; border-radius: 999px; }
+
+    .ev-warn {
+      margin-bottom: 20px; padding: 14px;
+      background: rgba(239,68,68,0.06);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: var(--radius);
+      font-size: 11px; color: #fca5a5; line-height: 1.6;
+    }
+    .visit-btn {
+      display: block; width: 100%; padding: 10px;
+      background: var(--accent-dim); border: 1px solid var(--border-active);
+      border-radius: var(--radius);
+      color: var(--accent); font-size: 13px; font-weight: 500;
+      font-family: var(--font); text-align: center;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.12s;
+    }
+    .visit-btn:hover { background: rgba(79,110,247,0.22); }
+
+    /* ── SCENARIO SECTION ────────────────────────────── */
+    .scenario-sec { border-top: 1px solid var(--border); padding: 40px 32px; }
+    .sec-title { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .sec-desc { font-size: 12px; color: var(--text-secondary); margin-bottom: 24px; }
+    .tab-bar { display: flex; gap: 2px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+    .tbtn {
+      padding: 8px 14px; font-size: 12px; font-weight: 500;
+      font-family: var(--font); border: none; background: transparent;
+      color: var(--text-secondary); cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: all 0.1s;
+    }
+    .tbtn:hover { color: var(--text-primary); }
+    .tbtn.on { color: var(--accent); border-bottom-color: var(--accent); }
+    .sc-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .sc-table th {
+      text-align: left; padding: 8px 12px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .sc-table td { padding: 11px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .sc-table tr:hover td { background: var(--bg-surface); }
+    .sc-table tr:last-child td { border-bottom: none; }
+    .vchip {
+      display: inline-flex; align-items: center;
+      padding: 2px 7px; border-radius: 4px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.03em;
+    }
+    .vs { background: var(--green-dim); color: var(--green); }
+    .vg { background: rgba(34,197,94,0.06); color: #86efac; }
+    .vc { background: var(--amber-dim); color: var(--amber); }
+    .vr { background: rgba(245,158,11,0.06); color: #fcd34d; }
+    .va { background: var(--red-dim); color: var(--red); }
+    .vp { background: rgba(255,255,255,0.04); color: var(--text-secondary); }
+    .pcn { font-weight: 600; color: var(--text-primary); margin-bottom: 2px; font-size: 12px; }
+    .pcrk { font-size: 10px; color: var(--text-muted); }
+
+    /* ── DISCLAIMER ──────────────────────────────────── */
+    .disclaimer {
+      padding: 24px 32px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-surface);
+    }
+    .disc-title {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--text-label); margin-bottom: 8px;
+    }
+    .disc-text { font-size: 11px; color: var(--text-muted); line-height: 1.75; max-width: 960px; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="hdr-icon">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+      <path d="M6.5 1.5L11 4.25V8.75L6.5 11.5L2 8.75V4.25L6.5 1.5Z" stroke="#4f6ef7" stroke-width="1.2" fill="none"/>
+      <circle cx="6.5" cy="6.5" r="1.8" fill="#4f6ef7"/>
+    </svg>
+  </div>
+  <span class="hdr-title">ITI Intelligence</span>
+  <div class="hdr-sep"></div>
+  <span class="hdr-sub">B-1/B-2 Visa Insurance Analysis — Indian Travellers</span>
+  <div class="hdr-spacer"></div>
+  <span class="chip chip-green">
+    <svg width="6" height="6" viewBox="0 0 6 6"><circle cx="3" cy="3" r="3" fill="#22c55e"/></svg>
+    7/9 Plans L1 Verified
+  </span>
+  <span class="chip chip-neutral">Evidence: Jun 2026</span>
+  <span class="chip chip-amber">Phase 23 QC: B+ Grade</span>
+</header>
+
+<!-- KPI BAR -->
+<div class="kpi-bar">
+  <div class="kpi-item">
+    <div class="kpi-val" style="color:var(--text-primary)">9</div>
+    <div class="kpi-label">Plans Analyzed</div>
+    <div class="kpi-sub">B-1/B-2 compatible</div>
+  </div>
+  <div class="kpi-item">
+    <div class="kpi-val" style="color:var(--green)">95.3</div>
+    <div class="kpi-label">Highest Score</div>
+    <div class="kpi-sub">Patriot America Platinum</div>
+  </div>
+  <div class="kpi-item">
+    <div class="kpi-val" style="color:var(--accent)">12</div>
+    <div class="kpi-label">Dimensions Scored</div>
+    <div class="kpi-sub">Evidence-weighted methodology</div>
+  </div>
+  <div class="kpi-item">
+    <div class="kpi-val" style="color:var(--text-primary)">25</div>
+    <div class="kpi-label">QC Flags Raised</div>
+    <div class="kpi-sub">3 critical · 5 high · 17 medium</div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="fpill on" onclick="doFilter('all',this)">All Plans</button>
+  <button class="fpill" onclick="doFilter('preex',this)">Pre-ex Friendly</button>
+  <button class="fpill" onclick="doFilter('cardiac',this)">Cardiac Safe</button>
+  <button class="fpill" onclick="doFilter('age70',this)">Age 70+</button>
+  <button class="fpill" onclick="doFilter('budget',this)">Budget</button>
+  <button class="fpill" onclick="doFilter('healthy',this)">Healthy Travelers</button>
+  <div class="fspacer"></div>
+  <select class="sort-sel" onchange="doSort(this.value)">
+    <option value="rank">Sort: Overall Rank</option>
+    <option value="preex">Sort: Pre-ex Score</option>
+    <option value="network">Sort: Network Quality</option>
+    <option value="claims">Sort: Claims Ease</option>
+  </select>
+</div>
+
+<!-- TWO COLUMNS -->
+<div class="cols">
+  <!-- LEFT: Plan List -->
+  <div class="plan-list">
+    <div class="list-hdr">
+      <div class="list-col">#</div>
+      <div class="list-col">Plan</div>
+      <div class="list-col">Profile</div>
+      <div class="list-col" style="text-align:right">Score</div>
+    </div>
+    <div id="planList"></div>
+  </div>
+  <!-- RIGHT: Detail Panel -->
+  <div class="detail-panel" id="detailPanel">
+    <div class="detail-empty" id="detailEmpty">
+      <div class="detail-empty-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <rect x="2" y="2" width="14" height="14" rx="3" stroke="#52525b" stroke-width="1.2"/>
+          <path d="M6 9H12M6 6H12M6 12H9" stroke="#52525b" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div style="font-size:13px;font-weight:500;color:var(--text-muted)">Select a plan to view details</div>
+      <div style="font-size:11px;color:var(--text-muted)">Click any row for full analysis</div>
+    </div>
+    <div class="detail-content" id="detailContent" style="display:none"></div>
+  </div>
+</div>
+
+<!-- SCENARIO SECTION -->
+<div class="scenario-sec">
+  <div class="sec-title">Scenario Analysis</div>
+  <div class="sec-desc">Real-world medical scenarios for Indian senior travelers — based on Phase 17 claim simulations. All assessments tied to Certificate of Insurance evidence.</div>
+  <div class="tab-bar">
+    <button class="tbtn on" onclick="doScenario(0,this)">Acute Cardiac Event</button>
+    <button class="tbtn" onclick="doScenario(1,this)">Hip Fracture + Surgery</button>
+    <button class="tbtn" onclick="doScenario(2,this)">Diabetic Emergency</button>
+    <button class="tbtn" onclick="doScenario(3,this)">ER Visit (Chest Pain)</button>
+    <button class="tbtn" onclick="doScenario(4,this)">Hypertensive Crisis</button>
+    <button class="tbtn" onclick="doScenario(5,this)">COVID-19 Hospitalization</button>
+  </div>
+  <div id="scenarioOut"></div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <div class="disc-title">Important Disclosure</div>
+  <div class="disc-text">
+    This analysis is produced by the Indian Travellers Insurance (ITI) Intelligence Platform. Evidence collected June 2026, Phases 11–24. Rankings are within the B-1/B-2 category only and cannot be compared to F-1, H-1B, or other visa categories. Atlas America (rank 8) carries L5/L6 evidence only and is marked PROVISIONAL pending TMHCC Certificate (CE-001 — WorldTrips carrier transition May 29, 2025). This is not a recommendation to purchase any specific plan. Always verify coverage from the current Certificate of Insurance. Consult a licensed insurance advisor. Next review cycle: September 2026.
+  </div>
+</div>
+
+<script>
+/* ── DATA ──────────────────────────────────────────────── */
+const PLANS = [
+  {
+    rank:1, name:"Patriot America Platinum", carrier:"SiriusPoint / IMG",
+    score:95.3, badge:"BEST OVERALL", bc:"g", auth:1, prov:false,
+    filters:["all","cardiac","age70","preex"],
+    url:"https://www.imglobal.com/travel-medical-insurance/patriot-america-platinum",
+    tags:[{l:"100% OON Coinsurance",c:"tg"},{l:"No Cardiac Sub-limit",c:"tg"}],
+    strengths:[
+      "100% coinsurance both in-network AND out-of-network after deductible",
+      "Acute onset up to $1M plan max — no cardiac or stroke sub-limits",
+      "UHC PPO direct billing (1.3M+ providers) — no upfront payment required",
+      "PT covered with no visit cap; home nursing confirmed at L1",
+      "180-day claims filing deadline — most generous in the group",
+    ],
+    weaknesses:[
+      "Premium pricing — highest cost plan in the group",
+      "Pre-certification required — 50% benefit reduction if missed",
+      "OT / Speech Therapy and rehabilitation facility: NEEDS MANUAL REVIEW",
+    ],
+    bestFor:"High-risk travelers (cardiac history, age 65+), travelers who need 100% certainty on coverage amounts, non-US citizens wanting maximum acute onset protection.",
+    dims:[
+      {n:"Hospitalization",       w:15, s:100, a:1},
+      {n:"ER Coverage",           w:12, s:100, a:1},
+      {n:"ICU Coverage",          w:8,  s:100, a:1},
+      {n:"Surgery",               w:8,  s:100, a:1},
+      {n:"Acute Onset Pre-ex",    w:18, s:100, a:1},
+      {n:"Diagnostics (MRI/CT)",  w:5,  s:98,  a:1},
+      {n:"Prescriptions",         w:5,  s:85,  a:1},
+      {n:"Post-Discharge Care",   w:7,  s:90,  a:1},
+      {n:"Network Quality",       w:8,  s:97,  a:1},
+      {n:"Claims Experience",     w:5,  s:95,  a:6},
+      {n:"Eligibility Flex.",     w:5,  s:82,  a:1},
+      {n:"Price / Value",         w:4,  s:55,  a:6},
+    ],
+  },
+  {
+    rank:2, name:"Patriot America Plus", carrier:"SiriusPoint / IMG",
+    score:91.7, badge:"BEST VALUE COMPREHENSIVE", bc:"g", auth:1, prov:false,
+    filters:["all","cardiac","age70","preex"],
+    url:"https://www.imglobal.com/travel-medical-insurance/patriot-america-plus",
+    tags:[{l:"180-Day Claims Deadline",c:"tg"},{l:"UHC PPO",c:"tx"}],
+    strengths:[
+      "Same pre-existing acute onset protection as Platinum — no cardiac sub-limits",
+      "90%/100% in-network coinsurance (first $5K then 100%)",
+      "MyIMG portal with 180-day claims filing deadline",
+      "PT covered with no visit cap; home nursing confirmed at L1",
+    ],
+    weaknesses:[
+      "80% coinsurance out-of-network — exposure on large OON claims",
+      "Pre-certification required — 50% penalty if missed",
+      "OT / Speech Therapy and rehabilitation facility: NEEDS MANUAL REVIEW",
+    ],
+    bestFor:"Most Indian B-1/B-2 travelers aged 50–75 with mixed health history — best balance of coverage quality and cost among comprehensive plans.",
+    dims:[
+      {n:"Hospitalization",       w:15, s:95, a:1},
+      {n:"ER Coverage",           w:12, s:95, a:1},
+      {n:"ICU Coverage",          w:8,  s:95, a:1},
+      {n:"Surgery",               w:8,  s:95, a:1},
+      {n:"Acute Onset Pre-ex",    w:18, s:96, a:1},
+      {n:"Diagnostics (MRI/CT)",  w:5,  s:93, a:1},
+      {n:"Prescriptions",         w:5,  s:85, a:1},
+      {n:"Post-Discharge Care",   w:7,  s:90, a:1},
+      {n:"Network Quality",       w:8,  s:90, a:1},
+      {n:"Claims Experience",     w:5,  s:90, a:6},
+      {n:"Eligibility Flex.",     w:5,  s:82, a:1},
+      {n:"Price / Value",         w:4,  s:65, a:6},
+    ],
+  },
+  {
+    rank:3, name:"CoverAmerica Gold", carrier:"SiriusPoint / IMG",
+    score:83.0, badge:"BEST FOR HEALTHY TRAVELERS", bc:"g", auth:1, prov:false,
+    filters:["all","healthy"],
+    url:"https://www.imglobal.com/travel-medical-insurance/coveramerica-gold",
+    tags:[{l:"100% In-Network",c:"tg"},{l:"Zero Cardiac Coverage 70+",c:"tr"}],
+    strengths:[
+      "100% in-network coinsurance — strong coverage for healthy travelers",
+      "COVID-19 covered as illness — unique among plans reviewed",
+      "Border Entry Protection benefit for new arrivals",
+      "5% returning customer discount; purchasable from within USA",
+    ],
+    weaknesses:[
+      "Cardiac / stroke sub-limit only $36,000 (age 69 and under)",
+      "ZERO cardiac / stroke coverage for travelers age 70 and above",
+      "COVID trap: effectively excluded on sub-30-day trips",
+      "Claims deadline possibly 90 days vs. 180 for IMG plans (UNCONFIRMED)",
+    ],
+    bestFor:"Healthy travelers under 70 with no cardiac / stroke history; returning visitors wanting COVID coverage; travelers prioritizing in-network certainty.",
+    dims:[
+      {n:"Hospitalization",       w:15, s:90, a:1},
+      {n:"ER Coverage",           w:12, s:90, a:1},
+      {n:"ICU Coverage",          w:8,  s:88, a:1},
+      {n:"Surgery",               w:8,  s:90, a:1},
+      {n:"Acute Onset Pre-ex",    w:18, s:65, a:1},
+      {n:"Diagnostics (MRI/CT)",  w:5,  s:90, a:1},
+      {n:"Prescriptions",         w:5,  s:83, a:1},
+      {n:"Post-Discharge Care",   w:7,  s:82, a:2},
+      {n:"Network Quality",       w:8,  s:88, a:1},
+      {n:"Claims Experience",     w:5,  s:80, a:6},
+      {n:"Eligibility Flex.",     w:5,  s:88, a:1},
+      {n:"Price / Value",         w:4,  s:72, a:6},
+    ],
+  },
+  {
+    rank:4, name:"SC Travel Medical Choice", carrier:"Crum & Forster / Seven Corners",
+    score:77.6, badge:"BEST DUAL NETWORK", bc:"a", auth:1, prov:false,
+    filters:["all","healthy"],
+    url:"https://www.sevencorners.com/plans/visitors-insurance",
+    tags:[{l:"Dual UHC+PHCS Network",c:"tx"},{l:"PT Covered",c:"tg"}],
+    strengths:[
+      "Dual PPO (UHC + PHCS/Multiplan) — widest provider access in the group",
+      "PT covered at $50/visit, 10 visits; COVID covered as illness",
+      "$75K non-cardiac / $50K cardiac acute onset (age 69 and under)",
+      "OON deductible capped at $1,000 — limits worst-case exposure",
+    ],
+    weaknesses:[
+      "Criterion (f) bars chronic conditions with expected flare-ups from acute onset",
+      "36-month lookback — strictest in group; disqualifies most Indian seniors",
+      "No acute onset coverage for age 80 and above",
+      "PT benefit capped at $500 total — low vs. actual US PT costs",
+    ],
+    bestFor:"Travelers in rural or secondary cities, moderate cardiac risk, travelers likely to need post-discharge PT, age 50–70.",
+    dims:[
+      {n:"Hospitalization",       w:15, s:78, a:1},
+      {n:"ER Coverage",           w:12, s:80, a:1},
+      {n:"ICU Coverage",          w:8,  s:78, a:1},
+      {n:"Surgery",               w:8,  s:80, a:1},
+      {n:"Acute Onset Pre-ex",    w:18, s:72, a:1},
+      {n:"Diagnostics (MRI/CT)",  w:5,  s:80, a:1},
+      {n:"Prescriptions",         w:5,  s:80, a:1},
+      {n:"Post-Discharge Care",   w:7,  s:65, a:1},
+      {n:"Network Quality",       w:8,  s:85, a:1},
+      {n:"Claims Experience",     w:5,  s:85, a:6},
+      {n:"Eligibility Flex.",     w:5,  s:82, a:1},
+      {n:"Price / Value",         w:4,  s:75, a:6},
+    ],
+  },
+  {
+    rank:5, name:"Safe Travels USA Comprehensive", carrier:"Nationwide / Trawick International",
+    score:72.9, badge:"BEST ELIGIBILITY FLEXIBILITY", bc:"a", auth:1, prov:false,
+    filters:["all","healthy"],
+    url:"https://www.trawickinternational.com/products/safe-travels-usa-comprehensive/",
+    tags:[{l:"Purchasable in USA",c:"tx"},{l:"No Pharmacy Network",c:"tr"}],
+    strengths:[
+      "Can purchase from within the USA — most flexible eligibility in the group",
+      "100% in-network coinsurance after deductible; $1M plan max",
+      "No citizenship restrictions on purchase; sports coverage add-on available",
+    ],
+    weaknesses:[
+      "Cardiac / stroke sub-limit $25,000 (age 69 and under) — lowest in the group",
+      "Hypertension explicitly classified as cardiac — applies the $25K cap",
+      "NO pharmacy in-network — all Rx requires upfront payment then reimbursement",
+      "I-94 required for claims; claims deadline UNCONFIRMED",
+    ],
+    bestFor:"Travelers already in the USA who need to purchase immediately; healthy travelers with no cardiac history; short visits with minimal Rx requirements.",
+    dims:[
+      {n:"Hospitalization",       w:15, s:82, a:1},
+      {n:"ER Coverage",           w:12, s:82, a:1},
+      {n:"ICU Coverage",          w:8,  s:80, a:1},
+      {n:"Surgery",               w:8,  s:82, a:1},
+      {n:"Acute Onset Pre-ex",    w:18, s:60, a:1},
+      {n:"Diagnostics (MRI/CT)",  w:5,  s:82, a:1},
+      {n:"Prescriptions",         w:5,  s:60, a:1},
+      {n:"Post-Discharge Care",   w:7,  s:55, a:1},
+      {n:"Network Quality",       w:8,  s:65, a:1},
+      {n:"Claims Experience",     w:5,  s:65, a:6},
+      {n:"Eligibility Flex.",     w:5,  s:90, a:1},
+      {n:"Price / Value",         w:4,  s:78, a:6},
+    ],
+  },
+  {
+    rank:6, name:"SC Travel Medical Basic", carrier:"Crum & Forster / Seven Corners",
+    score:71.6, badge:"BUDGET — HEALTHY UNDER 70", bc:"a", auth:1, prov:false,
+    filters:["all","budget","healthy"],
+    url:"https://www.sevencorners.com/plans/visitors-insurance",
+    tags:[{l:"Dual Network",c:"tx"},{l:"PT Excluded",c:"tr"}],
+    strengths:[
+      "Dual UHC+PHCS network — same wide provider access as Choice",
+      "COVID covered as illness; lower premium than Choice",
+      "Seven Corners established claims portal",
+    ],
+    weaknesses:[
+      "Physical Therapy EXPLICITLY EXCLUDED — confirmed at L1 Certificate",
+      "Acute onset caps: $25K (age 69 and under), $2,500 (age 70–79)",
+      "No acute onset coverage age 80 and above",
+      "Criterion (f): chronic conditions with expected flare-ups excluded",
+    ],
+    bestFor:"Healthy travelers under 70, short 1–3 month visits, travelers who accept no PT coverage in exchange for a lower premium.",
+    dims:[
+      {n:"Hospitalization",       w:15, s:75, a:1},
+      {n:"ER Coverage",           w:12, s:78, a:1},
+      {n:"ICU Coverage",          w:8,  s:75, a:1},
+      {n:"Surgery",               w:8,  s:78, a:1},
+      {n:"Acute Onset Pre-ex",    w:18, s:58, a:1},
+      {n:"Diagnostics (MRI/CT)",  w:5,  s:78, a:1},
+      {n:"Prescriptions",         w:5,  s:78, a:1},
+      {n:"Post-Discharge Care",   w:7,  s:35, a:1},
+      {n:"Network Quality",       w:8,  s:85, a:1},
+      {n:"Claims Experience",     w:5,  s:82, a:6},
+      {n:"Eligibility Flex.",     w:5,  s:80, a:1},
+      {n:"Price / Value",         w:4,  s:80, a:6},
+    ],
+  },
+  {
+    rank:7, name:"INF Elite X", carrier:"Crum & Forster / Robin Assist",
+    score:71.0, badge:"BEST PRE-EX (NON-CANCER)", bc:"p", auth:2, prov:false,
+    filters:["all","preex"],
+    url:"https://www.infplans.com/elite-network-x/",
+    tags:[{l:"Direct Pre-ex Coverage",c:"tp"},{l:"Cancer Excluded",c:"tr"}],
+    strengths:[
+      "DIRECT pre-existing condition coverage — unique in the group (not just acute onset model)",
+      "Stable medication exception: 24 months unchanged = NOT classified as pre-existing",
+      "UHC Options PPO; fastest claim processing in the group (10–15 days)",
+      "Pre-ex limits $25K–$50K (age 0–69), $20K (age 70–99)",
+    ],
+    weaknesses:[
+      "Cancer ABSOLUTELY EXCLUDED — any cancer history disqualifies",
+      "90-day minimum plan — inflexible for 1–2 month visits",
+      "Service sub-limits: $15K hospital, $7.5K ER, $5K assistant surgeon",
+      "30–40% OON penalty — worst in the group; claims deadline UNCONFIRMED",
+      "All evidence is L2 (Policy Wording) — Certificate not yet obtained",
+    ],
+    bestFor:"Travelers with stable diabetes, hypertension, or stable cardiac conditions — without cancer history — staying 90+ days.",
+    dims:[
+      {n:"Hospitalization",       w:15, s:72, a:2},
+      {n:"ER Coverage",           w:12, s:70, a:2},
+      {n:"ICU Coverage",          w:8,  s:70, a:2},
+      {n:"Surgery",               w:8,  s:72, a:2},
+      {n:"Acute Onset Pre-ex",    w:18, s:88, a:2},
+      {n:"Diagnostics (MRI/CT)",  w:5,  s:72, a:2},
+      {n:"Prescriptions",         w:5,  s:55, a:2},
+      {n:"Post-Discharge Care",   w:7,  s:55, a:2},
+      {n:"Network Quality",       w:8,  s:68, a:5},
+      {n:"Claims Experience",     w:5,  s:58, a:6},
+      {n:"Eligibility Flex.",     w:5,  s:65, a:2},
+      {n:"Price / Value",         w:4,  s:70, a:6},
+    ],
+  },
+  {
+    rank:8, name:"Atlas America", carrier:"TMHCC / WorldTrips",
+    score:61.7, badge:"PROVISIONAL — CERT PENDING", bc:"a", auth:5, prov:true,
+    filters:["all"],
+    url:"https://www.worldtrips.com/us-visitor-health-insurance",
+    tags:[{l:"PROVISIONAL",c:"ta"},{l:"TMHCC Cert Needed",c:"tr"}],
+    evidenceWarning:"PROVISIONAL RANKING — CE-001: WorldTrips carrier transition May 29, 2025 (Lloyd's to TMHCC). Lloyd's Certificate is superseded. All Phase 14 evidence is L5/L6 brochure only. Score expected to rise to rank 3–5 once TMHCC Certificate obtained and verified.",
+    strengths:[
+      "UHC PPO network confirmed from brochure (L5 — awaiting L1 verification)",
+      "WorldTrips administration — established platform",
+      "AM Best A++ carrier rating (TMHCC — upgrade from Lloyd's)",
+    ],
+    weaknesses:[
+      "All evidence is L5/L6 — no Certificate (L1) or Policy Wording (L2) obtained",
+      "Home Country Coverage REMOVED (CE-001 — WorldTrips carrier transition May 2025)",
+      "New purchase restrictions: NY, WA, MD, and EEA countries now ineligible",
+      "Cannot be recommended until TMHCC Certificate is obtained and verified",
+    ],
+    bestFor:"Cannot make recommendation until TMHCC Certificate is obtained and all Phase 14 evidence entries are re-verified against the new carrier.",
+    dims:[
+      {n:"Hospitalization",       w:15, s:70, a:5},
+      {n:"ER Coverage",           w:12, s:65, a:5},
+      {n:"ICU Coverage",          w:8,  s:65, a:5},
+      {n:"Surgery",               w:8,  s:65, a:5},
+      {n:"Acute Onset Pre-ex",    w:18, s:45, a:5},
+      {n:"Diagnostics (MRI/CT)",  w:5,  s:60, a:5},
+      {n:"Prescriptions",         w:5,  s:55, a:5},
+      {n:"Post-Discharge Care",   w:7,  s:45, a:5},
+      {n:"Network Quality",       w:8,  s:78, a:5},
+      {n:"Claims Experience",     w:5,  s:70, a:6},
+      {n:"Eligibility Flex.",     w:5,  s:70, a:5},
+      {n:"Price / Value",         w:4,  s:68, a:6},
+    ],
+  },
+  {
+    rank:9, name:"VisitorSecure", carrier:"TMHCC / WorldTrips",
+    score:33.3, badge:"BUDGET ONLY — NOT FOR SENIORS", bc:"r", auth:1, prov:false,
+    filters:["all","budget"],
+    url:"https://www.worldtrips.com/visitor-secure",
+    tags:[{l:"Scheduled Benefits",c:"tr"},{l:"No PPO Network",c:"tr"}],
+    strengths:[
+      "Lowest premium in the group — appropriate for very healthy, young travelers",
+      "14-day minimum plan duration — most flexible entry point",
+      "Simple purchase process",
+    ],
+    weaknesses:[
+      "SCHEDULED BENEFIT PLAN — fixed amounts far below actual US medical costs",
+      "No PPO network — must pay all costs upfront, then file for reimbursement",
+      "Criterion (a): bars conditions 'directly or indirectly related to a chronic condition'",
+      "$150–300 total Rx cap for entire trip — insufficient for multi-medication travelers",
+      "Highest claim complexity score (75) in the group — hardest to navigate",
+      "TMHCC Certificate re-verification pending (CE-001)",
+    ],
+    bestFor:"Very healthy travelers under 50, extremely short visits (under 30 days), travelers who only want catastrophic baseline coverage at minimum cost.",
+    dims:[
+      {n:"Hospitalization",       w:15, s:35, a:1},
+      {n:"ER Coverage",           w:12, s:30, a:1},
+      {n:"ICU Coverage",          w:8,  s:25, a:1},
+      {n:"Surgery",               w:8,  s:30, a:1},
+      {n:"Acute Onset Pre-ex",    w:18, s:20, a:1},
+      {n:"Diagnostics (MRI/CT)",  w:5,  s:35, a:1},
+      {n:"Prescriptions",         w:5,  s:30, a:1},
+      {n:"Post-Discharge Care",   w:7,  s:40, a:1},
+      {n:"Network Quality",       w:8,  s:25, a:1},
+      {n:"Claims Experience",     w:5,  s:25, a:6},
+      {n:"Eligibility Flex.",     w:5,  s:75, a:1},
+      {n:"Price / Value",         w:4,  s:85, a:6},
+    ],
+  },
+];
+
+const SCENARIOS = [
+  {
+    name:"Acute Cardiac Event", desc:"Estimated cost $120,000. Indian male age 65, diabetic, hypertensive. STEMI, cath lab, 4-day ICU.",
+    rows:[
+      {plan:"Patriot America Platinum",rank:1,vc:"vs",vl:"STRONG",cov:"100% coinsurance — full $1M headroom, no cardiac sub-limit",oop:"Deductible only",risk:"None identified"},
+      {plan:"Patriot America Plus",rank:2,vc:"vs",vl:"STRONG",cov:"90%–100% in-network — no cardiac sub-limit",oop:"10% of first $5K then 0%",risk:"OON exposure if no UHC provider nearby"},
+      {plan:"CoverAmerica Gold",rank:3,vc:"vc",vl:"CAUTION",cov:"$36K cardiac sub-limit — covers partial event only",oop:"$84K+ uncovered above sub-limit",risk:"Major exposure beyond $36K"},
+      {plan:"SC Travel Medical Choice",rank:4,vc:"vc",vl:"CAUTION",cov:"$50K cardiac acute onset (age 69 and under)",oop:"$70K+ uncovered above cap",risk:"Criterion (f) may bar stable hypertension from acute onset"},
+      {plan:"Safe Travels USA Comp.",rank:5,vc:"vr",vl:"RISK",cov:"$25K cardiac sub-limit — lowest in group",oop:"$95K+ uncovered",risk:"Hypertension = cardiac classification → $25K limit applies"},
+      {plan:"SC Travel Medical Basic",rank:6,vc:"vr",vl:"RISK",cov:"$25K acute onset cap — same cardiac limit as Choice",oop:"$95K+ uncovered",risk:"Criterion (f) + low cap combination"},
+      {plan:"INF Elite X",rank:7,vc:"vc",vl:"CAUTION",cov:"$50K direct pre-ex cardiac + service sub-limits",oop:"$15K hospital cap, $7.5K ER cap create gap exposure",risk:"Service sub-limits insufficient for extended ICU stay"},
+      {plan:"Atlas America",rank:8,vc:"vp",vl:"PROVISIONAL",cov:"UNKNOWN — no Certificate obtained",oop:"Unknown",risk:"Cannot assess without TMHCC Certificate"},
+      {plan:"VisitorSecure",rank:9,vc:"va",vl:"AVOID",cov:"Scheduled amounts cover fraction of $120K cost",oop:"$90K–$115K exposure",risk:"Criterion (a) likely bars cardiac event as related to chronic condition"},
+    ]
+  },
+  {
+    name:"Hip Fracture + Surgery", desc:"Estimated cost $55,000. Surgery + 3-day hospital + PT × 10 sessions. Age 68.",
+    rows:[
+      {plan:"Patriot America Platinum",rank:1,vc:"vs",vl:"STRONG",cov:"100% coinsurance — full surgery, hospital, PT no visit cap",oop:"Deductible only",risk:"None"},
+      {plan:"Patriot America Plus",rank:2,vc:"vs",vl:"STRONG",cov:"90%–100% in-network — PT no visit cap confirmed L1",oop:"Minimal",risk:"OON exposure only"},
+      {plan:"CoverAmerica Gold",rank:3,vc:"vg",vl:"GOOD",cov:"100% in-network — strong hospitalization coverage",oop:"Low",risk:"PT from Certificate unconfirmed"},
+      {plan:"SC Travel Medical Choice",rank:4,vc:"vg",vl:"GOOD",cov:"Surgery covered; PT $500 max (10 visits × $50)",oop:"PT costs above $500 cap",risk:"PT cap low vs. actual cost ($150–200/session)"},
+      {plan:"Safe Travels USA Comp.",rank:5,vc:"vc",vl:"CAUTION",cov:"Surgery covered; PT $500 max; no pharmacy in-network",oop:"PT above cap + Rx friction post-discharge",risk:"No in-network pharmacy complicates post-discharge Rx management"},
+      {plan:"SC Travel Medical Basic",rank:6,vc:"vr",vl:"RISK",cov:"Surgery covered but PT EXPLICITLY EXCLUDED (L1)",oop:"Full PT cost — US average $2,000–$4,000 for hip fracture recovery",risk:"PT exclusion is a major gap for any musculoskeletal injury"},
+      {plan:"INF Elite X",rank:7,vc:"vc",vl:"CAUTION",cov:"$15K surgery sub-limit — may be insufficient",oop:"Surgery above $15K uncovered (hip replacement avg $30–50K)",risk:"Service sub-limit creates significant coverage gap for major surgery"},
+      {plan:"Atlas America",rank:8,vc:"vp",vl:"PROVISIONAL",cov:"Unknown",oop:"Unknown",risk:"Cannot assess"},
+      {plan:"VisitorSecure",rank:9,vc:"va",vl:"AVOID",cov:"Scheduled amounts — fraction of actual $55K cost",oop:"$40K+ exposure",risk:"Scheduled benefit plan vs. actual surgery cost = massive gap"},
+    ]
+  },
+  {
+    name:"Diabetic Emergency", desc:"Estimated cost $18,000. DKA hospitalization 3 days. Hypertensive traveler. Age 62.",
+    rows:[
+      {plan:"Patriot America Platinum",rank:1,vc:"vs",vl:"STRONG",cov:"DKA covered as acute onset; 3-year lookback, 30-day stability",oop:"Deductible only",risk:"None if stable 30+ days before departure"},
+      {plan:"Patriot America Plus",rank:2,vc:"vs",vl:"STRONG",cov:"Same acute onset protection as Platinum",oop:"Minimal",risk:"Same 30-day stability requirement"},
+      {plan:"CoverAmerica Gold",rank:3,vc:"vg",vl:"GOOD",cov:"Acute onset covers DKA if not classified cardiac",oop:"Low",risk:"Hypertension + DKA comorbidity: cardiac classification risk"},
+      {plan:"SC Travel Medical Choice",rank:4,vc:"vc",vl:"CAUTION",cov:"$75K non-cardiac acute onset covers $18K DKA",oop:"Low — within $75K cap",risk:"Criterion (f): DKA as 'expected complication' of diabetes may be denied"},
+      {plan:"Safe Travels USA Comp.",rank:5,vc:"vc",vl:"CAUTION",cov:"Acute onset covers DKA within limits",oop:"Low for this claim size",risk:"Hypertension = cardiac classification risk on comorbid claim"},
+      {plan:"SC Travel Medical Basic",rank:6,vc:"vc",vl:"CAUTION",cov:"$25K acute onset (age 69 and under) — covers $18K DKA",oop:"Low for this claim size",risk:"Criterion (f) risk — DKA as expected diabetic complication"},
+      {plan:"INF Elite X",rank:7,vc:"vs",vl:"STRONG",cov:"DIRECT pre-ex coverage for diabetes — best plan for this scenario",oop:"$500 Rx cap bite if insulin-intensive; $15K hospital sub-limit",risk:"Sub-limits constrain extended stays; $500 Rx cap insufficient for intensive therapy"},
+      {plan:"Atlas America",rank:8,vc:"vp",vl:"PROVISIONAL",cov:"Unknown",oop:"Unknown",risk:"Cannot assess"},
+      {plan:"VisitorSecure",rank:9,vc:"va",vl:"AVOID",cov:"Criterion (a) likely bars DKA as related to diabetes; scheduled amounts",oop:"$17K+ exposure",risk:"Double denial risk: criterion (a) + scheduled benefit structure"},
+    ]
+  },
+  {
+    name:"ER Visit (Chest Pain)", desc:"Estimated cost $8,500. Chest pain eval, ECG, troponin, 6-hr observation. Age 60.",
+    rows:[
+      {plan:"Patriot America Platinum",rank:1,vc:"vs",vl:"STRONG",cov:"100% coinsurance — ER covered same as hospitalization",oop:"Deductible only",risk:"None"},
+      {plan:"Patriot America Plus",rank:2,vc:"vs",vl:"STRONG",cov:"90%–100% in-network; $25 urgent care copay available",oop:"Minimal",risk:"None"},
+      {plan:"CoverAmerica Gold",rank:3,vc:"vs",vl:"STRONG",cov:"100% in-network ER — $8.5K well within plan limits",oop:"Deductible only",risk:"None at this claim size"},
+      {plan:"SC Travel Medical Choice",rank:4,vc:"vg",vl:"GOOD",cov:"ER covered at coinsurance rate",oop:"Coinsurance portion",risk:"None at this claim size"},
+      {plan:"Safe Travels USA Comp.",rank:5,vc:"vg",vl:"GOOD",cov:"ER covered 100% in-network",oop:"Low",risk:"I-94 required for claim filing — administrative friction"},
+      {plan:"SC Travel Medical Basic",rank:6,vc:"vg",vl:"GOOD",cov:"ER covered at coinsurance",oop:"Coinsurance portion",risk:"None at this claim size"},
+      {plan:"INF Elite X",rank:7,vc:"vc",vl:"CAUTION",cov:"$7,500 ER sub-limit — $8.5K claim exceeds cap by $1K",oop:"~$1,000 above sub-limit cap",risk:"ER sub-limit creates small gap even for moderate ER events"},
+      {plan:"Atlas America",rank:8,vc:"vp",vl:"PROVISIONAL",cov:"Unknown",oop:"Unknown",risk:"Cannot assess"},
+      {plan:"VisitorSecure",rank:9,vc:"vc",vl:"CAUTION",cov:"Scheduled ER benefit covers ~$2–3K of $8.5K",oop:"$5K–$6.5K exposure; must pay upfront",risk:"Scheduled amounts + upfront payment requirement"},
+    ]
+  },
+  {
+    name:"Hypertensive Crisis", desc:"Estimated cost $28,000. Emergency IV treatment + 2-day admission. Age 72.",
+    rows:[
+      {plan:"Patriot America Platinum",rank:1,vc:"vs",vl:"STRONG",cov:"100% — not sub-limited as cardiac; 30-day stability required",oop:"Deductible only",risk:"None if 30-day stability met"},
+      {plan:"Patriot America Plus",rank:2,vc:"vs",vl:"STRONG",cov:"Same as Platinum",oop:"Minimal",risk:"Same stability requirement"},
+      {plan:"CoverAmerica Gold",rank:3,vc:"va",vl:"AVOID",cov:"ZERO cardiac coverage age 70+ — hypertension classified as cardiac",oop:"Full $28,000 uncovered",risk:"Age 72 + cardiac classification = zero coverage"},
+      {plan:"SC Travel Medical Choice",rank:4,vc:"vr",vl:"RISK",cov:"$5,000 cardiac acute onset cap (age 70–79)",oop:"$23K+ uncovered above cap",risk:"Hypertension at 72: $5K cap is critically insufficient"},
+      {plan:"Safe Travels USA Comp.",rank:5,vc:"vc",vl:"CAUTION",cov:"Age 70–79: $15K cardiac sub-limit — partial coverage",oop:"$13K+ uncovered if cardiac classified",risk:"Hypertension = cardiac classification → $15K limit applies"},
+      {plan:"SC Travel Medical Basic",rank:6,vc:"vr",vl:"RISK",cov:"$2,500 cardiac acute onset cap (age 70–79)",oop:"$25.5K uncovered",risk:"Extremely low cap for age 70–79 cardiac events"},
+      {plan:"INF Elite X",rank:7,vc:"vg",vl:"GOOD",cov:"Direct pre-ex coverage up to $20K (age 70–99) — best plan for this scenario",oop:"$8K above $20K cap",risk:"Best option at this age; $15K hospital sub-limit still constrains extended stay"},
+      {plan:"Atlas America",rank:8,vc:"vp",vl:"PROVISIONAL",cov:"Unknown",oop:"Unknown",risk:"Cannot assess"},
+      {plan:"VisitorSecure",rank:9,vc:"va",vl:"AVOID",cov:"Criterion (a) bars hypertension crisis as chronic; scheduled amounts",oop:"Full $28,000 exposure",risk:"Double denial risk + no PPO means upfront payment of entire cost"},
+    ]
+  },
+  {
+    name:"COVID-19 Hospitalization", desc:"Estimated cost $35,000. 5-day hospitalization, oxygen therapy. Age 60.",
+    rows:[
+      {plan:"Patriot America Platinum",rank:1,vc:"vs",vl:"STRONG",cov:"COVID covered as illness — 100% coinsurance",oop:"Deductible only",risk:"None"},
+      {plan:"Patriot America Plus",rank:2,vc:"vs",vl:"STRONG",cov:"COVID covered — 90%–100% in-network",oop:"Minimal",risk:"None"},
+      {plan:"CoverAmerica Gold",rank:3,vc:"vc",vl:"CAUTION",cov:"COVID covered but sub-30-day trip trap — 'known epidemic' exclusion",oop:"Full $35K if trip under 30 days",risk:"Confirm trip is 30+ days before relying on COVID coverage"},
+      {plan:"SC Travel Medical Choice",rank:4,vc:"vs",vl:"STRONG",cov:"COVID explicitly covered as illness (confirmed L1)",oop:"Coinsurance only",risk:"None"},
+      {plan:"Safe Travels USA Comp.",rank:5,vc:"vg",vl:"GOOD",cov:"COVID covered as illness",oop:"Low",risk:"I-94 required for claims — administrative friction"},
+      {plan:"SC Travel Medical Basic",rank:6,vc:"vs",vl:"STRONG",cov:"COVID explicitly covered as illness (confirmed L1)",oop:"Coinsurance only",risk:"None"},
+      {plan:"INF Elite X",rank:7,vc:"vg",vl:"GOOD",cov:"New condition — COVID covered as new illness",oop:"$15K hospital sub-limit applies to 5-day stay",risk:"5-day COVID hospitalization may hit $15K hospital sub-limit"},
+      {plan:"Atlas America",rank:8,vc:"vp",vl:"PROVISIONAL",cov:"Unknown",oop:"Unknown",risk:"Cannot assess"},
+      {plan:"VisitorSecure",rank:9,vc:"vc",vl:"CAUTION",cov:"Covered as new condition but scheduled amounts far below actual cost",oop:"$28K–$32K exposure",risk:"Scheduled benefit vs. $35K hospitalization = major coverage gap"},
+    ]
+  },
+];
+
+/* ── HELPERS ───────────────────────────────────────────── */
+let currentFilter = 'all', currentSort = 'rank', selectedRank = null;
+
+function sc(s) { return s>=80?'sg':s>=60?'ag':'rg'; }
+function fc(s) { return s>=80?'fg':s>=60?'fa':'fr'; }
+function rc(r) { return r===1?'r1':r===2?'r2':r===3?'r3':'r4'; }
+function authCls(a) { return a===1?'al1':a===2?'al2':'al5'; }
+function authTxt(a) { return a===1?'L1 Certificate':a===2?'L2 Policy Wording':'L5 Brochure — PROVISIONAL'; }
+function badgeSty(bc) {
+  const m = {
+    g:'background:rgba(34,197,94,0.1);color:#22c55e',
+    a:'background:rgba(245,158,11,0.1);color:#f59e0b',
+    r:'background:rgba(239,68,68,0.1);color:#ef4444',
+    p:'background:rgba(167,139,250,0.1);color:#a78bfa',
+  };
+  return m[bc]||m.a;
+}
+
+/* ── RENDER PLAN LIST ──────────────────────────────────── */
+function renderList() {
+  let plans = PLANS.filter(p=>p.filters.includes(currentFilter));
+  if(currentSort==='preex') plans.sort((a,b)=>{
+    const as=a.dims.find(d=>d.n==='Acute Onset Pre-ex')?.s||0;
+    const bs=b.dims.find(d=>d.n==='Acute Onset Pre-ex')?.s||0;
+    return bs-as;
+  });
+  else if(currentSort==='network') plans.sort((a,b)=>{
+    const as=a.dims.find(d=>d.n==='Network Quality')?.s||0;
+    const bs=b.dims.find(d=>d.n==='Network Quality')?.s||0;
+    return bs-as;
+  });
+  else if(currentSort==='claims') plans.sort((a,b)=>{
+    const as=a.dims.find(d=>d.n==='Claims Experience')?.s||0;
+    const bs=b.dims.find(d=>d.n==='Claims Experience')?.s||0;
+    return bs-as;
+  });
+  else plans.sort((a,b)=>a.rank-b.rank);
+
+  const container = document.getElementById('planList');
+  container.innerHTML = plans.map(p=>`
+    <div class="plan-row${p.prov?' prov':''}${selectedRank===p.rank?' sel':''}" onclick="selectPlan(${p.rank})" data-rank="${p.rank}">
+      <div class="rchip ${rc(p.rank)}">${p.rank}</div>
+      <div class="pinfo">
+        <div class="pname">${p.name}</div>
+        <div class="pcarr">${p.carrier}</div>
+      </div>
+      <div class="ptags">${p.tags.map(t=>`<span class="tag ${t.c}">${t.l}</span>`).join('')}</div>
+      <div class="scol">
+        <div class="snum ${sc(p.score)}">${p.score}</div>
+        <div class="sbar"><div class="sbar-fill ${fc(p.score)}" style="width:${p.score}%"></div></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ── SELECT PLAN ───────────────────────────────────────── */
+function selectPlan(rank) {
+  const p = PLANS.find(x=>x.rank===rank);
+  if(!p) return;
+  selectedRank = rank;
+  document.querySelectorAll('.plan-row').forEach(r=>
+    r.classList.toggle('sel', parseInt(r.dataset.rank)===rank)
+  );
+  document.getElementById('detailEmpty').style.display='none';
+  const c = document.getElementById('detailContent');
+  c.style.display='block';
+  c.innerHTML = `
+    <div class="det-hero">
+      <div class="det-rank-row">
+        <div class="rchip ${rc(p.rank)}" style="width:22px;height:22px;font-size:10px">${p.rank}</div>
+        <span class="det-badge" style="${badgeSty(p.bc)}">${p.badge}</span>
+      </div>
+      <div class="det-score ${sc(p.score)}">${p.score}</div>
+      <div class="det-name">${p.name}</div>
+      <div class="det-carr">${p.carrier}</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span class="auth-badge ${authCls(p.auth)}">${authTxt(p.auth)}</span>
+        ${p.prov?'<span class="chip chip-amber">PROVISIONAL</span>':''}
+      </div>
+    </div>
+    ${p.evidenceWarning?`<div class="ev-warn">${p.evidenceWarning}</div>`:''}
+    <div class="det-bestfor">
+      <div class="sec-lbl" style="margin-bottom:6px">Best For</div>
+      <div>${p.bestFor}</div>
+    </div>
+    <div class="det-facts">
+      <div class="sec-lbl">Strengths &amp; Weaknesses</div>
+      ${p.strengths.map(s=>`<div class="fact-row"><div class="fdot fdg"></div><div class="ftext">${s}</div></div>`).join('')}
+      ${p.weaknesses.map(w=>`<div class="fact-row"><div class="fdot fdr"></div><div class="ftext">${w}</div></div>`).join('')}
+    </div>
+    <div class="dim-list">
+      <div class="sec-lbl">12-Dimension Score Breakdown</div>
+      ${p.dims.map(d=>`
+        <div class="dim-row">
+          <div class="dim-hdr">
+            <span class="dim-name">${d.n}</span>
+            <div class="dim-right">
+              <span class="dim-wt">${d.w}% wt · L${d.a}</span>
+              <span class="dim-snum ${sc(d.s)}">${d.s}</span>
+            </div>
+          </div>
+          <div class="dim-bar-track">
+            <div class="dim-bar-fill ${fc(d.s)}" style="width:${d.s}%"></div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    <a href="${p.url}" target="_blank" class="visit-btn">Visit Website &rarr;</a>
+  `;
+}
+
+/* ── FILTER + SORT ─────────────────────────────────────── */
+function doFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderList();
+}
+function doSort(v) { currentSort=v; renderList(); }
+
+/* ── SCENARIOS ─────────────────────────────────────────── */
+let curScenario = 0;
+function doScenario(idx, btn) {
+  curScenario = idx;
+  document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  const s = SCENARIOS[idx];
+  document.getElementById('scenarioOut').innerHTML = `
+    <div style="margin-bottom:14px;font-size:12px;color:var(--text-secondary)">${s.desc}</div>
+    <table class="sc-table">
+      <thead><tr>
+        <th style="width:190px">Plan</th>
+        <th style="width:100px">Verdict</th>
+        <th>Coverage Assessment</th>
+        <th style="width:140px">Est. Out-of-Pocket</th>
+        <th style="width:200px">Key Risk</th>
+      </tr></thead>
+      <tbody>
+        ${s.rows.map(r=>`
+          <tr>
+            <td><div class="pcn">${r.plan}</div><div class="pcrk">Rank #${r.rank}</div></td>
+            <td><span class="vchip ${r.vc}">${r.vl}</span></td>
+            <td style="font-size:11.5px;color:var(--text-secondary);line-height:1.5">${r.cov}</td>
+            <td style="font-size:11.5px;color:var(--text-secondary)">${r.oop}</td>
+            <td style="font-size:11.5px;color:var(--text-secondary)">${r.risk}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+/* ── INIT ──────────────────────────────────────────────── */
+renderList();
+doScenario(0, null);
+selectPlan(1);
+</script>
+</body>
+</html>
